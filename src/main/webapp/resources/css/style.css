@@ -242,10 +242,17 @@ input: -webkit-autofill:focus {
 }
 #header .header_menu ul.main_menu li a {
     color: #393939;
-    font-size: 14px;
+    font-size: 16px;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Nanum Square', sans-serif;
+}
+.header_menu ul.main_menu1 li a {
+    color: #393939;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Nanum Square', sans-serif;
 }
 #header .header_menu ul.main_menu li a:hover {
     color: #4DA91C;
@@ -362,6 +369,36 @@ input: -webkit-autofill:focus {
 .carousel-fade .carousel-control {
     z-index: 2;
 }
+
+/*intro_notice*/
+#intro {
+	background: #42DF2B;
+	padding: 0px 100px;
+	font-size: 20px;
+}
+.section_title {
+	text-align: left;
+    word-spacing:5px;
+    line-height:25px; 
+    color: white;
+}
+
+.notice_title, 
+.notice_sub_title {
+	text-align: center;
+    word-spacing:5px;
+    line-height:25px; 
+    color: red;
+}
+.more_bt {
+	text-align: right;
+    word-spacing:5px;
+    line-height:25px; 
+    color: blue;
+} 
+
+
+
 
 /*Welcome Section*/
 #welcome {
@@ -985,27 +1022,32 @@ li.fw-flash-message {
 /*Footer*/
 
 #footer {
-    min-height: 100px;
-    background: #222222;
-    color: #fff;
+    
+    background: #ffffff;
+    color: #black;
 }
 #footer .copyright,
 #footer .designer {
-    padding-top: 45px;
+    
     font-size: 14px;
 }
 #footer .copyright p {
     text-align: left;
+    word-spacing:5px;
+    line-height:25px;
+    
 }
 #footer .designer p {
+	padding: 30px 30px 30px 30px;
     text-align: right;
+    font-weight: 600;
 }
 #footer .copyright p,
 #footer .copyright p span a,
 #footer .designer p,
 #footer .designer a {
-    font-size: 14px;
-    color: #ffffff;
+    font-size: 12px;
+    color: #b1b1b1;
     font-family: 'Open Sans', sans-serif;
     padding-left: 3px;
 }

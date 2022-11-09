@@ -1,1044 +1,396 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
-//test
- <head>
-        <meta charset="utf-8">
-        
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<head>
+<link rel="shortcut icon" type="image/x-icon"
+	href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png">
 
-        <title>GreenFair</title>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<meta charset="utf-8">
 
-        <!--    Google Fonts-->
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-        <!--Fontawesom-->
+<title>ZupgoZupup</title>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
+<!--    Google Fonts-->
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css'
+	rel='stylesheet' type='text/css'>
+<!--Fontawesom-->
 
-        <!--Animated CSS-->
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/animate.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 
-        <!-- Bootstrap -->
-        <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
-        <!--Bootstrap Carousel-->
-        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/carousel.css" />
+<!--Animated CSS-->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/animate.min.css">
 
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/isotope/style.css">
+<!-- Bootstrap -->
+<link
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
+	rel="stylesheet">
+<!--Bootstrap Carousel-->
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/carousel.css" />
 
-        <!--Main Stylesheet-->
-        <link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet">
-        <!--Responsive Framework-->
-        <link href="${pageContext.request.contextPath}/resources/css/responsive.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/isotope/style.css">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+<!--Main Stylesheet-->
+<link href="${pageContext.request.contextPath}/resources/css/style.css"
+	rel="stylesheet">
+<!--Responsive Framework-->
+<link
+	href="${pageContext.request.contextPath}/resources/css/responsive.css"
+	rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-    </head>
+</head>
 
-    <body data-spy="scroll" data-target="#header">
+<body data-spy="scroll" data-target="#header">
 
-        <!--Start Hedaer Section-->
-        <section id="header">
-            <div class="header-area">
-                <div class="top_header">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 zero_mp">
-                                <div class="address">
-                                    <i class="fa fa-home floatleft"></i>
-                                    <p>Elephant Road, Dhaka 1205, Bangladesh</p>
-                                </div>
-                            </div>
-                            <!--End of col-md-4-->
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 zero_mp">
-                                <div class="phone">
-                                    <i class="fa fa-phone floatleft"></i>
-                                    <p>+ 8801532-987039</p>
-                                </div>
-                            </div>
-                            <!--End of col-md-4-->
-                            <div class="col-md-4">
-                                <div class="social_icon text-right">
-                                    <a href=""><i class="fa fa-facebook"></i></a>
-                                    <a href=""><i class="fa fa-twitter"></i></a>
-                                    <a href=""><i class="fa fa-google-plus"></i></a>
-                                    <a href=""><i class="fa fa-youtube"></i></a>
-                                </div>
-                            </div>
-                            <!--End of col-md-4-->
-                        </div>
-                        <!--End of row-->
-                    </div>
-                    <!--End of container-->
-                </div>
-                <!--End of top header-->
-                <div class="header_menu text-center" data-spy="affix" data-offset-top="50" id="nav">
-                    <div class="container">
-                        <nav class="navbar navbar-default zero_mp ">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand custom_navbar-brand" href="#"><img src="${pageContext.request.contextPath}/resources/img/logo.png" alt=""></a>
-                            </div>
-                            <!--End of navbar-header-->
+	<!--Start Hedaer Section-->
+	<section id="header">
+		<div class="header-area">
 
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse zero_mp" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav navbar-right main_menu">
-                                    <li class="active"><a href="#header">Home <span class="sr-only">(current)</span></a></li>
-                                    <li><a href="#welcome">about</a></li>
-                                    <li><a href="#portfolio">project</a></li>
-                                    <li><a href="#counter">achivment</a></li>
-                                    <li><a href="#event">event</a></li>
-                                    <li><a href="#testimonial">testimonial</a></li>
-                                    <li><a href="#blog">blog</a></li>
-                                    <li><a href="#contact">contact us</a></li>
-                                </ul>
-                            </div>
-                            <!-- /.navbar-collapse -->
-                        </nav>
-                        <!--End of nav-->
-                    </div>
-                    <!--End of container-->
-                </div>
-                <!--End of header menu-->
-            </div>
-            <!--end of header area-->
-        </section>
-        <!--End of Hedaer Section-->
+			<div class="header_menu text-center" data-spy="affix"
+				data-offset-top="50" id="nav">
+				<div class="container">
+					<nav class="navbar navbar-default zero_mp ">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed"
+								data-toggle="collapse"
+								data-target="#bs-example-navbar-collapse-1"
+								aria-expanded="false">
+								<span class="sr-only">Toggle navigation</span> <span
+									class="icon-bar"></span> <span class="icon-bar"></span> <span
+									class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand custom_navbar-brand" href="#"><img
+								src="${pageContext.request.contextPath}/resources/img/logo1.png"
+								alt=""></a>
+						</div>
+						<!--End of navbar-header-->
+						<div class="collapse navbar-collapse zero_mp"
+							id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right main_menu1">
+								<li><a href="">회원가입</a></li>
+								<!--로그인 / 로그아웃-->
+								<li class="nav-item"><c:choose>
+										<c:when test="${sessionScope.id eq null}">
+											<a class="nav-link" href="./login">로그인</a>
+										</c:when>
+										<c:otherwise>
+											<a class="nav-link" href="./logout">로그아웃</a>
+										</c:otherwise>
+									</c:choose></li>
+								<li><a href="">고객센터</a></li>
+							</ul>
+						</div>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse zero_mp"
+							id="bs-example-navbar-collapse-2">
+							<ul class="nav navbar-nav navbar-right main_menu">
+								<li><a href="">메이트찾기 <span class="sr-only">(current)</span></a></li>
+								<li><a href="">메이트모집</a></li>
+								<li><a href="">추천</a></li>
+								<li><a href="">후기</a></li>
+								<li><a href="">자유게시판</a></li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+					<!--End of nav-->
+				</div>
+				<!--End of container-->
+			</div>
+			<!--End of header menu-->
+		</div>
+		<!--end of header area-->
+	</section>
+	<!--End of Hedaer Section-->
 
 
 
-        <!--Start of slider section-->
-        <section id="slider">
-            <div id="carousel-example-generic" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                </ol>
+	<!--Start of slider section-->
+	<section id="slider">
+		<div id="carousel-example-generic"
+			class="carousel slide carousel-fade" data-ride="carousel"
+			data-interval="3000">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-generic" data-slide-to="0"
+					class="active"></li>
+			</ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <div class="slider_overlay">
-                            <img src="${pageContext.request.contextPath}/resources/img/img1.jpg" alt="...">
-                            <div class="carousel-caption">
-                                <div class="slider_text">
-                                    <h3>Protect</h3>
-                                    <h2>nature the environment</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <a href="" class="custom_btn">Read  More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of item With Active-->
-                    <div class="item">
-                        <div class="slider_overlay">
-                            <img src="${pageContext.request.contextPath}/resources/img/img2.jpg" alt="...">
-                            <div class="carousel-caption">
-                                <div class="slider_text">
-                                    <h3>Protect</h3>
-                                    <h2>nature the environment</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <a href="" class="custom_btn">Read  More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of Item-->
-                    <div class="item">
-                        <div class="slider_overlay">
-                            <img src="${pageContext.request.contextPath}/resources/img/img3.jpg" alt="...">
-                            <div class="carousel-caption">
-                                <div class="slider_text">
-                                    <h3>Protect</h3>
-                                    <h2>nature the environment</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <a href="" class="custom_btn">Read  More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of item-->
-                </div>
-                <!--End of Carousel Inner-->
-            </div>
-        </section>
-        <!--end of slider section-->
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner" role="listbox">
+				<div class="item active">
+					<div class="slider_overlay">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/main.jpg"
+							alt="...">
+						<div class="carousel-caption">
+							<div class="slider_text">
+								<h3>플로깅</h3>
+								<h2>플로깅</h2>
+								<p>플로깅</p>
+								<a href="" class="custom_btn">플로깅 설명페이지로 이동</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--End of Carousel Inner-->
+		</div>
+	</section>
+	<!--end of slider section-->
 
+	<section id="intro">
+		<div class="intro_notice">
+			<div class="intro_notice_tl">
+				<div class="section_title">공지사항</div>
+				<div class="notice_title">비긴메이트 파트너 전문가 등록 안내</div>
+				<div class="notice_sub_title">with 글로벌 팀빌딩 플랫폼</div>
+				<div class="more_bt">날씨 api</div>				                        
+			</div>
+		</div>
+	</section>
 
+	<!-- 메인 좋아요 순 리스트 -->
 
-        <!--Start of welcome section-->
-        <section id="welcome">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="wel_header">
-                            <h2>welcome to green fair</h2>
-                            <p>Our Green Fire Organization is one of the non profit organization near you. Get our services like</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End of row-->
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="item">
-                            <div class="single_item">
-                                <div class="item_list">
-                                    <div class="welcome_icon">
-                                        <i class="fa fa-leaf"></i>
-                                    </div>
-                                    <h4>eco system</h4>
-                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-3-->
-                    <div class="col-md-3">
-                        <div class="item">
-                            <div class="single_item">
-                                <div class="item_list">
-                                    <div class="welcome_icon">
-                                        <i class="fa fa-refresh"></i>
-                                    </div>
-                                    <h4>recycling</h4>
-                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-3-->
-                    <div class="col-md-3">
-                        <div class="item">
-                            <div class="single_item">
-                                <div class="item_list">
-                                    <div class="welcome_icon">
-                                        <i class="fa fa-tint"></i>
-                                    </div>
-                                    <h4>water refine</h4>
-                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-3-->
-                    <div class="col-md-3">
-                        <div class="item">
-                            <div class="single_item">
-                                <div class="item_list">
-                                    <div class="welcome_icon">
-                                        <i class="fa fa-cog"></i>
-                                    </div>
-                                    <h4>solar system</h4>
-                                    <p>Lorem ipsum dolor sit amet, eu qui modo expetendis reformidans ex sit set appetere sententiae seo eum in simul homero.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-3-->
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--end of welcome section-->
+	<h2>좋아요 순으로 리스트 출력</h2>
 
+	<c:choose>
+		<c:when test="${articleList!=null && pageInfo.listCount>0 }">
+			<section id="listForm">
+				<table>
+					<tr id="tr_top">
+						<td>번호</td>
+						<td>제목</td>
+						<td>작성자</td>
+						<td>날짜</td>
+						<td>조회수</td>
+					</tr>
 
+					<c:forEach var="article" items="${articleList }">
+						<tr>
+							<td>${article.board_num }</td>
+							<td><c:choose>
+									<c:when test="${article.board_re_lev!=0}">
+										<c:forEach var="i" begin="0" end="${article.board_re_lev*2}">
+							&nbsp;
+						</c:forEach>
+						▶
+					</c:when>
+									<c:otherwise>▶</c:otherwise>
+								</c:choose> <a
+								href="./boarddetail?board_num=${article.board_num}&page=${pageInfo.page}">
+									${article.board_subject} </a></td>
+							<td>${article.board_name }</td>
+							<td>${article.board_date }</td>
+							<td>${article.board_readcount }</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</section>
+			<section id="pageList">
+				<c:choose>
+					<c:when test="${pageInfo.page<=1}">
+					[이전]&nbsp;
+				</c:when>
+					<c:otherwise>
+						<a href="boardList?page=${pageInfo.page-1}">[이전]</a>&nbsp;
+				</c:otherwise>
+				</c:choose>
+				<c:forEach var="i" begin="${pageInfo.startPage }"
+					end="${pageInfo.endPage }">
+					<c:choose>
+						<c:when test="${pageInfo.page==i }">[${i }]</c:when>
+						<c:otherwise>
+							<a href="boardList?page=${i}">[${i }]</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${pageInfo.page>=pageInfo.maxPage }">
+					[다음]
+				</c:when>
+					<c:otherwise>
+						<a href="boardList?page=${pageInfo.page+1}">[다음]</a>
+					</c:otherwise>
+				</c:choose>
+			</section>
+		</c:when>
+		<c:otherwise>
+			<section id="emptyArea">등록된 글이 없습니다.</section>
+		</c:otherwise>
+	</c:choose>
+	
+	
+	<!--  플로깅 하러가기 -->
+	
+	<div class="intro_chapter chap4">
+		<div class="sub_title">Starting with beginmate</div>
+		<div class="main_copy">작은 일도 시작해야, 위대한 일도 생긴다 - 마크 주커버그 -</div>
+		<div class="main_copy_desc">당신과 함께 팀을 이루고 싶은 메이트들이 기다리고 있습니다.
+			지금, 비긴메이트에서 만나보세요!</div>
+		<span class="start_bt">플로깅 하러가기 > 메이트찾기로 이동</span>
+	</div>
+	
+	
 
-        <!--Start of volunteer-->
-        <section id="volunteer">
-            <div class="container">
-                <div class="row vol_area">
-                    <div class="col-md-8">
-                        <div class="volunteer_content">
-                            <h3>Become a <span>Volunteer</span></h3>
-                            <p>Join Our Team And Help the world. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur.</p>
-                        </div>
-                    </div>
-                    <!--End of col-md-8-->
-                    <div class="col-md-3 col-md-offset-1">
-                        <div class="join_us">
-                            <a href="" class="vol_cust_btn">join us</a>
-                        </div>
-                    </div>
-                    <!--End of col-md-3-->
-                </div>
-                <!--End of row and vol_area-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--end of volunteer-->
+	<!-- 푸터 -->
+	<section id="footer">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-15">
+					<div class="copyright">
+						<p>(주)ZupGo&ZupUp | 대표이사 | 개인정보관리책임자 (jupgo@jupup.com)</p>
+
+						<p>서울 강남구 언주로69길 19, 지하1층(역삼동) | 02-6713-0817 |
+							점심시간(13:00~14:00)</p>
+
+						<p>사업자등록번호 123-45-67890 | 제2018-서울강남-02246호| 유료직업소개사업등록번호:
+							(국내)제2020-3220237-14-5-00014호</p>
+					</div>
+					<div class="designer">
+						<p>2022 © ZupgoZupup. All rights reserved</p>
+					</div>
+				</div>
+			</div>
+			<!--End of row-->
+		</div>
+		<!--End of container-->
+	</section>
+	<!--End of footer-->
 
 
 
-        <!--Start of portfolio-->
-        <section id="portfolio" class="text-center">
-            <div class="col-md-12">
-                <div class="portfolio_title">
-                    <h2>our latest work</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet consectetur adipiscing elit.</p>
-                </div>
-            </div>
-            <!--End of col-md-2-->
-            <div class="colum">
-                <div class="container">
-                    <div class="row">
-                        <form action="/">
-                            <ul id="portfolio_menu" class="menu portfolio_custom_menu">
-                                <li>
-                                    <button data-filter="*" class="my_btn btn_active">Show All</button>
-                                </li>
-                                <li>
-                                    <button data-filter=".blue, .black, .green" class="my_btn">environment</button>
-                                </li>
-                                <li>
-                                    <button data-filter=".red, .green" class="my_btn">climate</button>
-                                </li>
-                                <li>
-                                    <button data-filter=".blue, .yellow, .black" class="my_btn">photography</button>
-                                </li>
-                                <li>
-                                    <button data-filter=".black" class="my_btn">species</button>
-                                    <!--
-                                </li>
-                                <li>
-                                    <button data-filter=".black" class="my_btn">Black</button>
-                                </li>
-                                    -->
-                            </ul>
-                            <!--End of portfolio_menu-->
-                        </form>
-                        <!--End of Form-->
-                    </div>
-                    <!--End of row-->
-                </div>
-                <!--End of container-->
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="notes">
-                                <div class="note blue">
-                                    <div class="img_overlay">
-                                        <p>Sun Homes, Dhaka</p>
-                                    </div>
-                                    <img src="${pageContext.request.contextPath}/resources/img/environment.jpg" alt="">
-                                </div>
-                                <div class="note red">
-                                    <div class="img_overlay">
-                                        <p>Sun Homes, Dhaka</p>
-                                    </div>
-                                    <img src="${pageContext.request.contextPath}/resources/img/portfolio_1.jpg" alt="">
-                                </div>
-                                <div class="note green">
-                                    <div class="img_overlay">
-                                        <p>Sun Homes, Dhaka</p>
-                                    </div>
-                                    <img src="${pageContext.request.contextPath}/resources/img/cliemate.jpg" alt="">
-                                </div>
-                                <div class="note yellow">
-                                    <div class="img_overlay">
-                                        <p>Sun Homes, Dhaka</p>
-                                    </div>
-                                    <img src="${pageContext.request.contextPath}/resources/img/photography.jpg" alt="">
-                                </div>
-                                <div class="note black">
-                                    <div class="img_overlay">
-                                        <p>Sun Homes, Dhaka</p>
-                                    </div>
-                                    <img src="${pageContext.request.contextPath}/resources/img/species.jpg" alt="">
-                                </div>
-                            </div>
-                            <!--End of notes-->
-                        </div>
-                        <!--End of col-lg-12-->
-                    </div>
-                    <!--End of row-->
-                </div>
-                <!--End of container-->
-            </div>
-            <!--End of colum-->
-        </section>
-        <!--end of portfolio-->
+	<!--Scroll to top-->
+	<a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+	<!--End of Scroll to top-->
 
 
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery-1.12.3.min.js"></script>
 
-        <!--Start of counter-->
-        <section id="counter">
-            <div class="counter_img_overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="counter_header">
-                                <h2>OUR achivement</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <!--End of col-md-12-->
-                    </div>
-                    <!--End of row-->
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="counter_item text-center">
-                                <div class="sigle_counter_item">
-                                    <img src="${pageContext.request.contextPath}/resources/img/tree.png" alt="">
-                                    <div class="counter_text">
-                                        <span class="counter">1542</span>
-                                        <p>tree cut</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="counter_item text-center">
-                                <div class="sigle_counter_item">
-                                    <img src="${pageContext.request.contextPath}/resources/img/hand.png" alt="">
-                                    <div class="counter_text">
-                                        <span class="counter">1458</span>
-                                        <p>animal lost</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="counter_item text-center">
-                                <div class="sigle_counter_item">
-                                    <img src="${pageContext.request.contextPath}/resources/img/tuhnder.png" alt="">
-                                    <div class="counter_text">
-                                        <span class="counter">9854</span>
-                                        <p>blubs collected</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="counter_item text-center">
-                                <div class="sigle_counter_item">
-                                    <img src="${pageContext.request.contextPath}/resources/img/cloud.png" alt="">
-                                    <div class="counter_text">
-                                        <span class="counter">5412</span>
-                                        <p>water level</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of row-->
-                </div>
-                <!--End of container-->
-            </div>
-        </section>
-        <!--end of counter-->
+	<!--Counter UP Waypoint-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/waypoints.min.js"></script>
+	<!--Counter UP-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.counterup.min.js"></script>
+
+	<script>
+		//for counter up
+		$('.counter').counterUp({
+			delay : 10,
+			time : 1000
+		});
+	</script>
+
+	<!--Gmaps-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/gmaps.min.js"></script>
+	<script type="text/javascript">
+		var map;
+		$(document).ready(function() {
+			map = new GMaps({
+				el : '#map',
+				lat : 23.6911078,
+				lng : 90.5112799,
+				zoomControl : true,
+				zoomControlOpt : {
+					style : 'SMALL',
+					position : 'LEFT_BOTTOM'
+				},
+				panControl : false,
+				streetViewControl : false,
+				mapTypeControl : false,
+				overviewMapControl : false,
+				scrollwheel : false,
+			});
+
+			map.addMarker({
+				lat : 23.6911078,
+				lng : 90.5112799,
+				title : 'Office',
+				details : {
+					database_id : 42,
+					author : 'Foysal'
+				},
+				click : function(e) {
+					if (console.log)
+						console.log(e);
+					alert('You clicked in this marker');
+				},
+				mouseover : function(e) {
+					if (console.log)
+						console.log(e);
+				}
+			});
+		});
+	</script>
+	<!--Google Maps API-->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjxvF9oTfcziZWw--3phPVx1ztAsyhXL4"></script>
 
 
-
-        <!--start of event-->
-        <section id="event">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="event_header text-center">
-                            <h2>latest event</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End of row-->
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-6 zero_mp">
-                                <div class="event_item">
-                                    <div class="event_img">
-                                        <img src="${pageContext.request.contextPath}/resources/img/tree_cut_1.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 zero_mp">
-                                <div class="event_item">
-                                    <div class="event_text text-center">
-                                        <a href=""><h4>One Tree Thousand Hope</h4></a>
-                                        <h6>15-16 May in Dhaka</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adip scing elit. Lorem ipsum dolor sit amet,consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <a href="" class="event_btn">read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End of row-->
-                        <div class="row">
-                            <div class="col-md-6 zero_mp">
-                                <div class="event_item">
-                                    <div class="event_text text-center">
-                                        <a href=""><h4>One Tree Thousand Hope</h4></a>
-                                        <h6>15-16 May in Dhaka</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adip scing elit. Lorem ipsum dolor sit amet,consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <a href="" class="event_btn">read more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 zero_mp">
-                                <div class="event_item">
-                                    <div class="event_img">
-                                        <img src="${pageContext.request.contextPath}/resources/img/tree_cut_2.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--End of row-->
-                    </div>
-                    <!--End of col-md-8-->
-                    <div class="col-md-4">
-                        <div class="event_news">
-                            <div class="event_single_item fix">
-                                <div class="event_news_img floatleft">
-                                    <img src="${pageContext.request.contextPath}/resources/img/tree_cut_3.jpg" alt="">
-                                </div>
-                                <div class="event_news_text">
-                                    <a href="#"><h4>Let’s plant 200 tree each...</h4></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veniam.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="event_news">
-                            <div class="event_single_item fix">
-                                <div class="event_news_img floatleft">
-                                    <img src="${pageContext.request.contextPath}/resources/img/tree_cut_4.jpg" alt="">
-                                </div>
-                                <div class="event_news_text">
-                                    <a href="#"><h4>Keep your house envirome..</h4></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veniam.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="event_news">
-                            <div class="event_single_item fix">
-                                <div class="event_news_img floatleft">
-                                    <img src="${pageContext.request.contextPath}/resources/img/tree_cut_3.jpg" alt="">
-                                </div>
-                                <div class="event_news_text">
-                                    <a href="#"><h4>Urgent Clothe Needed Needed</h4></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veniam.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="event_news">
-                            <div class="event_single_item fix">
-                                <div class="event_news_img floatleft">
-                                    <img src="${pageContext.request.contextPath}/resources/img/tree_cut_4.jpg" alt="">
-                                </div>
-                                <div class="event_news_text">
-                                    <a href="#"><h4>One Tree Thousand Hope</h4></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veniam.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="event_news">
-                            <div class="event_single_item fix">
-                                <div class="event_news_img floatleft">
-                                    <img src="${pageContext.request.contextPath}/resources/img/tree_cut_3.jpg" alt="">
-                                </div>
-                                <div class="event_news_text">
-                                    <a href="#"><h4>One Tree Thousand Hope</h4></a>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, veniam.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-4-->
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--end of event-->
+	<!--Isotope-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/isotope/min/scripts-min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/isotope/cells-by-row.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/isotope/isotope.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/isotope/packery-mode.pkgd.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/isotope/scripts.js"></script>
 
 
-
-        <!--Start of testimonial-->
-        <section id="testimonial">
-            <div class="testimonial_overlay">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="testimonial_header text-center">
-                                <h2>testimonials</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of row-->
-                    <section id="carousel">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12 text-center">
-                                    <div class="carousel slide" id="fade-quote-carousel" data-ride="carousel" data-interval="3000">
-                                        <!-- Carousel indicators -->
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#fade-quote-carousel" data-slide-to="0" class="active"></li>
-                                            <li data-target="#fade-quote-carousel" data-slide-to="1"></li>
-                                        </ol>
-                                        <!-- Carousel items -->
-                                        <div class="carousel-inner">
-                                            <div class="active item">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="profile-circle">
-                                                            <img src="${pageContext.request.contextPath}/resources/img/tree_cut_3.jpg" alt="">
-                                                        </div>
-                                                        <div class="testimonial_content">
-                                                            <i class="fa fa-quote-left"></i>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                                        </div>
-                                                        <div class="testimonial_author">
-                                                            <h5>Sadequr Rahman Sojib</h5>
-                                                            <p>CEO, Fourder</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="profile-circle">
-                                                            <img src="${pageContext.request.contextPath}/resources/img/tree_cut_3.jpg" alt="">
-                                                        </div>
-                                                        <div class="testimonial_content">
-                                                            <i class="fa fa-quote-left"></i>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                                        </div>
-                                                        <div class="testimonial_author">
-                                                            <h5>Sadequr Rahman Sojib</h5>
-                                                            <p>CEO, Fourder</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--End of item with active-->
-                                            <div class="item">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="profile-circle">
-                                                            <img src="${pageContext.request.contextPath}/resources/img/tree_cut_3.jpg" alt="">
-                                                        </div>
-                                                        <div class="testimonial_content">
-                                                            <i class="fa fa-quote-left"></i>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                                        </div>
-                                                        <div class="testimonial_author">
-                                                            <h5>Sadequr Rahman Sojib</h5>
-                                                            <p>CEO, Fourder</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="profile-circle">
-                                                            <img src="${pageContext.request.contextPath}/resources/img/tree_cut_3.jpg" alt="">
-                                                        </div>
-                                                        <div class="testimonial_content">
-                                                            <i class="fa fa-quote-left"></i>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, veritatis nulla eum laudantium totam tempore optio doloremque laboriosam quas, quos eaque molestias odio aut eius animi. Impedit temporibus nisi accusamus.</p>
-                                                        </div>
-                                                        <div class="testimonial_author">
-                                                            <h5>Sadequr Rahman Sojib</h5>
-                                                            <p>CEO, Fourder</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--ENd of item-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--End of row-->
-                        </div>
-                        <!--End of container-->
-                    </section>
-                    <!--End of carousel-->
-                </div>
-            </div>
-            <!--End of container-->
-        </section>
-        <!--end of testimonial-->
+	<!--Back To Top-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/backtotop.js"></script>
 
 
-
-        <!--Start of blog-->
-        <section id="blog">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="latest_blog text-center">
-                            <h2>latest blog</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo cum libero vitae quos eaque commodi.</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End of row-->
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="blog_news">
-                            <div class="single_blog_item">
-                                <div class="blog_img">
-                                    <img src="${pageContext.request.contextPath}/resources/img/climate_effect.jpg" alt="">
-                                </div>
-                                <div class="blog_content">
-                                    <a href=""><h3>Climate change is affecting bird migration</h3></a>
-                                    <div class="expert">
-                                        <div class="left-side text-left">
-                                            <p class="left_side">
-                                                <span class="clock"><i class="fa fa-clock-o"></i></span>
-                                                <span class="time">Aug 19, 2016</span>
-                                                <a href=""><span class="admin"><i class="fa fa-user"></i> Admin</span></a>
-                                            </p>
-                                            <p class="right_side text-right">
-                                                <a href=""><span class="right_msg text-right"><i class="fa fa-comments-o"></i></span>
-                                                    <span class="count">0</span></a>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <p class="blog_news_content">Lorem ipsum dolor sit amet, consectetur adipscing elit. Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. consectetur Lorem ipsum dolor sitamet, conse ctetur adipiscing elit. </p>
-                                    <a href="" class="blog_link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-4-->
-                    <div class="col-md-4">
-                        <div class="blog_news">
-                            <div class="single_blog_item">
-                                <div class="blog_img">
-                                    <img src="${pageContext.request.contextPath}/resources/img/air_pollutuon.jpg" alt="">
-                                </div>
-                                <div class="blog_content">
-                                    <a href=""><h3>How to avoid indoor air pollution?</h3></a>
-                                    <div class="expert">
-                                        <div class="left-side text-left">
-                                            <p class="left_side">
-                                                <span class="clock"><i class="fa fa-clock-o"></i></span>
-                                                <span class="time">Aug 19, 2016</span>
-                                                <a href=""><span class="admin"><i class="fa fa-user"></i> Admin</span></a>
-                                            </p>
-                                            <p class="right_side text-right">
-                                                <a href=""><span class="right_msg text-right"><i class="fa fa-comments-o"></i></span>
-                                                    <span class="count">0</span></a>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <p class="blog_news_content">Lorem ipsum dolor sit amet, consectetur adipscing elit. Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. consectetur Lorem ipsum dolor sitamet, conse ctetur adipiscing elit. </p>
-                                    <a href="" class="blog_link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-4-->
-                    <div class="col-md-4">
-                        <div class="blog_news">
-                            <div class="single_blog_item">
-                                <div class="blog_img">
-                                    <img src="${pageContext.request.contextPath}/resources/img/threat_bear.jpg" alt="">
-                                </div>
-                                <div class="blog_content">
-                                    <a href=""><h3>Threat to Yellowstone’s grizzly bears.</h3></a>
-                                    <div class="expert">
-                                        <div class="left-side text-left">
-                                            <p class="left_side">
-                                                <span class="clock"><i class="fa fa-clock-o"></i></span>
-                                                <span class="time">Aug 19, 2016</span>
-                                                <a href=""><span class="admin"><i class="fa fa-user"></i> Admin</span></a>
-                                            </p>
-                                            <p class="right_side text-right">
-                                                <a href=""><span class="right_msg text-right"><i class="fa fa-comments-o"></i></span>
-                                                    <span class="count">0</span></a>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <p class="blog_news_content">Lorem ipsum dolor sit amet, consectetur adipscing elit. Lorem ipsum dolor sit amet, conse ctetur adipiscing elit. consectetur Lorem ipsum dolor sitamet, conse ctetur adipiscing elit. </p>
-                                    <a href="" class="blog_link">read more</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-4-->
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!-- end of blog-->
+	<!--JQuery Click to Scroll down with Menu-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.localScroll.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.scrollTo.min.js"></script>
+	<!--WOW With Animation-->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/wow.min.js"></script>
+	<!--WOW Activated-->
+	<script>
+		new WOW().init();
+	</script>
 
 
-
-        <!--Start of Purches-->
-        <section id="purches">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2 class="purches_title">Buy our wordpress theme</h2>
-                    </div>
-                    <div class="col-md-2 col-md-offset-4">
-                        <a href="" class="purches_btn">purches</a>
-                    </div>
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--End of purches-->
-
-
-
-        <!--Start of Market-->
-        <section id="market">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="market_area text-center">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="market_logo">
-                                        <a href=""><img src="${pageContext.request.contextPath}/resources/img/audiojungle.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="market_logo">
-                                        <a href=""><img src="${pageContext.request.contextPath}/resources/img/codecanyon.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="market_logo">
-                                        <a href=""><img src="${pageContext.request.contextPath}/resources/img/graphicriver.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="market_logo">
-                                        <a href=""><img src="${pageContext.request.contextPath}/resources/img/audiojungle.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--End of row-->
-                        </div>
-                        <!--End of market Area-->
-                    </div>
-                    <!--End of col-md-12-->
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--End of market-->
-
-
-
-        <!--Start of contact-->
-        <section id="contact">
-            <div class="container">
-                <div class="row">
-                    <div class="colmd-12">
-                        <div class="contact_area text-center">
-                            <h3>get in touch</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                </div>
-                <!--End of row-->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="office">
-                            <div class="title">
-                                <h5>our office info</h5>
-                            </div>
-                            <div class="office_location">
-                                <div class="address">
-                                    <i class="fa fa-map-marker"><span>Elephant Road, Dhaka 1205, Bangladesh</span></i>
-                                </div>
-                                <div class="phone">
-                                    <i class="fa fa-phone"><span>+ 8801532-987039</span></i>
-                                </div>
-                                <div class="email">
-                                    <i class="fa fa-envelope"><span>youremail@mail.com</span></i>
-                                </div>
-                                <div id="map"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="msg">
-                            <div class="msg_title">
-                                <h5>Drop A Message</h5>
-                            </div>
-                            <div class="form_area">
-                                <!-- CONTACT FORM -->
-                                <div class="contact-form wow fadeIn animated" data-wow-offset="10" data-wow-duration="1.5s">
-                                    <div id="message"></div>
-                                    <form action="scripts/contact.php" class="form-horizontal contact-1" role="form" name="contactform" id="contactform">
-                                        <div class="form-group">
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="email" id="email" placeholder="Email">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <input type="subject" class="form-control" id="subject" placeholder="Subject *">
-                                                <div class="text_area">
-                                                    <textarea name="contact-message" id="msg" class="form-control" cols="30" rows="8" placeholder="Message"></textarea>
-                                                </div>
-                                                <button type="submit" class="btn custom-btn" data-loading-text="Loading...">Send</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--End of col-md-6-->
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--End of contact-->
-
-
-
-        <!--Start of footer-->
-        <section id="footer">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-md-6">
-                        <div class="copyright">
-                            <p>@ 2016 - Design By <span><a href="">&#9798;</a></span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="designer">
-                            <p>A Design By <a href="#">XpeedStudio</a></p>
-                        </div>
-                    </div>
-                </div>
-                <!--End of row-->
-            </div>
-            <!--End of container-->
-        </section>
-        <!--End of footer-->
-
-
-
-        <!--Scroll to top-->
-        <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
-        <!--End of Scroll to top-->
-
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>-->
-        <script src="${pageContext.request.contextPath}/resources/js/jquery-1.12.3.min.js"></script>
-
-        <!--Counter UP Waypoint-->
-        <script src="${pageContext.request.contextPath}/resources/js/waypoints.min.js"></script>
-        <!--Counter UP-->
-        <script src="${pageContext.request.contextPath}/resources/js/jquery.counterup.min.js"></script>
-
-        <script>
-            //for counter up
-            $('.counter').counterUp({
-                delay: 10,
-                time: 1000
-            });
-        </script>
-
-        <!--Gmaps-->
-        <script src="${pageContext.request.contextPath}/resources/js/gmaps.min.js"></script>
-        <script type="text/javascript">
-            var map;
-            $(document).ready(function () {
-                map = new GMaps({
-                    el: '#map',
-                    lat: 23.6911078,
-                    lng: 90.5112799,
-                    zoomControl: true,
-                    zoomControlOpt: {
-                        style: 'SMALL',
-                        position: 'LEFT_BOTTOM'
-                    },
-                    panControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: false,
-                    overviewMapControl: false,
-                    scrollwheel: false,
-                });
-
-
-                map.addMarker({
-                    lat: 23.6911078,
-                    lng: 90.5112799,
-                    title: 'Office',
-                    details: {
-                        database_id: 42,
-                        author: 'Foysal'
-                    },
-                    click: function (e) {
-                        if (console.log)
-                            console.log(e);
-                        alert('You clicked in this marker');
-                    },
-                    mouseover: function (e) {
-                        if (console.log)
-                            console.log(e);
-                    }
-                });
-            });
-        </script>
-        <!--Google Maps API-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjxvF9oTfcziZWw--3phPVx1ztAsyhXL4"></script>
-
-
-        <!--Isotope-->
-        <script src="${pageContext.request.contextPath}/resources/js/isotope/min/scripts-min.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/isotope/cells-by-row.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/isotope/isotope.pkgd.min.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/isotope/packery-mode.pkgd.min.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/isotope/scripts.js"></script>
-
-
-        <!--Back To Top-->
-        <script src="${pageContext.request.contextPath}/resources/js/backtotop.js"></script>
-
-
-        <!--JQuery Click to Scroll down with Menu-->
-        <script src="${pageContext.request.contextPath}/resources/js/jquery.localScroll.min.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/jquery.scrollTo.min.js"></script>
-        <!--WOW With Animation-->
-        <script src="${pageContext.request.contextPath}/resources/js/wow.min.js"></script>
-        <!--WOW Activated-->
-        <script>
-            new WOW().init();
-        </script>
-
-
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-        <!-- Custom JavaScript-->
-        <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-    </body>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<!-- Custom JavaScript-->
+	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+</body>
 
 </html>
