@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.kosta.jupjup.dao.MateFindDAO;
-import com.kosta.jupjup.domain.Criteria;
-import com.kosta.jupjup.domain.MateFindVO;
+import com.kosta.jupjup.vo.Criteria;
+import com.kosta.jupjup.vo.FlashMateVO;
 
 public class MateFindServiceImpl implements MateFindService{
 	

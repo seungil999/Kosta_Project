@@ -5,9 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.kosta.jupjup.domain.Criteria;
-import com.kosta.jupjup.domain.PageDTO;
 import com.kosta.jupjup.service.MateFindService;
+import com.kosta.jupjup.vo.Criteria;
+import com.kosta.jupjup.vo.PageVO;
 
 @Controller
 public class MateFindController {

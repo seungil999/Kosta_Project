@@ -1,11 +1,11 @@
-package com.kosta.jupjup.domain;
+package com.kosta.jupjup.vo;
 
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
 @ToString
-public class PageDTO {
+public class PageVO {
 
   private int startPage;
   private int endPage;
@@ -14,7 +14,7 @@ public class PageDTO {
   private int total;
   private Criteria cri;
 
-  public PageDTO(Criteria cri, int total) {
+  public PageVO(Criteria cri, int total) {
 
     this.cri = cri;
     this.total = total;

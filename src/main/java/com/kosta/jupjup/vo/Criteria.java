@@ -1,4 +1,4 @@
-package com.kosta.jupjup.domain;
+package com.kosta.jupjup.vo;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
