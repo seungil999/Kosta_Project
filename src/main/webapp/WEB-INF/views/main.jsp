@@ -4,9 +4,19 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
 <link rel="shortcut icon" type="image/x-icon"
 	href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png">
+
+
+ <head>
+        <meta charset="utf-8">
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
 
 <meta charset="utf-8">
 
@@ -261,7 +271,7 @@
 			<div class="row text-center">
 				<div class="col-md-15">
 					<div class="copyright">
-						<p>(주)ZupGo&ZupUp | 대표이사 | 개인정보관리책임자 (jupgo@jupup.com)</p>
+						<p>(주)ZupGoZupUp | 대표이사 | 개인정보관리책임자 (jupgo@jupup.com)</p>
 
 						<p>서울 강남구 언주로69길 19, 지하1층(역삼동) | 02-6713-0817 |
 							점심시간(13:00~14:00)</p>
