@@ -12,22 +12,17 @@ import com.kosta.jupjup.vo.PageVO;
 @Controller
 public class MateFindController {
 
-	/*
-	 * @Autowired MateFindService service;
-	 */
-	
-	
-	/*
-	 * @GetMapping("/list") public void list(Criteria cri, Model model) {
-	 * 
-	 * model.addAttribute("list", service.getList(cri)); //
-	 * model.addAttribute("pageMaker", new PageDTO(cri, 123));
-	 * 
-	 * int total = service.getTotal(cri);
-	 * 
-	 * 
-	 * model.addAttribute("pageMaker", new PageDTO(cri, total));
-	 * 
-	 * }
-	 */
+	  @Autowired 
+	  MateFindService service;
+	  
+	 
+	  @GetMapping("/list") 
+	  public String list(Criteria cri, Model model) {
+	  model.addAttribute("list", service.getFlist(cri)); 
+	  
+	  int total = service.getTotal(cri);
+	  model.addAttribute("pageMaker", new PageVO(cri, total));
+	  
+	  return "/mateFind/list";
+	  }
 }

@@ -4,40 +4,50 @@
                         
 <mapper namespace="com.kosta.jupjup.dao.MateFindDAO">
 	
-<!-- 	
-	<select id="getListWithPaging" resultType="com.kosta.jupjup.dao.MateFindVO">
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR"> <!-- 앞에있는 OR없애줌 -->
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'A'.toString()">
+							activityname like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'M'.toString()">
+							meetingplace like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	<select id="getFlistWithPaging" resultType="com.kosta.jupjup.vo.FlashMateVO" >
 	  <![CDATA[
 	  select 
-	    bno, title, content, writer, regdate, updatedate, replycnt
-	  from 
-	      (
-	      select /*+INDEX_DESC(tbl_board pk_board) */
-	        rownum rn, bno, title, content, writer, regdate, updatedate, replycnt 
-	      from 
-	        tbl_board
-	      where 
+		fno,activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate
+	  from (
+	     select /*+INDEX_DESC(flashmate pk_flash ) */
+	        rownum rn, fno, activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate 
+	      from flashmate
+	  where 
 	  ]]>
-
 	  <include refid="criteria"></include> 
-	      
 	  <![CDATA[    
 	      rownum <= #{pageNum} * #{amount}
 	      )
 	  where rn > (#{pageNum} -1) * #{amount}   
 	  ]]>
   </select> 
-   -->
   
   
-<!--    <select id="getTotalCount" resultType="int">
+  <select id="getTotalCount" resultType="int">
     <![CDATA[ 
-	  select count(*) from tbl_board where 
+	  select count(*) from flashmate where 
 	  	  ]]>
 	    <include refid="criteria"></include> 
 	    
-	 	 bno > 0  
+	 	 fno > 0  
 	  
-  </select> -->
-</mapper>
+  </select> 
 			
-						
+</mapper>		

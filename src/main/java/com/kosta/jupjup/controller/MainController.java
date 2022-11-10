@@ -14,11 +14,5 @@ public class MainController {
 		return "main";
 	}
 	
-	@GetMapping("/test")
-	public String main2() {
-		
-		return "testz";
-	}
-	
 	
 }

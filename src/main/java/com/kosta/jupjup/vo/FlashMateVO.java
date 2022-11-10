@@ -6,11 +6,13 @@ import lombok.Data;
 
 @Data
 public class FlashMateVO {
-	private Long no;
+	private Long fno;
+	private String activityname;
 	private String writer;
 	private String meetingplace;
 	private Date meetingtime;
 	private int peoplenum;
+	private int peoplemaxnum;
 	private String startzone;
 	private String endzone;
 	private int starttime;
@@ -18,4 +20,5 @@ public class FlashMateVO {
 	private String content;
 	private Date regdate;
 	private int replycnt;
+	private String image;
 }
