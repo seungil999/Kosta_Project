@@ -11,5 +11,8 @@ public interface MateFindService {
 	  public List<MateVO> getlist(Criteria cri);
 	  
 	  public int getTotal(Criteria cri);
+	  
+	  public MateVO get(Long no);
+
 	 
 	}

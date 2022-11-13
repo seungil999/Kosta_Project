@@ -17,18 +17,10 @@ public class MateFindServiceImpl implements MateFindService {
 	  @Autowired
 	  MateFindDAO matefindDAO;
 	  
-	  
-	  
-//	  @Override public List<RegularMateVO> getRlist(Criteria cri) {
-//	  
-//	  return matefindDAO.getRlistWithPaging(cri);
-//	  
-//	  }
-	  
 	  @Override 
 	  public List<MateVO> getlist(Criteria cri) {
 	  
-	  return matefindDAO.getFlistWithPaging(cri); 
+	  return matefindDAO.getlistWithPaging(cri); 
 	  }
 	 
 
@@ -36,6 +28,13 @@ public class MateFindServiceImpl implements MateFindService {
 	public int getTotal(Criteria cri) {
 		
 		return matefindDAO.getTotalCount(cri);
+	}
+
+
+	@Override
+	public MateVO get(Long no) {
+
+		return matefindDAO.read(no);
 	}
 
 }

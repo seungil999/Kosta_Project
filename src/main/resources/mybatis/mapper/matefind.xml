@@ -37,7 +37,7 @@
 		</choose>
 	</sql> -->
 	
-	<select id="getFlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
+	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
 	  <![CDATA[
 	  select 
 		 no,activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular
@@ -81,6 +81,20 @@
 	    
 	 	 no > 0  
 	  
-  </select> 
+  </select>
+  
+  <select id="read" resultType="com.kosta.jupjup.vo.MateVO">
+  <![CDATA[
+		select no, activityname, writer, meetingplace,meetingtime,
+		to_char(meetingtime,'dy') dayofweek, peoplenum,
+		peoplemaxnum, startzone, endzone,
+		regexp_replace(starttime,'(^.{2})','\1:') starttime,
+		regexp_replace(endtime,'(^.{2})','\1:')endtime, content,regdate, updatedate,
+		replycnt, image, regular
+		 from mate where no =
+		#{no}
+        
+		]]>
+	</select> 
 			
 </mapper>		

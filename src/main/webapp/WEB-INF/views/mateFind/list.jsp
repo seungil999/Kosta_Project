@@ -15,7 +15,10 @@
 $(document)
 		.ready(
 				function() {
-
+					
+					
+					
+					
 					history.replaceState({}, null, null);
 					var actionForm = $("#actionForm");
 
@@ -47,6 +50,7 @@ $(document)
 								actionForm.find("input[name='keyword']")
 								.val("");
 								
+								
 								actionForm.submit();
 							});
 					$(".flashmate a").on("click",
@@ -64,6 +68,7 @@ $(document)
 								.val("");
 								actionForm.find("input[name='keyword']")
 								.val("");
+								
 								actionForm.submit();
 							});
 
@@ -80,6 +85,7 @@ $(document)
 								.val("1");
 								actionForm.find("input[name='keyword']")
 								.val("");
+								
 								actionForm.submit();
 							});
 					$(".like a").on("click",
@@ -95,17 +101,10 @@ $(document)
 								.val("1");
 								actionForm.find("input[name='keyword']")
 								.val("");
+								
 								actionForm.submit();
 							});
-					$(".move")
-							.on("click", function(e) {
-
-								e.preventDefault();
-								actionForm.append("<input type='hidden' name='no' value='"
-										+ $(this).attr("href")+"'>");
-								actionForm.attr("action", "/matefind/get");
-								actionForm.submit();
-							});
+					
 
 					var searchForm = $("#searchForm");
 
@@ -189,7 +188,7 @@ $(document)
           <c:forEach items="${list}" var="mate">
             <tr>
               
-               <td><a class='move' href='<c:out value="${mate.no}"/>'>
+               <td><a class='move' href="/matefind/get?no=${mate.no}">
                <c:out value="${mate.activityname}" /></a>
               <td><c:choose>
               <c:when test="${mate.regular eq '1' }">
@@ -201,6 +200,7 @@ $(document)
               </c:choose></td>
               <td><c:out value="${mate.writer}" /></td>
               <td><fmt:formatDate pattern="yyyy-MM-dd"
+              
                   value="${mate.meetingtime}" /></td>
               <td><c:out value="${mate.meetingplace }"/></td>
               <td><c:out value="${mate.peoplenum }"/></td>

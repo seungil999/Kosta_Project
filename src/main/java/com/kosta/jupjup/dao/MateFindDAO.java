@@ -11,8 +11,8 @@ import com.kosta.jupjup.vo.MateVO;
 @Mapper
 @Repository
 public interface MateFindDAO {
-	public List<MateVO> getFlistWithPaging(Criteria cri);
-	public List<MateVO> getRlistWithPaging(Criteria cri);
+	public List<MateVO> getlistWithPaging(Criteria cri);
 	public int getTotalCount(Criteria cri);
+	public MateVO read(Long no);
 
 }
