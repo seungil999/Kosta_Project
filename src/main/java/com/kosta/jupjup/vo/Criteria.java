@@ -16,7 +16,10 @@ public class Criteria {
 
 	private String type;
 	private String keyword;
-
+	
+	private String meeting;
+	private String filter;
+	
 	public Criteria() {
 		this(1, 12);
 	}
@@ -30,6 +33,8 @@ public class Criteria {
 
 		return type == null ? new String[] {} : type.split("");
 	}
+	
+	
 
 	public String getListLink() {
 
