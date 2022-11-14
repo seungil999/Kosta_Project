@@ -3,11 +3,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
 <script type="text/javascript">
+$(document).ready(function() {
+	var operForm = $("#operForm"); 
 
+  $("button[data-oper='list']").on("click", function(e){
+    
+    operForm.find("#no").remove();
+    operForm.attr("action","/matefind/list")
+    operForm.submit();
+    
+  });  
+});
 </script>
-
 
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
@@ -53,7 +61,7 @@
             readonly="readonly"><c:out value="${mate.peoplenum}명 / ${mate.peoplemaxnum}명"/></textarea>
         </div>
         <button type="button">참여하기</button>
-		<button >목록</button>
+		<button data-oper='list' class="btn btn-info">목록</button>
 		<div class="form-group">
           <label>활동장소</label> <input class="form-control" name='startzone'
             value='<c:out value="${mate.startzone }"/>' readonly="readonly">
@@ -79,4 +87,5 @@
   	  <input type='hidden' name='meeting' value='<c:out value="${cri.meeting }"/>'>
       <input type='hidden' name='filter' value='<c:out value="${cri.filter }"/>'>
 	</form>
+        
         

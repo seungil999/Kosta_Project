@@ -15,7 +15,7 @@ import com.kosta.jupjup.vo.PageVO;
 @Controller
 @RequestMapping("/matefind/*") 
 public class MateFindController {
-
+ 
 	  @Autowired 
 	  MateFindService service;
 	  

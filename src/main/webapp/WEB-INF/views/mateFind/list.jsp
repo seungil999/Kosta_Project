@@ -4,134 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%-- <%@include file="../includes/header.jsp"%> --%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript">
-$(document)
-		.ready(
-				function() {
-					
-					
-					
-					
-					history.replaceState({}, null, null);
-					var actionForm = $("#actionForm");
 
-					$(".paginate_button a").on("click",
-							function(e) {
-
-								e.preventDefault();
-
-								console.log('click');
-
-								actionForm.find("input[name='pageNum']")
-										.val($(this).attr("href"));
-								actionForm.submit();
-							});
-					
-					$(".regularmate a").on("click",
-							function(e) {
-
-								e.preventDefault();
-
-								console.log('click');
-
-								actionForm.find("input[name='meeting']")
-										.val($(this).attr("href"));
-								actionForm.find("input[name='pageNum']")
-								.val("1");
-								actionForm.find("input[name='filter']")
-								.val("");
-								actionForm.find("input[name='keyword']")
-								.val("");
-								
-								
-								actionForm.submit();
-							});
-					$(".flashmate a").on("click",
-							function(e) {
-
-								e.preventDefault();
-
-								console.log('click');
-
-								actionForm.find("input[name='meeting']")
-										.val($(this).attr("href"));
-								actionForm.find("input[name='pageNum']")
-								.val("1");
-								actionForm.find("input[name='filter']")
-								.val("");
-								actionForm.find("input[name='keyword']")
-								.val("");
-								
-								actionForm.submit();
-							});
-
-					$(".soon a").on("click",
-							function(e) {
-
-								e.preventDefault();
-
-								console.log('click');
-
-								actionForm.find("input[name='filter']")
-										.val($(this).attr("href"));
-								actionForm.find("input[name='pageNum']")
-								.val("1");
-								actionForm.find("input[name='keyword']")
-								.val("");
-								
-								actionForm.submit();
-							});
-					$(".like a").on("click",
-							function(e) {
-
-								e.preventDefault();
-
-								console.log('click');
-
-								actionForm.find("input[name='filter']")
-										.val($(this).attr("href"));
-								actionForm.find("input[name='pageNum']")
-								.val("1");
-								actionForm.find("input[name='keyword']")
-								.val("");
-								
-								actionForm.submit();
-							});
-					
-
-					var searchForm = $("#searchForm");
-
-					$("#searchForm button").on("click",
-							function(e) {
-
-								if (!searchForm.find("option:selected")
-										.val()) {
-									alert("검색종류를 선택하세요");
-									return false;
-								}
-
-								if (!searchForm.find(
-										"input[name='keyword']").val()) {
-									alert("키워드를 입력하세요");
-									return false;
-								}
-								searchForm.find("input[name='pageNum']")
-										.val("1");
-								e.preventDefault();
-
-								searchForm.submit();
-
-							});
-
-				});
-</script>
 <div class='row'>
 		<div class="col-lg-12">
 
@@ -187,8 +61,8 @@ $(document)
 
           <c:forEach items="${list}" var="mate">
             <tr>
-              
-               <td><a class='move' href="/matefind/get?no=${mate.no}">
+             
+               <td><a class='move' href='<c:out value="${mate.no}"/>'>
                <c:out value="${mate.activityname}" /></a>
               <td><c:choose>
               <c:when test="${mate.regular eq '1' }">
@@ -255,6 +129,153 @@ $(document)
 				
 			</form>
 			
+<script type="text/javascript">
+$(document)
+		.ready(
+				function() {
+	
+					history.replaceState({}, null, null);
+					var actionForm = $("#actionForm");
 
+					$(".paginate_button a").on("click",
+							function(e) {
+
+								e.preventDefault();
+								actionForm.attr("action",
+								"/matefind/list");
+								console.log('click');
+
+								actionForm.find("input[name='pageNum']")
+										.val($(this).attr("href"));
+								$('input').remove("#no");
+								actionForm.submit();
+								
+							});
+					
+					$(".regularmate a").on("click",
+							function(e) {
+
+								e.preventDefault();
+
+								console.log('click');
+								actionForm.attr("action",
+								"/matefind/list");
+								actionForm.find("input[name='meeting']")
+										.val($(this).attr("href"));
+								actionForm.find("input[name='pageNum']")
+								.val("1");
+								actionForm.find("input[name='filter']")
+								.val("");
+								actionForm.find("input[name='keyword']")
+								.val("");
+								$('input').remove("#no");
+								
+								actionForm.submit();
+							});
+					$(".flashmate a").on("click",
+							function(e) {
+
+								e.preventDefault();
+
+								console.log('click');
+								actionForm.attr("action",
+								"/matefind/list");
+								actionForm.find("input[name='meeting']")
+										.val($(this).attr("href"));
+								actionForm.find("input[name='pageNum']")
+								.val("1");
+								actionForm.find("input[name='filter']")
+								.val("");
+								actionForm.find("input[name='keyword']")
+								.val("");
+								$('input').remove("#no");
+								
+								actionForm.submit();
+							});
+					$(".move")
+					.on(
+							"click",
+							function(e) {
+
+								e.preventDefault();
+								$('input').remove("#no");
+								actionForm
+										.append("<input type='hidden' id='no' name='no' value='"
+												+ $(this).attr(
+														"href")
+												+ "'>");
+								actionForm.attr("action",
+										"/matefind/get");
+								actionForm.submit();
+
+							});
+					$(".soon a").on("click",
+							function(e) {
+
+								e.preventDefault();
+
+								console.log('click');
+								actionForm.attr("action",
+								"/matefind/list");
+								actionForm.find("input[name='filter']")
+										.val($(this).attr("href"));
+								actionForm.find("input[name='pageNum']")
+								.val("1");
+								actionForm.find("input[name='keyword']")
+								.val("");
+								if(actionForm.find("input[name='no']")){
+									$('input').remove("#no");
+									}
+								
+								actionForm.submit();
+							});
+					$(".like a").on("click",
+							function(e) {
+
+								e.preventDefault();
+
+								console.log('click');
+								actionForm.attr("action",
+								"/matefind/list");
+								actionForm.find("input[name='filter']")
+										.val($(this).attr("href"));
+								actionForm.find("input[name='pageNum']")
+								.val("1");
+								actionForm.find("input[name='keyword']")
+								.val("");
+								if(actionForm.find("input[name='no']")){
+								$('input').remove("#no");
+								}
+								actionForm.submit();
+							});
+					
+
+					var searchForm = $("#searchForm");
+
+					$("#searchForm button").on("click",
+							function(e) {
+
+								if (!searchForm.find("option:selected")
+										.val()) {
+									alert("검색종류를 선택하세요");
+									return false;
+								}
+
+								if (!searchForm.find(
+										"input[name='keyword']").val()) {
+									alert("키워드를 입력하세요");
+									return false;
+								}
+								actionForm.attr("action",
+								"/matefind/list");
+								searchForm.find("input[name='pageNum']")
+										.val("1");
+								e.preventDefault();
+								$('input').remove("#no");
+								searchForm.submit();
+
+							});
+
+				});
+</script>
 			
-</html>
