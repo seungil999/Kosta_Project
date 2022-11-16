@@ -10,9 +10,9 @@
 		<div class="col-lg-12">
 
 			<form id='searchForm' action="/matefind/list" method='get'>
-				<select name='type'>
+				<select name='type' id='type'>
 					
-					<option value="A"
+					<option value="A" name="option"
 						<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>활동명</option>
 					<option value="M"
 						<c:out value="${pageMaker.cri.type eq 'M'?'selected':''}"/>>지역별</option>
@@ -136,7 +136,8 @@ $(document)
 	
 					history.replaceState({}, null, null);
 					var actionForm = $("#actionForm");
-
+					var searchForm = $("#searchForm");
+					
 					$(".paginate_button a").on("click",
 							function(e) {
 
@@ -168,6 +169,9 @@ $(document)
 								.val("");
 								actionForm.find("input[name='keyword']")
 								.val("");
+								actionForm.find("input[name='type']")
+								.val("");
+								
 								$('input').remove("#no");
 								
 								actionForm.submit();
@@ -188,6 +192,9 @@ $(document)
 								.val("");
 								actionForm.find("input[name='keyword']")
 								.val("");
+								actionForm.find("input[name='type']")
+								.val("");
+								
 								$('input').remove("#no");
 								
 								actionForm.submit();
@@ -223,6 +230,10 @@ $(document)
 								.val("1");
 								actionForm.find("input[name='keyword']")
 								.val("");
+								searchForm.find("option:selected")
+								.val("");
+								actionForm.find("input[name='type']")
+								.val("");
 								if(actionForm.find("input[name='no']")){
 									$('input').remove("#no");
 									}
@@ -243,6 +254,8 @@ $(document)
 								.val("1");
 								actionForm.find("input[name='keyword']")
 								.val("");
+								searchForm.find("option:selected")
+								.val("");
 								if(actionForm.find("input[name='no']")){
 								$('input').remove("#no");
 								}
@@ -250,7 +263,7 @@ $(document)
 							});
 					
 
-					var searchForm = $("#searchForm");
+					
 
 					$("#searchForm button").on("click",
 							function(e) {

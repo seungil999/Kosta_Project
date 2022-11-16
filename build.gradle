@@ -32,6 +32,14 @@ dependencies {
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.1'
 	implementation 'javax.servlet:jstl:1.2'
 	
+	implementation 'log4j:log4j:1.2.16'
+	testImplementation 'junit:junit:4.13.2'
+	
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.0'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+	implementation 'com.google.code.gson:gson:2.10'
+	
+		
 	// https://mvnrepository.com/artifact/org.apache.tiles/tiles-jsp
 	implementation 'org.apache.tiles:tiles-jsp:3.0.4'
 	implementation 'commons-io:commons-io:2.11.0'
