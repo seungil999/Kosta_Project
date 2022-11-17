@@ -14,5 +14,5 @@ public interface MateFindService {
 	  
 	  public MateVO get(Long no);
 
-	 
+
 	}

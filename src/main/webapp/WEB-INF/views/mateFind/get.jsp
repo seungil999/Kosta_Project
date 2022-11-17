@@ -78,6 +78,17 @@
       <input type='hidden' name='filter' value='<c:out value="${cri.filter }"/>'>
 	</form>
 
+	<c:choose>
+		<c:when test="${like ==0}">
+			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/빈하트.png" alt="" width="30px" height="30px"></a>
+			<input type="hidden" id="likecheck" value="${like }">
+		</c:when>					
+		<c:when test="${like ==1}">
+			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/꽉찬하트.png" alt="" width="30px" height="30px"></a>
+			<input type="hidden" id="likecheck" value="${like }">
+		</c:when>
+	</c:choose>		
+				
 
 
 <div class='row'>
@@ -106,6 +117,7 @@
 				<ul class="chat">
 
 				</ul>
+				
 				<!-- ./ end ul -->
 			</div>
 		</div>
@@ -210,18 +222,27 @@ $(document).ready(function() {
     		console.log(rno);
     		replyService.remove(rno,function(result){
     			alert(result);
+    			repReply.val("");
     			showList(1);
+    			
     		});
     		
     		
     	});
      $(document).on("click", ".replyUpdateBtn", function(e){
-    	 var rno = $(this).data("rno");
-    	 var replyer = $(this).data("replyer");
-    	 var reply = $(this).data("reply");
-    	 repReply.val(reply);
-    	 repReplyer.val(replyer);
-    	 repReplyNo.val(rno);
+
+    	 if(repReply.val()!=""){
+    		 showList(1);
+    		 repReply.val("");
+    		 
+    		 return false;
+    	 }
+    	
+    	 
+    	 repReplyNo.val($(this).data("rno"));
+    	 repReplyer.val($(this).data("replyer"));
+    	 repReply.val($(this).data("reply"));
+    	 
     	 var replyData ={
          rno:repReplyNo.val(),
          replyer:repReplyer.val(),
@@ -231,12 +252,12 @@ $(document).ready(function() {
 		
 	   var htmls = "";
 
-	    htmls += '<div>'+replyer;
+	    htmls += '<div id="mod">'+replyData.replyer;
 	    
 	    htmls += '<button type="button" id="modbtn">  저장  </button>';
 
 		htmls += '<button type="button" id="modCancel">취소</button>';
-		htmls += '<div id="rno'+ rno + '">';
+		htmls += '<div id="rno'+ replyData.rno + '">';
 		
 		htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
 
@@ -246,28 +267,35 @@ $(document).ready(function() {
 
 		htmls += '</div>';
 		
-		$('#rno'+rno).replaceWith(htmls);	
-		$('#rno'+rno+' #editContent').focus();
+		$('#rno'+replyData.rno).replaceWith(htmls);	
+		$('#rno'+replyData.rno+' #editContent').focus();
 	    
   });
      
      $(document).on("click", "#modbtn", function(e){
     	 
+    	
     	var replyEditContent = $("#editContent").val();
     	 var reply = {rno:repReplyNo.val(), reply:replyEditContent} 
     	 
     	 replyService.update(reply, function(result){
  	    	alert(result);
- 	    	showList(1); 
+ 	    	repReply.val("");
+ 	    	showList(1);
  	    	}); 
      })
      
+     $(document).on("click", "#modCancel", function(e){
+    	 	repReply.val("");
+ 	    	showList(1); 
+ 	    	 
+     });
+     
   
   
-  
+   var operForm = $("#operForm"); 
 	
   $("button[data-oper='list']").on("click", function(e){
-    
     operForm.find("#no").remove();
     operForm.attr("action","/matefind/list")
     operForm.submit();
@@ -279,6 +307,46 @@ $(document).ready(function() {
 
 
 </script>
+<script type="text/javascript">
 
+function like_func(){
+	const clickLikeUrl = "/resources/img/꽉찬하트.png";
+    const emptyLikeUrl = "/resources/img/빈하트.png";
+	
+	no = $('#no').val(),
+	count = $('#likecheck').val(),
+	data = {
+			"no" : no,
+			"count" : count
+			};
+	
+$.ajax({
+	url : "/like/likeUpdate",
+	type : 'PUT',
+	contentType: 'application/json',
+	data : JSON.stringify(data),
+	success : function(result){
+		console.log("수정" + result.result);
+		var like_img='';
+		if(count == 1){
+			console.log("좋아요 취소");
+			 $('#likecheck').val(0);
+			 $('#likeImg').attr("src", emptyLikeUrl);
+		}else if(count == 0){
+			console.log("좋아요!");
+			$('#likecheck').val(1);
+			 $('#likeImg').attr("src", clickLikeUrl);
+		}
+		 $('#like_img').attr('src', like_img);
+	}, error : function(result){
+		console.log("에러" + result.result)
+	}
+	
+	});
+};
+
+	
+</script>
+}
 
 

@@ -36,5 +36,7 @@ public class MateFindServiceImpl implements MateFindService {
 
 		return matefindDAO.read(no);
 	}
+	
+	
 
 }

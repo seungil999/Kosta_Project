@@ -199,20 +199,12 @@ $(document)
 								
 								actionForm.submit();
 							});
-					$(".move")
-					.on(
-							"click",
-							function(e) {
-
+					$(".move") .on("click", function(e) {
 								e.preventDefault();
 								$('input').remove("#no");
-								actionForm
-										.append("<input type='hidden' id='no' name='no' value='"
-												+ $(this).attr(
-														"href")
-												+ "'>");
-								actionForm.attr("action",
-										"/matefind/get");
+								actionForm.append("<input type='hidden' id='no' name='no' value='"
+										+ $(this).attr("href")+ "'>");
+								actionForm.attr("action", "/matefind/get");
 								actionForm.submit();
 
 							});
