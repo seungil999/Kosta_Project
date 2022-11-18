@@ -12,5 +12,7 @@ public interface MateLikeService {
 	public void likeInsert(MateLikeVO vo);
 	
 	public void likeUpdate(MateLikeVO vo);
+	
+	public void likeCntUpdate(MateLikeVO vo);
 
 	}

@@ -35,5 +35,11 @@ public class MateLikeServiceImpl implements MateLikeService {
 		
 		likedao.likeUpdate(vo);
 	}
+	
+	@Override
+	public void likeCntUpdate(MateLikeVO vo) {
+		
+		likedao.likeCntUpdate(vo);
+	}
 
 }

@@ -24,4 +24,5 @@ public class MateVO {
 	private int replycnt;
 	private String image;
 	private String regular;
+	private int likecnt;
 }

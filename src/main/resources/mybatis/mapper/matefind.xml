@@ -40,20 +40,20 @@
 	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
 	  <![CDATA[
 	  select 
-		 no,activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular
+		 no,activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular,image
 	  from (
 	    select
 	    ]]>
 	    	/*+INDEX_DESC(mate pk_mate ) */
  		 <![CDATA[
- 		 rownum rn, no, activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular
+ 		 rownum rn, no, activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular,image
 	      from ]]>
 	      <choose>
 			<when test="filter == 'soon'.toString()">
 						(select * from mate order by meetingtime asc)	
 			</when>
 			<when test="filter == 'like'.toString()">
-						order by like desc	
+						(select * from mate order by likecnt desc)	
 			</when>
 			<otherwise>
 				mate
@@ -90,7 +90,7 @@
 		peoplemaxnum, startzone, endzone,
 		regexp_replace(starttime,'(^.{2})','\1:') starttime,
 		regexp_replace(endtime,'(^.{2})','\1:')endtime, content,regdate, updatedate,
-		replycnt, image, regular
+		replycnt, image, regular, likecnt
 		 from mate where no =
 		#{no}
         

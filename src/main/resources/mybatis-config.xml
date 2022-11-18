@@ -7,7 +7,8 @@
 		<mapper resource="mybatis/mapper/MateFind.xml" />
 		<mapper resource="mybatis/mapper/MateReplyMapper.xml" />
 		<mapper resource="mybatis/mapper/MateLike.xml" />
-		
+		<mapper resource="mybatis/mapper/MateJoin.xml" />
+
 	</mappers>
 </configuration>
 

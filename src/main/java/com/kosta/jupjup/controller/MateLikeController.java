@@ -29,6 +29,7 @@ public class MateLikeController {
 		
 		try {
 			service.likeUpdate(vo);
+			service.likeCntUpdate(vo);
 			map.put("result", "success");
 			
 		}catch(Exception e) {

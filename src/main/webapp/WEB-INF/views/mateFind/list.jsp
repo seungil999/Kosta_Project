@@ -61,8 +61,9 @@
 
           <c:forEach items="${list}" var="mate">
             <tr>
-             
+          
                <td><a class='move' href='<c:out value="${mate.no}"/>'>
+               <img src="/matefind/img/${mate.image}" id="productImage"/>
                <c:out value="${mate.activityname}" /></a>
               <td><c:choose>
               <c:when test="${mate.regular eq '1' }">

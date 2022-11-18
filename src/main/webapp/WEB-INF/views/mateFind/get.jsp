@@ -27,8 +27,8 @@
 	
 	
 		 <div class="form-group">
-          <label>이미지</label> <input class="form-control" name='image'
-            value='<c:out value="${mate.image}"/>' readonly="readonly">
+       
+            <img src="/matefind/getimg/${mate.image}"/>
         </div>
 
 		 <div class="form-group">
@@ -50,7 +50,18 @@
           <textarea class="form-control" rows="3" name='peoplenum'
             readonly="readonly"><c:out value="${mate.peoplenum}명 / ${mate.peoplemaxnum}명"/></textarea>
         </div>
-        <button type="button">참여하기</button>
+       <c:choose>
+         <c:when test="${join ==0}"> 
+	        <button type="button" id="matejoin" data-joinchk='${join}'>참여하기</button>
+	        <input type="hidden" id="joincheck" value="${join }">
+		 </c:when>					
+         <c:when test="${join ==1}"> 
+	        <button type="button" id="matejoin" data-joinchk='${join}'>나가기</button>
+	        <input type="hidden" id="joincheck" value="${join }">
+		 </c:when>
+       </c:choose>    
+        		
+        
 		<button data-oper='list' class="btn btn-info">목록</button>
 		<div class="form-group">
           <label>활동장소</label> <input class="form-control" name='startzone'
@@ -63,10 +74,22 @@
           <label>안내사항</label> <input class="form-control" name='content'
             value='<c:out value="${mate.content }"/>' readonly="readonly">
         </div>
+          <div class="form-group">
+          <label>모임장소</label> <input class="form-control" name='meetingplace'
+            value='<c:out value="${mate.meetingplace }"/>' readonly="readonly">
+        </div>
+        
+        <p style="margin-top:-12px">
+    
+</p>
+	<div id="map" style="width:40%;height:250px;"></div>
+	
+	
+        
         <div>
         현재 모임 참여중인 인원(${mate.peoplenum })
         </div>
-        ${cri.pageNum }
+        
         
     <form id='operForm' action="/mate/modify" method="get">
 	  <input type='hidden' id='no' name='no' value='<c:out value="${mate.no}"/>'>
@@ -81,10 +104,12 @@
 	<c:choose>
 		<c:when test="${like ==0}">
 			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/빈하트.png" alt="" width="30px" height="30px"></a>
+			좋아요<div id='likecnt'>${mate.likecnt}</div>
 			<input type="hidden" id="likecheck" value="${like }">
 		</c:when>					
 		<c:when test="${like ==1}">
 			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/꽉찬하트.png" alt="" width="30px" height="30px"></a>
+			좋아요<div id='likecnt'>${mate.likecnt}</div>
 			<input type="hidden" id="likecheck" value="${like }">
 		</c:when>
 	</c:choose>		
@@ -96,7 +121,7 @@
 	<div class="col-lg-12">
 
 		<!-- /.panel -->
-		<div class="panel panel-default">
+		<div class="panel panel-default"> 
 
 		<div class="reply">	
 			<div class="form-group">
@@ -202,19 +227,6 @@ $(document).ready(function() {
         
       });
     
-   /*   $(".chat").on("click" ,"li", function(e){
-    	 var rno = $(this).data("rno");
-    	 console.log(rno);
-    	 replyService.get(rno, function(reply){
-    	        repReply.val(reply.reply);
-    	        repReplyer.val(reply.replyer);
-    	        repReplyDate.val(replyService.displayTime(reply.replyDate))
-    	        .attr("readonly","readonly");
-    	        repository.data("rno", reply.rno);
-    	    	
-    	        console.log(repReply.val());
-    	      });
-     }); */
      
      $(document).on("click", '#rembtn', function(e){
     	    var rno = $(this).data("rno");
@@ -312,6 +324,8 @@ $(document).ready(function() {
 function like_func(){
 	const clickLikeUrl = "/resources/img/꽉찬하트.png";
     const emptyLikeUrl = "/resources/img/빈하트.png";
+    const resultElement = document.getElementById('likecnt');
+	var number=resultElement.innerText;
 	
 	no = $('#no').val(),
 	count = $('#likecheck').val(),
@@ -320,6 +334,9 @@ function like_func(){
 			"count" : count
 			};
 	
+	
+	
+
 $.ajax({
 	url : "/like/likeUpdate",
 	type : 'PUT',
@@ -331,11 +348,15 @@ $.ajax({
 		if(count == 1){
 			console.log("좋아요 취소");
 			 $('#likecheck').val(0);
+			 number = parseInt(number) - 1;
+			 resultElement.innerText = number;
 			 $('#likeImg').attr("src", emptyLikeUrl);
 		}else if(count == 0){
 			console.log("좋아요!");
 			$('#likecheck').val(1);
-			 $('#likeImg').attr("src", clickLikeUrl);
+			number = parseInt(number) + 1;
+			resultElement.innerText = number;
+			$('#likeImg').attr("src", clickLikeUrl);
 		}
 		 $('#like_img').attr('src', like_img);
 	}, error : function(result){
@@ -345,8 +366,89 @@ $.ajax({
 	});
 };
 
+$(document).on("click", "#matejoin", function(e){
+
+	no = $('#no').val(),
+	count = $('#joincheck').val(),
+
 	
+	data = {
+				"no" : no,
+				"count" : count
+				};
+	$.ajax({
+		url : "/matejoin/joinUpdate",
+		type : 'PUT',
+		contentType: 'application/json',
+		data : JSON.stringify(data),
+		success : function(result){
+		
+			
+			console.log("수정" + result.result);
+			if(count == 1){
+			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
+			 console.log("나가요~");
+			 $('#joincheck').val(0);
+			 $('#matejoin').html('참여하기');		
+
+			}else if(result.result=='fail'){
+				alert("인원수가 가득찼습니다.");
+				return false;
+			}else if(count == 0){
+				
+			alert('${mate.activityname} 활동에 참여하셨습니다!');
+			console.log("참여!");
+			 $('#joincheck').val(1);
+			 $('#matejoin').html('나가기');    
+		     	
+			}
+			
+		}, error : function(result){
+			console.log("에러" + result.result)
+		}
+		
+		});
+});
+
 </script>
-}
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e49668e033d2147dcdeca11f1531922&libraries=services"></script>
+	<script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	    mapOption = {
+	        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	        level: 3 // 지도의 확대 레벨
+	    };  
+	
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch('${mate.meetingplace}', function(result, status) {
+	
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+	
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new kakao.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+	
+	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+	        var infowindow = new kakao.maps.InfoWindow({
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">코스타</div>'
+	        });
+	        infowindow.open(map, marker);
+	
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});    
+	</script>
 
 
