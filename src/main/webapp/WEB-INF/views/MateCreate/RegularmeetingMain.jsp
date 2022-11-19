@@ -65,9 +65,9 @@ table {
 				<tr>
 					<th>모임인원</th>
 					<td><input type="button" onclick="countDown();" value="-">
-						<strong id="peoplemaxnum">2</strong> 
+						<strong id="maxnum">2</strong> 
 						<input type="button" onclick="countUp();" value="+">
-						<input type="hidden" id="data" name="data">
+						<input type="hidden" id="peoplemaxnum" name="peoplemaxnum" value="2">
 					</td>
 				</tr>
 				<tr>
@@ -193,9 +193,9 @@ table {
 		var countUp = function() {
 			if (count < 6) {
 				count = count + 1;
-				document.querySelector("#data").innerText = count;
-				document.querySelector("#peoplemaxnum").innerText = count;
-
+				$("#peoplemaxnum").val(count);
+				document.querySelector("#maxnum").innerText = count;
+				
 			} else {
 				alert("단기 모임은 2인 이상 6인 이하로 설정해주세요.");
 			}
@@ -203,8 +203,8 @@ table {
 		var countDown = function() {
 			if (count > 2) {
 				count = count - 1;
-				document.querySelector("#data").innerText = count;
-				document.querySelector("#peoplemaxnum").innerText = count;
+				$("#peoplemaxnum").val(count);
+				document.querySelector("#maxnum").innerText = count;
 
 			} else {
 				alert("단기 모임은 2인 이상 6인 이하로 설정해주세요.");
@@ -225,7 +225,7 @@ table {
 							}//.uploadBtn
 
 							$.ajax({
-										url : 'uploadAjax',
+										url : '/Mate/uploadAjax',
 										processData : false,
 										contentType : false,
 										data : formData,

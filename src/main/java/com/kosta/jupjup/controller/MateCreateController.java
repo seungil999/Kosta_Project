@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kosta.jupjup.service.MateCreateService;
@@ -15,6 +16,7 @@ import com.kosta.jupjup.vo.MateCreateVO;
 
 
 @Controller
+@RequestMapping("/Mate/*")
 public class MateCreateController {
 	
 	@Autowired
@@ -40,8 +42,8 @@ public class MateCreateController {
 	
 	
 	@PostMapping("/matecreate")
-	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreate, @RequestParam("data")String data) {
-		System.out.println(data);
+	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreate) {
+		System.out.println(matecreate.getPeoplemaxnum());
 		model.addAttribute("matecreate", matecreate);
 		System.out.println(matecreate);
 		if(matecreate.getImage().isEmpty() ) {

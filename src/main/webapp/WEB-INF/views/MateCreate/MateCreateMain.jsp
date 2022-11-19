@@ -7,7 +7,7 @@
 <title>메이트 찾기</title>
 </head>
 <body>
-	<a href="/Flashgathering">번개모임</a>
-	<a href="/Regularmeeting">정기모임</a>
+	<a href="/Mate/Flashgathering">번개모임</a>
+	<a href="/Mate/Regularmeeting">정기모임</a>
 </body>
 </html>

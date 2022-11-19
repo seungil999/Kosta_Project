@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,6 +32,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 
 @RestController
 @Log4j2
+@RequestMapping("/Mate/*")
 public class UploadController {
 	
 	@Value("C:\\upload")
@@ -79,7 +81,7 @@ public class UploadController {
 
 	private String makeFolder() {
 		
-		String str = LocalDate.now().format(DateTimeFormatter.ofPattern("YYYY/MM/dd"));
+		String str = LocalDate.now().format(DateTimeFormatter.ofPattern("YYYYMMdd"));
 		
 		String folderPath = str.replace("/", File.separator);
 		
