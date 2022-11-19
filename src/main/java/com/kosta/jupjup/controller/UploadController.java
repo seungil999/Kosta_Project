@@ -33,13 +33,13 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Log4j2
 public class UploadController {
 	
-	@Value("${org.zerock.upload.path}")
+	@Value("C:\\upload")
 	private String uploadPath;
 	
 	
 	@PostMapping("/uploadAjax")
 	public ResponseEntity<List<UploadResultDTO>> uploadFile(MultipartFile[] uploadFiles) {
-		
+		System.out.println(uploadPath);
 		List<UploadResultDTO> resultDTOList = new ArrayList<>();
 		
 		for (MultipartFile uploadFile: uploadFiles) {
