@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosta.jupjup.dao.MateFindDAO;
 import com.kosta.jupjup.vo.Criteria;
-import com.kosta.jupjup.vo.FlashMateVO;
+import com.kosta.jupjup.vo.MateVO;
 
 
 @Service
@@ -17,18 +17,10 @@ public class MateFindServiceImpl implements MateFindService {
 	  @Autowired
 	  MateFindDAO matefindDAO;
 	  
-	  
-	  
-//	  @Override public List<RegularMateVO> getRlist(Criteria cri) {
-//	  
-//	  return matefindDAO.getRlistWithPaging(cri);
-//	  
-//	  }
-	  
 	  @Override 
-	  public List<FlashMateVO> getFlist(Criteria cri) {
+	  public List<MateVO> getlist(Criteria cri) {
 	  
-	  return matefindDAO.getFlistWithPaging(cri); 
+	  return matefindDAO.getlistWithPaging(cri); 
 	  }
 	 
 
@@ -37,5 +29,14 @@ public class MateFindServiceImpl implements MateFindService {
 		
 		return matefindDAO.getTotalCount(cri);
 	}
+
+
+	@Override
+	public MateVO get(Long no) {
+
+		return matefindDAO.read(no);
+	}
+	
+	
 
 }

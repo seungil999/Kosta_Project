@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.MateJoinDAO">
+	
+	 <select id="joinCount" resultType="Integer">
+		select count(jno) from mate_join where no=#{no}
+	</select>
+	
+	<insert id="joinInsert">
+		insert into mate_join (no) values (#{no})
+	</insert>
+	
+	<select id="joinGetInfo" resultType="Integer">
+		select jno from mate_join where no=#{no}
+	</select>
+	
+	<update id="joinUpdate">
+		update mate_join
+		set <include refid="cal"></include>
+		where no=#{no}
+	</update>
+	
+	<update id="joinCntUpdate">
+		update mate
+		set peoplenum=<include refid="cntcal"></include>
+		where no=#{no}
+	</update>
+	
+	<sql id="cal">
+		<if test="count == 1">
+			jno = 0
+		</if> 
+		
+		<if test="count == 0">
+			jno = jno + 1 
+		</if>
+	</sql>
+	<sql id="cntcal">
+		<if test="count == 1">
+			peoplenum-1
+		</if> 
+		
+		<if test="count == 0">
+			peoplenum+1 
+		</if>
+	</sql>
+	
+</mapper>		

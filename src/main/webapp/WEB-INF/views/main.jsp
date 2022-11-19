@@ -39,7 +39,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 
-<!--Animated CSS-->
+<!--Animated CSS--> 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/animate.min.css">
 
@@ -60,7 +60,7 @@
 <!--Responsive Framework-->
 <link
 	href="${pageContext.request.contextPath}/resources/css/responsive.css"
-	rel="stylesheet">
+	rel="stylesheet"> 
 
 </head>
 

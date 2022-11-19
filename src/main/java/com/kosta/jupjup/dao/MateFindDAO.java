@@ -6,14 +6,13 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.jupjup.vo.Criteria;
-import com.kosta.jupjup.vo.FlashMateVO;
-import com.kosta.jupjup.vo.RegularMateVO;
+import com.kosta.jupjup.vo.MateVO;
 
 @Mapper
 @Repository
 public interface MateFindDAO {
-	public List<FlashMateVO> getFlistWithPaging(Criteria cri);
-	public List<RegularMateVO> getRlistWithPaging(Criteria cri);
+	public List<MateVO> getlistWithPaging(Criteria cri);
 	public int getTotalCount(Criteria cri);
+	public MateVO read(Long no);
 
 }

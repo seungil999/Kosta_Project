@@ -3,14 +3,16 @@ package com.kosta.jupjup.service;
 import java.util.List;
 
 import com.kosta.jupjup.vo.Criteria;
-import com.kosta.jupjup.vo.FlashMateVO;
-import com.kosta.jupjup.vo.RegularMateVO;
+import com.kosta.jupjup.vo.MateVO;
 
 public interface MateFindService {
 	
-//	  public List<RegularMateVO> getRlist(Criteria cri); 
-	  public List<FlashMateVO> getFlist(Criteria cri);
+ 
+	  public List<MateVO> getlist(Criteria cri);
 	  
 	  public int getTotal(Criteria cri);
-	 
+	  
+	  public MateVO get(Long no);
+
+
 	}

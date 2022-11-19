@@ -15,39 +15,86 @@
 						<when test="type == 'M'.toString()">
 							meetingplace like '%'||#{keyword}||'%'
 						</when>
+						<when test="meeting == '1'.toString()">
+							regular=1
+						</when>
+						<when test="meeting == '0'.toString()">
+							regular=0
+						</when>
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
 	</sql>
+	<!-- <sql id="kind">
+		<choose>
+			<when test="kind == 'soon'.toString()">
+						(select * from mate order by meetingtime asc)	
+			</when>
+			<when test="kind == 'like'.toString()">
+						order by like desc	
+			</when>
+		</choose>
+	</sql> -->
 	
-	<select id="getFlistWithPaging" resultType="com.kosta.jupjup.vo.FlashMateVO" >
+	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
 	  <![CDATA[
 	  select 
-		fno,activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate
+		 no,activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular,image
 	  from (
-	     select /*+INDEX_DESC(flashmate pk_flash ) */
-	        rownum rn, fno, activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate 
-	      from flashmate
-	  where 
-	  ]]>
+	    select
+	    ]]>
+	    	/*+INDEX_DESC(mate pk_mate ) */
+ 		 <![CDATA[
+ 		 rownum rn, no, activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular,image
+	      from ]]>
+	      <choose>
+			<when test="filter == 'soon'.toString()">
+						(select * from mate order by meetingtime asc)	
+			</when>
+			<when test="filter == 'like'.toString()">
+						(select * from mate order by likecnt desc)	
+			</when>
+			<otherwise>
+				mate
+			</otherwise>
+		</choose>
+	      <![CDATA[
+	  where sysdate <meetingtime and
+ 		]]>
 	  <include refid="criteria"></include> 
 	  <![CDATA[    
 	      rownum <= #{pageNum} * #{amount}
-	      )
+	     ]]> 
+	      )  
+	 <![CDATA[ 
 	  where rn > (#{pageNum} -1) * #{amount}   
-	  ]]>
+	 ]]>
   </select> 
   
   
   <select id="getTotalCount" resultType="int">
     <![CDATA[ 
-	  select count(*) from flashmate where 
+	  select count(*) from mate where  sysdate<meetingtime and
 	  	  ]]>
 	    <include refid="criteria"></include> 
 	    
-	 	 fno > 0  
-	  
-  </select> 
+	 	 no > 0  
+	   
+  </select>
+  
+  <select id="read" resultType="com.kosta.jupjup.vo.MateVO">
+  <![CDATA[
+		select no, activityname, writer, meetingplace,meetingtime,
+		to_char(meetingtime,'dy') dayofweek, peoplenum,
+		peoplemaxnum, startzone, endzone,
+		regexp_replace(starttime,'(^.{2})','\1:') starttime,
+		regexp_replace(endtime,'(^.{2})','\1:')endtime, content,regdate, updatedate,
+		replycnt, image, regular, likecnt
+		 from mate where no =
+		#{no}
+        
+		]]>
+	</select> 
 			
 </mapper>		
