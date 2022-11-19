@@ -397,7 +397,16 @@ input: -webkit-autofill:focus {
     color: blue;
 } 
 
-
+/*CreateMate*/
+#CreateMate.textarea {
+	width: 100%;
+    height: 8.25em;
+    resize: none;
+}
+#CreateMate.table {
+	border-spacing: 15px;
+	padding: 0px 500px;
+}
 
 
 /*Welcome Section*/

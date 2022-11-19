@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 
@@ -63,12 +62,6 @@
 	href="${pageContext.request.contextPath}/resources/css/responsive.css"
 	rel="stylesheet">
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body data-spy="scroll" data-target="#header">
@@ -91,8 +84,8 @@
 									class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand custom_navbar-brand" href="#"><img
-								src="${pageContext.request.contextPath}/resources/img/logo1.png"
+							<a class="navbar-brand custom_navbar-brand" href="#">
+							<img src="${pageContext.request.contextPath}/resources/img/logo1.png"
 								alt=""></a>
 						</div>
 						<!--End of navbar-header-->
@@ -316,52 +309,11 @@
 			time : 1000
 		});
 	</script>
-
-	<!--Gmaps-->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/gmaps.min.js"></script>
-	<script type="text/javascript">
-		var map;
-		$(document).ready(function() {
-			map = new GMaps({
-				el : '#map',
-				lat : 23.6911078,
-				lng : 90.5112799,
-				zoomControl : true,
-				zoomControlOpt : {
-					style : 'SMALL',
-					position : 'LEFT_BOTTOM'
-				},
-				panControl : false,
-				streetViewControl : false,
-				mapTypeControl : false,
-				overviewMapControl : false,
-				scrollwheel : false,
-			});
-
-			map.addMarker({
-				lat : 23.6911078,
-				lng : 90.5112799,
-				title : 'Office',
-				details : {
-					database_id : 42,
-					author : 'Foysal'
-				},
-				click : function(e) {
-					if (console.log)
-						console.log(e);
-					alert('You clicked in this marker');
-				},
-				mouseover : function(e) {
-					if (console.log)
-						console.log(e);
-				}
-			});
-		});
-	</script>
-	<!--Google Maps API-->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjxvF9oTfcziZWw--3phPVx1ztAsyhXL4"></script>
+	
+	<!--날씨-->
+	
+	
+	
 
 
 	<!--Isotope-->
