@@ -23,6 +23,7 @@ public class MateCreateController {
 	MateCreateService matecreateservice;
 	
 	@GetMapping("/MateCreateMain")
+	
 	public String MateCreateMaingmain () {
 		return "/MateCreate/MateCreateMain";
 	}
