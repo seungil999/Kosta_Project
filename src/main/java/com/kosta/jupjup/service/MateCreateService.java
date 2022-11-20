@@ -6,6 +6,5 @@ import com.kosta.jupjup.vo.MateCreateVO;
 
 @Service
 public interface MateCreateService {
-	
-	 void MateCraete(MateCreateVO matecreate);
-}
+	void matecreate(MateCreateVO matecreatevo);
+}	

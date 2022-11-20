@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
-<mapper namespace="com.mate.dao.MateCreateDAO">
-
+<mapper namespace="com.kosta.jupjup.dao.MateCreateDAO">
+	
+	<insert id="insertmate" >
+		<![CDATA[
+			INSERT INTO MATE (
+						NO,
+						activityname,
+						writer,
+						meetingplace,
+						meetingtime,
+						meetingdate,
+						peoplenum,
+						peoplemaxnum,
+						startzone,
+						endzone,
+						starttime,
+						endtime,
+						content,
+						regdate,
+						image,
+						regular)
+			values(#{no},#{activityname},#{writer},#{meetingplace},#{meetingtime},(to_date(#{meetingdate} 23:59:59),1,#{peoplemaxnum},
+					#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,#{image},#{regular})
+		]]>
+	</insert>
+	
 </mapper>

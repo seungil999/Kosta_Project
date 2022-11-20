@@ -37,7 +37,7 @@ table {
 				</tr>
 				<tr>
 					<th>작성자</th>
-				<!--<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용-->
+					<!--<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용-->
 					<td><input type="text" name="writer"></td>
 				</tr>
 				<tr>
@@ -94,7 +94,9 @@ table {
 						value="등록" /></td>
 				</tr>
 			</table>
-			<input type="hidden" name="regular" value="0">
+			<input type="hidden" name="regular" value="0"> 
+			<input type="hidden" name="no" value="5"> 
+			<input type="hidden" name="peoplenum" value="1">
 		</div>
 	</form>
 

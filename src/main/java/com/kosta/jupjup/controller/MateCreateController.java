@@ -42,11 +42,12 @@ public class MateCreateController {
 	
 	
 	@PostMapping("/matecreate")
-	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreate) {
-		model.addAttribute("matecreate", matecreate);
-		System.out.println(matecreate);
-		if(matecreate.getImage().isEmpty() ) {
-			matecreate.setImage("기본이미지");
+	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreatevo) {
+		model.addAttribute("matecreate", matecreatevo);
+		System.out.println(matecreatevo);
+		matecreateservice.matecreate(matecreatevo);
+		if(matecreatevo.getImage().isEmpty() ) {
+			matecreatevo.setImage("기본이미지");
 		}
 		return "/MateCreate/MateCreateMain";
 	}
