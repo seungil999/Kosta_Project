@@ -26,16 +26,7 @@
 			</foreach>
 		</trim>
 	</sql>
-	<!-- <sql id="kind">
-		<choose>
-			<when test="kind == 'soon'.toString()">
-						(select * from mate order by meetingtime asc)	
-			</when>
-			<when test="kind == 'like'.toString()">
-						order by like desc	
-			</when>
-		</choose>
-	</sql> -->
+	
 	
 	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
 	  <![CDATA[

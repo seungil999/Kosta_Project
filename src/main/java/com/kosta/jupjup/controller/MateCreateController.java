@@ -43,7 +43,6 @@ public class MateCreateController {
 	
 	@PostMapping("/matecreate")
 	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreate) {
-		System.out.println(matecreate.getPeoplemaxnum());
 		model.addAttribute("matecreate", matecreate);
 		System.out.println(matecreate);
 		if(matecreate.getImage().isEmpty() ) {

@@ -27,13 +27,18 @@ table {
 </style>
 <body>
 	<h3>정기모임</h3>
-<form action="/Mate/matecreate" method="post">
+	<form action="/Mate/matecreate" method="post">
 		<div id="center">
-			<input name="image" type="file" accept = image/jpg,impge/png,image/jpeg id="image" multiple >
-			<input type="button" class="uploadBtn" value="업로드">
-			<div class="uploadResult" id="image"></div>
-			
 			<table>
+				<tr>
+					<td><input name="image" type="file" id="image"> <input
+						type="button" class="uploadBtn" value="업로드">
+						<div class="uploadResult"></div></td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>${mate.writer}</td>
+				</tr>
 				<tr>
 					<th>모임명</th>
 					<td colspan="5"><input type="text" name="activityname"
@@ -65,10 +70,9 @@ table {
 				<tr>
 					<th>모임인원</th>
 					<td><input type="button" onclick="countDown();" value="-">
-						<strong id="maxnum">2</strong> 
-						<input type="button" onclick="countUp();" value="+">
-						<input type="hidden" id="peoplemaxnum" name="peoplemaxnum" value="2">
-					</td>
+						<strong id="maxnum">2</strong> <input type="button"
+						onclick="countUp();" value="+"> <input type="hidden"
+						id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
 				</tr>
 				<tr>
 					<th>출발지</th>
@@ -88,8 +92,9 @@ table {
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="button" value="뒤로가기" onclick="history.back(-1)">
-						<input type="submit" value="등록" /></td>
+					<td><input type="button" value="뒤로가기"
+						onclick="history.back(-1)"> <input type="submit"
+						value="등록" /></td>
 				</tr>
 			</table>
 		</div>
@@ -195,7 +200,7 @@ table {
 				count = count + 1;
 				$("#peoplemaxnum").val(count);
 				document.querySelector("#maxnum").innerText = count;
-				
+
 			} else {
 				alert("단기 모임은 2인 이상 6인 이하로 설정해주세요.");
 			}
@@ -224,7 +229,8 @@ table {
 								formData.append("uploadFiles", files[i]);
 							}//.uploadBtn
 
-							$.ajax({
+							$
+									.ajax({
 										url : '/Mate/uploadAjax',
 										processData : false,
 										contentType : false,
@@ -254,20 +260,23 @@ table {
 								}
 								divArea.append(str);
 							}
-							$(".uploadResult").on("click", ".removeBtn", function(e){
-								var target = $(this);
-								var fileName = target.data("name");
-								var targetDiv = $(this).closest("div");
-								
-								console.log(fileName);
-								
-								$.post('removeFile', {fileName: fileName}, function(result) {
-									console.log(result);
-									if(result === true) {
-										targetDiv.remove();
-									}
-								})
-							})
+							$(".uploadResult").on("click", ".removeBtn",
+									function(e) {
+										var target = $(this);
+										var fileName = target.data("name");
+										var targetDiv = $(this).closest("div");
+
+										console.log(fileName);
+
+										$.post('removeFile', {
+											fileName : fileName
+										}, function(result) {
+											console.log(result);
+											if (result === true) {
+												targetDiv.remove();
+											}
+										})
+									})
 						});
 	</script>
 </body>

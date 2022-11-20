@@ -28,7 +28,7 @@ import com.kosta.jupjup.vo.PageVO;
 import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
-@RequestMapping("/matefind/*") 
+@RequestMapping("/matefind/*")
 public class MateFindController {
  
 	  @Autowired 
