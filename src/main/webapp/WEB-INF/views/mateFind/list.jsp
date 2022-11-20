@@ -84,13 +84,14 @@
                <td><a class='move' href='<c:out value="${mate.no}"/>'>
                <img src="/matefind/img/${mate.image}" id="productImage"/>
                <c:out value="${mate.activityname}" /></a>
+              
               <td><c:choose>
-              <c:when test="${mate.regular eq '1' }">
-              	정기활동
-              </c:when>
-              <c:otherwise>
-              	번개활동
-              </c:otherwise>
+	              <c:when test="${mate.regular eq '1' }">
+	              	정기활동
+	              </c:when>
+	              <c:otherwise>
+	              	번개활동
+	              </c:otherwise>
               </c:choose></td>
               <td><c:out value="${mate.writer}" /></td>
               <td><c:out value="${mate.meetingtime}"/></td>
@@ -98,8 +99,7 @@
               <td><c:out value="${mate.meetingplace }"/></td>
               <td><c:out value="${mate.peoplenum }"/></td>
               <td><c:out value="${mate.peoplemaxnum }"/></td>
-              <td><fmt:formatDate pattern="yyyy-MM-dd"
-                  value="${mate.regdate}" /></td>
+              <td><c:out value="${mate.regdate}" /></td>
             </tr>
           </c:forEach>
 

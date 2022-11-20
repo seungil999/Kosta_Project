@@ -3,6 +3,8 @@ package com.kosta.jupjup.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +44,12 @@ public class MateFindController {
 	  
 	  @GetMapping("/list")  
 	  public String list(Criteria cri, Model model) {
-	  
+      LocalTime now = LocalTime.now();
+	  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+	  String formatedNow = now.format(formatter);
+	  int getTime = Integer.parseInt(formatedNow);
+	  cri.setCurrenttime(getTime);
+		  
 	  model.addAttribute("list", service.getlist(cri)); 
 	  
 	  int total = service.getTotal(cri);

@@ -27,21 +27,27 @@
 		</trim>
 	</sql>
 	
+	<sql id="regular">
+		<if test="meeting == 0">
+			meetingtime > #{currenttime} and
+		</if> 
+	</sql>
+	
 	
 	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
 	  <![CDATA[
 	  select 
-		 no,activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular,image
+		 no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,regdate,regular,image
 	  from (
 	    select
 	    ]]>
 	    	/*+INDEX_DESC(mate pk_mate ) */
  		 <![CDATA[
- 		 rownum rn, no, activityname, writer, meetingtime, meetingplace, peoplenum,peoplemaxnum,regdate,regular,image
+ 		 rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,regdate,regular,image
 	      from ]]>
 	      <choose>
 			<when test="filter == 'soon'.toString()">
-						(select * from mate order by meetingtime asc)	
+						(select * from mate order by meetingdate asc)	
 			</when>
 			<when test="filter == 'like'.toString()">
 						(select * from mate order by likecnt desc)	
@@ -51,8 +57,8 @@
 			</otherwise>
 		</choose>
 	      <![CDATA[
-	  where sysdate <meetingtime and
- 		]]>
+	  where (to_date(sysdate, 'YY/MM/DD')) <= meetingdate and]]> <include refid="regular"></include> 
+ 		
 	  <include refid="criteria"></include> 
 	  <![CDATA[    
 	      rownum <= #{pageNum} * #{amount}
@@ -66,8 +72,8 @@
   
   <select id="getTotalCount" resultType="int">
     <![CDATA[ 
-	  select count(*) from mate where  sysdate<meetingtime and
-	  	  ]]>
+	  select count(*) from mate where (to_date(sysdate, 'YY/MM/DD')) <=meetingdate and]]> <include refid="regular"></include> 
+	  	  
 	    <include refid="criteria"></include> 
 	    
 	 	 no > 0  

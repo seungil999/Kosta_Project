@@ -100,7 +100,6 @@ table {
 				</tr>
 			</table>
 			<input type="hidden" name="regular" value="0"> 
-			<input type="hidden" name="peoplenum" value="1">
 		</div>
 	</form>
 

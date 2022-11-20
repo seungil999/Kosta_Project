@@ -12,7 +12,7 @@ public class MateCreateVO {
 	private String meetingplace;
 	private int meetingtime;
 	private Date meetingdate;
-	private Integer peoplenum;
+	private int peoplenum;
 	private int peoplemaxnum;
 	private String startzone;
 	private String endzone;

@@ -27,4 +27,5 @@ public class MateVO {
 	private String regular;
 	private int likecnt;
 	
+	
 }
