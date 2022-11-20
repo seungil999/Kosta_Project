@@ -23,7 +23,7 @@
 						updatedate,
 						image,
 						regular)
-			values(pk_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},(to_date(sysdate, 'YY/MM/DD')),#{peoplemaxnum},
+			values(SEQ_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},(to_date(sysdate, 'YY/MM/DD')),#{peoplemaxnum},
 					#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular})
 		]]>
 	</insert>
