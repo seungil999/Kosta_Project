@@ -8,7 +8,7 @@ import com.kosta.jupjup.vo.MateCreateVO;
 @Repository
 @Mapper
 public interface MateCreateDAO {
-
+	
 	 void insertmate(MateCreateVO matecreatevo);
-
+	      
 }

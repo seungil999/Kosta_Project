@@ -1,10 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <%-- <%@include file="../includes/header.jsp"%> --%>    
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<div class="border-end bg-white" id="sidebar-wrapper">
+    <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+    <div class="list-group list-group-flush">
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
+        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 
 <div class='row'>
 		<div class="col-lg-12">
@@ -51,7 +69,8 @@
 							<th>활동명</th>
 							<th>분류</th>
 							<th>작성자</th>
-							<th>활동일시</th>
+							<th>활동시간</th>
+							<th>활동날짜</th>
 							<th>장소</th>
 							<th>모집인원</th>
 							<th>모집최대</th>
@@ -74,9 +93,8 @@
               </c:otherwise>
               </c:choose></td>
               <td><c:out value="${mate.writer}" /></td>
-              <td><fmt:formatDate pattern="yyyy-MM-dd"
-              
-                  value="${mate.meetingtime}" /></td>
+              <td><c:out value="${mate.meetingtime}"/></td>
+              <td><c:out value="${mate.meetingdate}"/></td>
               <td><c:out value="${mate.meetingplace }"/></td>
               <td><c:out value="${mate.peoplenum }"/></td>
               <td><c:out value="${mate.peoplemaxnum }"/></td>
@@ -284,4 +302,6 @@ $(document)
 
 				});
 </script>
+			
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
 			

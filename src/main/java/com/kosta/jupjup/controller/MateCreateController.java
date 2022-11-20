@@ -43,7 +43,10 @@ public class MateCreateController {
 	
 	@PostMapping("/matecreate")
 	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreatevo) {
+		
+		
 		model.addAttribute("matecreate", matecreatevo);
+		
 		System.out.println(matecreatevo);
 		matecreateservice.matecreate(matecreatevo);
 		if(matecreatevo.getImage().isEmpty() ) {

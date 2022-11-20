@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -390,7 +392,7 @@ $(document).on("click", "#matejoin", function(e){
 			 console.log("나가요~");
 			 $('#joincheck').val(0);
 			 $('#matejoin').html('참여하기');		
-
+			 window.location.reload();
 			}else if(result.result=='fail'){
 				alert("인원수가 가득찼습니다.");
 				return false;
@@ -400,7 +402,7 @@ $(document).on("click", "#matejoin", function(e){
 			console.log("참여!");
 			 $('#joincheck').val(1);
 			 $('#matejoin').html('나가기');    
-		     	
+			 window.location.reload();
 			}
 			
 		}, error : function(result){
@@ -452,3 +454,4 @@ $(document).on("click", "#matejoin", function(e){
 	</script>
 
 
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>

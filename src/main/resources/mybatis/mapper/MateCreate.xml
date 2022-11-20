@@ -21,10 +21,11 @@
 						endtime,
 						content,
 						regdate,
+						updatedate,
 						image,
 						regular)
-			values(#{no},#{activityname},#{writer},#{meetingplace},#{meetingtime},(to_date(#{meetingdate} 23:59:59),1,#{peoplemaxnum},
-					#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,#{image},#{regular})
+			values(pk_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},(to_date(sysdate, 'YY/MM/DD')),#{peoplenum},#{peoplemaxnum},
+					#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular})
 		]]>
 	</insert>
 	

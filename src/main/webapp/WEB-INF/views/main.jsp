@@ -1,133 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-<link rel="shortcut icon" type="image/x-icon"
-	href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png">
-
-
- <head>
-        <meta charset="utf-8">
-        
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
 
 <meta charset="utf-8">
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-<title>ZupgoZupup</title>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-<!--    Google Fonts-->
-<link
-	href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-<link
-	href='https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css'
-	rel='stylesheet' type='text/css'>
-<!--Fontawesom-->
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
-
-<!--Animated CSS--> 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/animate.min.css">
-
-<!-- Bootstrap -->
-<link
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
-<!--Bootstrap Carousel-->
-<link type="text/css" rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/carousel.css" />
-
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/isotope/style.css">
-
-<!--Main Stylesheet-->
-<link href="${pageContext.request.contextPath}/resources/css/style.css"
-	rel="stylesheet">
-<!--Responsive Framework-->
-<link
-	href="${pageContext.request.contextPath}/resources/css/responsive.css"
-	rel="stylesheet"> 
-
-</head>
 
 <body data-spy="scroll" data-target="#header">
-
-	<!--Start Hedaer Section-->
-	<section id="header">
-		<div class="header-area">
-
-			<div class="header_menu text-center" data-spy="affix"
-				data-offset-top="50" id="nav">
-				<div class="container">
-					<nav class="navbar navbar-default zero_mp ">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed"
-								data-toggle="collapse"
-								data-target="#bs-example-navbar-collapse-1"
-								aria-expanded="false">
-								<span class="sr-only">Toggle navigation</span> <span
-									class="icon-bar"></span> <span class="icon-bar"></span> <span
-									class="icon-bar"></span>
-							</button>
-							<a class="navbar-brand custom_navbar-brand" href="#">
-							<img src="${pageContext.request.contextPath}/resources/img/logo1.png"
-								alt=""></a>
-						</div>
-						<!--End of navbar-header-->
-						<div class="collapse navbar-collapse zero_mp"
-							id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav navbar-right main_menu1">
-								<li><a href="">회원가입</a></li>
-								<!--로그인 / 로그아웃-->
-								<li class="nav-item"><c:choose>
-										<c:when test="${sessionScope.id eq null}">
-											<a class="nav-link" href="./login">로그인</a>
-										</c:when>
-										<c:otherwise>
-											<a class="nav-link" href="./logout">로그아웃</a>
-										</c:otherwise>
-									</c:choose></li>
-								<li><a href="">고객센터</a></li>
-							</ul>
-						</div>
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse zero_mp"
-							id="bs-example-navbar-collapse-2">
-							<ul class="nav navbar-nav navbar-right main_menu">
-								<li><a href="/matefind/list">메이트찾기 <span class="sr-only">(current)</span></a></li>
-								<li><a href="/Mate/MateCreateMain">메이트모집</a></li>
-								<li><a href="">추천</a></li>
-								<li><a href="">후기</a></li>
-								<li><a href="">자유게시판</a></li>
-							</ul>
-						</div>
-						<!-- /.navbar-collapse -->
-					</nav>
-					<!--End of nav-->
-				</div>
-				<!--End of container-->
-			</div>
-			<!--End of header menu-->
-		</div>
-		<!--end of header area-->
-	</section>
-	<!--End of Hedaer Section-->
-
 
 
 	<!--Start of slider section-->
@@ -255,60 +145,11 @@
 			지금, 비긴메이트에서 만나보세요!</div>
 		<span class="start_bt">플로깅 하러가기 > 메이트찾기로 이동</span>
 	</div>
-	
-	
-
-	<!-- 푸터 -->
-	<section id="footer">
-		<div class="container">
-			<div class="row text-center">
-				<div class="col-md-15">
-					<div class="copyright">
-						<p>(주)ZupGoZupUp | 대표이사 | 개인정보관리책임자 (jupgo@jupup.com)</p>
-
-						<p>서울 강남구 언주로69길 19, 지하1층(역삼동) | 02-6713-0817 |
-							점심시간(13:00~14:00)</p>
-
-						<p>사업자등록번호 123-45-67890 | 제2018-서울강남-02246호| 유료직업소개사업등록번호:
-							(국내)제2020-3220237-14-5-00014호</p>
-					</div>
-					<div class="designer">
-						<p>2022 © ZupgoZupup. All rights reserved</p>
-					</div>
-				</div>
-			</div>
-			<!--End of row-->
-		</div>
-		<!--End of container-->
-	</section>
-	<!--End of footer-->
-
-
 
 	<!--Scroll to top-->
 	<a href="#" id="back-to-top" title="Back to top">&uarr;</a>
 	<!--End of Scroll to top-->
 
-
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>-->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery-1.12.3.min.js"></script>
-
-	<!--Counter UP Waypoint-->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/waypoints.min.js"></script>
-	<!--Counter UP-->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.counterup.min.js"></script>
-
-	<script>
-		//for counter up
-		$('.counter').counterUp({
-			delay : 10,
-			time : 1000
-		});
-	</script>
 	
 	<!--날씨-->
 	
@@ -327,7 +168,6 @@
 		src="${pageContext.request.contextPath}/resources/js/isotope/packery-mode.pkgd.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/isotope/scripts.js"></script>
-
 
 	<!--Back To Top-->
 	<script
@@ -356,3 +196,4 @@
 </body>
 
 </html>
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>

@@ -6,21 +6,23 @@ import lombok.Data;
 
 @Data
 public class MateCreateVO {
-	private Long fno;
+	private Long no;
 	private String activityname;
 	private String writer;
 	private String meetingplace;
-	private String meetingtime;
+	private int meetingtime;
+	private Date meetingdate;
 	private Integer peoplenum;
 	private int peoplemaxnum;
 	private String startzone;
 	private String endzone;
-	private String starttime;
-	private String endtime;
+	private int starttime;
+	private int endtime;
 	private String content;
 	private Date regdate;
 	private int replycnt;
 	private String image;
+	private int regular;
 	
 	//fileName을 가져와야할거같은데
 	//private String fileName;

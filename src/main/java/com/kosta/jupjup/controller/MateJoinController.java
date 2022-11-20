@@ -31,9 +31,13 @@ public class MateJoinController {
 		
 		try {
 			MateVO matevo= new MateVO();
+			MateJoinVO mjv = new MateJoinVO();
+			
 			Long no = vo.getNo();
-			matevo = findservice.get(no);
-			if(matevo.getPeoplenum()>=matevo.getPeoplemaxnum()&& vo.getJno()<1) {
+			mjv.setNo(no);
+			int jno = service.joinGetInfo(mjv);  //해당 모임에 참여 되어있는지 확인
+			matevo = findservice.get(no);  //모임 인원 확인용도
+			if(matevo.getPeoplenum()==matevo.getPeoplemaxnum()&& jno==0) {
 				map.put("result", "fail");
 				
 			}else {

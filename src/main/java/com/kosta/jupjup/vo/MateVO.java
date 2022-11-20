@@ -9,15 +9,16 @@ public class MateVO {
 	private Long no;
 	private String activityname;
 	private String writer;
+	private Date meetingdate;
 	private String meetingplace;
-	private Date meetingtime;
+	private int meetingtime;
 	private String dayofweek;
 	private int peoplenum;
 	private int peoplemaxnum;
 	private String startzone;
 	private String endzone;
-	private String starttime;
-	private String endtime;
+	private int starttime;
+	private int endtime;
 	private String content;
 	private Date regdate;
 	private Date updatedate;
@@ -25,4 +26,5 @@ public class MateVO {
 	private String image;
 	private String regular;
 	private int likecnt;
+	
 }

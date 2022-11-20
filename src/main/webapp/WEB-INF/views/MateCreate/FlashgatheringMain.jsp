@@ -27,7 +27,7 @@ table {
 </style>
 <body>
 	<h3>번개모임</h3>
-	<form action="/Mate/matecreate" method="post">
+	<form action="/Mate/matecreate" method="post" onsubmit="typeChange();">
 		<div id="center">
 			<table>
 				<tr>
@@ -62,7 +62,9 @@ table {
 				</tr>
 				<tr>
 					<th>모임시간</th>
-					<td><input type="time" name="meetingtime"></td>
+					<td><input type="time" id="mtime" name="mtime">
+					<input type="hidden" id="meetingtime" name="meetingtime" value="">
+					</td>
 				</tr>
 				<tr>
 					<th>모임인원</th>
@@ -79,8 +81,11 @@ table {
 				</tr>
 				<tr>
 					<th>활동시간</th>
-					<td><input type="time" name="starttime"> 부터</td>
-					<td><input type="time" name="endtime"> 까지</td>
+					<td><input type="time" id="stime" name="stime"> 부터
+					<input type="hidden" id="starttime" name="starttime" value=""></td>
+					<td><input type="time" id="etime" name="etime"> 까지
+					<input type="hidden" id="endtime" name="endtime" value=""></td>
+
 				</tr>
 				<tr>
 					<th>안내사항</th>
@@ -90,12 +95,11 @@ table {
 				<tr>
 					<td></td>
 					<td><input type="button" value="뒤로가기"
-						onclick="history.back(-1)"> <input type="submit"
+						onclick="history.back(-1)"> <input type="submit" id="submit"
 						value="등록" /></td>
 				</tr>
 			</table>
 			<input type="hidden" name="regular" value="0"> 
-			<input type="hidden" name="no" value="5"> 
 			<input type="hidden" name="peoplenum" value="1">
 		</div>
 	</form>
@@ -216,14 +220,43 @@ table {
 			}
 		};
 	</script>
+	
 	<script>
+		  function typeChange(){
+			
+			var starttime = $("#stime").val();
+			var endtime = $("#etime").val();
+			var meetingtime = $("#mtime").val();
+			
+			starttime=starttime.replace(":","");
+			endtime=endtime.replace(":","");
+			meetingtime=meetingtime.replace(":", "");
+			console.log(meetingtime);
+			
+	        parseInt(starttime);
+	        parseInt(endtime);
+	        parseInt(meetingtime);
+	        console.log(endtime);
+	        $("#starttime").val(starttime);
+	        $("#endtime").val(endtime);
+	        $("#meetingtime").val(meetingtime);
+	        
+		        
+		  };  
+	
+	
+	
+	
+	
 		$('.uploadBtn')
 				.click(
 						function() {
 							var formData = new FormData();
 							var inputFile = $("input[type='file']");
 							var files = inputFile[0].files;
-
+							
+							
+							
 							for (var i = 0; i < files.length; i++) {
 								console.log(files[i]);
 								formData.append("uploadFiles", files[i]);
