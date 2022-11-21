@@ -59,7 +59,7 @@
 									class="icon-bar"></span> <span class="icon-bar"></span> <span
 									class="icon-bar"></span>
 							</button>
-							<a class="navbar-brand custom_navbar-brand" href="#">
+							<a class="navbar-brand custom_navbar-brand" href="/">
 							<img src="${pageContext.request.contextPath}/resources/img/logo1.png"
 								alt=""></a>
 						</div>

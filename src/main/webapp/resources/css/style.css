@@ -479,7 +479,6 @@ input: -webkit-autofill:focus {
     color: #43a906;
     cursor: pointer;
 }
-
 /*Volunteer*/
 
 #volunteer {
@@ -1070,7 +1069,7 @@ li.fw-flash-message {
     z-index: 9999;
     width: 32px;
     height: 32px;
-    text-align: center;
+    
     line-height: 30px;
     background: rgba(84, 225, 0, 0.18);
     color: #ffffff;
