@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>ZupgoZupup</title>
+<%@ include file="/WEB-INF/views/includes/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <style>
 textarea {
@@ -24,6 +28,48 @@ textarea {
 table {
 	border-spacing: 20px;
 }
+.uploadBtn{
+  background-color: white; 
+  border: none;
+  color: black;
+  padding: 3px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border: 1px solid green; 
+  border-radius: 15px;
+  font-weight: bold;
+}
+.Btn{
+  background-color: #42DF2B; 
+  border: none;
+  color: white;
+  padding: 3px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+.peopleBtn {
+  background-color: #42DF2B; 
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+h3{
+	text-align: center;
+	padding: 20px 10px;
+	font-weight: bold;
+}
 </style>
 <body>
 	<h3>번개모임</h3>
@@ -31,9 +77,12 @@ table {
 		<div id="center">
 			<table>
 				<tr>
-					<td><input name="image" type="file" id="image"> <input
-						type="button" class="uploadBtn" value="업로드">
-						<div class="uploadResult"></div></td>
+					<td><div class="uploadResult"></div></td>
+					<td><img src="${pageContext.request.contextPath}/resources/img/logo2.png" width= "200" height= "200"></td>
+				</tr>
+				<tr>
+					<td><input name="image" type="file" id="image"> 
+					<input type="button" class="uploadBtn" value="등록"></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
@@ -48,7 +97,7 @@ table {
 				<tr>
 					<th>모임장소</th>
 					<td><input type="button" onclick="sample5_execDaumPostcode()"
-						value="주소 검색"><br></td>
+						value="주소검색" class="Btn"><br></td>
 				</tr>
 				<tr>
 					<th></th>
@@ -68,10 +117,10 @@ table {
 				</tr>
 				<tr>
 					<th>모임인원</th>
-					<td><input type="button" onclick="countDown();" value="-">
-						<strong id="maxnum">2</strong> <input type="button"
-						onclick="countUp();" value="+"> <input type="hidden"
-						id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
+					<td><input type="button" onclick="countDown();" value="-" class="peopleBtn">&nbsp&nbsp
+						<strong id="maxnum">2</strong>&nbsp&nbsp
+						<input type="button" onclick="countUp();" value="+" class="peopleBtn">
+						<input type="hidden" id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
 				</tr>
 				<tr>
 					<th>출발지</th>
@@ -85,7 +134,6 @@ table {
 					<input type="hidden" id="starttime" name="starttime" value=""></td>
 					<td><input type="time" id="etime" name="etime"> 까지
 					<input type="hidden" id="endtime" name="endtime" value=""></td>
-
 				</tr>
 				<tr>
 					<th>안내사항</th>
@@ -94,9 +142,8 @@ table {
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="button" value="뒤로가기"
-						onclick="history.back(-1)"> <input type="submit" id="submit"
-						value="등록" /></td>
+					<td colspan="5"><input type="button" value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
+					<td><input type="submit" id="submit" value="등록" class="Btn"/></td>
 				</tr>
 			</table>
 			<input type="hidden" name="regular" value="0"> 
@@ -313,3 +360,4 @@ table {
 	</script>
 </body>
 </html>
+<%@ include file="/WEB-INF/views/includes/footer.jsp"%>

@@ -24,6 +24,5 @@ public class MateCreateVO {
 	private String image;
 	private int regular;
 	
-	//fileName을 가져와야할거같은데
-	//private String fileName;
+
 }
