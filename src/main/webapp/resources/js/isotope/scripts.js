@@ -8,7 +8,7 @@ $(function () {
     /**************************************************************/
     /****************************************************************/
     //on filter button click
-    $(".menu .my_btn").click(function (e) {
+    $(".my_btn").click(function (e) {
         var $this = $(this);
         //    prevent default behaviour
         e.preventDefault();
@@ -18,7 +18,7 @@ $(function () {
             filter: $filter
         });
         //add/remove class
-        $(".menu .my_btn").removeClass("btn_active");
+        $(".my_btn").removeClass("btn_active");
         $this.addClass("btn_active")
     });
     /****************************************************************/

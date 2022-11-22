@@ -50,7 +50,20 @@ public class MateFindController {
 	  int getTime = Integer.parseInt(formatedNow);
 	  cri.setCurrenttime(getTime);
 		  
+	  Criteria criteria = new Criteria();
+	  
 	  model.addAttribute("list", service.getlist(cri)); 
+	  
+	  if("".equals(cri.getMeeting())||cri.getMeeting()==null){
+		  model.addAttribute("active", "all");  
+	  }else if(cri.getMeeting().equals("0")){
+		  model.addAttribute("active", "flash");
+	  }else if(cri.getMeeting().equals("1")) {
+		  model.addAttribute("active", "regular");
+	  }
+	  
+	  
+	  
 	  
 	  int total = service.getTotal(cri);
 	  model.addAttribute("pageMaker", new PageVO(cri, total));
@@ -94,58 +107,58 @@ public class MateFindController {
 	  return "/mateFind/get";
 	}
 	  
-	  @GetMapping("/img/{filename}")
-		public void viewImage(@PathVariable String filename, HttpServletResponse response) {
-			String path = servletcontext.getRealPath("/resources/img/");
-			FileInputStream fis = null;
-			
-			File file = new File(path, filename);
-		    
-			try {
-				Thumbnails
-		        .of(new File(path, filename))
-		        .forceSize(40, 40)
-		        .toFile(new File(path, "s_"+filename));
-				
-				fis = new FileInputStream(path+ "s_"+filename);
-				OutputStream out = response.getOutputStream();
-				FileCopyUtils.copy(fis, out);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				if(fis!=null) {
-					try {
-						fis.close();
-					}catch(Exception e) {}
-				} 
-			}
-		}
-	  
-	  @GetMapping("/getimg/{filename}")
-		public void getviewImage(@PathVariable String filename, HttpServletResponse response) {
-			String path = servletcontext.getRealPath("/resources/img/");
-			FileInputStream fis = null;
-			
-			File file = new File(path, filename);
-		    
-			try {
-				Thumbnails
-		        .of(new File(path, filename))
-		        .forceSize(130, 130)
-		        .toFile(new File(path, "g_s_"+filename));
-				
-				fis = new FileInputStream(path+ "g_s_"+filename);
-				OutputStream out = response.getOutputStream();
-				FileCopyUtils.copy(fis, out);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				if(fis!=null) {
-					try {
-						fis.close();
-					}catch(Exception e) {}
-				} 
-			}
-		}
+//	  @GetMapping("/img/{filename}")
+//		public void viewImage(@PathVariable String filename, HttpServletResponse response) {
+//			String path = servletcontext.getRealPath("/resources/img/");
+//			FileInputStream fis = null;
+//			
+//			File file = new File(path, filename);
+//		    
+//			try {
+//				Thumbnails
+//		        .of(new File(path, filename))
+//		        .forceSize(40, 40)
+//		        .toFile(new File(path, "s_"+filename));
+//				
+//				fis = new FileInputStream(path+ "s_"+filename);
+//				OutputStream out = response.getOutputStream();
+//				FileCopyUtils.copy(fis, out);
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}finally {
+//				if(fis!=null) {
+//					try {
+//						fis.close();
+//					}catch(Exception e) {}
+//				} 
+//			}
+//		}
+//	  
+//	  @GetMapping("/getimg/{filename}")
+//		public void getviewImage(@PathVariable String filename, HttpServletResponse response) {
+//			String path = servletcontext.getRealPath("/resources/img/");
+//			FileInputStream fis = null;
+//			
+//			File file = new File(path, filename);
+//		    
+//			try {
+//				Thumbnails
+//		        .of(new File(path, filename))
+//		        .forceSize(130, 130)
+//		        .toFile(new File(path, "g_s_"+filename));
+//				
+//				fis = new FileInputStream(path+ "g_s_"+filename);
+//				OutputStream out = response.getOutputStream();
+//				FileCopyUtils.copy(fis, out);
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}finally {
+//				if(fis!=null) {
+//					try {
+//						fis.close();
+//					}catch(Exception e) {}
+//				} 
+//			}
+//		}
 	
 }

@@ -46,4 +46,10 @@ public class MateReplyServiceImpl implements MateReplyService {
 		return dao.getListWithPaging(cri, no);
 	}
 
+	@Override
+	public void updateRepCnt(MateReplyVO vo) {
+
+		dao.updateRepCnt(vo);
+	}
+
 }

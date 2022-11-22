@@ -37,13 +37,15 @@
 	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
 	  <![CDATA[
 	  select 
-		 no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,regdate,regular,image
+		 no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
 	  from (
 	    select
 	    ]]>
 	    	/*+INDEX_DESC(mate pk_mate ) */
  		 <![CDATA[
- 		 rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,regdate,regular,image
+ 		 rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+ 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
 	      from ]]>
 	      <choose>
 			<when test="filter == 'soon'.toString()">
@@ -52,6 +54,9 @@
 			<when test="filter == 'like'.toString()">
 						(select * from mate order by likecnt desc)	
 			</when>
+			<when test="filter == 'newest'.toString()">
+						(select * from mate order by regdate desc)	
+			</when>		
 			<otherwise>
 				mate
 			</otherwise>
@@ -82,11 +87,12 @@
   
   <select id="read" resultType="com.kosta.jupjup.vo.MateVO">
   <![CDATA[
-		select no, activityname, writer, meetingplace,meetingtime,
-		to_char(meetingtime,'dy') dayofweek, peoplenum,
+		select no, activityname, writer, meetingplace,
+		to_char(meetingdate,'dy') dayofweek,meetingdate, peoplenum,
 		peoplemaxnum, startzone, endzone,
-		regexp_replace(starttime,'(^.{2})','\1:') starttime,
-		regexp_replace(endtime,'(^.{2})','\1:')endtime, content,regdate, updatedate,
+        meetingtime,
+		starttime,
+		endtime, content,regdate, updatedate,
 		replycnt, image, regular, likecnt
 		 from mate where no =
 		#{no}

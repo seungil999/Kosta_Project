@@ -30,7 +30,7 @@
 	
 		 <div class="form-group">
        
-            <img src="/matefind/getimg/${mate.image}"/>
+            <img src="/Mate/display?fileName=${mate.image}"/>
         </div>
 
 		 <div class="form-group">
@@ -39,11 +39,15 @@
         </div>
 
         <div class="form-group">
-          <label>활동일시</label> <input class="form-control" name='meetingtime'
-            value='<c:out value="${mate.meetingtime}(${mate.dayofweek })"/>' readonly="readonly">
+          <label>활동일시</label> <input class="form-control" name='meetingdate' id='meetingdate'
+            value='<c:out value="${mate.meetingdate}(${mate.dayofweek })"/>' readonly="readonly">
+        </div>
+        <div class="form-group">
+          <label>모임시간</label> <input class="form-control" name='meetingtime' id='meetingtime'
+            value='<c:out value="${mate.meetingtime}"/>' readonly="readonly">
         </div>
          <div class="form-group">
-          <label>활동시간</label> <input class="form-control" name='time'
+          <label>활동시간</label> <input class="form-control" name='time' id='time'
             value='<c:out value="${mate.starttime}~${mate.endtime}"/>' readonly="readonly">
         </div>
 
@@ -66,9 +70,10 @@
         
 		<button data-oper='list' class="btn btn-info">목록</button>
 		<div class="form-group">
-          <label>활동장소</label> <input class="form-control" name='startzone'
+          <label>활동장소</label><br>출발지<input class="form-control" name='startzone'
             value='<c:out value="${mate.startzone }"/>' readonly="readonly">
-           					   <input class="form-control" name='endzone'
+            
+           					   목적지<input class="form-control" name='endzone'
             value='<c:out value="${mate.endzone }"/>' readonly="readonly">
         </div>
 
@@ -314,7 +319,25 @@ $(document).ready(function() {
     operForm.attr("action","/matefind/list")
     operForm.submit();
     
-  });  
+  });
+  
+  typeChange();
+
+  function typeChange(){
+		
+		var time = $("#time").val();
+		var meetingtime = $("#meetingtime").val();
+		
+		time=time.slice(0,2) +":" + time.slice(2,7)+":"+time.slice(7,9);
+		meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
+		console.log(meetingtime);
+		console.log(time);
+      $("#time").val(time);
+      $("#meetingtime").val(meetingtime);
+      
+	        
+	  };  
+  
 });
 
 

@@ -21,11 +21,12 @@ public class Criteria {
 	private String filter;
 	private int currenttime;
 	
+
 	
 	public Criteria() {
 		this(1, 12);
 	}
-
+	
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;

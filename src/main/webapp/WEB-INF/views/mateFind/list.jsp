@@ -3,112 +3,173 @@
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script
+		src="/resources/js/isotope/scripts.js"></script>
 
 <%-- <%@include file="../includes/header.jsp"%> --%>    
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-<div class="border-end bg-white" id="sidebar-wrapper">
-    <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
-    <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
-    </div>
-</div>
 
 
+<section id="portfolio" class="text-center">
+		<ul id="portfolio_menu" class="portfolio_custom_menu">
+		<c:choose>
+         <c:when test="${active eq 'regular' }">
+           <li>
+               <button data-filter="*" class="my_btn" onclick="location.href='/matefind/list'">전체보기</button>
+           </li>
+        
+           <li>
+               <button data-filter=".blue, .black, .green" class="my_btn btn_active regularmate" href="1">정기활동</button>
+           </li>
+           <li>
+               <button data-filter=".red, .green" class="my_btn flashmate" href="0">번개활동</button>
+           </li>
+         </c:when>
+         <c:when test="${active eq 'flash' }">
+           <li>
+               <button data-filter="*" class="my_btn" onclick="location.href='/matefind/list'">전체보기</button>
+           </li>
+        
+           <li>
+               <button data-filter=".blue, .black, .green" class="my_btn regularmate" href="1">정기활동</button>
+           </li>
+           <li>
+               <button data-filter=".red, .green" class="my_btn btn_active flashmate" href="0">번개활동</button>
+           </li>
+         </c:when>
+         <c:when test="${active eq 'all' }">
+           <li>
+               <button data-filter="*" class="my_btn btn_active" onclick="location.href='/matefind/list'">전체보기</button>
+           </li>
+        
+           <li>
+               <button data-filter=".blue, .black, .green" class="my_btn regularmate" href="1">정기활동</button>
+           </li>
+           <li>
+               <button data-filter=".red, .green" class="my_btn flashmate" href="0">번개활동</button>
+           </li>
+         </c:when>
+         </c:choose>
+       </ul>
+ </section>
 
 
-
-
-
-
-
-
-<div class='row'>
-		<div class="col-lg-12">
+<div>
+		
 
 			<form id='searchForm' action="/matefind/list" method='get'>
-				<select name='type' id='type'>
+				<select name='type' id='type' class='mate-select'>
 					
-					<option value="A" name="option"
+					<option value="A" name="option" class="lang-option"
 						<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>활동명</option>
-					<option value="M"
+					<option value="M" class="lang-option"
 						<c:out value="${pageMaker.cri.type eq 'M'?'selected':''}"/>>지역별</option>
-				</select> <input type='text' name='keyword'
-					value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
+				</select> <div class="col-sm-2 mate-keyword">
+                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색어를 입력해주세요"
+					value='<c:out value="${pageMaker.cri.keyword}"/>' /></div> <input
 					type='hidden' name='pageNum'
 					value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
 					type='hidden' name='amount'
 					value='<c:out value="${pageMaker.cri.amount}"/>' />
-				<button class='btn btn-default'>찾기</button>
+				<button class='success' id='matefind'>찾기</button>
+				
+				
 			</form>
-		</div>
+		
 	</div> 
-	<input type="text" value="분류"/>
 	
-	<ul>
+
 	
-	<li class="regularmate">
-		<a href="1">정기모임</a></li>
-	<li class="flashmate">
-		<a href="0">단기모임</a></li>
-	<li class="allmate">	
-		<a href="/matefind/list">전체보기</a>	</li>
+
+<section id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="latest_blog text-left">
+                    <c:choose>
+	                    <c:when test="${active eq 'all' }">
+	                        <h2>전체활동</h2>
+	                    </c:when>
+	                    <c:when test="${active eq 'regular' }">
+	                        <h2>정기활동</h2>
+	                    </c:when>
+	                    <c:when test="${active eq 'flash' }">
+	                        <h2>번개활동</h2>
+	                    </c:when>
+                    </c:choose>
+                    </div>
+                     <ul id='filterstyle'>
+	<li class="newest"><a href="newest" style="color:#43a906;">최신순</a></li>
+	<li class="soon"><a href="soon" style="color:#43a906;">임박순</a></li>
+	<li class="like"><a href="like" style="color:#43a906;">좋아요순</a></li>
 	</ul>
-	
-	
-	<ul>
-	<li class="soon"><a href="soon">임박순</a></li>
-	<li class="like"><a href="like">좋아요순</a></li>
-	</ul>
+                </div>
+                
+            </div>
+            <!--End of row-->
+            
+               
+            <div class="row">
+             <c:forEach items="${list}" var="mate">
+                <div class="col-md-4">
+                    <div class="blog_news">
+                        <div class="single_blog_item">
+                        
+                            <div class="blog_img">
+                                 <a class='move' href="${mate.no}"><img style="width:360px; height:300px;" src="/Mate/display?fileName=${mate.image}"/></a>
+                            </div>
+                            <div class="blog_content">
+                               <h2 class="mate-title"><a class='move' href="${mate.no}">활동명 : ${mate.activityname }</a></h2>
+                                <div class="expert">
+                                    <div class="left-side text-left">
+                                        <p class="left_side">
+                                        <span class="admin">
+                                         <c:choose>
+                   						<c:when test="${mate.regular eq 1 }">
+    											<span style="color:#60e44c;">정기활동</span>
+								            </c:when>
+								            <c:when test="${mate.regular eq 0 }">
+								               <span style="color:#ff8a8a;">번개활동</span>
+								            </c:when>
+										</c:choose></span><br>
+                                        <span class="admin">활동장 : ${mate.writer }</span><br>
+  											<span class="admin">모임장소 : ${mate.meetingplace}</span><br>
+  											<span class="admin">활동날짜 : ${mate.meetingdate} (${mate.dayofweek }) / </span>
+  											<span class="admin meetingtime">${mate.meetingtime }</span><br>
+  											<span class="admin">모임인원 :</span><span class="admin" style="color:orange;">${mate.peoplenum } </span>
+  											/<span class="admin">${mate.peoplemaxnum } 명</span><br>                             
+                                            <span class="admin">작성일 : ${mate.regdate }</span><br>
+                                            <span class="admin">내용 : </span><span class="content">${mate.content }</span>
+                                            
+                                        </p>
+                                        <br><br>
+                                        <p class="right_side text-right">
+                                           <span class="right_msg text-right"><i class="fa fa-comments-o"></i></span>
+                                                <span class="count">${mate.replycnt } </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <i class="fa fa-heart"></i>
+                                                 <span class="count">${mate.likecnt }</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="blog_news_content"></p>
+                                <a href="" class="blog_link"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               </c:forEach>
+            </div>
+            
+            <!--End of row-->
+        </div>
+        <!--End of container-->
+        
+    </section>
+
+
 
 <div class="panel-body">
-				<table class="table table-striped table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>활동명</th>
-							<th>분류</th>
-							<th>작성자</th>
-							<th>활동시간</th>
-							<th>활동날짜</th>
-							<th>장소</th>
-							<th>모집인원</th>
-							<th>모집최대</th>
-							<th>업로드날짜</th>
-						</tr>
-					</thead>
 
-          <c:forEach items="${list}" var="mate">
-            <tr>
-          
-               <td><a class='move' href='<c:out value="${mate.no}"/>'>
-               <img src="/matefind/img/${mate.image}" id="productImage"/>
-               <c:out value="${mate.activityname}" /></a>
-              
-              <td><c:choose>
-	              <c:when test="${mate.regular eq '1' }">
-	              	정기활동
-	              </c:when>
-	              <c:otherwise>
-	              	번개활동
-	              </c:otherwise>
-              </c:choose></td>
-              <td><c:out value="${mate.writer}" /></td>
-              <td><c:out value="${mate.meetingtime}"/></td>
-              <td><c:out value="${mate.meetingdate}"/></td>
-              <td><c:out value="${mate.meetingplace }"/></td>
-              <td><c:out value="${mate.peoplenum }"/></td>
-              <td><c:out value="${mate.peoplemaxnum }"/></td>
-              <td><c:out value="${mate.regdate}" /></td>
-            </tr>
-          </c:forEach>
-
-				</table>
-
-				 
- 
-
-				<div class='pull-right'>
+				<div style="text-align: center";>
 					<ul class="pagination">
 
 						 <c:if test="${pageMaker.prev}">
@@ -118,7 +179,7 @@
 	
 						<c:forEach var="num" begin="${pageMaker.startPage}"
 							end="${pageMaker.endPage}">
-							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} ">
+							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} " >
 								<a href="${num}">${num}</a>
 							</li>
 						</c:forEach>
@@ -157,7 +218,7 @@ $(document)
 					var actionForm = $("#actionForm");
 					var searchForm = $("#searchForm");
 					
-					$(".paginate_button a").on("click",
+			    	$(".paginate_button a").on("click",
 							function(e) {
 
 								e.preventDefault();
@@ -172,9 +233,9 @@ $(document)
 								
 							});
 					
-					$(".regularmate a").on("click",
+					$(".regularmate").on("click",
 							function(e) {
-
+						
 								e.preventDefault();
 
 								console.log('click');
@@ -195,7 +256,7 @@ $(document)
 								
 								actionForm.submit();
 							});
-					$(".flashmate a").on("click",
+					$(".flashmate").on("click",
 							function(e) {
 
 								e.preventDefault();
@@ -226,6 +287,30 @@ $(document)
 								actionForm.attr("action", "/matefind/get");
 								actionForm.submit();
 
+							});
+					$(".newest a").on("click",
+							function(e) {
+
+								e.preventDefault();
+
+								console.log('click');
+								actionForm.attr("action",
+								"/matefind/list");
+								actionForm.find("input[name='filter']")
+										.val($(this).attr("href"));
+								actionForm.find("input[name='pageNum']")
+								.val("1");
+								actionForm.find("input[name='keyword']")
+								.val("");
+								searchForm.find("option:selected")
+								.val("");
+								actionForm.find("input[name='type']")
+								.val("");
+								if(actionForm.find("input[name='no']")){
+									$('input').remove("#no");
+									}
+								
+								actionForm.submit();
 							});
 					$(".soon a").on("click",
 							function(e) {
@@ -301,6 +386,32 @@ $(document)
 							});
 
 				});
+				
+				typeChange();
+				function typeChange(){
+					$(".meetingtime").each(function (index, item){
+						var meetingtime = $(item).html();
+						if(meetingtime.length==4){
+						meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
+						}else{
+							meetingtime=meetingtime.slice(0,0) +"0"+meetingtime.slice(0,1)+":"+meetingtime.slice(1,4);	
+						}
+						$(item).html(meetingtime);
+					});
+					$(".content").each(function (index, item){
+						var content = $(item).html();
+						if(content.length>20){
+						content=content.substring(0,20);
+						$(item).html(content+"...");
+						}
+					});
+					
+					
+					
+				  	
+				  	
+					
+				  };
 </script>
 			
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

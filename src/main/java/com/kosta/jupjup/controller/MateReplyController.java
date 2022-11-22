@@ -40,6 +40,7 @@ public class MateReplyController {
 		log.info("MateReplyVO:"+vo);
 		
 		int insertCount = service.register(vo);
+		service.updateRepCnt(vo);
 		
 		log.info("count:"+insertCount);
 		

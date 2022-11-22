@@ -27,5 +27,9 @@
 		order by rno asc
 	</select>
 	
+	<update id="updateRepCnt">
+		update mate set replyCnt = replycnt+1 where no=#{no}
+	</update>
+	
 	
 </mapper>		
