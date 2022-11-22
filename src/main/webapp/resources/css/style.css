@@ -522,8 +522,8 @@ input: -webkit-autofill:focus {
 /*Portfolio*/
 
 #portfolio {
-    min-height: 780px;
-    padding: 80px 0;
+    float:left;
+    padding: 10px 0;
 }
 
 #portfolio .portfolio_title h2 {
@@ -555,14 +555,13 @@ input: -webkit-autofill:focus {
     font-weight: 500;
     margin-bottom: 20px;
     width: 125px;
-    font-size: 12px;
+    height: 60px;
+    font-size: 13px;
     padding-top: 8px;
     border-radius: 4px;
     font-family: 'Roboto', sans-serif;
 }
-#portfolio ul.portfolio_custom_menu li {
-    padding: 10px 0px;
-}
+
 #portfolio ul.portfolio_custom_menu li button:hover {
     background: #43a906;
     color: #fff;
@@ -798,21 +797,21 @@ section#counter {
 /*Latest Blog*/
 
 #blog {
-    min-height: 500px;
-    padding: 80px 0;
+    min-height: 200px;
+    padding: 50px;
+
 }
 #blog p {
     display: inline-block;
 }
-#blog .latest_blog {
-}
+
 #blog .latest_blog h2 {
-    padding-bottom: 20px;
+    padding-bottom: 50px;
     font-size: 36px;
     font-weight: 700;
     text-transform: uppercase;
-    font-family: 'Roboto Slab', serif;
-    color: #222222;
+    color: #2f2f2f;
+    
 }
 #blog .latest_blog p {
     padding-bottom: 45px;
@@ -1032,7 +1031,7 @@ li.fw-flash-message {
 #footer {
     
     background: #ffffff;
-    color: #black;
+    color: black;
 }
 #footer .copyright,
 #footer .designer {

@@ -40,6 +40,10 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/responsive.css"
 	rel="stylesheet"> 
+<link
+	href="${pageContext.request.contextPath}/resources/css/mate-find.css"
+	rel="stylesheet">	
+	
 
 <!--Start Hedaer Section-->
 	<section id="header">
