@@ -11,48 +11,163 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <style>
-#matecreateF{
-	height: 1000px;
-	background: white;
+textarea {
+	width:  95%;
+	height: 100px;
+	resize: none;
+}
+
+
+.FMtable {
+	height: 750px;
+	width: 1000px;
 	border: 3px solid #42DF2B;
-	border-radius: 15px;
-	margin:0 auto;
-	width: 940px;
-    padding-bottom: 65px;
+	border-collapse: collapse;
+ 	border-radius: 10px;
+	border-style: hidden;
+  	box-shadow: 0 0 0 3px #42DF2B;
+  	margin-left: auto;
+    margin-right: auto;
+}
+.uploadBtn{
+  background-color: white; 
+  border: none;
+  color: black;
+  padding: 3px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border: 1px solid green; 
+  border-radius: 15px;
+  font-weight: bold;
+}
+.Btn{
+  background-color: #42DF2B; 
+  border: none;
+  color: white;
+  padding: 3px 40px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 15px;
+  font-weight: bold;
+}
+.peopleBtn {
+  background-color: #42DF2B; 
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 50%;
+  font-weight: bold;
 }
 h3{
 	text-align: center;
-	padding: 10px 0px;
+	padding: 20px 10px;
 	font-weight: bold;
 }
-.image {
-	float: left;
-	width: 390px;
+td{
+	text-align: left;
 }
-.mateC {
-	float: right;
-	width: 520px;
+th {
+	text-align: center;
 }
-
 </style>
-</head>
-
 <body>
-	<h3>정기모임</h3>
-	<section id="matecreate">
-		
-		<div id="image">
-			<input name="image" type="file" id="image"> 
-			<input type="button" class="uploadBtn" value="등록">
+	<h3>번개모임</h3>
+	<form action="/Mate/matecreate" method="post" onsubmit="typeChange();">
+		<div id="center">
+			<table class="FMtable">
+				<tr>
+					<th style="text-align:left;" rowspan="4">
+						<div class="uploadResult"></div>
+						<input name="image" type="file" id="image"> 
+						<input type="button" class="uploadBtn" value="등록">
+					</th>
+				</tr>
+				<tr>
+					<th>모임명 </th>
+					<td><input type="text" name="activityname"
+						placeholder="모임명을 입력해주세요" size="25"></td>
+				</tr>
+				<tr>
+					<th>모임장소</th>
+					<td><input type="button" onclick="sample5_execDaumPostcode()"
+						value="주소검색" class="Btn"><br></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td><input type="text" name="meetingplace"
+						id="sample5_address" placeholder="주소 검색을 눌러주세요" size="25"></td>
+				</tr>
+				<tr>
+					<th></th>
+					<td colspan="4">
+					<div id="map" style="width: 80%; height: 100px; margin-top: 10px; display: none"></div></td>
+				</tr>
+				<tr>
+					<th></th>
+					<th>모임시간</th>
+					<td><input type="time" id="mtime" name="mtime">
+					<input type="hidden" id="meetingtime" name="meetingtime" value="">
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<th>모임인원</th>
+					<td><input type="button" onclick="countDown();" value="-" class="peopleBtn">&nbsp&nbsp
+						<strong id="maxnum">2</strong>&nbsp&nbsp
+						<input type="button" onclick="countUp();" value="+" class="peopleBtn">
+						<input type="hidden" id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
+				</tr>
+				<tr>
+					<th></th>
+					<th>출발지</th>
+					<td><input type="text" name="startzone" />
+				</tr>
+				<tr>
+					<th></th>
+					<th>목적지</th>
+					<td><input type="text" name="endzone" />
+				</tr>
+				<tr>
+					<th></th>
+					<th>활동시간</th>
+					<td>
+					<input type="time" id="stime" name="stime"> 부터
+					<input type="hidden" id="starttime" name="starttime" value="">
+					<input type="time" id="etime" name="etime"> 까지
+					<input type="hidden" id="endtime" name="endtime" value="">
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<td></td>
+				</tr>
+				<tr>
+					<th></th>
+					<th style="vertical-align: top;">안내사항</th>
+					<td style="vertical-align: top;"><textarea name="content" placeholder="안내사항을 입력해주세요&#13;&#10;ex)준비물,교통편"></textarea></td>
+				</tr>
+				<tr>
+					<td style="text-align: left;"><input type="button" value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
+					<td colspan="3" style="text-align: right;"><input type="submit" id="submit" value="등록" class="Btn"/></td>
+				</tr>
+			</table>
+			<input type="hidden" name="regular" value="0">
+			<br>
+			<br>
 		</div>
-		<div id="mateC">
-			모임명
-					<input type="text" name="activityname"
-						placeholder="모임명을 입력해주세요" size="25">
-		</div>
-	</section>
-	
-<!-- 이미지 업로드 기능 -->
+	</form>
+
+
+
+	<!-- 이미지 업로드 기능 -->
 	<script>
 		function setThumbnail(event) {
 			var reader = new FileReader();
