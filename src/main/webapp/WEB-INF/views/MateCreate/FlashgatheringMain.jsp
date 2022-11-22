@@ -41,12 +41,7 @@
 	position: relative;
 }
 
-.info {
-	float: left;
-	width: 900px;
-	padding-bottom: 20px;
-	position: relative;
-}
+
 
 .summary_info {
 	position: relative;
@@ -60,12 +55,7 @@
 	z-index: 10;
 }
 
-.mateC {
-	float: right;
-	width: 560px;
-	position: relative;
-	z-index: 10;
-}
+
 
 .uploadBtn {
 	background-color: white;
@@ -127,7 +117,7 @@ h3 {
 
 <body>
 	<div class="matecreate">
-		<h3>정기모임</h3>
+		<h3>번개모임</h3>
 		<div class="matecreate_container">
 			<form action="/Mate/matecreate" method="post"
 				onsubmit="typeChange();">
@@ -142,6 +132,10 @@ h3 {
 								</div>
 								<div class="mateC">
 									<table>
+										<tr>
+											<th>작성자</th>
+											<td><input type="text" name="writer" size="35"></td>
+										</tr>
 										<tr>
 											<th>모임명</th>
 											<td><input type="text" name="activityname"
