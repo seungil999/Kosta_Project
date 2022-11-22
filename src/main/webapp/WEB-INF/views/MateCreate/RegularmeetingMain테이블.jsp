@@ -12,23 +12,24 @@
 </head>
 <style>
 textarea {
-	width:  95%;
-	height: 100px;
+	width: 100%;
+	height: 8.25em;
 	resize: none;
 }
 
-
-.FMtable {
-	height: 750px;
-	width: 1000px;
-	border: 3px solid #42DF2B;
-	border-collapse: collapse;
- 	border-radius: 10px;
-	border-style: hidden;
-  	box-shadow: 0 0 0 3px #42DF2B;
-  	margin-left: auto;
-    margin-right: auto;
+.center table {
+	width: 1280px;
+	display: flex;
+	margin: auto;
+	height: 427px;
+	background: skyblue;
 }
+
+table {
+	border-spacing: 20px;
+	witdh:700px;
+}
+
 .uploadBtn{
   background-color: white; 
   border: none;
@@ -62,7 +63,7 @@ textarea {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 18px;
+  font-size: 20px;
   border-radius: 50%;
   font-weight: bold;
 }
@@ -71,54 +72,53 @@ h3{
 	padding: 20px 10px;
 	font-weight: bold;
 }
-td{
-	text-align: left;
-}
-th {
-	text-align: center;
-}
 </style>
 <body>
-	<h3>번개모임</h3>
+	<h3>정기모임</h3>
 	<form action="/Mate/matecreate" method="post" onsubmit="typeChange();">
 		<div id="center">
-			<table class="FMtable">
+			<table>
 				<tr>
-					<th style="text-align:left;" rowspan="4">
-						<div class="uploadResult"></div>
-						<input name="image" type="file" id="image"> 
-						<input type="button" class="uploadBtn" value="등록">
-					</th>
+					<td><input name="image" type="file" id="image"> <input
+						type="button" class="uploadBtn" value="등록">
+						<div class="uploadResult"></div></td>
 				</tr>
 				<tr>
-					<th>모임명 </th>
-					<td><input type="text" name="activityname"
+					<th>작성자</th>
+					<!--<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용-->
+					<td><input type="text" name="writer"></td>
+				</tr>
+				<tr>
+					<th>모임명</th>
+					<td colspan="5"><input type="text" name="activityname"
 						placeholder="모임명을 입력해주세요" size="25"></td>
+				</tr>
+				<tr>
+					<th>모임날짜</th>
+					<td><input type="date" name="meetingdate"></td>
 				</tr>
 				<tr>
 					<th>모임장소</th>
 					<td><input type="button" onclick="sample5_execDaumPostcode()"
-						value="주소검색" class="Btn"><br></td>
+						value="주소 검색" class="Btn"><br></td>
 				</tr>
 				<tr>
 					<th></th>
-					<td><input type="text" name="meetingplace"
+					<td colspan="5"><input type="text" name="meetingplace"
 						id="sample5_address" placeholder="주소 검색을 눌러주세요" size="25"></td>
 				</tr>
 				<tr>
 					<th></th>
-					<td colspan="4">
-					<div id="map" style="width: 80%; height: 100px; margin-top: 10px; display: none"></div></td>
+					<td colspan="5"><div id="map"
+							style="width: 500px; height: 250px; margin-top: 10px; display: none"></div></td>
 				</tr>
 				<tr>
-					<th></th>
 					<th>모임시간</th>
 					<td><input type="time" id="mtime" name="mtime">
 					<input type="hidden" id="meetingtime" name="meetingtime" value="">
 					</td>
 				</tr>
 				<tr>
-					<th></th>
 					<th>모임인원</th>
 					<td><input type="button" onclick="countDown();" value="-" class="peopleBtn">&nbsp&nbsp
 						<strong id="maxnum">2</strong>&nbsp&nbsp
@@ -126,42 +126,30 @@ th {
 						<input type="hidden" id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
 				</tr>
 				<tr>
-					<th></th>
 					<th>출발지</th>
 					<td><input type="text" name="startzone" />
-				</tr>
-				<tr>
-					<th></th>
 					<th>목적지</th>
 					<td><input type="text" name="endzone" />
 				</tr>
 				<tr>
-					<th></th>
 					<th>활동시간</th>
-					<td>
-					<input type="time" id="stime" name="stime"> 부터
-					<input type="hidden" id="starttime" name="starttime" value="">
-					<input type="time" id="etime" name="etime"> 까지
-					<input type="hidden" id="endtime" name="endtime" value="">
-					</td>
+					<td><input type="time" id="stime" name="stime"> 부터
+					<input type="hidden" id="starttime" name="starttime" value=""></td>
+					<td><input type="time" id="etime" name="etime"> 까지
+					<input type="hidden" id="endtime" name="endtime" value=""></td>
 				</tr>
 				<tr>
-					<th></th>
+					<th>안내사항</th>
+					<td colspan="6"><textarea name="content"
+							placeholder="안내사항을 입력해주세요&#13;&#10;ex)준비물,교통편"></textarea></td>
+				</tr>
+				<tr>
 					<td></td>
-				</tr>
-				<tr>
-					<th></th>
-					<th style="vertical-align: top;">안내사항</th>
-					<td style="vertical-align: top;"><textarea name="content" placeholder="안내사항을 입력해주세요&#13;&#10;ex)준비물,교통편"></textarea></td>
-				</tr>
-				<tr>
-					<td style="text-align: left;"><input type="button" value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
-					<td colspan="3" style="text-align: right;"><input type="submit" id="submit" value="등록" class="Btn"/></td>
+					<td colspan="5"><input type="button" value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
+					<td><input type="submit" id="submit" value="등록" class="Btn"/></td>
 				</tr>
 			</table>
-			<input type="hidden" name="regular" value="0">
-			<br>
-			<br>
+			<input type="hidden" name="regular" value="1">
 		</div>
 	</form>
 
@@ -261,13 +249,13 @@ th {
 		var count = 2;
 
 		var countUp = function() {
-			if (count < 6) {
+			if (count < 30) {
 				count = count + 1;
 				$("#peoplemaxnum").val(count);
 				document.querySelector("#maxnum").innerText = count;
 
 			} else {
-				alert("단기 모임은 2인 이상 6인 이하로 설정해주세요.");
+				alert("정기 모임은 2인 이상 30인 이하로 설정해주세요.");
 			}
 		};
 		var countDown = function() {
@@ -277,37 +265,32 @@ th {
 				document.querySelector("#maxnum").innerText = count;
 
 			} else {
-				alert("단기 모임은 2인 이상 6인 이하로 설정해주세요.");
+				alert("정기 모임은 2인 이상 30인 이하로 설정해주세요.");
 			}
 		};
 	</script>
-	
 	<script>
-		  function typeChange(){
-			
-			var starttime = $("#stime").val();
-			var endtime = $("#etime").val();
-			var meetingtime = $("#mtime").val();
-			
-			starttime=starttime.replace(":","");
-			endtime=endtime.replace(":","");
-			meetingtime=meetingtime.replace(":", "");
-			console.log(meetingtime);
-			
-	        parseInt(starttime);
-	        parseInt(endtime);
-	        parseInt(meetingtime);
-	        console.log(endtime);
-	        $("#starttime").val(starttime);
-	        $("#endtime").val(endtime);
-	        $("#meetingtime").val(meetingtime);
+	function typeChange(){
+		
+		var starttime = $("#stime").val();
+		var endtime = $("#etime").val();
+		var meetingtime = $("#mtime").val();
+		
+		starttime=starttime.replace(":","");
+		endtime=endtime.replace(":","");
+		meetingtime=meetingtime.replace(":", "");
+		console.log(meetingtime);
+		
+        parseInt(starttime);
+        parseInt(endtime);
+        parseInt(meetingtime);
+        console.log(endtime);
+        $("#starttime").val(starttime);
+        $("#endtime").val(endtime);
+        $("#meetingtime").val(meetingtime);
+        
 	        
-		        
-		  };  
-	
-	
-	
-	
+	  };  
 	
 		$('.uploadBtn')
 				.click(
@@ -315,9 +298,7 @@ th {
 							var formData = new FormData();
 							var inputFile = $("input[type='file']");
 							var files = inputFile[0].files;
-							
-							
-							
+
 							for (var i = 0; i < files.length; i++) {
 								console.log(files[i]);
 								formData.append("uploadFiles", files[i]);
@@ -325,7 +306,7 @@ th {
 
 							$
 									.ajax({
-										url : 'uploadAjax',
+										url : '/Mate/uploadAjax',
 										processData : false,
 										contentType : false,
 										data : formData,

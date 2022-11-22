@@ -11,147 +11,206 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <style>
+.matecreate {
+	position: relative;
+	min-width: 990px;
+}
+
+.matecreate_container {
+	position: relative;
+}
+
+.style_inner {
+	width: 940px;
+	margin: 0 auto;
+	padding-bottom: 65px;
+	position: relative;
+}
+
+.matecreateF {
+	background: white;
+	border: 3px solid #42DF2B;
+	border-radius: 15px;
+	margin: 0 auto;
+	width: 1000px;
+	padding-bottom: 40px;
+	position: relative;
+}
+
+.style_content {
+	position: relative;
+}
+
+.summary_info {
+	position: relative;
+	padding-top: 45px;
+}
+
+.image {
+	float: left;
+	width: 350px;
+	position: relative;
+	z-index: 10;
+}
+
+.uploadBtn {
+	background-color: white;
+	border: none;
+	color: black;
+	padding: 3px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	border: 1px solid green;
+	border-radius: 15px;
+	font-weight: bold;
+}
+
+.Btn {
+	background-color: #42DF2B;
+	border: none;
+	color: white;
+	padding: 3px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	border-radius: 15px;
+	font-weight: bold;
+}
+
+.peopleBtn {
+	background-color: #42DF2B;
+	border: none;
+	color: white;
+	padding: 3px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 18px;
+	border-radius: 50%;
+	font-weight: bold;
+}
+
 textarea {
-	width: 100%;
-	height: 8.25em;
+	width: 95%;
+	height: 100px;
 	resize: none;
 }
 
-.center table {
-	width: 1280px;
-	display: flex;
-	margin: auto;
-	height: 427px;
-	background: skyblue;
+th, td {
+	padding: 12px;
 }
 
-table {
-	border-spacing: 20px;
-	witdh:700px;
-}
-
-.uploadBtn{
-  background-color: white; 
-  border: none;
-  color: black;
-  padding: 3px 40px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  border: 1px solid green; 
-  border-radius: 15px;
-  font-weight: bold;
-}
-.Btn{
-  background-color: #42DF2B; 
-  border: none;
-  color: white;
-  padding: 3px 40px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  border-radius: 15px;
-  font-weight: bold;
-}
-.peopleBtn {
-  background-color: #42DF2B; 
-  border: none;
-  color: white;
-  padding: 3px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  border-radius: 50%;
-  font-weight: bold;
-}
-h3{
+h3 {
 	text-align: center;
-	padding: 20px 10px;
+	padding: 10px 0px;
 	font-weight: bold;
 }
+
+.con {
+	height: 5px;
+	width: 5px;
+}
 </style>
+</head>
+
 <body>
-	<h3>정기모임</h3>
-	<form action="/Mate/matecreate" method="post" onsubmit="typeChange();">
-		<div id="center">
-			<table>
-				<tr>
-					<td><input name="image" type="file" id="image"> <input
-						type="button" class="uploadBtn" value="등록">
-						<div class="uploadResult"></div></td>
-				</tr>
-				<tr>
-					<th>작성자</th>
-					<!--<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용-->
-					<td><input type="text" name="writer"></td>
-				</tr>
-				<tr>
-					<th>모임명</th>
-					<td colspan="5"><input type="text" name="activityname"
-						placeholder="모임명을 입력해주세요" size="25"></td>
-				</tr>
-				<tr>
-					<th>모임날짜</th>
-					<td><input type="date" name="meetingdate"></td>
-				</tr>
-				<tr>
-					<th>모임장소</th>
-					<td><input type="button" onclick="sample5_execDaumPostcode()"
-						value="주소 검색" class="Btn"><br></td>
-				</tr>
-				<tr>
-					<th></th>
-					<td colspan="5"><input type="text" name="meetingplace"
-						id="sample5_address" placeholder="주소 검색을 눌러주세요" size="25"></td>
-				</tr>
-				<tr>
-					<th></th>
-					<td colspan="5"><div id="map"
-							style="width: 500px; height: 250px; margin-top: 10px; display: none"></div></td>
-				</tr>
-				<tr>
-					<th>모임시간</th>
-					<td><input type="time" id="mtime" name="mtime">
-					<input type="hidden" id="meetingtime" name="meetingtime" value="">
-					</td>
-				</tr>
-				<tr>
-					<th>모임인원</th>
-					<td><input type="button" onclick="countDown();" value="-" class="peopleBtn">&nbsp&nbsp
-						<strong id="maxnum">2</strong>&nbsp&nbsp
-						<input type="button" onclick="countUp();" value="+" class="peopleBtn">
-						<input type="hidden" id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
-				</tr>
-				<tr>
-					<th>출발지</th>
-					<td><input type="text" name="startzone" />
-					<th>목적지</th>
-					<td><input type="text" name="endzone" />
-				</tr>
-				<tr>
-					<th>활동시간</th>
-					<td><input type="time" id="stime" name="stime"> 부터
-					<input type="hidden" id="starttime" name="starttime" value=""></td>
-					<td><input type="time" id="etime" name="etime"> 까지
-					<input type="hidden" id="endtime" name="endtime" value=""></td>
-				</tr>
-				<tr>
-					<th>안내사항</th>
-					<td colspan="6"><textarea name="content"
-							placeholder="안내사항을 입력해주세요&#13;&#10;ex)준비물,교통편"></textarea></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td colspan="5"><input type="button" value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
-					<td><input type="submit" id="submit" value="등록" class="Btn"/></td>
-				</tr>
-			</table>
-			<input type="hidden" name="regular" value="1">
+	<div class="matecreate">
+		<h3>정기모임</h3>
+		<div class="matecreate_container">
+			<form action="/Mate/matecreate" method="post"
+				onsubmit="typeChange();">
+				<div class="matecreateF">
+					<div class="style_content">
+						<div class="summary_info">
+							<div class="image">
+								<div class="uploadResult"></div>
+								<input name="image" type="file" id="image"> <input
+									type="button" class="uploadBtn" value="등록">
+							</div>
+							<div class="mateC">
+								<table>
+									<tr>
+										<th>작성자</th>
+										<!--<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용-->
+										<td><input type="text" name="writer" size="35"></td>
+									</tr>
+									<tr>
+										<th>모임명</th>
+										<td colspan="5"><input type="text" name="activityname"
+											placeholder="모임명을 입력해주세요" size="35"></td>
+									</tr>
+									<tr>
+										<th>모임날짜</th>
+										<td><input type="date" name="meetingdate"></td>
+									</tr>
+									<tr>
+										<th>모임장소</th>
+										<td><input type="button"
+											onclick="sample5_execDaumPostcode()" value="주소 검색"
+											class="Btn"><br></td>
+									</tr>
+									<tr>
+										<th></th>
+										<td ><input type="text" name="meetingplace"
+											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="25"></td>
+									</tr>
+									<tr>
+										<td colspan="4"><div id="map"
+												style="width: 100%; height: 100px; margin-top: 10px; display: none"></div></td>
+									</tr>
+									<tr>
+										<th>모임시간</th>
+										<td><input type="time" id="mtime" name="mtime"> <input
+											type="hidden" id="meetingtime" name="meetingtime" value="">
+										</td>
+									</tr>
+									<tr>
+										<th>모임인원</th>
+										<td><input type="button" onclick="countDown();" value="-"
+											class="peopleBtn">&nbsp&nbsp <strong id="maxnum">2</strong>&nbsp&nbsp
+											<input type="button" onclick="countUp();" value="+"
+											class="peopleBtn"> <input type="hidden"
+											id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
+									</tr>
+									<tr>
+										<th>출발지</th>
+										<td><input type="text" name="startzone" />
+									</tr>
+									<tr>
+										<th>목적지</th>
+										<td><input type="text" name="endzone" />
+									</tr>
+									<tr>
+										<th>활동시간</th>
+										<td><input type="time" id="stime" name="stime">
+											부터 <input type="hidden" id="starttime" name="starttime"
+											value=""> <input type="time" id="etime" name="etime">
+											까지 <input type="hidden" id="endtime" name="endtime" value=""></td>
+									</tr>
+									<tr>
+										<th style="vertical-align: top;">안내사항</th>
+										<td style="vertical-align: top;"><textarea name="content"
+												placeholder="안내사항을 입력해주세요&#13;&#10;ex)준비물,교통편"></textarea></td>
+									</tr>
+									<tr>
+										<td style="text-align: left;"><input type="button"
+											value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
+										<td colspan="3" style="text-align: right;"><input
+											type="submit" id="submit" value="등록" class="Btn" /></td>
+									</tr>
+								</table>
+								<input type="hidden" name="regular" value="0">
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
+	</div>
 
 
 
