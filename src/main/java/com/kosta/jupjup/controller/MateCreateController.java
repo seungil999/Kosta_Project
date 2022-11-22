@@ -48,6 +48,11 @@ public class MateCreateController {
 		return "/MateCreate/FlashgatheringMain";
 	}
 	
+	@GetMapping("/Flashgathering1")
+	public String Flashgatheringmain1 () {
+		return "/MateCreate/FlashgatheringMain1";
+	}
+	
 	@GetMapping("/Regularmeeting")
 	public String Regularmeetingmain () {
 		return "/MateCreate/RegularmeetingMain";
