@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/views/includes/header.jsp" %>
+<%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -10,13 +10,37 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+</head>
+<style>
+.BestList{
+	background: white;
+	border: 3px solid #42DF2B;
+	border-radius: 15px;
+	margin: 40 auto;
+	width: 1000px;
+	padding-bottom: 40px;
+	position: relative;
+	padding: 10px;
+	
+	
+}
+.BestListHeader {
+	margin: 0 250px;
+	position: relative;
+	padding: 10px;
+	font-weight: bold;
+	padding-top: 40px;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
 
-
+</style>
 <body data-spy="scroll" data-target="#header">
 
 
@@ -60,102 +84,168 @@
 				<div class="section_title">공지사항</div>
 				<div class="notice_title">비긴메이트 파트너 전문가 등록 안내</div>
 				<div class="notice_sub_title">with 글로벌 팀빌딩 플랫폼</div>
-				<div class="more_bt">날씨 api</div>				                        
+				<div class="more_bt">날씨 api</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- 메인 좋아요 순 리스트 -->
+	<h3 class="BestListHeader">이번주 Zup픽</h3>
+	<div class="BestList">
+		<div class="row">
+			<c:forEach items="${list}" var="mate">
+				<div class="col-md-4">
+					<div class="blog_news">
+						<div class="single_blog_item">
 
-	<h2>좋아요 순으로 리스트 출력</h2>
+							<div class="blog_img">
+								<a class='move' href="${mate.no}"><img
+									style="width: 360px; height: 300px;"
+									src="/Mate/display?fileName=${mate.image}" /></a>
+							</div>
+							<div class="blog_content">
+								<h2 class="mate-title">
+									<a class='move' href="${mate.no}">활동명 : ${mate.activityname }</a>
+								</h2>
+								<div class="expert">
+									<div class="left-side text-left">
+										<p class="left_side">
+											<span class="admin"> <c:choose>
+													<c:when test="${mate.regular eq 1 }">
+														<span style="color: #60e44c;">정기활동</span>
+													</c:when>
+													<c:when test="${mate.regular eq 0 }">
+														<span style="color: #ff8a8a;">번개활동</span>
+													</c:when>
+												</c:choose></span><br> <span class="admin">활동장 : ${mate.writer }</span><br>
+											<span class="admin">모임장소 : ${mate.meetingplace}</span><br>
+											<span class="admin">활동날짜 : ${mate.meetingdate}
+												(${mate.dayofweek }) / </span> <span class="admin meetingtime">${mate.meetingtime }</span><br>
+											<span class="admin">모임인원 :</span><span class="admin"
+												style="color: orange;">${mate.peoplenum } </span> /<span
+												class="admin">${mate.peoplemaxnum } 명</span><br> <span
+												class="admin">작성일 : ${mate.regdate }</span><br> <span
+												class="admin">내용 : </span><span class="content">${mate.content }</span>
 
-	<c:choose>
-		<c:when test="${articleList!=null && pageInfo.listCount>0 }">
-			<section id="listForm">
-				<table>
-					<tr id="tr_top">
-						<td>번호</td>
-						<td>제목</td>
-						<td>작성자</td>
-						<td>날짜</td>
-						<td>조회수</td>
-					</tr>
-
-					<c:forEach var="article" items="${articleList }">
-						<tr>
-							<td>${article.board_num }</td>
-							<td><c:choose>
-									<c:when test="${article.board_re_lev!=0}">
-										<c:forEach var="i" begin="0" end="${article.board_re_lev*2}">
-							&nbsp;
-						</c:forEach>
-						▶
-					</c:when>
-									<c:otherwise>▶</c:otherwise>
-								</c:choose> <a
-								href="./boarddetail?board_num=${article.board_num}&page=${pageInfo.page}">
-									${article.board_subject} </a></td>
-							<td>${article.board_name }</td>
-							<td>${article.board_date }</td>
-							<td>${article.board_readcount }</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</section>
-			<section id="pageList">
-				<c:choose>
-					<c:when test="${pageInfo.page<=1}">
-					[이전]&nbsp;
-				</c:when>
-					<c:otherwise>
-						<a href="boardList?page=${pageInfo.page-1}">[이전]</a>&nbsp;
-				</c:otherwise>
-				</c:choose>
-				<c:forEach var="i" begin="${pageInfo.startPage }"
-					end="${pageInfo.endPage }">
-					<c:choose>
-						<c:when test="${pageInfo.page==i }">[${i }]</c:when>
-						<c:otherwise>
-							<a href="boardList?page=${i}">[${i }]</a>
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				<c:choose>
-					<c:when test="${pageInfo.page>=pageInfo.maxPage }">
-					[다음]
-				</c:when>
-					<c:otherwise>
-						<a href="boardList?page=${pageInfo.page+1}">[다음]</a>
-					</c:otherwise>
-				</c:choose>
-			</section>
-		</c:when>
-		<c:otherwise>
-			<section id="emptyArea">등록된 글이 없습니다.</section>
-		</c:otherwise>
-	</c:choose>
-	
-	
-	<!--  플로깅 하러가기 -->
-	
-	<div class="intro_chapter chap4">
-		<div class="sub_title">Starting with beginmate</div>
-		<div class="main_copy">작은 일도 시작해야, 위대한 일도 생긴다 - 마크 주커버그 -</div>
-		<div class="main_copy_desc">당신과 함께 팀을 이루고 싶은 메이트들이 기다리고 있습니다.
-			지금, 비긴메이트에서 만나보세요!</div>
-		<span class="start_bt">플로깅 하러가기 > 메이트찾기로 이동</span>
+										</p>
+										<br>
+										<br>
+										<p class="right_side text-right">
+											<span class="right_msg text-right"><i
+												class="fa fa-comments-o"></i></span> <span class="count">${mate.replycnt }
+											</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-heart"></i>
+											<span class="count">${mate.likecnt }</span>
+										</p>
+									</div>
+								</div>
+								<p class="blog_news_content"></p>
+								<a href="" class="blog_link"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 
-	<!--Scroll to top-->
+
+	<!--Start of counter-->
+        <section id="counter">
+            <div class="counter_img_overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="counter_header">
+                                <h2>ZupGo! ZupUp!</h2>
+                              	<p><strong id="getMonth"></strong>월 지구를 총 3번 23시간 정화했어요!</p>
+                            </div>
+                        </div>
+                        <!--End of col-md-12-->
+                    </div>
+                    <!--End of row-->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="counter_item text-center">
+                                <div class="sigle_counter_item">
+                                    <img src="/resources/img/tree.png" alt="">
+                                    <div class="counter_text">
+                                        <span class="counter">24,871</span>
+                                        <p>탄소 정화량</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="counter_item text-center">
+                                <div class="sigle_counter_item">
+                                    <img src="/resources/img/trash.png" alt="">
+                                    <div class="counter_text">
+                                        <span class="counter">1,658,098</span>
+                                        <p>쓰레기 정화량</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="counter_item text-center">
+                                <div class="sigle_counter_item">
+                                    <img src="/resources/img/tuhnder.png" alt="">
+                                    <div class="counter_text">
+                                        <span class="counter">9854</span>
+                                        <p>이번 달 번개</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="counter_item text-center">
+                                <div class="sigle_counter_item">
+                                    <img src="/resources/img/group.png" alt="">
+                                    <div class="counter_text">
+                                    	<span class=""></span><!-- 수정중 달 단위 -->
+                                        <span class="counter">5412</span>
+                                        <p>이번 달 정기</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End of row-->
+                </div>
+                <!--End of container-->
+            </div>
+        </section>
+        <!--end of counter-->
+	
+	<!-- 맨 위로 가기 -->
 	<a href="#" id="back-to-top" title="Back to top">&uarr;</a>
-	<!--End of Scroll to top-->
 
-	
+
 	<!--날씨-->
-	
-	
-	
 
+	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>-->
+        <script src="js/jquery-1.12.3.min.js"></script>
+
+        <!--Counter UP Waypoint-->
+        <script src="js/waypoints.min.js"></script>
+        <!--Counter UP-->
+        <script src="js/jquery.counterup.min.js"></script>
+
+        <script>
+            $('.counter').counterUp({
+                delay: 10,
+                time: 1000
+            });
+        </script>
+        
+        <script>
+        var now = new Date();
+        var month = now.getMonth();	
+        document.querySelector("#getMonth").innerText = month+1;
+        </script>
+        
+        
 
 	<!--Isotope-->
 	<script
@@ -187,7 +277,7 @@
 		new WOW().init();
 	</script>
 
-
+	
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
@@ -196,4 +286,4 @@
 </body>
 
 </html>
-<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+<%@ include file="/WEB-INF/views/includes/footer.jsp"%>

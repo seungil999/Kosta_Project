@@ -99,5 +99,15 @@
         
 		]]>
 	</select> 
+	
+	<select id="getBestlist" resultType="com.kosta.jupjup.vo.MateVO" >
+	  <![CDATA[
+	  SELECT *
+  		FROM (
+      		SELECT * FROM mate WHERE REGULAR = 0 AND LIKECNT >=1 ORDER BY LIKECNT DESC
+      		)
+	   WHERE ROWNUM <= 3
+	 ]]>
+  </select> 
 			
 </mapper>		

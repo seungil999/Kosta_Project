@@ -1,21 +1,15 @@
 package com.kosta.jupjup.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.OutputStream;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,8 +20,6 @@ import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.PageVO;
-
-import net.coobird.thumbnailator.Thumbnails;
 
 @Controller
 @RequestMapping("/matefind/*")

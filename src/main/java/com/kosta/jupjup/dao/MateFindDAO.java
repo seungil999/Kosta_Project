@@ -12,7 +12,11 @@ import com.kosta.jupjup.vo.MateVO;
 @Repository
 public interface MateFindDAO {
 	public List<MateVO> getlistWithPaging(Criteria cri);
+
+	public List<MateVO> getBestlist(Criteria cri);
+
 	public int getTotalCount(Criteria cri);
+
 	public MateVO read(Long no);
 
 }
