@@ -143,13 +143,6 @@ input: -webkit-autofill:focus {
 
 /*Bootstrap Form Control Focus*/
 
-.form-control:focus {
-    border-color: #fff;
-    border: 0px;
-    outline: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
 
 /***************************/
 
@@ -811,7 +804,9 @@ section#counter {
     font-weight: 700;
     text-transform: uppercase;
     color: #2f2f2f;
-    
+	text-align:left;    
+	position:relative;
+	top:100px;
 }
 #blog .latest_blog p {
     padding-bottom: 45px;

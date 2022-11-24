@@ -70,7 +70,7 @@
 					value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
 					type='hidden' name='amount'
 					value='<c:out value="${pageMaker.cri.amount}"/>' />
-				<button class='success' id='matefind'>찾기</button>
+				<button class='find' id='matefind'>찾기</button>
 				
 				
 			</form>

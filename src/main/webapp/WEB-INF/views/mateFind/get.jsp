@@ -8,13 +8,13 @@
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
 
 
-<div>
+<div class="flashOrRegular">
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
-		<h2>정기모임</h2>
+		<h2>정기활동</h2>
 	</c:when>
 	<c:otherwise>
-		<h2>단기모임</h2>
+		<h2>번개활동</h2>
 	</c:otherwise>
 </c:choose>
 </div>
@@ -33,7 +33,7 @@
 	
 	
 	
-		 <div class="mate-topinfo">
+		 <div class="mate-topinfoImg">
        
             <img src="/Mate/display?fileName=${mate.image}" style="width:360px; height:300px;"/>
         </div>
@@ -63,7 +63,7 @@
        </c:choose>  
         
         <br><br><br>
-        <button data-oper='list' class="success">목록</button>
+        <button data-oper='list' class="uploadBtn">목록</button>
         <br><br>
         <div class="mate-guide">안내사항</div>
         <hr>
@@ -88,7 +88,7 @@
 	 	</div>
 	 	
         <div class="form-group">
-          <h2 class="mate-title">안내사항</h2><textarea class="form-control content">${mate.content }</textarea>
+          <h2 class="mate-title">안내사항</h2><textarea class="form-control content" id="content">${mate.content }</textarea>
         </div>
           <div class="form-group">
           <h2 class="mate-title">모임장소</h2>
@@ -99,11 +99,11 @@
 </p>
 	<div id="map" style="width:40%;height:250px;"></div>
 	<br>
-	<div class="form-control meetingplace">${mate.meetingplace }</div>
+	<div class="form-control meetingplace" id="meetingplace">${mate.meetingplace }</div>
 	
         <br><br><br>
         <div class="form-group">
-        <h2 class="mate-title">현재 모임 참여중인 인원(${mate.peoplenum })</h2>
+        <h2 class="mate-title">현재 모임 참여중인 인원( ${mate.peoplenum} )</h2>
         </div>
         <hr>
         
@@ -120,7 +120,7 @@
       <input type='hidden' name='filter' value='<c:out value="${cri.filter }"/>'>
 	</form>
 	
-	<img id="likeImg" src="/resources/img/말풍선.png" alt="" width="30px" height="30px">
+	<img id="reply" src="/resources/img/말풍선.png" alt="" width="30px" height="30px">
 	댓글<span id='replycnt'>${mate.replycnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<c:choose>
 		<c:when test="${like ==0}">
@@ -142,26 +142,22 @@
 	<div class="col-lg-12">
 
 		<!-- /.panel -->
-		<div class="panel panel-default"> 
-<div class="panel-body">
 
 				<ul class="chat">
 
 				</ul>
-				
+	
+			
 				<!-- ./ end ul -->
 			</div>
 		<div class="reply">	
-			<div class="form-group">
-                <label>Reply</label> 
-                <input class="form-control" id='reply' name='reply' value="" placeholder="댓글을 입력해보세요.">
+			<div class="form-group replyform">
+				<div class="nickname" name="replyer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;닉네임</div>
+                <textarea class="form-control" id='reply' name='reply' placeholder="댓글을 입력해보세요."></textarea>
+                 
               </div>      
-              <div class="form-group">
-                <label>Replyer</label> 
-                <input class="form-control" name='replyer' value='replyer'>
-              </div>
-      
-        <button id='modalRegisterBtn' type="button" class="btn btn-primary">작성</button>
+     	 <button id='modalRegisterBtn' type="button" class="uploadBtn">댓글작성</button>
+       
        
       </div>
 			<!-- /.panel-heading -->
@@ -171,9 +167,7 @@
 	<!-- ./ end row -->
 </div>
 
-</div>
 <!-- end mate container  -->
-</div>
 <!-- end mate border -->
 <div class="repository">
 	  <input type='hidden' name='repReply' value='<c:out value=""/>'>  
@@ -203,14 +197,15 @@ $(document).ready(function() {
 				return;
 			}
 			for(var i=0, len = list.length || 0; i<len; i++){
-				str +="<li class='left clearfix'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
-				str +="<div><div class='header'><strong class= 'primary-font'>"
-						+list[i].replyer+"</strong>";
-
-				str +="<small class='pull-right text-musted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
+				str +="<div><li class='replyList'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
+				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>"
 				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
-				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button></div>"
-				str +="<p>"+list[i].reply+"</p></div></li>";
+				str +="<div class='header'><strong class= 'primary-font'>"
+						+list[i].replyer+"</strong>";
+						
+				str +="<small class='pull-right text-musted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
+				
+				str +="<p class='repContent'>"+list[i].reply+"</p></div></li></div><hr>";
 			}
 			replyUL.html(str);
 			
@@ -219,10 +214,9 @@ $(document).ready(function() {
 	
 	 var modalRegisterBtn = $("#modalRegisterBtn");
 	 var replyForm = $(".reply");
-     var InputReply = replyForm.find("input[name='reply']");
-     var InputReplyer = replyForm.find("input[name='replyer']");
+     var InputReply = replyForm.find("textarea[name='reply']");
+     var InputReplyer = replyForm.find("div[name='replyer']");
      var InputReplyDate = replyForm.find("input[name='replyDate']");
-     
      var repository = $(".repository");
      var repReply = repository.find("input[name='repReply']")
      var repReplyer = repository.find("input[name='repReplyer']")
@@ -230,14 +224,13 @@ $(document).ready(function() {
 	 var repReplyNo = repository.find("input[name='repReplyNo']")
 
      modalRegisterBtn.on("click",function(e){
-    	 if (!replyForm.find("input[name='reply']").val()){
+    	 if (!replyForm.find("textarea[name='reply']").val()){
     		 	alert("댓글 내용을 입력해주세요.")
     			return false;
     		}
-    	 
         var reply = {
               reply: InputReply.val(),
-              replyer:InputReplyer.val(),
+              replyer:InputReplyer.html(),
               no:noValue
             };
         replyService.add(reply, function(result){
@@ -292,15 +285,15 @@ $(document).ready(function() {
 		
 		
 	   var htmls = "";
+	    htmls += '<button type="button" id="modCancel" class="rembtn">취소</button>';
+	    htmls += '<button type="button" id="modbtn" class="replyUpdateBtn">  저장  </button>';
+	    htmls += '<div class="header"><strong class="primary-font" id="mod">'+replyData.replyer+"</strong>";
+	   
 
-	    htmls += '<div id="mod">'+replyData.replyer;
-	    
-	    htmls += '<button type="button" id="modbtn">  저장  </button>';
-
-		htmls += '<button type="button" id="modCancel">취소</button>';
+		
 		htmls += '<div id="rno'+ replyData.rno + '">';
 		
-		htmls += '<textarea name="editContent" id="editContent" class="form-control" rows="3">';
+		htmls += '<textarea name="editContent" id="editContent" rows="3">';
 
 		htmls += replyData.reply;
 
