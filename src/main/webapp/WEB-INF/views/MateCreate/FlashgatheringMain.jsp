@@ -130,8 +130,9 @@ h3 {
 						<div class="summary_info">
 							<div class="image">
 								<div class="uploadResult"></div>
-								<input name="image" type="file" id="image"> 
-								<input type="button" class="uploadBtn" value="등록">
+								<input name="img" type="file" id="img"> <input
+									type="button" class="uploadBtn" value="등록">
+									<input type="hidden" name="image" id="image">
 							</div>
 							<div class="mateC">
 								<table>
@@ -369,6 +370,11 @@ h3 {
 										success : function(result) {
 
 											showUploadedImages(result);
+											var str="";
+											for (var i = 0; i < result.length; i++) {
+												str += result[i].thumbnailURL;
+											}
+											$("#image").val(str);
 										},
 										error : function(jqXHR, textStatus,
 												errorThrown) {

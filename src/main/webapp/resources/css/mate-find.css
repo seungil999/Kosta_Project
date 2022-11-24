@@ -79,3 +79,54 @@ button.success {
 .mate-title a{
 	color:#393939;
 }
+
+.mate-border{
+	border: 2px solid;
+	border-color :#42DF2B; 
+  	border-radius: 40px;
+  	padding:30px;
+	width:1000px;
+	
+	margin: 0 auto;
+  	margin-top:50px;
+  	position:relative;
+}
+hr{
+	
+	border-color :#c6c6c6;
+}
+.mate-bold{
+	color:#4f4f4f;
+	font-size:18px;
+	font-weight:700;
+}
+.mate-guide{
+	color:#43a906;
+	font-size:18px;
+	font-weight:700;
+}
+.mate-normal{
+	font-weight:700;
+	color:#4f4f4f;
+	font-size:15px;
+}
+.mate-regdate{
+	float:right;
+	font-weight:500;
+}
+.mate-updatedate{
+	float:right;
+	color:#ff0000;
+	font-weight:700;
+}
+.form-group{
+}
+.mate-topinfo{
+	float:left;
+}
+.user-img{
+	width:50px; 
+	height:50px;
+	border-radius:50%;
+}
+

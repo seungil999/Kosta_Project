@@ -8,95 +8,107 @@
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
 
 
-
+<div>
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
-		정기모임
+		<h2>정기모임</h2>
 	</c:when>
 	<c:otherwise>
-		단기모임
+		<h2>단기모임</h2>
 	</c:otherwise>
 </c:choose>
+</div>
+
+<div class="mate-border">
 <br>
-	${mate.activityname}<br>
-	${mate.writer}
-	<div>
-	<label>작성일</label><input value='<c:out value="${mate.regdate}"/>' readonly="readonly">
-	</div>
-	<div>
-	<label>업데이트 날짜</label><input value='<c:out value="${mate.updatedate}"/>' readonly="readonly">
-	</div>
+ <div class="mate-container">
+	<div class="mate-bold">${mate.activityname}</div><br>
+	<div class="mate-normal">${mate.writer}</div>
+	<hr>
+	
+	<div class="mate-regdate"> 작성일 ${mate.regdate}</div><br>
 	
 	
-		 <div class="form-group">
+	<div class="mate-updatedate">최신 업데이트 : ${mate.updatedate}</div>
+	
+	
+	
+		 <div class="mate-topinfo">
        
-            <img src="/Mate/display?fileName=${mate.image}"/>
+            <img src="/Mate/display?fileName=${mate.image}" style="width:360px; height:300px;"/>
         </div>
+		
+		 <div class="mate-topinfo">
+          <h2 class="mate-title">활동명</h2><div class="form-control activityname">${mate.activityname }</div>
+            
+        </div><br><br><br><br>
 
-		 <div class="form-group">
-          <label>활동명</label> <input class="form-control" name='activityname'
-            value='<c:out value="${mate.activityname }"/>' readonly="readonly">
-        </div>
-
-        <div class="form-group">
-          <label>활동일시</label> <input class="form-control" name='meetingdate' id='meetingdate'
-            value='<c:out value="${mate.meetingdate}(${mate.dayofweek })"/>' readonly="readonly">
-        </div>
-        <div class="form-group">
-          <label>모임시간</label> <input class="form-control" name='meetingtime' id='meetingtime'
-            value='<c:out value="${mate.meetingtime}"/>' readonly="readonly">
-        </div>
-         <div class="form-group">
-          <label>활동시간</label> <input class="form-control" name='time' id='time'
-            value='<c:out value="${mate.starttime}~${mate.endtime}"/>' readonly="readonly">
-        </div>
-
-        <div class="form-group">
-          <label>모임인원</label>
-          <textarea class="form-control" rows="3" name='peoplenum'
-            readonly="readonly"><c:out value="${mate.peoplenum}명 / ${mate.peoplemaxnum}명"/></textarea>
-        </div>
-       <c:choose>
+        <div class="mate-topinfo">
+          <h2 class="mate-title">활동일시</h2><div class="form-control meetingdate">${mate.meetingdate }(${mate.dayofweek })</div>
+        </div><br><br><br><br>
+        
+        <div class="mate-topinfo">
+          <h2 class="mate-title">모임인원</h2>
+          <div class="form-control peoplenum">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
+        </div><br><br><br><br>
+         <c:choose>
          <c:when test="${join ==0}"> 
-	        <button type="button" id="matejoin" data-joinchk='${join}'>참여하기</button>
+	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>참여하기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
 		 </c:when>					
          <c:when test="${join ==1}"> 
-	        <button type="button" id="matejoin" data-joinchk='${join}'>나가기</button>
+	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>나가기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
 		 </c:when>
-       </c:choose>    
-        		
+       </c:choose>  
         
-		<button data-oper='list' class="btn btn-info">목록</button>
-		<div class="form-group">
-          <label>활동장소</label><br>출발지<input class="form-control" name='startzone'
-            value='<c:out value="${mate.startzone }"/>' readonly="readonly">
-            
-           					   목적지<input class="form-control" name='endzone'
-            value='<c:out value="${mate.endzone }"/>' readonly="readonly">
-        </div>
-
+        <br><br><br>
+        <button data-oper='list' class="success">목록</button>
+        <br><br>
+        <div class="mate-guide">안내사항</div>
+        <hr>
+        
         <div class="form-group">
-          <label>안내사항</label> <input class="form-control" name='content'
-            value='<c:out value="${mate.content }"/>' readonly="readonly">
+          <h2 class="mate-title">모임시간</h2> <div class="form-control meetingtime">${mate.meetingtime }</div>
+        </div>
+         <div class="form-group">
+          <h2 class="mate-title">활동시간</h2><div class="form-control time">${mate.starttime}~${mate.endtime}</div>
+        </div>
+  		
+        
+		
+		<div class="form-group">
+          	  <h2 class="mate-title">활동장소</h2><div class="form-control meetingplace">${mate.meetingplace }</div>
+        </div>
+        <div class="form-group">
+          	  <h2 class="mate-title">출발지</h2><div class="form-control startzone" >${mate.startzone }</div>
+        </div>
+        <div class="form-group">
+         	  <h2 class="mate-title">목적지</h2><div class="form-control endzone">${mate.endzone }</div>
+	 	</div>
+	 	
+        <div class="form-group">
+          <h2 class="mate-title">안내사항</h2><textarea class="form-control content">${mate.content }</textarea>
         </div>
           <div class="form-group">
-          <label>모임장소</label> <input class="form-control" name='meetingplace'
-            value='<c:out value="${mate.meetingplace }"/>' readonly="readonly">
+          <h2 class="mate-title">모임장소</h2>
         </div>
         
         <p style="margin-top:-12px">
     
 </p>
 	<div id="map" style="width:40%;height:250px;"></div>
+	<br>
+	<div class="form-control meetingplace">${mate.meetingplace }</div>
 	
-	
-        
-        <div>
-        현재 모임 참여중인 인원(${mate.peoplenum })
+        <br><br><br>
+        <div class="form-group">
+        <h2 class="mate-title">현재 모임 참여중인 인원(${mate.peoplenum })</h2>
         </div>
+        <hr>
         
+        <img class="user-img" src="/Mate/display?fileName=${mate.image}"/>
+        <br><br>
         
     <form id='operForm' action="/mate/modify" method="get">
 	  <input type='hidden' id='no' name='no' value='<c:out value="${mate.no}"/>'>
@@ -107,21 +119,23 @@
   	  <input type='hidden' name='meeting' value='<c:out value="${cri.meeting }"/>'>
       <input type='hidden' name='filter' value='<c:out value="${cri.filter }"/>'>
 	</form>
-
+	
+	<img id="likeImg" src="/resources/img/말풍선.png" alt="" width="30px" height="30px">
+	댓글<span id='replycnt'>${mate.replycnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<c:choose>
 		<c:when test="${like ==0}">
-			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/빈하트.png" alt="" width="30px" height="30px"></a>
-			좋아요<div id='likecnt'>${mate.likecnt}</div>
+			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/빈하트.png" alt="" width="30px" height="30px"></a>좋아요
+			<span id='likecnt'>${mate.likecnt}</span>
 			<input type="hidden" id="likecheck" value="${like }">
 		</c:when>					
 		<c:when test="${like ==1}">
-			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/꽉찬하트.png" alt="" width="30px" height="30px"></a>
-			좋아요<div id='likecnt'>${mate.likecnt}</div>
+			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/꽉찬하트.png" alt="" width="30px" height="30px"></a>좋아요
+			<span id='likecnt'>${mate.likecnt}</span>
 			<input type="hidden" id="likecheck" value="${like }">
 		</c:when>
 	</c:choose>		
 				
-
+	<hr>
 
 <div class='row'>
 
@@ -129,7 +143,14 @@
 
 		<!-- /.panel -->
 		<div class="panel panel-default"> 
+<div class="panel-body">
 
+				<ul class="chat">
+
+				</ul>
+				
+				<!-- ./ end ul -->
+			</div>
 		<div class="reply">	
 			<div class="form-group">
                 <label>Reply</label> 
@@ -144,18 +165,16 @@
        
       </div>
 			<!-- /.panel-heading -->
-			<div class="panel-body">
-
-				<ul class="chat">
-
-				</ul>
-				
-				<!-- ./ end ul -->
-			</div>
+			
 		</div>
 	</div>
 	<!-- ./ end row -->
 </div>
+
+</div>
+<!-- end mate container  -->
+</div>
+<!-- end mate border -->
 <div class="repository">
 	  <input type='hidden' name='repReply' value='<c:out value=""/>'>  
   	  <input type='hidden' name='repReplyer' value='<c:out value=""/>'>
@@ -225,7 +244,10 @@ $(document).ready(function() {
           
           
           replyForm.find("input").val("");
-   
+   		  
+          var repcnt = $("#replycnt").html();
+          
+          $("#replycnt").html(parseInt(repcnt)+1);
           
           showList(1);
           
@@ -325,15 +347,15 @@ $(document).ready(function() {
 
   function typeChange(){
 		
-		var time = $("#time").val();
-		var meetingtime = $("#meetingtime").val();
-		
+		var time = $(".time").html();
+		var meetingtime = $(".meetingtime").html();
+		console.log(meetingtime);
 		time=time.slice(0,2) +":" + time.slice(2,7)+":"+time.slice(7,9);
 		meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
 		console.log(meetingtime);
 		console.log(time);
-      $("#time").val(time);
-      $("#meetingtime").val(meetingtime);
+      $(".time").html(time);
+      $(".meetingtime").html(meetingtime);
       
 	        
 	  };  
@@ -466,7 +488,7 @@ $(document).on("click", "#matejoin", function(e){
 	
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">코스타</div>'
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${mate.meetingplace}</div>'
 	        });
 	        infowindow.open(map, marker);
 	
