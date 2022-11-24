@@ -125,6 +125,7 @@ html {
     height: 100%
 }
 body {
+	font-family: 'Nanum Square',sans-serif;
 }
 
 /*Remove chrome Input Field’s Unwanted Yellow Background Color*/
@@ -1027,6 +1028,7 @@ li.fw-flash-message {
     
     background: #ffffff;
     color: black;
+    margin: 20px;
 }
 #footer .copyright,
 #footer .designer {
@@ -1041,8 +1043,9 @@ li.fw-flash-message {
 }
 #footer .designer p {
 	padding: 30px 30px 30px 30px;
-    text-align: right;
+    text-align: left;
     font-weight: 600;
+    font-weight: bold;
 }
 #footer .copyright p,
 #footer .copyright p span a,
@@ -1057,6 +1060,7 @@ li.fw-flash-message {
 /*Back to Top*/
 
 #back-to-top {
+	text-align: center;
     position: fixed;
     bottom: 15px;
     right: 15px;
