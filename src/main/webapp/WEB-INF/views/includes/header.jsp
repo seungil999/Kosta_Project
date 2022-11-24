@@ -42,6 +42,9 @@
 	rel="stylesheet"> 
 <link
 	href="${pageContext.request.contextPath}/resources/css/mate-find.css"
+	rel="stylesheet">
+	<link
+	href="${pageContext.request.contextPath}/resources/css/mypage.css"
 	rel="stylesheet">	
 	
 
