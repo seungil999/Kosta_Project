@@ -126,7 +126,6 @@ h3 {
 						<div class="summary_info">
 							<div class="image">
 								<div class="uploadResult"></div>
-								<div class="uploadResult"></div>
 								<input name="img" type="file" id="img"> <input
 									type="button" class="uploadBtn" value="등록">
 									<input type="hidden" name="image" id="image">
