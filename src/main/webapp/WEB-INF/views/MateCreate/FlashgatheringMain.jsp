@@ -35,6 +35,7 @@
 	width: 1000px;
 	padding-bottom: 40px;
 	position: relative;
+	clear: both;
 }
 
 .style_content {
@@ -51,9 +52,11 @@
 	width: 350px;
 	position: relative;
 	z-index: 10;
+	padding: 3px 40px;
+	margin:10px;
 }
 
-.uploadBtn {
+.uploadBtn , .removeBtn {
 	background-color: white;
 	border: none;
 	color: black;
@@ -127,29 +130,28 @@ h3 {
 						<div class="summary_info">
 							<div class="image">
 								<div class="uploadResult"></div>
-								<input name="image" type="file" id="image"> <input
-									type="button" class="uploadBtn" value="등록">
+								<input name="image" type="file" id="image"> 
+								<input type="button" class="uploadBtn" value="등록">
 							</div>
 							<div class="mateC">
 								<table>
 									<tr>
 										<th>작성자</th>
-										<td><input type="text" name="writer" size="35"></td>
+										<td><input type="text" name="writer" size="30"></td>
+										<!-- 삭제후 ${users.writer}예정  -->
 									</tr>
 									<tr>
 										<th>모임명</th>
 										<td><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="35"></td>
+											placeholder="모임명을 입력해주세요" size="30"></td>
 									</tr>
 									<tr>
 										<th>모임장소</th>
-										<td><input type="button"
-											onclick="sample5_execDaumPostcode()" value="주소검색" class="Btn"><br></td>
+										<td><input type="button" onclick="sample5_execDaumPostcode()" value="주소검색" class="Btn"><br></td>
 									</tr>
 									<tr>
 										<th></th>
-										<td><input type="text" name="meetingplace"
-											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="25"></td>
+										<td><input type="text" name="meetingplace" id="sample5_address" placeholder="주소 검색을 눌러주세요" size="30"></td>
 									</tr>
 									<tr>
 										<td colspan="4">
@@ -159,42 +161,41 @@ h3 {
 									</tr>
 									<tr>
 										<th>모임시간</th>
-										<td><input type="time" id="mtime" name="mtime"> <input
-											type="hidden" id="meetingtime" name="meetingtime" value=""></td>
+										<td><input type="time" id="mtime" name="mtime" > 
+										<input type="hidden" id="meetingtime" name="meetingtime" value=""></td>
 									</tr>
 									<tr>
 										<th>모임인원</th>
-										<td><input type="button" onclick="countDown();" value="-"
-											class="peopleBtn">&nbsp&nbsp <strong id="maxnum">2</strong>&nbsp&nbsp
-											<input type="button" onclick="countUp();" value="+"
-											class="peopleBtn"> <input type="hidden"
-											id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
+										<td><input type="button" onclick="countDown();" value="-"class="peopleBtn">&nbsp&nbsp 
+										<strong id="maxnum">2</strong>&nbsp&nbsp
+										<input type="button" onclick="countUp();" value="+" class="peopleBtn"> 
+										<input type="hidden" id="peoplemaxnum" name="peoplemaxnum" value="2"></td>
 									</tr>
 									<tr>
 										<th>출발지</th>
-										<td><input type="text" name="startzone" />
+										<td><input type="text" name="startzone" size="30"/>
 									</tr>
 									<tr>
 										<th>목적지</th>
-										<td><input type="text" name="endzone" />
+										<td><input type="text" name="endzone" size="30"/>
 									</tr>
 									<tr>
 										<th>활동시간</th>
-										<td><input type="time" id="stime" name="stime">
-											부터 <input type="hidden" id="starttime" name="starttime"
-											value=""> <input type="time" id="etime" name="etime">
-											까지 <input type="hidden" id="endtime" name="endtime" value=""></td>
+										<td><input type="time" id="stime" name="stime"> 부터 
+										<input type="hidden" id="starttime" name="starttime" value=""> 
+										<input type="time" id="etime" name="etime"> 까지 
+										<input type="hidden" id="endtime" name="endtime" value=""></td>
 									</tr>
 									<tr>
 										<th style="vertical-align: top;">안내사항</th>
-										<td style="vertical-align: top;"><textarea name="content"
-												placeholder="안내사항을 입력해주세요&#13;&#10;ex)준비물,교통편"></textarea></td>
+										<td style="vertical-align: top;">
+										<textarea name="content" placeholder="안내사항을 입력해주세요&#13;&#10;예시)준비물,교통편,..."></textarea></td>
 									</tr>
 									<tr>
-										<td style="text-align: left;"><input type="button"
-											value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
-										<td colspan="3" style="text-align: right;"><input
-											type="submit" id="submit" value="등록" class="Btn" /></td>
+										<td style="text-align: left;">
+										<input type="button" value="뒤로가기" class="Btn" onclick="history.back(-1)"></td>
+										<td colspan="3" style="text-align: right;">
+										<input type="submit" id="submit" value="등록" class="Btn" /></td>
 									</tr>
 								</table>
 								<input type="hidden" name="regular" value="0">
@@ -383,7 +384,7 @@ h3 {
 									str += "<div>";
 									str += "<img src='display?fileName="
 											+ arr[i].thumbnailURL + "'>";
-									str += "<input type ='button' class ='removeBtn' data-name='"+arr[i].imageURL+"' value='삭제'>"
+									str += "<input type ='button' class ='removeBtn' data-name='"+arr[i].imageURL+"' value='사진삭제'>"
 									str += "</div>";
 								}
 								divArea.append(str);

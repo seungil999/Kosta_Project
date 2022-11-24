@@ -51,6 +51,8 @@
 	width: 350px;
 	position: relative;
 	z-index: 10;
+	padding: 3px 40px;
+	margin:10px;
 }
 
 .uploadBtn {
@@ -109,10 +111,7 @@ h3 {
 	font-weight: bold;
 }
 
-.con {
-	height: 5px;
-	width: 5px;
-}
+
 </style>
 </head>
 
@@ -202,7 +201,7 @@ h3 {
 											type="submit" id="submit" value="등록" class="Btn" /></td>
 									</tr>
 								</table>
-								<input type="hidden" name="regular" value="0">
+								<input type="hidden" name="regular" value="1">
 							</div>
 
 						</div>

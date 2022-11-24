@@ -63,7 +63,7 @@ public class MateCreateController {
 	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreatevo) {
 		model.addAttribute("matecreate", matecreatevo);
 		if(matecreatevo.getImage().isEmpty() ) {
-			matecreatevo.setImage("기본이미지");
+			matecreatevo.setImage("기본이미지.jpg");
 		}
 		System.out.println(matecreatevo);
 		matecreateservice.matecreate(matecreatevo);
