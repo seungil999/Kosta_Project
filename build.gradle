@@ -31,7 +31,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.1'
 	implementation 'javax.servlet:jstl:1.2'
-	
+		implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'log4j:log4j:1.2.16'
 	testImplementation 'junit:junit:4.13.2'
 	
