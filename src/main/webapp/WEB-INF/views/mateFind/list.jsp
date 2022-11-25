@@ -63,7 +63,7 @@
 						<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>활동명</option>
 					<option value="M" class="lang-option"
 						<c:out value="${pageMaker.cri.type eq 'M'?'selected':''}"/>>지역별</option>
-				</select> <div class="col-sm-2 mate-keyword">
+				</select> <div class="mate-keyword">
                 <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색어를 입력해주세요"
 					value='<c:out value="${pageMaker.cri.keyword}"/>' /></div> <input
 					type='hidden' name='pageNum'

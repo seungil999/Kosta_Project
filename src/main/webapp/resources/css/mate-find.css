@@ -15,6 +15,12 @@
 	background-color: rgb(233, 233, 233);
 	border-radius: 10;
 	margin-top:25px;
+	
+	float:left;
+	position: relative;
+	margin-left:10px;
+	height:40px;
+	white-space: nowrap;
 }
 .mate-keyword input[type="text"]:focus{
     outline: 2px solid #007b04;
@@ -22,7 +28,7 @@
 .mate-select{
 	float:left;	
 	padding:5px;
-	margin-left:80px;
+	margin-left:190px;
 	margin-top:25px;
 	padding: 0.8rem 2rem;
 	border: 1px solid #C4C4C4;
@@ -30,9 +36,7 @@
     border-radius: 10px;
   
 }
-#matefind{
-	margin-top:25px;
-}
+
 button {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -61,6 +65,7 @@ button {
     cursor: pointer;
     
     transition: 0.5s;
+    white-space: nowrap;
   }
 button.success {
 	  padding: 0.8rem 2.5rem;
@@ -81,11 +86,12 @@ button.find {
     appearance: none;
     --button-bg-color: #43a906;
     --button-hover-bg-color: #218838;
-    left:60px;
-    top:5px;
+   
     position: relative;
     float:left;
-    
+    margin-top:27px;
+    margin-left:10px;
+    white-space: nowrap;
   }
 .meetingplace{
 	width:200px;
@@ -274,4 +280,3 @@ textarea#editContent{
 	top:33px;
 	font-weight:bolder;
 }
-

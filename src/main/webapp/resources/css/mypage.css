@@ -40,18 +40,64 @@ hr{
     padding:3px;
 }
 .main{
-	float:left;
+	float:center;
 	width:880px;
 	border: 2px solid;
 	border-color:#42df2b;
   	margin-top:60px;
-  	margin-left:250px;
+  	margin-left:283px;
+  	padding:30px;
 }
-.bold{
+.myp-title{
 	text-align:left;
 	position:relative;
-	left:120px;
+	left:80px;
 	top:50px;
 	font-weight:bolder;
 	font-size:17;
+}
+.bold{
+	font-weight:bolder;
+	font-size:17;
+}
+.myp-allview{
+	margin-top:10px;
+	float:right;
+	font-size:12;
+	font-weight: 700;
+}
+.myp-titleInfo{
+	font-weight:bolder;
+	text-align:center;
+	
+	position:relative;
+	right:100px;
+	top:20px;	
+}
+.myp-info{
+	text-align:center;
+	
+	position:relative;
+	right:100px;
+	top:20px;	
+}
+.uploadbtn{
+	margin:0 auto;
+	display:block;
+	position:relative;
+	right:100px;
+	top:30px;	
+}
+.myp-image{
+	float:right;
+	position:relative;
+	right:170px;
+	top:10px;
+}
+.activity-img{
+	max-height: 120px;
+	width:200px;
+	border-radius:25%;
+}
+.activity-info{
 }
