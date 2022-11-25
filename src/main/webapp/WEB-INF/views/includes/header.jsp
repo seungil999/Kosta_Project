@@ -92,7 +92,7 @@
 								<li><a href="/matefind/list">메이트찾기 <span class="sr-only">(current)</span></a></li>
 								<li><a href="/Mate/MateCreateMain">메이트모집</a></li>
 								<li><a href="">추천</a></li>
-								<li><a href="">후기</a></li>
+								<li><a href="/review/list">후기</a></li>
 								<li><a href="">자유게시판</a></li>
 							</ul>
 						</div>

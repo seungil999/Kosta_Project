@@ -1,0 +1,92 @@
+@charset "UTF-8";
+.review-title{
+	display:inline-block;
+	text-align:left;
+	position:relative;
+	font-size:35;
+	font-weight:bolder;
+	margin-left: 180px;
+	
+}
+.main{
+	float:center;
+	width:1150px;
+	border: 2px solid;
+	border-color:#42df2b;
+  	margin-top:10px;
+  	margin-left:180px;
+  	margin-right:180px;
+  	padding:30px; 	
+}
+.filter{
+	float:right;
+	font-size:15;
+	font-weight: 700;
+	color:#43a906;
+	margin:15px;
+}
+hr{
+	border-color: #42df2b;
+}
+.image{
+	float:left;
+	position:relative;
+	left:15px;
+	top:10px;
+}
+.activity-img{
+	height:120px;
+	width:150px;
+}
+.titleInfo{
+	font-weight:bolder;
+	text-align:center;
+	
+	position:relative;
+	left:100px;
+	top:20px;	
+}
+.date{
+	float:right;
+	margin-top:10px;
+	margin-right:50px;
+}
+.mate-keyword input[type="text"]{
+	background-color: rgb(233, 233, 233);
+	border-radius: 10;
+	margin-top:25px;
+	
+	float:left;
+	position: relative;
+	margin-left:10px;
+	height:40px;
+	white-space: nowrap;
+}
+.mate-keyword input[type="text"]:focus{
+    outline: 2px solid #007b04;
+}
+.mate-select{
+	float:left;	
+	padding:5px;
+	margin-left:190px;
+	margin-top:25px;
+	padding: 0.8rem 2rem;
+	border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+  
+}
+button.find {
+	  padding: 0.8rem 2.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    --button-bg-color: #43a906;
+    --button-hover-bg-color: #218838;
+   
+    position: relative;
+    float:left;
+    margin-top:27px;
+    margin-left:10px;
+    white-space: nowrap;
+  }
