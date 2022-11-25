@@ -2,19 +2,56 @@
 .sidebar{
 	position:relative;
 	float:left;
-	height:300px;
 	width:200px;
 	border: 2px solid;
 	border-color:#42df2b;
-  	margin-top:10px;
+  	margin-top:30px;
   	margin-left:10px;
   	
 }
 button.modInfo{
 	width:195px;
-	height:50px;
+	height:40px;
 	background-color: gray;
+	
 }
 .nickname{
 	background-color: #f5f5f5;
+	text-align:center;
+}
+
+.sidebar-bold{
+	font-weight:bolder;
+	font-size:15;
+}
+.sidebar-normal{
+	font-weight:normal;
+	font-size:12;
+}
+
+hr{
+	margin-top:5px;
+	margin-bottom:5px;
+	border-color: #42df2b;
+}
+.list{
+    left:10px;
+    line-height: 1.5;
+    padding:3px;
+}
+.main{
+	float:left;
+	width:880px;
+	border: 2px solid;
+	border-color:#42df2b;
+  	margin-top:60px;
+  	margin-left:250px;
+}
+.bold{
+	text-align:left;
+	position:relative;
+	left:120px;
+	top:50px;
+	font-weight:bolder;
+	font-size:17;
 }
