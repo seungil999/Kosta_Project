@@ -30,9 +30,10 @@
 	<div class="mcmb">
 		<div class="mcm">
 			<a href="/Mate/Flashgathering"
-				style="padding:10px 10px 10px 10px; width: 50px; vertical-align: middle; border: 1px solid green; border-radius: 15px; font-size: 40px; font-family: 'Open Sans', sans-serif;">번개모임</a> 
+				style="padding:10px 10px 10px 10px; width: 150px; vertical-align: middle; border: 5px solid #86EC77; border-radius: 15px; font-size: 40px; font-family: 'Open Sans', sans-serif;">
+				번개모임</a> 
 			<a href="/Mate/Regularmeeting" 
-				style="padding:10px 10px 10px 10px; width: 50px; vertical-align: middle; border: 1px solid green;  border-radius: 15px; font-size: 40px; font-family: 'Open Sans', sans-serif;">정기모임</a>
+				style="padding:10px 10px 10px 10px; width: 150px; vertical-align: middle; border: 5px solid #86EC77;  border-radius: 15px; font-size: 40px; font-family: 'Open Sans', sans-serif;">정기모임</a>
 		</div>
 	</div>
 </body>

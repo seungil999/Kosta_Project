@@ -70,7 +70,7 @@
 						</div>
 						<!--End of navbar-header-->
 						<div class="collapse navbar-collapse zero_mp"
-							id="bs-example-navbar-collapse-1">
+							id="bs-example-navbar-collapse-2">
 							<ul class="nav navbar-nav navbar-right main_menu1">
 								<li><a href="">회원가입</a></li>
 								<!--로그인 / 로그아웃-->
@@ -87,7 +87,7 @@
 						</div>
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse zero_mp"
-							id="bs-example-navbar-collapse-2">
+							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right main_menu">
 								<li><a href="/matefind/list">메이트찾기 <span class="sr-only">(current)</span></a></li>
 								<li><a href="/Mate/MateCreateMain">메이트모집</a></li>

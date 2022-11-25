@@ -100,13 +100,24 @@
 		]]>
 	</select> 
 	
+	
+	
 	<select id="getBestlist" resultType="com.kosta.jupjup.vo.MateVO" >
 	  <![CDATA[
-	  SELECT *
-  		FROM (
-      		SELECT * FROM mate WHERE REGULAR = 0 AND LIKECNT >=1 ORDER BY LIKECNT DESC
-      		)
-	   WHERE ROWNUM <= 3
+	 SELECT no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+		FROM (
+			SELECT *
+			FROM (
+					SELECT * 
+					FROM mate 
+					WHERE REGULAR = 1 
+					AND meetingdate >= TRUNC(sysdate,'d')
+					)
+			WHERE meetingdate <= TRUNC(sysdate,'d')+6
+			ORDER BY LIKECNT DESC
+			)
+		WHERE ROWNUM <=3
 	 ]]>
   </select> 
 			

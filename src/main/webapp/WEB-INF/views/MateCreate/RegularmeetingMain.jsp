@@ -54,8 +54,12 @@
 	padding: 3px 40px;
 	margin:10px;
 }
-
-.uploadBtn {
+.uploadResult {
+	position: relative; 
+	top: -200px;
+	background-color: white;
+}
+.uploadBtn ,.removeBtn {
 	background-color: white;
 	border: none;
 	color: black;
@@ -125,10 +129,16 @@ h3 {
 					<div class="style_content">
 						<div class="summary_info">
 							<div class="image">
+							
+							<div class="defaultImg">
+								<c:if test="${empty img }">
+									<img src="/resources/img/logo2.png" width=388; height=388;>
+								</c:if>
+							</div>
 								<div class="uploadResult"></div>
-								<input name="img" type="file" id="img"> <input
-									type="button" class="uploadBtn" value="등록">
-									<input type="hidden" name="image" id="image">
+								<input name="img" type="file" id="img"> 
+								<input type="button" class="uploadBtn" value="등록"> 
+								<input type="hidden" name="image" id="image">
 							</div>
 							<div class="mateC">
 								<table>
@@ -394,7 +404,7 @@ h3 {
 									str += "<div>";
 									str += "<img src='display?fileName="
 											+ arr[i].thumbnailURL + "'>";
-									str += "<input type ='button' class ='removeBtn' data-name='"+arr[i].imageURL+"' value='삭제'>"
+									str += "<input type ='button' class ='removeBtn' data-name='"+arr[i].imageURL+"' value='사진삭제'>"
 									str += "</div>";
 								}
 								divArea.append(str);
