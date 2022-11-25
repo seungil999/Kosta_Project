@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mapper DTD 선언 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+  <mapper namespace="com.kosta.jupjup.dao.UserDao">
+
+
+     <!-- 중복아이디 -->
+    <select id="getUserByLoginId"  parameterType="String" resultType="com.kosta.jupjup.vo.User">
+          <![CDATA[
+            SELECT * 
+            FROM users
+            WHERE ID = #{loginId}
+          
+             ]]>
+    </select>
+    
+    
+      <!-- 회원 가입 -->
+    <insert id="Join" parameterType="hashmap" >
+         <![CDATA[
+          INSERT INTO USERS
+        VALUES (#{USERNAME},#{NICKNAME,jdbcType=VARCHAR},#{loginId},#{PWD},#{EMAIL,jdbcType=VARCHAR},#{PHONE,jdbcType=VARCHAR},#{GENDER,jdbcType=VARCHAR})
+         ]]>
+    </insert>
+
+     
+</mapper>
