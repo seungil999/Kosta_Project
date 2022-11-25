@@ -72,11 +72,11 @@
 						<div class="collapse navbar-collapse zero_mp"
 							id="bs-example-navbar-collapse-2">
 							<ul class="nav navbar-nav navbar-right main_menu1">
-								<li><a href="">회원가입</a></li>
+								<li><a href="user/joinPage">회원가입</a></li>
 								<!--로그인 / 로그아웃-->
 								<li class="nav-item"><c:choose>
 										<c:when test="${sessionScope.id eq null}">
-											<a class="nav-link" href="./login">로그인</a>
+											<a class="nav-link" href="user/loginPage">로그인</a>
 										</c:when>
 										<c:otherwise>
 											<a class="nav-link" href="./logout">로그아웃</a>

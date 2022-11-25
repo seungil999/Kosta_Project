@@ -153,4 +153,14 @@ public class MateFindController {
 //			}
 //		}
 	
+	// 회원가입폼
+			@RequestMapping("user/joinPage")
+			String showJoin() {
+				return "/user/joinPage";
+			}
+			// 로그인폼
+			@RequestMapping("user/loginPage")
+			String showlogin() {
+				return "/user/loginPage";
+			}
 }
