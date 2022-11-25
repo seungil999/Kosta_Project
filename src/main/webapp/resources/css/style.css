@@ -366,8 +366,9 @@ input: -webkit-autofill:focus {
 
 /*intro_notice 수정*/
 #intro {
-	background: #42DF2B;
-	padding: 0px 100px;
+	background: #86EC77;
+	height:84px;
+	width:100%;
 	font-size: 30px;
 }
 .section_title {

@@ -36,7 +36,6 @@ public class MateFindServiceImpl implements MateFindService {
 	// 메인 좋아요 순 리스트용
 	@Override
 	public List<MateVO> getBestlist(Criteria cri) {
-		// TODO Auto-generated method stub
 		return matefindDAO.getBestlist(cri);
 	}
 
