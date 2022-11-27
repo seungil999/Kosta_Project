@@ -1,6 +1,8 @@
 package com.kosta.jupjup.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kosta.jupjup.service.MateReplyService;
 import com.kosta.jupjup.vo.Criteria;
+import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.MateReplyVO;
 
 import lombok.extern.log4j.Log4j;
@@ -74,12 +78,13 @@ public class MateReplyController {
 	@DeleteMapping(value="/{rno}", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
 		
-		log.info("remove:"+rno);
+		service.minusRepCnt(rno);
 		
 		return service.remove(rno)==1
 				?new ResponseEntity<>("success", HttpStatus.OK)
 				:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+
 	
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
 			value="/{rno}",
@@ -96,6 +101,15 @@ public class MateReplyController {
 		return service.modify(vo)==1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+
+	
+	@PutMapping("/repCntUpdate")
+	public void repUpdate(@RequestBody Long noValue){
+		System.out.println(noValue);
+		service.minusRepCnt(noValue);
+		
 	}
 	
 }

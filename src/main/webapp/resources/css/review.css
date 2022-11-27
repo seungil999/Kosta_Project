@@ -1,56 +1,4 @@
 @charset "UTF-8";
-.review-title{
-	display:inline-block;
-	text-align:left;
-	position:relative;
-	font-size:35;
-	font-weight:bolder;
-	margin-left: 180px;
-	
-}
-.main{
-	float:center;
-	width:1150px;
-	border: 2px solid;
-	border-color:#42df2b;
-  	margin-top:10px;
-  	margin-left:180px;
-  	margin-right:180px;
-  	padding:30px; 	
-}
-.filter{
-	float:right;
-	font-size:15;
-	font-weight: 700;
-	color:#43a906;
-	margin:15px;
-}
-hr{
-	border-color: #42df2b;
-}
-.image{
-	float:left;
-	position:relative;
-	left:15px;
-	top:10px;
-}
-.activity-img{
-	height:120px;
-	width:150px;
-}
-.titleInfo{
-	font-weight:bolder;
-	text-align:center;
-	
-	position:relative;
-	left:100px;
-	top:20px;	
-}
-.date{
-	float:right;
-	margin-top:10px;
-	margin-right:50px;
-}
 .mate-keyword input[type="text"]{
 	background-color: rgb(233, 233, 233);
 	border-radius: 10;
@@ -90,3 +38,146 @@ button.find {
     margin-left:10px;
     white-space: nowrap;
   }
+  
+  
+  
+.review-title{
+	display:inline-block;
+	text-align:left;
+	position:relative;
+	font-size:35;
+	font-weight:bolder;
+	margin-left: 180px;
+	
+}
+.main{
+	
+	width:1150px;
+	border: 2px solid;
+	border-color:#42df2b;
+  	margin-top:10px;
+  	margin-left:180px;
+  	margin-right:180px;
+  	padding:10 30 60 30; 	
+}
+.filter{
+	float:right;
+	font-size:15;
+	font-weight: 700;
+	color:#43a906;
+	margin:15px;
+}
+hr{
+	border-color: #42df2b;
+}
+.image{
+	float:left;
+	position:relative;
+	left:40px;
+	top:5px;
+}
+.activity-img{
+	height:100px;
+	width:150px;
+}
+.titleInfo{
+	font-weight:bolder;
+	text-align:center;
+	font-size:15px;
+	position:relative;
+	left:80px;
+	top:5px;
+	margin-bottom:5px;	
+}
+.date{
+	float:right;
+	margin-top:10px;
+	margin-right:50px;
+}
+
+.content{
+	margin-top:2px;
+	margin-left:230px;
+}
+.submit{
+	float:right;
+	position:relative;
+}
+.submit button{
+	background-color:#42df2b;
+	margin-left:20px;
+	padding: 0.8rem 2.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    --button-bg-color: #43a906;
+    --button-hover-bg-color: #218838;
+   	margin-top:5px;
+    white-space: nowrap;
+}
+
+.cancel button{
+	float:right;
+	background-color:skyblue;
+	margin-left:20px;
+	padding: 0.8rem 2.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    --button-bg-color: #43a906;
+    --button-hover-bg-color: #218838;
+   	margin-top:5px;
+    white-space: nowrap;	
+}
+.review-write{
+	display:inline-block;
+	text-align:left;
+	position:relative;
+	font-size:30;
+	font-weight:bolder;
+	padding:10px;
+}
+.title{
+	width:100%;
+	line-height:16px;
+	font-size:16px;
+	resize: none;
+	margin-bottom:10px;
+}
+.get-title{
+	float:left;
+	margin-left:100px;
+	font-size:15px;
+}
+.title-bold{
+	float:left;
+	margin-left:70px;
+	font-size:17px;
+	font-weight:bold;
+}
+.act-bold{
+	float:right;
+	font-size:14px;
+	font-weight:bold;
+	margin-left:13px;
+}
+.get-act{
+	float:right;
+	font-size:14px;
+	margin-left:5px;
+}
+.wri-bold{
+	float:right;
+	font-size:14px;
+	font-weight:bold;
+	margin-left:13px;
+}
+.get-writer{
+	float:right;
+	font-size:14px;
+	margin-left:13px;	
+}
+.get-top{
+	margin-top:10px;
+	
+}

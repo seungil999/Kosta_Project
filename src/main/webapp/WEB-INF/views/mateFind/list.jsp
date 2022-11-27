@@ -169,7 +169,7 @@
 
 <div class="panel-body">
 
-				<div style="text-align: center";>
+				<div style="text-align: center;">
 					<ul class="pagination">
 
 						 <c:if test="${pageMaker.prev}">

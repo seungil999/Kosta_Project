@@ -98,60 +98,7 @@ public class MateFindController {
 	  
 	  return "/mateFind/get";
 	}
-	  
-//	  @GetMapping("/img/{filename}")
-//		public void viewImage(@PathVariable String filename, HttpServletResponse response) {
-//			String path = servletcontext.getRealPath("/resources/img/");
-//			FileInputStream fis = null;
-//			
-//			File file = new File(path, filename);
-//		    
-//			try {
-//				Thumbnails
-//		        .of(new File(path, filename))
-//		        .forceSize(40, 40)
-//		        .toFile(new File(path, "s_"+filename));
-//				
-//				fis = new FileInputStream(path+ "s_"+filename);
-//				OutputStream out = response.getOutputStream();
-//				FileCopyUtils.copy(fis, out);
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//			}finally {
-//				if(fis!=null) {
-//					try {
-//						fis.close();
-//					}catch(Exception e) {}
-//				} 
-//			}
-//		}
-//	  
-//	  @GetMapping("/getimg/{filename}")
-//		public void getviewImage(@PathVariable String filename, HttpServletResponse response) {
-//			String path = servletcontext.getRealPath("/resources/img/");
-//			FileInputStream fis = null;
-//			
-//			File file = new File(path, filename);
-//		    
-//			try {
-//				Thumbnails
-//		        .of(new File(path, filename))
-//		        .forceSize(130, 130)
-//		        .toFile(new File(path, "g_s_"+filename));
-//				
-//				fis = new FileInputStream(path+ "g_s_"+filename);
-//				OutputStream out = response.getOutputStream();
-//				FileCopyUtils.copy(fis, out);
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//			}finally {
-//				if(fis!=null) {
-//					try {
-//						fis.close();
-//					}catch(Exception e) {}
-//				} 
-//			}
-//		}
+
 	
 	// 회원가입폼
 			@RequestMapping("user/joinPage")

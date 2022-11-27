@@ -18,4 +18,6 @@ public interface MateReplyService {
 	public List<MateReplyVO>getList(Criteria cri, Long no);
 	
 	public void updateRepCnt(MateReplyVO vo);
+	
+	public void minusRepCnt(Long no);
 }

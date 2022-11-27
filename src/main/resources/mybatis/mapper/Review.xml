@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.ReviewDAO">
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR"> <!-- 앞에있는 OR없애줌 -->
+			<foreach item='type' collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'R'.toString()">
+							regdate like '%'||#{keyword}||'%'
+						</when>
+						<when test="type == 'A'.toString()">
+							activityname like '%'||#{keyword}||'%'
+						</when>
+						
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+	
+	
+	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.ReviewVO" >
+	  <![CDATA[
+	  select no, mate_no, title, writer, content, regdate, replycnt, likecnt, hit
+	  from ( select
+	    ]]>
+	    	/*+INDEX_DESC(review pk_review ) */
+ 		 <![CDATA[
+ 		 rownum rn, no, mate_no, title, writer, content, regdate, replycnt, likecnt, hit
+	      from ]]>
+	      <choose>
+			<when test="filter == 'replycnt'.toString()">
+						(select * from review order by replycnt desc)	
+			</when>
+			<when test="filter == 'like'.toString()">
+						(select * from review order by likecnt desc)	
+			</when>
+			<when test="filter == 'newest'.toString()">
+						(select * from review order by regdate desc)	
+			</when>		
+			<otherwise>
+				review
+			</otherwise>
+		</choose>
+	   where <include refid="criteria"></include> 
+	  <![CDATA[    
+	   rownum <= #{pageNum} * #{amount}
+	     ]]> 
+	      )  
+	 <![CDATA[ 
+	  where rn > (#{pageNum} -1) * #{amount}   
+	 ]]>
+  </select>
+	
+	<select id="getTotalCount" resultType="int">
+	  select count(*) from review where <include refid="criteria"></include> 
+	<![CDATA[    
+	 	 no > 0  
+	   ]]>
+  </select>
+	
+	
+	<insert id="insert">
+		<![CDATA[
+		insert into review (no,mate_no,title,writer,content,regdate)
+		values
+		(seq_review.nextval,0,#{title},'글작성자',#{content},sysdate)
+		
+		]]>
+	</insert>
+	
+	<select id="read" resultType="com.kosta.jupjup.vo.ReviewVO">
+		select * from review where no =
+		#{no}
+	</select>
+	
+	
+			
+</mapper>		

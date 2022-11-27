@@ -24,5 +24,7 @@ public interface MateReplyDAO {
 	public List<MateReplyVO> getListWithPaging(@Param("cri")Criteria cri, @Param("no")Long no);
 	
 	public void updateRepCnt(MateReplyVO vo);
+	
+	public void minusRepCnt(Long no);
 			
 }

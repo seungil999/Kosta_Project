@@ -10,7 +10,9 @@
 		<mapper resource="mybatis/mapper/MateJoin.xml" />
 		<mapper resource="mybatis/mapper/MateCreate.xml" />
 		<mapper resource="mybatis/mapper/UserMapper.xml" />
-
+		<mapper resource="mybatis/mapper/Review.xml" />
+		<mapper resource="mybatis/mapper/ReviewLike.xml" />
+		<mapper resource="mybatis/mapper/ReviewReplyMapper.xml" />
 	</mappers>
 </configuration>
 

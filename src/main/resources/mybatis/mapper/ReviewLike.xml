@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.ReviewLikeDAO">
+	
+	 <select id="likeCount" resultType="Integer">
+		select count(lno) from review_like where no=#{no}
+	</select>
+	
+	<insert id="likeInsert">
+		insert into review_like (no) values (#{no})
+	</insert>
+	
+	<select id="likeGetInfo" resultType="Integer">
+		select lno from review_like where no=#{no}
+	</select>
+	
+	<update id="likeUpdate">
+		update review_like
+		set <include refid="cal"></include>
+		where no=#{no}
+	</update>
+	
+	<update id="likeCntUpdate">
+		update review
+		set likecnt=<include refid="cntcal"></include>
+		where no=#{no}
+	</update>
+	
+	<sql id="cal">
+		<if test="count == 1">
+			lno = 0
+		</if> 
+		
+		<if test="count == 0">
+			lno = lno + 1 
+		</if>
+	</sql>
+	
+	<sql id="cntcal">
+		<if test="count == 1">
+			likecnt-1
+		</if> 
+		
+		<if test="count == 0">
+			likecnt+1 
+		</if>
+	</sql>
+</mapper>		

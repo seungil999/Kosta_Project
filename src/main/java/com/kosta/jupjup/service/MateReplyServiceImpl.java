@@ -52,4 +52,10 @@ public class MateReplyServiceImpl implements MateReplyService {
 		dao.updateRepCnt(vo);
 	}
 
+	@Override
+	public void minusRepCnt(Long no) {
+
+		dao.minusRepCnt(no);
+	}
+
 }

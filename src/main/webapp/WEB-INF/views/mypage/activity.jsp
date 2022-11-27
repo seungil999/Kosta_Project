@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 
 <html>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
 
 
@@ -58,18 +59,15 @@
 	
 	
 	</div>
+
+<script type="text/javascript">
+	$(document).on("click", '.uploadbtn', function(e){
+		location.href="/review/writeForm";
+		console.log("click!");
+	});
+</script>
 	
-
-
-
-
-
-
-
-
 </html>
-
-
 
 
 

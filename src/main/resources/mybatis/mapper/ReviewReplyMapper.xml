@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.ReviewReplyDAO">
+	
+	<select id="read" resultType="com.kosta.jupjup.vo.MateReplyVO">
+		select * from review_reply where rno=#{rno}
+	</select>
+	
+	<insert id="insert">
+		insert into review_reply (rno, no, reply, replyer) values
+		(seq_review_reply.nextval,#{no}, #{reply},#{replyer})
+	</insert>
+	
+	<update id="update">
+		update review_reply set reply = #{reply}, updatedate=sysdate where rno=#{rno}
+	</update>
+			
+	<delete id="delete">
+		delete from review_reply where rno = #{rno}
+	</delete>
+	
+	<select id="getListWithPaging" resultType="com.kosta.jupjup.vo.MateReplyVO">
+		select rno, no, reply, replyer, replyDate, updatedate
+		from review_reply where no =#{no}
+		order by rno asc
+	</select>
+	
+	<update id="updateRepCnt">
+		update review set replyCnt = replycnt+1 where no=#{no}
+	</update>
+	<update id="minusRepCnt">
+		update review set replyCnt = replycnt-1 where no=#{no}
+	</update>
+	
+	
+</mapper>		

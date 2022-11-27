@@ -14,7 +14,7 @@
 	</insert>
 	
 	<update id="update">
-		update mate_reply set reply = #{reply}, updatedate=sysdate where rno=#{rno}
+		update mate_reply set reply = #{reply}, replydate=sysdate where rno=#{rno}
 	</update>
 			
 	<delete id="delete">
@@ -29,6 +29,9 @@
 	
 	<update id="updateRepCnt">
 		update mate set replyCnt = replycnt+1 where no=#{no}
+	</update>
+	<update id="minusRepCnt">
+		update mate set replyCnt = replycnt-1 where no=#{no}
 	</update>
 	
 	

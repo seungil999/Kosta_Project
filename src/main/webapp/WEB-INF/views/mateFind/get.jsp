@@ -252,15 +252,26 @@ $(document).ready(function() {
      
      $(document).on("click", '#rembtn', function(e){
     	    var rno = $(this).data("rno");
-    	    
     		console.log(rno);
     		replyService.remove(rno,function(result){
+    			if(result=='success'){
+    				$.ajax({
+    	    			url : "/replies/repCntUpdate",
+    	    			type : 'PUT',
+    	    			contentType: 'application/json',
+    	    			data : JSON.stringify(noValue),
+    	    			success :
+    	    				console.log("성공")	
+    	    			, error : 
+    	    				console.log("에러") 
+    	    			});
+    			}
     			alert(result);
+    			var repcnt = $("#replycnt").html();
+    	        $("#replycnt").html(parseInt(repcnt)-1);
     			repReply.val("");
     			showList(1);
-    			
     		});
-    		
     		
     	});
      $(document).on("click", ".replyUpdateBtn", function(e){
