@@ -245,10 +245,11 @@ public class ReviewController {
 		if(match.find()){ // 이미지 태그를 찾았다면,,
 		    imgTag = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
 		}
-		 
 		
 		review.setThumbnail(imgTag);
-		
+		if(null == review.getThumbnail()) {
+			review.setThumbnail("<img src=\"/resources/img/logo2.png\">");
+		}
 		if (reviewService.modify(review)) {
 			rttr.addFlashAttribute("result", "success");
 		}
