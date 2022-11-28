@@ -9,6 +9,7 @@ public class ReviewVO {
 
 	private Long no;
 	private Long mate_no;
+	private String thumbnail;
 	private String title;
 	private String writer;
 	private String content;

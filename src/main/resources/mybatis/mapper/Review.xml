@@ -33,12 +33,12 @@
 	
 	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.ReviewVO" >
 	  <![CDATA[
-	  select no, mate_no, title, writer, content, regdate, replycnt, likecnt, hit
+	  select no, mate_no, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	  from ( select
 	    ]]>
 	    	/*+INDEX_DESC(review pk_review ) */
  		 <![CDATA[
- 		 rownum rn, no, mate_no, title, writer, content, regdate, replycnt, likecnt, hit
+ 		 rownum rn, no, mate_no, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	      from ]]>
 	      <choose>
 			<when test="filter == 'replycnt'.toString()">
@@ -74,9 +74,9 @@
 	
 	<insert id="insert">
 		<![CDATA[
-		insert into review (no,mate_no,title,writer,content,regdate)
+		insert into review (no,mate_no,title,writer,content,regdate,thumbnail)
 		values
-		(seq_review.nextval,0,#{title},'글작성자',#{content},sysdate)
+		(seq_review.nextval,0,#{title},'글작성자',#{content},sysdate,#{thumbnail})
 		
 		]]>
 	</insert>
@@ -86,6 +86,20 @@
 		#{no}
 	</select>
 	
+	<update id="update" >
+	 	update review
+	 	set title=#{title},
+	 	content=#{content},
+	 	regdate=sysdate,
+	 	thumbnail=#{thumbnail}
+	 	where no=#{no}
+	</update>
 	
-			
+	<delete id="delete">
+		delete review where no = #{no}
+	</delete>
+	
+	<update id="hit">
+		update review set hit=hit+1 where no=#{no}
+	</update>
 </mapper>		

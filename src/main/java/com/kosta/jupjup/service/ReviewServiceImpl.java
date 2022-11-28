@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kosta.jupjup.dao.ReviewDAO;
 import com.kosta.jupjup.vo.Criteria;
@@ -36,6 +37,24 @@ public class ReviewServiceImpl implements ReviewService{
 	public int getTotal(Criteria cri) {
 		return dao.getTotalCount(cri);
 
+	}
+
+	@Override
+	public boolean modify(ReviewVO vo) {
+		
+		return dao.update(vo)==1;
+	}
+
+	@Override
+	public boolean remove(Long no) {
+
+		return dao.delete(no)==1;
+	}
+
+	@Override
+	public void hit(Long no) {
+		
+		dao.hit(no);
 	}
 
 

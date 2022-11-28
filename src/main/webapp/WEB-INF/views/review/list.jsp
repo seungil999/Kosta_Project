@@ -6,7 +6,6 @@
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">	
 	
 	<div>
-
 		<form id='searchForm' action="/review/list" method='get'>
 			<select name='type' id='type' class='mate-select'>
 				<option value="T" name="option" class="lang-option"
@@ -34,13 +33,22 @@
 	<div class="review-title">후기</div> 
 	<div class="main">
 		<span class="filter replycnt"><a href="replycnt">댓글순</a></span>
-		<span class="filter like"><a href="like">좋아요순</a></span>
+		<span class="filter like"><a href="like">좋아요순</a></span> 	
 		<span class="filter newest"><a href="newest">최신순</a></span>
 	
 		<br><br>
 		<hr>
 	<c:forEach items="${list}" var="review">
-	<a class="move" href="${review.no}"><span class="image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
+	<a class="move" href="${review.no}">
+	<c:choose>
+	
+		<c:when test="${empty review.thumbnail }">
+			<span class="image"><img class="activity-Img" src="/resources/img/logo2.png" width=250; height=200;></span>
+		</c:when>
+		<c:otherwise>
+			<span class="image">${review.thumbnail }</span>
+		</c:otherwise>
+	</c:choose>
 		<span class="titleInfo">${review.title}</span></a>
 		<span class="date">${review.regdate }</span>
 		<br>
@@ -93,10 +101,13 @@
 </form>
 
 <script type="text/javascript">
-$(document)
-.ready(
-		function() {
+$(document) .ready(function() {
 
+	remove();
+	function remove(){
+	$('.content').find($('img')).remove();
+	};
+	
 			history.replaceState({}, null, null);
 			var actionForm = $("#actionForm");
 			var searchForm = $("#searchForm");
@@ -221,7 +232,22 @@ $(document)
 
 					});
 
+			
+			typeChange();
+			function typeChange(){
+				$(".content").each(function (index, item){
+					var content = $(item).html();
+					if(content.length>40){
+					content=content.substring(0,40);
+					$(item).html(content+"...");
+					}
+				});
+				
+			  };
 		});
+		
+		
+		
 </script>
 
 

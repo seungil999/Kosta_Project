@@ -51,8 +51,10 @@
 			<span id='likecnt'>${review.likecnt}</span>
 			<input type="hidden" id="likecheck" value="${like }">
 		</c:when>
-	</c:choose>		
-				
+	</c:choose>
+	<button id='remove' type="button" class="modrem">삭제</button>		
+	<button id='modify' type="button" class="modrem">수정</button>
+	
 		<hr style="background:#ccc; border:0; height:1px; ">
 	
 	
@@ -88,9 +90,16 @@
   	  <input type='hidden' name='repReplyer' value='<c:out value=""/>'>
       <input type='hidden' name='repReplyDate' value='<c:out value=""/>'>
       <input type='hidden' name='repReplyNo' value='<c:out value=""/>'>
-      
 </div>		
 
+<form id='operForm'>
+  <input type='hidden' id='no' name='no' value='<c:out value="${review.no}"/>'>
+  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
+  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>
+  <input type='hidden' name='filter' value='<c:out value="${cri.filter}"/>'>  
+</form>
 
 
 
@@ -306,6 +315,30 @@ $.ajax({
 	});
 };
 
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	  var operForm = $("#operForm"); 
+
+	  $("button[id='modify']").on("click", function(e){
+		  operForm.attr("action","/review/modify");
+		  operForm.attr("method","get");
+
+		  operForm.submit();
+	    
+	  });
+	  
+	    
+	  $("button[id='remove']").on("click", function(e){
+	   
+	    operForm.attr("action","/review/remove");
+	    operForm.attr("method","post");
+	    operForm.submit();
+	    
+	  });  
+	});
 
 </script>
 </html>

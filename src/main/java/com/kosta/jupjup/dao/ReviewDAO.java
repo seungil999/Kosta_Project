@@ -18,5 +18,8 @@ public interface ReviewDAO {
 	public void insert(ReviewVO vo);
 	public ReviewVO read(Long no);
 	
+	public int update(ReviewVO vo);
+	public int delete(Long no);
+	public void hit(Long no);
 	
 }

@@ -70,7 +70,7 @@ public class MateCreateController {
 		
 		return "redirect:/matefind/list";
 	}
-	
+	 
 	@GetMapping("/images/{filename}")
 	public void viewImages(@PathVariable String filename, HttpServletResponse response) {
 		String path = servletontext.getRealPath("/images/");

@@ -7,9 +7,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.jupjup.service.ReviewLikeService;
 import com.kosta.jupjup.service.ReviewReplyService;
@@ -53,11 +56,19 @@ public class ReviewController {
     
 	  model.addAttribute("list", reviewService.getlist(cri)); 
 	  
+	  List<ReviewVO> vo = new ArrayList<ReviewVO>(); 
+	  vo= reviewService.getlist(cri);
+	 
+	  for(ReviewVO a : vo) {
+		  System.out.println(a.toString());
+	  }
+	  
+	  
 	  int total = reviewService.getTotal(cri);
 	  model.addAttribute("pageMaker", new PageVO(cri, total));
 	  
 	  return "/review/list";  
-	  }
+	}
 	
 	@GetMapping("/writeForm")
 	public String writeForm() {
@@ -167,9 +178,10 @@ public class ReviewController {
 	
 
 
-	@GetMapping({ "/get", "/modify" })
+	@GetMapping("/get")
 	  public void get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri,Model model) {
 		
+		reviewService.hit(no);
 		model.addAttribute("review", reviewService.get(no));
 		 MateLikeVO likeVO = new MateLikeVO();
 		  likeVO.setNo(no);
@@ -185,14 +197,75 @@ public class ReviewController {
 		  }
 		  model.addAttribute("like", like);
 	}
+	@GetMapping("/modify")
+	  public void modify(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri,Model model) {
+		
+		model.addAttribute("review", reviewService.get(no));
+		 
+	}
 	
 	@PostMapping("/write")
 	public String write(Model model,@ModelAttribute ReviewVO rvo) {
-		System.out.println(rvo.toString());
+
+		Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+		// 추출할 내용.
+		String content = rvo.getContent();
+		 
+		// 내용 중에서 이미지 태그를 찾아라!
+		Matcher match = pattern.matcher(content);
+		 
+		String imgTag = null;	
+		 
+		if(match.find()){ // 이미지 태그를 찾았다면,,
+		    imgTag = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
+		}
+		 
 		
+		rvo.setThumbnail(imgTag);
+		if(null == rvo.getThumbnail()) {
+			rvo.setThumbnail("<img src=\"/resources/img/logo2.png\">");
+		}
 		reviewService.write(rvo);
 		
-		return "/review/list";
+		return "redirect:/review/list";
 	}
+	
+	@PostMapping("/modify")
+	public String modify(ReviewVO review, Criteria cri, RedirectAttributes rttr) {
+
+		Pattern pattern  =  Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+		// 추출할 내용.
+		String content = review.getContent();
+		 
+		// 내용 중에서 이미지 태그를 찾아라!
+		Matcher match = pattern.matcher(content);
+		 
+		String imgTag = null;	
+		 
+		if(match.find()){ // 이미지 태그를 찾았다면,,
+		    imgTag = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
+		}
+		 
+		
+		review.setThumbnail(imgTag);
+		
+		if (reviewService.modify(review)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+
+		return "redirect:/review/list" + cri.getListLink();
+	}
+	
+	 @PostMapping("/remove")
+		 public String remove(@RequestParam("no") Long no, Criteria cri,
+		 RedirectAttributes rttr) {
+		
+	
+		 if (reviewService.remove(no)) {
+		 rttr.addFlashAttribute("result", "success");
+		 }
+		 
+		 return "redirect:/review/list"+cri.getListLink();
+		 }
 	
 }
