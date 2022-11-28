@@ -39,4 +39,16 @@ public class MateFindServiceImpl implements MateFindService {
 		return matefindDAO.getBestlist(cri);
 	}
 
+	@Override
+	public boolean modify(MateVO vo) {
+		
+		return matefindDAO.update(vo)==1;
+	}
+
+	@Override
+	public boolean remove(Long no) {
+
+		return matefindDAO.delete(no)==1;
+	}
+
 }

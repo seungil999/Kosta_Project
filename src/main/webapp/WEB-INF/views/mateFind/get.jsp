@@ -88,7 +88,7 @@
 	 	</div>
 	 	
         <div class="form-group">
-          <h2 class="mate-title">안내사항</h2><textarea class="form-control content" id="content">${mate.content }</textarea>
+          <h2 class="mate-title">안내사항</h2><textarea class="form-control content" id="content" readonly>${mate.content }</textarea>
         </div>
           <div class="form-group">
           <h2 class="mate-title">모임장소</h2>
@@ -103,14 +103,18 @@
 	
         <br><br><br>
         <div class="form-group">
+        <button id='remove' type="button" class="modrem">삭제</button>		
+		<button id='modify' type="button" class="modrem">수정</button>
         <h2 class="mate-title">현재 모임 참여중인 인원( ${mate.peoplenum} )</h2>
+        
         </div>
+        	
         <hr>
         
         <img class="user-img" src="/Mate/display?fileName=${mate.image}"/>
         <br><br>
         
-    <form id='operForm' action="/mate/modify" method="get">
+    <form id='operForm'>
 	  <input type='hidden' id='no' name='no' value='<c:out value="${mate.no}"/>'>
 	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
@@ -343,6 +347,7 @@ $(document).ready(function() {
   $("button[data-oper='list']").on("click", function(e){
     operForm.find("#no").remove();
     operForm.attr("action","/matefind/list")
+    operForm.attr("method","get");
     operForm.submit();
     
   });
@@ -501,6 +506,31 @@ $(document).on("click", "#matejoin", function(e){
 	    } 
 	});    
 	</script>
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	  var operForm = $("#operForm"); 
+
+	  $("button[id='modify']").on("click", function(e){
+		  operForm.attr("action","/matefind/modify");
+		  operForm.attr("method","get");
+
+		  operForm.submit();
+	    
+	  });
+	  
+	    
+	  $("button[id='remove']").on("click", function(e){
+	   
+	    operForm.attr("action","/matefind/remove");
+	    operForm.attr("method","post");
+	    operForm.submit();
+	    
+	  });  
+	});
+
+</script>
+</script>	
 
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

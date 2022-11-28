@@ -19,4 +19,7 @@ public interface MateFindDAO {
 
 	public MateVO read(Long no);
 
+	public int update(MateVO vo);
+	
+	public int delete(Long no);
 }

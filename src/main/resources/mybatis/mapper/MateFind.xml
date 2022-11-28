@@ -120,5 +120,25 @@
 		WHERE ROWNUM <=3
 	 ]]>
   </select> 
+  
+  <update id="update" >
+	 	update mate
+	 	set activityname=#{activityname},
+	 	meetingplace = #{meetingplace},
+	 	meetingdate = #{meetingdate},
+	 	meetingtime = #{meetingtime},
+	 	peoplemaxnum = #{peoplemaxnum},
+	 	startzone = #{startzone},
+	 	endzone = #{endzone},
+	 	starttime = #{starttime},
+	 	endtime = #{endtime},
+	 	content=#{content},
+	 	updatedate=sysdate
+	 	where no=#{no}
+	</update>
+	
+	<delete id="delete">
+		delete mate where no = #{no}
+	</delete>
 			
 </mapper>		

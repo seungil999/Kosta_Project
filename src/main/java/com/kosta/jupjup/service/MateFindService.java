@@ -14,5 +14,9 @@ public interface MateFindService {
 	public int getTotal(Criteria cri);
 
 	public MateVO get(Long no);
+	
+	public boolean modify(MateVO vo);
+	
+	public boolean remove(Long no);
 
 }

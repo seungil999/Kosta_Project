@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.jupjup.service.MateFindService;
 import com.kosta.jupjup.service.MateJoinService;
@@ -19,6 +21,7 @@ import com.kosta.jupjup.service.MateLikeService;
 import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateLikeVO;
+import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.PageVO;
 
 @Controller
@@ -63,7 +66,7 @@ public class MateFindController {
 	  return "/mateFind/list";  
 	  }
 	   
-	  @GetMapping({ "/get", "/modify" })
+	  @GetMapping("/get")
 	  public String get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri, Model model) {
 
 	  model.addAttribute("mate", service.get(no));
@@ -98,6 +101,35 @@ public class MateFindController {
 	  
 	  return "/mateFind/get";
 	}
+	  
+	  @GetMapping("/modify")
+	  public String modify(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri, Model model) {
+
+	  model.addAttribute("mate", service.get(no));
+	  
+	  return "/mateFind/modify";
+	}
+	  
+	  @PostMapping("/modify")
+		public String modify(MateVO vo, Criteria cri, RedirectAttributes rttr) {
+
+				if (service.modify(vo)) {
+				rttr.addFlashAttribute("result", "success");
+			}
+
+			return "redirect:/matefind/list" + cri.getListLink();
+		}
+		
+		 @PostMapping("/remove")
+			 public String remove(@RequestParam("no") Long no, Criteria cri,
+			 RedirectAttributes rttr) {
+		
+			 if (service.remove(no)) {
+			 rttr.addFlashAttribute("result", "success");
+			 }
+			 
+			 return "redirect:/matefind/list"+cri.getListLink();
+			 }
 
 	
 	// 회원가입폼
