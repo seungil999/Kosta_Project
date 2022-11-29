@@ -17,7 +17,7 @@
 	background: white;
 	border: 3px solid #42DF2B;
 	border-radius: 15px;
-	margin:10px auto 40px;
+	margin: 10px auto 40px;
 	width: 1000px;
 	padding-bottom: 40px;
 	position: relative;
@@ -38,6 +38,21 @@ p {
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
+}
+
+.htemp {
+	color: red;
+}
+
+.ltemp {
+	color: blue;
+}
+
+.weatherAPI {
+	float:right;
+}
+.weatherAPI .ctemp{
+	font-size:20px;
 }
 </style>
 <body data-spy="scroll" data-target="#header">
@@ -63,10 +78,10 @@ p {
 							alt="...">
 						<div class="carousel-caption">
 							<div class="slider_text">
-								<h3>플로깅</h3>
-								<h2>플로깅</h2>
-								<p>플로깅</p>
-								<a href="" class="custom_btn">플로깅 설명페이지로 이동</a>
+								<h2>환경과 건강을 챙기는 플로깅</h2>
+								<br>
+								<p>함께 하고싶다면 ZupGoZupUp 에서 시작하세요</p>
+								<a href="/MainDetail" class="custom_btn">플로깅이란?</a>
 							</div>
 						</div>
 					</div>
@@ -76,87 +91,108 @@ p {
 		</div>
 	</section>
 	<!--end of slider section-->
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+		crossorigin="anonymous"></script>
+	<script>
+		$
+				.getJSON(
+						'https://api.openweathermap.org/data/2.5/weather?lat=37.4730836&lon=126.8788276&appid=1739efda697cf8ad45f9120598c9257d&units=metric',
+						function(result) {
+							$('.ctemp').append(result.main.temp);
+							$('.htemp').append(result.main.temp_max);
+							$('.ltemp').append(result.main.temp_min);
+							var wiconURL = '<img src="http://openweathermap.org/img/wn/'+result.weather[0].icon+'.png" alt="'+result.weather[0].description+'">'
+							$('.icon').html(wiconURL);
+							
+						});
+	</script>
 
 	<section id="intro">
-		<div class="intro_notice">
-			<div class="intro_notice_tl">
-				<div class="section_title"></div>
-				<div class="notice_title"></div>
-				<div class="notice_sub_title"></div>
-				<div class="more_bt"></div>
+		<div class="section_title">
+			<div class="weatherAPI">
+				<b class="icon"> </b> 
+				<b class="ctemp"></b>°
+				<b class="weather"></b>
+				<span class="ltemp"></span>°
+				<b>/</b>
+				<span class="htemp"></span>°
 			</div>
 		</div>
 	</section>
 
+
 	<!-- 메인 좋아요 순 리스트 -->
-			<h3 class="BestListHeader">이번주 Zup픽 </h3>
-			<div class="BestList">
-				<div class="row">
-					<c:forEach items="${list}" var="mate">
-						<div class="col-md-4">
-							<div class="blog_news">
-								<div class="single_blog_item">
+	<h3 class="BestListHeader">이번주 Zup픽</h3>
+	<div class="BestList">
+		<div class="row">
+			<c:forEach items="${list}" var="mate">
+				<div class="col-md-4">
+					<div class="blog_news">
+						<div class="single_blog_item">
 
-									<div class="blog_img">
-										<a class='move' href="${mate.no}"><img style="width: 360px; height: 300px;"
-											src="/Mate/display?fileName=${mate.image}" /></a>
-									</div>
-									<div class="blog_content">
-										<h2 class="mate-title">
-											<a class='move' href="${mate.no}">활동명 :
-												${mate.activityname }</a>
-										</h2>
-										<div class="expert">
-											<div class="left-side text-left">
-												<p class="left_side">
-													<span class="admin"> <c:choose>
-															<c:when test="${mate.regular eq 1 }">
-																<span style="color: #60e44c;">정기활동</span>
-															</c:when>
-															<c:when test="${mate.regular eq 0 }">
-																<span style="color: #ff8a8a;">번개활동</span>
-															</c:when>
-														</c:choose></span><br> <span class="admin">활동장 : ${mate.writer }</span><br>
-													<span class="admin">모임장소 : ${mate.meetingplace}</span><br>
-													<span class="admin">활동날짜 : ${mate.meetingdate}
-														(${mate.dayofweek }) / </span> <span class="admin meetingtime">${mate.meetingtime }</span><br>
-													<span class="admin">모임인원 :</span><span class="admin"
-														style="color: orange;">${mate.peoplenum } </span> /<span
-														class="admin">${mate.peoplemaxnum } 명</span><br> <span
-														class="admin">작성일 : ${mate.regdate }</span><br> <span
-														class="admin">내용 : </span><span class="content">${mate.content }</span>
+							<div class="blog_img">
+								<a class='move' href="${mate.no}"><img
+									style="width: 360px; height: 300px;"
+									src="/Mate/display?fileName=${mate.image}" /></a>
+							</div>
+							<div class="blog_content">
+								<h2 class="mate-title">
+									<a class='move' href="${mate.no}">활동명 : ${mate.activityname }</a>
+								</h2>
+								<div class="expert">
+									<div class="left-side text-left">
+										<p class="left_side">
+											<span class="admin"> <c:choose>
+													<c:when test="${mate.regular eq 1 }">
+														<span style="color: #60e44c;">정기활동</span>
+													</c:when>
+													<c:when test="${mate.regular eq 0 }">
+														<span style="color: #ff8a8a;">번개활동</span>
+													</c:when>
+												</c:choose></span><br> <span class="admin">활동장 : ${mate.writer }</span><br>
+											<span class="admin">모임장소 : ${mate.meetingplace}</span><br>
+											<span class="admin">활동날짜 : ${mate.meetingdate}
+												(${mate.dayofweek }) / </span> <span class="admin meetingtime">${mate.meetingtime }</span><br>
+											<span class="admin">모임인원 :</span><span class="admin"
+												style="color: orange;">${mate.peoplenum } </span> /<span
+												class="admin">${mate.peoplemaxnum } 명</span><br> <span
+												class="admin">작성일 : ${mate.regdate }</span><br> <span
+												class="admin">내용 : </span><span class="content">${mate.content }</span>
 
-												</p>
-												<br> <br>
-												<p class="right_side text-right">
-													<span class="right_msg text-right"><i
-														class="fa fa-comments-o"></i></span> <span class="count">${mate.replycnt }
-													</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-heart"></i>
-													<span class="count">${mate.likecnt }</span>
-												</p>
-											</div>
-										</div>
-										<p class="blog_news_content"></p>
-										<a href="" class="blog_link"></a>
+										</p>
+										<br> <br>
+										<p class="right_side text-right">
+											<span class="right_msg text-right"><i
+												class="fa fa-comments-o"></i></span> <span class="count">${mate.replycnt }
+											</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-heart"></i>
+											<span class="count">${mate.likecnt }</span>
+										</p>
 									</div>
 								</div>
+								<p class="blog_news_content"></p>
+								<a href="" class="blog_link"></a>
 							</div>
 						</div>
-					</c:forEach>
+					</div>
 				</div>
-			</div>
+			</c:forEach>
+		</div>
+	</div>
 	<form id='actionForm' action="/matefind/list" method='get'>
-				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 
-				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
-			    <input type='hidden' name='keyword' value='<c:out value="${ pageMaker.cri.keyword }"/>'>
-				
-				<input type='hidden' name='meeting' value='<c:out value="${ pageMaker.cri.meeting }"/>'>
+		<input type='hidden' name='type'
+			value='<c:out value="${ pageMaker.cri.type }"/>'> <input
+			type='hidden' name='keyword'
+			value='<c:out value="${ pageMaker.cri.keyword }"/>'> <input
+			type='hidden' name='meeting'
+			value='<c:out value="${ pageMaker.cri.meeting }"/>'> <input
+			type='hidden' name='filter'
+			value='<c:out value="${ pageMaker.cri.filter }"/>'>
 
-				<input type='hidden' name='filter' value='<c:out value="${ pageMaker.cri.filter }"/>'>
-				
-				
+
 	</form>
 
 	<!--Start of counter-->
@@ -244,27 +280,34 @@ p {
 	<script src="js/waypoints.min.js"></script>
 	<!--Counter UP-->
 	<script src="js/jquery.counterup.min.js"></script>
-	
-<script type="text/javascript">
-$(document)
-		.ready(
-				function() {
-	
-					history.replaceState({}, null, null);
-					var actionForm = $("#actionForm");
-					var searchForm = $("#searchForm");
-	$(".move") .on("click", function(e) {
-		e.preventDefault();
-		$('input').remove("#no");
-		actionForm.append("<input type='hidden' id='no' name='no' value='"
-				+ $(this).attr("href")+ "'>");
-		actionForm.attr("action", "/get");
-		actionForm.submit();
 
-	});
-});
-</script>
-	
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+
+							history.replaceState({}, null, null);
+							var actionForm = $("#actionForm");
+							var searchForm = $("#searchForm");
+							$(".move")
+									.on(
+											"click",
+											function(e) {
+												e.preventDefault();
+												$('input').remove("#no");
+												actionForm
+														.append("<input type='hidden' id='no' name='no' value='"
+																+ $(this).attr(
+																		"href")
+																+ "'>");
+												actionForm.attr("action",
+														"/get");
+												actionForm.submit();
+
+											});
+						});
+	</script>
+
 	<script>
 		$('.counter').counterUp({
 			delay : 10,

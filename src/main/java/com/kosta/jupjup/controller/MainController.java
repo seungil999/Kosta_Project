@@ -94,4 +94,9 @@ public class MainController {
 	  return "/mateFind/get";
 	}
 	
+	 @GetMapping("/MainDetail")
+	 private String MainDetail() {
+		 
+		 return "/MainDetail";
+	 }
 }

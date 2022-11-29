@@ -132,7 +132,7 @@ public class MateFindController {
 			 }
 
 	
-	// 회원가입폼
+		 	// 회원가입폼
 			@RequestMapping("user/joinPage")
 			String showJoin() {
 				return "/user/joinPage";

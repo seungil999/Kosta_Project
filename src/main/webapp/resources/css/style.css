@@ -369,13 +369,15 @@ input: -webkit-autofill:focus {
 	background: #86EC77;
 	height:84px;
 	width:100%;
-	font-size: 30px;
+	font-size: 15px;
+	
 }
 .section_title {
-	text-align: left;
+	text-align: center;
     word-spacing:5px;
     line-height:25px; 
-    color: white;
+    color: black;
+    padding: 10px;
 }
 
 .notice_title, 
