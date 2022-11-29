@@ -58,6 +58,10 @@ public class MyPageController {
 		
 		return "/mypage/withdraw";
 	}
-	
+	@GetMapping("/profile")
+	public String profile() { 
+		
+		return "/mypage/profile";
+	}
 	
 }

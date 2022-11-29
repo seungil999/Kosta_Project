@@ -8,7 +8,8 @@
 	</div>
 		<div class="nickname">닉네임</div>
 	<div>
-		<button type="button" class="modInfo">프로필 수정 <i class="fa fa-pencil" aria-hidden="true"></i></button>
+		<button type="button" class="modInfo" onclick="location.href='/mypage/profile'">프로필 수정
+		 <i class="fa fa-pencil" aria-hidden="true"></i></button>
 	</div>
 	<div class="list">
 		<div class="sidebar-bold">내 활동 내역</div>
@@ -21,6 +22,7 @@
 	<div class="list">
 			<div class="sidebar-bold">관심 목록</div>
 			<div class="sidebar-normal"><a href="/mypage/likeActivity">좋아요한 활동</a></div>
+			<div class="sidebar-normal"><a href="/mypage/likeRecom">좋아요한 후기</a></div>
 			<div class="sidebar-normal"><a href="/mypage/likeRecom">좋아요한 추천장소</a></div>
 		</div>
 		<hr>
