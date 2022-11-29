@@ -50,6 +50,7 @@ p {
 
 .weatherAPI {
 	float:right;
+	width:25%;
 }
 .weatherAPI .ctemp{
 	font-size:20px;
@@ -112,7 +113,7 @@ p {
 		<div class="section_title">
 			<div class="weatherAPI">
 				<b class="icon"> </b> 
-				<b class="ctemp"></b>°
+				<b class="ctemp"></b><b style="font-size:20px;">°</b>
 				<b class="weather"></b>
 				<span class="ltemp"></span>°
 				<b>/</b>

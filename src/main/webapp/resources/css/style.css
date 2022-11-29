@@ -394,6 +394,53 @@ input: -webkit-autofill:focus {
     color: blue;
 } 
 
+/*detail페이지 */
+.content-wrap{
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	text-align:center;	
+}
+.chap1, .chap3, .chap4, .chap5{
+	padding: 200px 0 200px;
+	width:100%;
+	height:800px;
+}
+.chap3{
+	background-color: #a2cba1;
+}
+.chap2{
+	padding: 150px 0 150px;
+	width:100%;
+	height:1200px;
+}
+.Explanation_title {
+	font-size:30px;
+	letter-spacing:10px;
+	font-weight: bold;
+	margin-bottom:30px;
+}
+.Explanation_title2 {
+	font-size:25px;
+	font-weight: bold;
+	margin-bottom:30px;
+}
+.Explanation_main{
+	line-height:3;
+	font-size:13px;
+}
+.main_feature {
+	display: inline-block;
+    margin: 80px 70px;
+    width: 330px;
+}
+.ftitle{
+	margin: 20px 0;
+	font-weight:bold;
+	font-size:20px;
+}
+.fmain{
+	font-size:13px;
+}
 /*CreateMate*/
 #CreateMate.textarea {
 	width: 100%;
