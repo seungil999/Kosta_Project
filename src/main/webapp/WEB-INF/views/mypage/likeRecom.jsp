@@ -7,6 +7,17 @@
 <!DOCTYPE html>
 
 <html>
+<div class="myp-title">관심 목록</div>
+	<div class="main">
+		<span class="bold">좋아요한 추천장소</span>
+	<hr>
+	
+	
+	</div>
+	
+
+<script type="text/javascript">
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
 

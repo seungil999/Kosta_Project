@@ -10,33 +10,6 @@
 	
 	
 }
-
-.mate-keyword input[type="text"]{
-	background-color: rgb(233, 233, 233);
-	border-radius: 10;
-	margin-top:25px;
-	
-	float:left;
-	position: relative;
-	margin-left:10px;
-	height:40px;
-	white-space: nowrap;
-}
-.mate-keyword input[type="text"]:focus{
-    outline: 2px solid #007b04;
-}
-.mate-select{
-	float:left;	
-	padding:5px;
-	margin-left:190px;
-	margin-top:25px;
-	padding: 0.8rem 2rem;
-	border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 10px;
-  
-}
-
 button {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -67,6 +40,33 @@ button {
     transition: 0.5s;
     white-space: nowrap;
   }
+.mate-keyword input[type="text"]{
+	background-color: rgb(233, 233, 233);
+	border-radius: 10;
+	margin-top:25px;
+	
+	float:left;
+	position: relative;
+	margin-left:10px;
+	height:40px;
+	white-space: nowrap;
+}
+.mate-keyword input[type="text"]:focus{
+    outline: 2px solid #007b04;
+}
+.mate-select{
+	float:left;	
+	padding:5px;
+	margin-left:190px;
+	margin-top:25px;
+	padding: 0.8rem 2rem;
+	border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+  
+}
+
+	
 button.success {
 	  padding: 0.8rem 2.5rem;
     -webkit-appearance: none;

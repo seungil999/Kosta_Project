@@ -4,9 +4,10 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<html>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
-
+<link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 
 
 <div class="mate-border">
@@ -249,5 +250,5 @@ $(document).ready(function() {
 		  };
 	</script>	
 
-
+</html>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

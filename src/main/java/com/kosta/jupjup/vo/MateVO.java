@@ -17,8 +17,8 @@ public class MateVO {
 	private int peoplemaxnum;
 	private String startzone;
 	private String endzone;
-	private int starttime;
-	private int endtime;
+	private Integer starttime;
+	private Integer endtime;
 	private String content;
 	private Date regdate;
 	private Date updatedate;

@@ -40,9 +40,7 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/responsive.css"
 	rel="stylesheet"> 
-<link
-	href="${pageContext.request.contextPath}/resources/css/mate-find.css"
-	rel="stylesheet">
+
 	
 	
 
@@ -76,7 +74,7 @@
 								<!--로그인 / 로그아웃-->
 								<li class="nav-item"><c:choose>
 										<c:when test="${sessionScope.id eq null}">
-											<a class="nav-link" href="user/loginPage">로그인</a>
+											<a class="nav-link" href="/user/loginPage">로그인</a>
 										</c:when>
 										<c:otherwise>
 											<a class="nav-link" href="./logout">로그아웃</a>

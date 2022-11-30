@@ -15,30 +15,134 @@
 		<div class="bold">회원정보 수정</div>
 	<hr>
 	
+ 	<table border=1 class="modtab">
+ 		<tr>
+	 		<td>아이디</td>
+	 		<td><textarea rows="1" class="form-control id" readonly></textarea></td>
+	 		<td rowspan="2"> 
+            	<div class="uploadResult">
+            	</div>
+            	<input type="hidden" name="image" id="image">
+        	</td>
+ 		</tr>
+ 		<tr>
+	 		<td>비밀번호</td>
+	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+ 		</tr>
+ 		<tr>
+	 		<td>이름</td>
+	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		
+	 		<td>
+		 		<label for="file" class="modrem">&nbsp;&nbsp;&nbsp;&nbsp;프로필 사진 변경</label>
+		 		
+		 		<input type="file" name="file" id="file">
+	 		</td>
+		
+ 		</tr>
+ 		<tr>
+	 		<td>닉네임</td>
+	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td><button class="modrem">중복확인</button></td>
+ 		</tr>
+ 		<tr>
+	 		<td>이메일</td>
+	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td><button class="modrem">중복확인</button></td>
+ 		</tr>
+ 		<tr>
+	 		<td>휴대폰</td>
+	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td><button class="modrem">본인인증</button></td>
+ 		</tr>
+ 		<tr>
+	 		<td>성별</td>
+	 		<td><label for="man">남자</label><input type="radio" name="gender" id="man" value="남자"> 
+	 			<label for="woman">여자</label><input type="radio" name="gender" id="woman" value="여자">
+	 		</td>
+ 		
+ 		</tr>
+ 	</table>
 
-	<textarea rows="1" class="form-control id" readonly></textarea><div class="my-info">아이디</div>
 	
-	<textarea rows="1" class="form-control id"></textarea><div class="my-info">비밀번호</div>
-	<button class="modrem">프로필 사진 변경</button>
-	<textarea rows="1" class="form-control id"></textarea><div class="my-info">이름</div>
-	<button class="modrem">중복확인</button>
-	<textarea rows="1" class="form-control id"></textarea><div class="my-info">닉네임</div>
-	<button class="modrem">중복확인</button>
-	<textarea rows="1" class="form-control id"></textarea><div class="my-info">이메일</div>
-	<button class="modrem">본인인증</button>
-	<textarea rows="1" class="form-control id"></textarea><div class="my-info">휴대폰</div>
-	<div class="gender">성별</div><div class="radio">
-	<div><input  type="radio" id="man" name="gender" value="man"><label for="man" class="my-label">남자</label></div>
-	<div class="nbsp"><input type="radio" id="woman" name="gender" value="woman"><label class="my-label" for="woman">여자</label></div>
-	</div>
-	
-	<br><br>
 </div>
 
 
 
 
+<script type="text/javascript">
+$('#file').change(
+		function() {
+			var formData = new FormData();
+			var inputFile = $("input[type='file']");
+			var files = inputFile[0].files;
 
+			/* var fileName = arr[0].thumbnailURL;
+			
+			$.post('/Mate/removeFile', {
+				fileName : fileName
+			}, function(result) {
+				console.log(result);
+			}); */
+			$("#profileImg").remove();
+			formData.append("uploadFiles", files[0]);
+			
+
+			$.ajax({
+						url : '/mypage/uploadAjax',
+						processData : false,
+						contentType : false,
+						data : formData,
+						type : 'POST',
+						dataType : 'json',
+						success : function(result) {
+							
+							showUploadedImages(result);
+							var str = "";
+							for (var i = 0; i < result.length; i++) {
+								str += result[i].thumbnailURL;
+							}
+							$("#image").val(str);
+						},
+						error : function(jqXHR, textStatus,
+								errorThrown) {
+							console.log(textStatus);
+						}
+
+					});//.ajax
+			function showUploadedImages(arr) {
+				console.log(arr);
+				var divArea = $(".uploadResult");
+				var str = "";
+				
+					str += "<div id='profileImg'>";
+					str += "<img class='profileImg' src='/Mate/display?fileName="
+							+ arr[0].thumbnailURL + "'>";
+					str += "</div>";
+				
+				divArea.append(str);
+			}
+			$(".uploadResult").on("click", ".removeBtn",
+					function(e) {
+						var target = $(this);
+						var fileName = target.data("name");
+						var targetDiv = $(this).closest("div");
+
+						console.log(fileName);
+
+						$.post('/Mate/removeFile', {
+							fileName : fileName
+						}, function(result) {
+							console.log(result);
+							if (result === true) {
+								targetDiv.remove();
+							}
+						})
+					})
+		});
+	
+	
+</script>
 
 
 

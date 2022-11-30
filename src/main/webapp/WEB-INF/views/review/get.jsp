@@ -6,7 +6,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/reviewReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">
-		
+<link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">		
 	
 	<div class="review-title">후기</div> 
 	<div class="main">

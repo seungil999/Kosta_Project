@@ -205,7 +205,8 @@ p {
 						<div class="counter_header">
 							<h2>ZupGo! ZupUp!</h2>
 							<p>
-								<strong id="getMonth"></strong>월 지구를 총 3번 23시간 정화했어요!
+							
+								<strong id="getMonth"></strong>월 지구를 총 ${time.HH }시간 ${time.MM }분 정화했어요!
 							</p>
 						</div>
 					</div>
@@ -240,7 +241,7 @@ p {
 							<div class="sigle_counter_item">
 								<img src="/resources/img/tuhnder.png" alt="">
 								<div class="counter_text">
-									<span class="counter">9854</span>
+									<span class="counter">${time.flash }</span>
 									<p>이번 달 번개</p>
 								</div>
 							</div>
@@ -253,7 +254,7 @@ p {
 								<div class="counter_text">
 									<span class=""></span>
 									<!-- 수정중 달 단위 -->
-									<span class="counter">5412</span>
+									<span class="counter">${time.regular }</span>
 									<p>이번 달 정기</p>
 								</div>
 							</div>
