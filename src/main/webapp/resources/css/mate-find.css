@@ -36,7 +36,7 @@
     border-radius: 10px;
   
 }
-
+/*
 button {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -67,6 +67,7 @@ button {
     transition: 0.5s;
     white-space: nowrap;
   }
+*/
 button.success {
 	  padding: 0.8rem 2.5rem;
     -webkit-appearance: none;

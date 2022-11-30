@@ -82,7 +82,7 @@
 											<a class="nav-link" href="./logout">로그아웃</a>
 										</c:otherwise>
 									</c:choose></li>
-								<li><a href="">고객센터</a></li>
+								<li><a href="/ServiceCenter/">고객센터</a></li>
 							</ul>
 						</div>
 						<!-- Collect the nav links, forms, and other content for toggling -->

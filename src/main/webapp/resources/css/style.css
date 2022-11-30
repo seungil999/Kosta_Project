@@ -1146,6 +1146,45 @@ li.fw-flash-message {
     padding-top:0px;
 }
 
+/*고객센터 ServiceCenter*/
+.leftbtn {
+	border: 1px solid #43a906;
+	float:left;
+	font-size: 15px;
+	margin: 0 35px;
+	width: 170px;
+}
+.leftbtn .scmenu{
+	text-align: left;
+	font-size:15px;
+}
+.leftbtn .scmenu .scbtn{
+	border:1px solid #43a906;
+	width:100%;
+	text-align: left;
+}
+.scmain {
+	width :65%;
+	height: 400px;
+	margin: 30px auto;
+	border: 1px solid #43a906;
+}
+.tablist{
+	line-height: 0px;
+    width: 100%;
+    letter-spacing: -.5px;
+}
+	
+}
+.scmain .scmain_title {
+	border-bottom-style:solid; 
+	border-bottom-color:#43a906; 
+	border-bottom-width:1px; 
+	text-align:left; 
+	margin: 20px 32px;
+	padding-bottom: 15px;
+	font-size: 20px;
+}
 
 
 /**/
