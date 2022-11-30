@@ -23,21 +23,12 @@
 						updatedate,
 						image,
 						regular)
-			values(SEQ_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},]]><include refid="regular"></include>
-			<![CDATA[
+			values(SEQ_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},#{meetingdate}
 			,#{peoplemaxnum},
 			#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular})
 		]]>
 	</insert>
 	
-	<sql id="regular">
-		<if test="regular == 1">
-			#{meetingdate}
-		</if> 
-		
-		<if test="regular == 0">
-			(to_date(sysdate, 'YY/MM/DD'))
-		</if>
-	</sql>
+	
 	
 </mapper>

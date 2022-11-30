@@ -2,6 +2,10 @@ package com.kosta.jupjup.controller;
 
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -66,6 +70,20 @@ public class MateCreateController {
 			matecreatevo.setImage("기본이미지.jpg");
 		}
 		System.out.println(matecreatevo);
+		
+		SimpleDateFormat Dateformat = new SimpleDateFormat("yyyyMMddhhmm"); 
+		String date = Dateformat.format(matecreatevo.getMeetingdate());
+		String time = Integer.toString(matecreatevo.getMeetingtime());
+		String yymm = date+time;
+		
+		try {
+			Date getTime = Dateformat.parse(yymm);
+			System.out.println(yymm);
+		}catch(ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
 		matecreateservice.matecreate(matecreatevo);
 		
 		return "redirect:/matefind/list";
