@@ -5,8 +5,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-
 <html>
+<div class="myp-title">내글관리</div>
+	<div class="main">
+		<span class="bold">메이트모집</span>
+	<hr>
+	
+	
+	</div>
+	
+
+<script type="text/javascript">
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
 

@@ -38,6 +38,11 @@ public class MyPageController {
 		
 		return "/mypage/likeRecom";
 	}
+	@GetMapping("/likeReview")
+	public String likeReview() { 
+		
+		return "/mypage/likeReview";
+	}
 	@GetMapping("/mate")
 	public String mate() { 
 		

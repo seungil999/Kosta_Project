@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">	
-	
+<link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">	
 	<div>
 		<form id='searchForm' action="/review/list" method='get'>
 			<select name='type' id='type' class='mate-select'>

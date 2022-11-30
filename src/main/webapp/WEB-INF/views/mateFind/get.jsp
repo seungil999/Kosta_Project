@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
-
+<link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 
 <div class="flashOrRegular">
 <c:choose>
@@ -359,8 +359,20 @@ $(document).ready(function() {
 		var time = $(".time").html();
 		var meetingtime = $(".meetingtime").html();
 		console.log(meetingtime);
-		time=time.slice(0,2) +":" + time.slice(2,7)+":"+time.slice(7,9);
-		meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
+		if(time.length==8){
+			time=time.slice(0,0) +"0" + time.slice(0,1)+":"+time.slice(1,6)+":"+time.slice(6,8);	
+		}else if(time.length==7){
+			time=time.slice(0,0) +"0" + time.slice(0,1)+":"+time.slice(1,4)+"0"+time.slice(4,5)+":"+time.slice(5,7);
+		}else{
+			time=time.slice(0,2) +":" + time.slice(2,7)+":"+time.slice(7,9);
+		}
+		
+		if(meetingtime.length==4){
+			meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
+		}else{
+			meetingtime=meetingtime.slice(0,0) +"0"+meetingtime.slice(0,1)+":"+meetingtime.slice(1,4);	
+			}
+			
 		console.log(meetingtime);
 		console.log(time);
       $(".time").html(time);

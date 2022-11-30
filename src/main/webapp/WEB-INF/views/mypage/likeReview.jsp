@@ -7,9 +7,9 @@
 <!DOCTYPE html>
 
 <html>
-<div class="myp-title">관심 목록</div>
+<div class="myp-title">내글관리</div>
 	<div class="main">
-		<span class="bold">좋아요한 후기</span>
+		<span class="bold">후기</span>
 	<hr>
 	
 	

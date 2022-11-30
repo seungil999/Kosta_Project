@@ -7,6 +7,17 @@
 <!DOCTYPE html>
 
 <html>
+<div class="myp-title">내 활동 내역</div>
+	<div class="main">
+		<span class="bold">플로깅 다이어리</span>
+	<hr>
+	
+	
+	</div>
+	
+
+<script type="text/javascript">
+</script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
 

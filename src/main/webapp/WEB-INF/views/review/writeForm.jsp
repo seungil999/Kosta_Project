@@ -5,6 +5,8 @@
 <script src="/resources/ckeditor/ckeditor.js"></script>
 
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">	
+<link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
+
 
 <form name="sub" action="/review/write" method="post" onsubmit="Chk();" >
 	<div style="width:60%; margin:0 auto;">

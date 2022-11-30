@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script
 		src="/resources/js/isotope/scripts.js"></script>
+<link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 
 <%-- <%@include file="../includes/header.jsp"%> --%>    
 

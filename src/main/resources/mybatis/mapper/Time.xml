@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.TimeDAO">
+	<select id="getStime" resultType="com.kosta.jupjup.vo.MateVO">
+		select starttime from mate where to_char(meetingdate,'YYYYMM')=#{yymm}
+	</select>
+	
+	<select id="getEtime" resultType="com.kosta.jupjup.vo.MateVO">
+		select endtime from mate where to_char(meetingdate,'YYYYMM')=#{yymm}
+	</select>
+			
+			
+	<select id="getRegular" resultType="int">
+		SELECT count(*) FROM mate WHERE TO_CHAR(meetingdate, 'YYYYMM')= #{yymm} and regular=1
+	</select>
+	
+	<select id="getFlash" resultType="int">
+		SELECT count(*) FROM mate WHERE TO_CHAR(meetingdate, 'YYYYMM')= #{yymm} and regular=0
+	</select>		
+</mapper>		

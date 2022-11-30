@@ -121,7 +121,7 @@ body {
  		<!-- logo header end --> --%>
 	
 	<form onsubmit="submitloginPage(this); return false;"
-		action="/user/dologin" method="POST" class="login-form">
+		action="/user/doLogin" method="POST" class="login-form">
 		<h1>ZupgoZupup</h1>
 
 
