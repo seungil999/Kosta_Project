@@ -16,7 +16,7 @@
 <div class="myp-title">내 활동 내역</div>
 	<div class="main">
 		<span class="bold">참여중인 활동내역</span>
-		 <span class="myp-allview">전체보기 ></span>
+		 <span class="myp-allview"><a href="/mypage/schedule">전체보기 ></a></span>
 	<hr>
 	
 	<div class="activity-Info">
@@ -35,7 +35,7 @@
 		 <div class="myp-info">2022년 10월 24일 여의도역</div>
 	</div>
 	<br><br><br><br><br>
-	<span class="myp-allview">전체보기 ></span>
+	<span class="myp-allview"><a href="/mypage/finish">전체보기 ></a></span>
 	<div class="bold">종료된 활동내역</div>
 <hr>
 	<div class="activity-Info">

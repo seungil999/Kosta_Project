@@ -5,9 +5,9 @@
 <html>
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">	
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">	
-	<div>
+	<div class="search-container">
 		<form id='searchForm' action="/review/list" method='get'>
-			<select name='type' id='type' class='mate-select'>
+			<select name='type' id='type' class='review mate-select' style="margin-left:180px;">
 				<option value="T" name="option" class="lang-option"
 					<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
 				<option value="C" class="lang-option"
@@ -29,7 +29,7 @@
 		</form>
 		
 	</div>
-	<br><br><br><br>
+	<br><br><hr><br><br>
 	<div class="review-title">후기</div> 
 	<div class="main">
 		<span class="filter replycnt"><a href="replycnt">댓글순</a></span>

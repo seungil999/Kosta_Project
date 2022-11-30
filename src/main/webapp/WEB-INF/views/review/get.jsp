@@ -29,12 +29,13 @@
 		
 		
 		<br>
-		<div class="title-bold">내용</div>
-		<div class="content">${review.content}</div>
+		<div>
+		<div class="title-bold"	>내용</div>
+		<div class="content" style="min-height:300px;">${review.content}</div>
 	
 		<hr style="background:#ccc; border:0; height:1px; ">
 				
-	
+	</div>
        <br><br>
       
 	

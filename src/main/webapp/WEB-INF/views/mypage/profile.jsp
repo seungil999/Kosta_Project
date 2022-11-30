@@ -15,10 +15,10 @@
 		<div class="bold">회원정보 수정</div>
 	<hr>
 	
- 	<table border=1 class="modtab">
- 		<tr>
-	 		<td>아이디</td>
-	 		<td><textarea rows="1" class="form-control id" readonly></textarea></td>
+ 	<table class="modtab">
+ 		<tr class="profile-tr">
+	 		<td class="bold">아이디</td>
+	 		<td class="profile-input"><textarea rows="1" class="form-control id" readonly></textarea></td>
 	 		<td rowspan="2"> 
             	<div class="uploadResult">
             	</div>
@@ -26,12 +26,12 @@
         	</td>
  		</tr>
  		<tr>
-	 		<td>비밀번호</td>
-	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td class="bold">비밀번호</td>
+	 		<td class="profile-input"><textarea rows="1" class="form-control id"></textarea></td>
  		</tr>
  		<tr>
-	 		<td>이름</td>
-	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td class="bold">이름</td>
+	 		<td class="profile-input"><textarea rows="1" class="form-control id"></textarea></td>
 	 		
 	 		<td>
 		 		<label for="file" class="modrem">&nbsp;&nbsp;&nbsp;&nbsp;프로필 사진 변경</label>
@@ -41,23 +41,23 @@
 		
  		</tr>
  		<tr>
-	 		<td>닉네임</td>
-	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td class="bold">닉네임</td>
+	 		<td class="profile-input"><textarea rows="1" class="form-control id"></textarea></td>
 	 		<td><button class="modrem">중복확인</button></td>
  		</tr>
  		<tr>
-	 		<td>이메일</td>
-	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td class="bold">이메일</td>
+	 		<td class="profile-input"><textarea rows="1" class="form-control id"></textarea></td>
 	 		<td><button class="modrem">중복확인</button></td>
  		</tr>
  		<tr>
-	 		<td>휴대폰</td>
-	 		<td><textarea rows="1" class="form-control id"></textarea></td>
+	 		<td class="bold">휴대폰</td>
+	 		<td class="profile-input"><textarea rows="1" class="form-control id"></textarea></td>
 	 		<td><button class="modrem">본인인증</button></td>
  		</tr>
  		<tr>
-	 		<td>성별</td>
-	 		<td><label for="man">남자</label><input type="radio" name="gender" id="man" value="남자"> 
+	 		<td class="bold">성별</td>
+	 		<td class="profile-input"><label for="man">남자</label><input type="radio" name="gender" id="man" value="남자"> 
 	 			<label for="woman">여자</label><input type="radio" name="gender" id="woman" value="여자">
 	 		</td>
  		
