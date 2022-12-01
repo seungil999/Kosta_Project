@@ -138,7 +138,7 @@ body {
 			</div>
 		</div>
 	</div>
-<script>
+<script type="text/javascript">
     	// 아이디 중복체크
     	$("#idCheck").click(function() {
     		
@@ -150,12 +150,14 @@ body {
     			return; // 함수 종료
     		};
     		
+    
+    		
     		// 비동기처리
     		$.ajax({
     			type : "post",
-    			url : "idCheck",
+    			url : "/user/idCheck",
     			contentType : "application/json",
-    			data : JSON.stringify({"id" : userId}),
+    			data : userId,
     			success : function(data) {
     				
 					if(data == 0){ // 사용가능
@@ -188,6 +190,7 @@ body {
     		  } else {
     			$("#join").submit(); // 전송
     		 }
+    	});	
     		
     </script> 
 	

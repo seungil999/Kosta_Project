@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.jupjup.service.UserService;
+import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.UserVO;
 
 @Controller
@@ -29,9 +30,10 @@ public class UserController {
 	
 	//중복처리메서드
 	@ResponseBody
-	@PostMapping(value = "/idCheck", produces = "application/json")
-	public int idCheck(@RequestParam("id") String id) {
-		
+	@PostMapping(value = "/idCheck")
+	public int idCheck(@RequestBody String id) {
+		System.out.println(id);
+
 	//중복체크 함수
 	int result = userService.idCheck(id);
 	System.out.println(result);
@@ -41,7 +43,7 @@ public class UserController {
    //가입요청
 	@RequestMapping(value = "/joinPage",method = RequestMethod.POST)
     public String JoinForm (UserVO vo, RedirectAttributes RA) {
-		
+		System.out.println(vo.toString());
 		int result = userService.join(vo);
 		if(result == 1){ //가입성공
 			RA.addFlashAttribute("msg","가입을 축하합니다.");
