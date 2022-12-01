@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>JupgoJupup : 로그인</title>
+<title>ZupgoZupup : 로그인</title>
 
 <style type="text/css">
 @import
@@ -22,7 +23,7 @@
 
 body {
 	min-height: 100vh;
-	background-image: linear-gradient(120deg, #125349, #367341);
+	background-image:#fff;
 }
 
 .login-form {
@@ -75,7 +76,7 @@ body {
 	position: absolute;
 	width: 0%;
 	height: 2px;
-	background: linear-gradient(120deg, #125349, #367341);
+	background: linear-gradient(120deg, #125349, #42DF2B);
 	transition: .5s;
 }
 
@@ -92,7 +93,7 @@ body {
 	width: 100%;
 	height: 50px;
 	border: none;
-	background: linear-gradient(120deg, #125349, #367341, #125349);
+	background: linear-gradient(120deg, #2CA71A, #42DF2B, #2CA71A);
 	background-size: 200%;
 	color: #fff;
 	outline: none;
@@ -111,27 +112,38 @@ body {
 }
 </style>
 
+
+
+
+
+
 <link rel="stylesheet" href="css/animatedLogin.css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+	<script >
+   var msg = "${msg}";
+   if (msg != ""){
+	   
+	   alert(msg);
+   }
+
+</script>
+	
 </head>
 <body>
-       <%-- <!-- logo header-->
- 		<c:import url="/WEB-INF/includes/header.jsp"></c:import>
- 		<!-- logo header end --> --%>
-	
+     
 	<form onsubmit="submitloginPage(this); return false;"
-		action="/user/doLogin" method="POST" class="login-form">
+		action="/user/loginPage" method="POST" class="login-form">
 		<h1>ZupgoZupup</h1>
 
 
 		<div class="txtb ">
-			<input type="text" id="loginId" name="loginId" value=""> <span
+			<input type="text" id="id" name="id" value=""> <span
 				data-placeholder="아이디를 입력해주세요"></span>
 		</div>
 
 		<div class="txtb">
-			<input type="password" id="loginpw" name="pwd" value=""> <span
+			<input type="password" id="pwd" name="pwd" value=""> <span
 				data-placeholder="비밀번호를 입력해주세요"></span>
 		</div>
 		<!--아이디 혹은 비밀번호가 안맞는 경우 controller에서 result값을 받아와서 뿌려줌-->
@@ -159,27 +171,27 @@ body {
 	<script>
 		function submitloginPage(form) {
 
-			form.loginId.value = form.loginId.value.trim();
+			form.id.value = form.id.value.trim();
 
-			if (form.loginId.value.length == 0) {
+			if (form.id.value.length == 0) {
 				alert('로그인 아이디를 입력해주세요');
-				form.loginId.focus();
+				form.id.focus();
 				return false;
 			}
 
-			if (form.loginId.value.length < 4) {
+			if (form.id.value.length < 4) {
 				alert('로그인 아이디를 4자 이상 입력해 주세요');
-				form.loginId.focus();
+				form.id.focus();
 				return false;
 
 			}
 
-			form.loginId.value = form.loginId.value.toLowerCase();
+			form.id.value = form.id.value.toLowerCase();
 
-			form.loginpw.value = form.loginpw.value.trim();
-			if (form.loginpw.value.length == 0) {
+			form.pwd.value = form.pwd.value.trim();
+			if (form.pwd.value.length == 0) {
 				alert('로그인 비밀번호를 입력해주세요');
-				form.loginpw.focus();
+				form.pwd.focus();
 				return false;
 
 			}
