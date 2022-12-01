@@ -1,9 +1,12 @@
 package com.kosta.jupjup.dao;
 
+
 import org.apache.ibatis.annotations.Mapper;
+
 import org.springframework.stereotype.Repository;
 
 import com.kosta.jupjup.vo.MateJoinVO;
+
 
 @Mapper
 @Repository
