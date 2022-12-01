@@ -3,7 +3,7 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
                         
 <mapper namespace="com.kosta.jupjup.dao.MateCreateDAO">
-	
+
 	<insert id="insertmate" >
 		<![CDATA[
 			INSERT INTO MATE (
@@ -22,13 +22,23 @@
 						regdate,
 						updatedate,
 						image,
-						regular)
-			values(SEQ_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},#{meetingdate}
+						regular,
+						timestamp)
+			values(SEQ_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},]]><include refid="regular"></include>
+			<![CDATA[
 			,#{peoplemaxnum},
-			#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular})
-		]]>
+			#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular},(to_date(#{timestamp}, 'YYYYMMDDHH24MI')))]]>
+		
 	</insert>
-	
+	<sql id="regular">
+		<if test="regular == 1">
+			#{meetingdate}
+		</if> 
+		
+		<if test="regular == 0">
+			(to_date(sysdate, 'YY/MM/DD'))
+		</if>
+	</sql>
 	
 	
 </mapper>

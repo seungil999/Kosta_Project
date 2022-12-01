@@ -2,10 +2,9 @@ package com.kosta.jupjup.controller;
 
 import java.io.FileInputStream;
 import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -23,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kosta.jupjup.service.MateCreateService;
 import com.kosta.jupjup.vo.MateCreateVO;
 
+import lombok.extern.log4j.Log4j2;
 
 
 
+@Log4j2
 @Controller
 @RequestMapping("/Mate/*")
 public class MateCreateController {
@@ -70,19 +71,27 @@ public class MateCreateController {
 			matecreatevo.setImage("기본이미지.jpg");
 		}
 		System.out.println(matecreatevo);
-		
-		SimpleDateFormat Dateformat = new SimpleDateFormat("yyyyMMddhhmm"); 
-		String date = Dateformat.format(matecreatevo.getMeetingdate());
+		if(matecreatevo.getRegular()==1) {
+		SimpleDateFormat meetingDateFormat = new SimpleDateFormat("yyyyMMdd");
+		String date = meetingDateFormat.format(matecreatevo.getMeetingdate());
 		String time = Integer.toString(matecreatevo.getMeetingtime());
+		
 		String yymm = date+time;
-		
-		try {
-			Date getTime = Dateformat.parse(yymm);
+		System.out.println(yymm);
+
+		matecreatevo.setTimestamp(yymm);
+		}else {
+			LocalDate now = LocalDate.now();
+			
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+			String date = now.format(formatter);
+			String time = Integer.toString(matecreatevo.getMeetingtime());
+			
+			String yymm = date+time;
 			System.out.println(yymm);
-		}catch(ParseException e) {
-			e.printStackTrace();
+
+			matecreatevo.setTimestamp(yymm);
 		}
-		
 		
 		matecreateservice.matecreate(matecreatevo);
 		

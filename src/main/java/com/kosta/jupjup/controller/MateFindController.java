@@ -58,7 +58,7 @@ public class MateFindController {
 	  }
 	  
 	  
-	  
+	  cri.setPageNum(cri.getPageNum()+1);
 	  
 	  int total = service.getTotal(cri);
 	  model.addAttribute("pageMaker", new PageVO(cri, total));

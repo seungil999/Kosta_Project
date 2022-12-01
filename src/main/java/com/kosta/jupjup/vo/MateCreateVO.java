@@ -23,6 +23,7 @@ public class MateCreateVO {
 	private int replycnt;
 	private String image;
 	private int regular;
+	private String timestamp;
 	
 
 }
