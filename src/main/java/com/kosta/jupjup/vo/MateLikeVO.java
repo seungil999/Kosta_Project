@@ -7,7 +7,7 @@ public class MateLikeVO {
 
 	private Long lno;
 	private Long no;
-	private int userno;
+	private String userid;
 	private int likenum;
 	private int count;
 }

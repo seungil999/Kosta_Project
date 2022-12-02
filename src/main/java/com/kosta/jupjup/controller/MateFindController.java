@@ -77,14 +77,11 @@ public class MateFindController {
 	  
 	  MateLikeVO likeVO = new MateLikeVO();
 	  likeVO.setNo(no);
-	  // like.setUserno(0);
-	
-	  int like = 0;
-	  int check = LikeService.likeCount(likeVO);
-	
-	  if(check==0) {
-		  LikeService.likeInsert(likeVO);
-	  }else if(check==1) {
+	  
+	  
+	  Integer like = null;
+	  if(uservo!=null) {
+		  likeVO.setUserid(uservo.getId());
 		  like = LikeService.likeGetInfo(likeVO);
 	  }
 	  model.addAttribute("like", like);

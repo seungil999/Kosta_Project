@@ -107,8 +107,10 @@
 	
         <br><br><br>
         <div class="form-group">
-        <button id='remove' type="button" class="modrem">삭제</button>		
-		<button id='modify' type="button" class="modrem">수정</button>
+        <c:if test="${userVO.id eq mate.user_id}">
+	        <button id='remove' type="button" class="modrem">삭제</button>	
+			<button id='modify' type="button" class="modrem">수정</button>
+		</c:if>
         <h2 class="mate-title">현재 모임 참여중인 인원( ${mate.peoplenum} )</h2>
         
         </div>
@@ -131,7 +133,7 @@
 	<img id="reply" src="/resources/img/말풍선.png" alt="" width="30px" height="30px">
 	댓글<span id='replycnt'>${mate.replycnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<c:choose>
-		<c:when test="${like ==0}">
+		<c:when test="${like ==0 || like eq null}">
 			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/빈하트.png" alt="" width="30px" height="30px"></a>좋아요
 			<span id='likecnt'>${mate.likecnt}</span>
 			<input type="hidden" id="likecheck" value="${like }">
@@ -401,6 +403,7 @@ function like_func(){
 	no = $('#no').val(),
 	count = $('#likecheck').val(),
 	data = {
+			"userid" : "${userVO.id}",
 			"no" : no,
 			"count" : count
 			};
@@ -416,7 +419,9 @@ $.ajax({
 	success : function(result){
 		console.log("수정" + result.result);
 		var like_img='';
-		if(count == 1){
+		if(result.result=='login'){
+			alert('로그인 후 이용 가능한 서비스입니다.');
+		}else if(count == 1){
 			console.log("좋아요 취소");
 			 $('#likecheck').val(0);
 			 number = parseInt(number) - 1;

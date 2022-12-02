@@ -5,9 +5,9 @@ import com.kosta.jupjup.vo.MateLikeVO;
 
 public interface MateLikeService {
 	
-	public int likeCount(MateLikeVO vo);
+	public Integer likeCount(MateLikeVO vo);
 	
-	public int likeGetInfo(MateLikeVO vo);
+	public Integer likeGetInfo(MateLikeVO vo);
 	
 	public void likeInsert(MateLikeVO vo);
 	
