@@ -7,7 +7,7 @@ public class MateJoinVO {
 
 	private Long jno;
 	private Long no;
-	private int userno;
+	private String userid;
 	private int regular;
 	private int count;
 

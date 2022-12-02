@@ -159,7 +159,7 @@ body {
 				class="form-check-input"> ID/PW 기억하기
 			</label>
 		</div>
-
+		<input type="hidden" value="기본프로필.jpg" id="profile" name="profile">
 		<div class="bottom-text">
 			<a href="/user/joinPage">회원가입</a> <a href="#">비밀번호 찾기</a>
 		</div>

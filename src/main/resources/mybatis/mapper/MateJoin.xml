@@ -5,32 +5,35 @@
 <mapper namespace="com.kosta.jupjup.dao.MateJoinDAO">
 	
 	 <select id="joinCount" resultType="Integer">
-		select count(jno) from mate_join where no=#{no}
+		select count(jno) from mate_join where no=#{no} and jno=1
+	</select>
+	<select id="userCheck" resultType="com.kosta.jupjup.vo.MateJoinVO">
+		select jno,userid from mate_join where no=#{no} and userid=#{userid}
 	</select>
 	
 	<insert id="joinInsert">
-		insert into mate_join (no) values (#{no})
+		insert into mate_join (jno,no,userid) values (1,#{no},#{userid})
 	</insert>
 	
 	<select id="joinGetInfo" resultType="Integer">
-		select jno from mate_join where no=#{no}
+		select jno from mate_join where no=#{no} and userid=#{userid}
 	</select>
 	
 	<update id="joinUpdate">
 		update mate_join
 		set <include refid="cal"></include>
-		where no=#{no}
+		where no=#{no} and userid=#{userid}
 	</update>
 	
 	<update id="joinCntUpdate">
 		update mate
 		set peoplenum=<include refid="cntcal"></include>
-		where no=#{no}
+		where no=#{no} 
 	</update>
 	
 	<sql id="cal">
 		<if test="count == 1">
-			jno = 0
+			jno = 0 
 		</if> 
 		
 		<if test="count == 0">

@@ -23,13 +23,16 @@
 						updatedate,
 						image,
 						regular,
-						timestamp)
+						timestamp,
+						user_id)
 			values(SEQ_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},]]><include refid="regular"></include>
 			<![CDATA[
 			,#{peoplemaxnum},
-			#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular},(to_date(#{timestamp}, 'YYYYMMDDHH24MI')))]]>
+			#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular},(to_date(#{timestamp}, 'YYYYMMDDHH24MI')),#{user_id})
+			]]>
 		
 	</insert>
+
 	<sql id="regular">
 		<if test="regular == 1">
 			#{meetingdate}
@@ -39,6 +42,9 @@
 			(to_date(sysdate, 'YY/MM/DD'))
 		</if>
 	</sql>
-	
+
+	<select id="getThisNo" resultType="Long">
+		SELECT max(no) no FROM mate where user_id=#{id}
+	</select>
 	
 </mapper>

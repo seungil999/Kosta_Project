@@ -70,16 +70,21 @@
 						<div class="collapse navbar-collapse zero_mp"
 							id="bs-example-navbar-collapse-2">
 							<ul class="nav navbar-nav navbar-right main_menu1">
-								<li><a href="user/joinPage">회원가입</a></li>
+								
 								<!--로그인 / 로그아웃-->
-								<li class="nav-item"><c:choose>
-										<c:when test="${sessionScope.id eq null}">
-											<a class="nav-link" href="/user/loginPage">로그인</a>
+								<li class="nav-item">
+								<c:choose>
+										<c:when test="${userVO.id eq null}">
+											<li><a href="user/joinPage">회원가입</a></li>
+											<li><a class="nav-link" href="/user/loginPage">로그인</a></li>
 										</c:when>
 										<c:otherwise>
-											<a class="nav-link" href="./logout">로그아웃</a>
+											<li><a href="/mypage/activity?userVO=${userVO}">마이페이지</a></li>
+											<li><a class="nav-link" href="/user/logout">로그아웃</a></li>
+
 										</c:otherwise>
-									</c:choose></li>
+									</c:choose>
+								</li>
 								<li><a href="/ServiceCenter/">고객센터</a></li>
 							</ul>
 						</div>
@@ -88,7 +93,7 @@
 							id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right main_menu">
 								<li><a href="/matefind/list">메이트찾기 <span class="sr-only">(current)</span></a></li>
-								<li><a href="/Mate/MateCreateMain">메이트모집</a></li>
+								<li><a href="/Mate/MateCreateMain" onclick="loginChk();" id="create">메이트모집</a></li>
 								<li><a href="">추천</a></li>
 								<li><a href="/review/list">후기</a></li>
 								<li><a href="">자유게시판</a></li>
@@ -143,3 +148,12 @@
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<!-- Custom JavaScript-->
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	
+<script>
+	function loginChk(){
+		if(${userVO.id eq null}){
+			alert("로그인 후 이용 가능한 서비스입니다.");
+			$("#create").attr("href", "/user/loginPage")
+		}
+	}
+</script>

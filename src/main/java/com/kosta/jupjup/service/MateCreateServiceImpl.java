@@ -17,4 +17,10 @@ public class MateCreateServiceImpl implements MateCreateService {
 		matecreatedao.insertmate(matecreatevo);
 	}
 
+	@Override
+	public Long getThisNo(String id) {
+		
+		return matecreatedao.getThisNo(id);
+	}
+
 }

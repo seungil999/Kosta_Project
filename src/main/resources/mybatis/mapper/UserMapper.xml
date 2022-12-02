@@ -36,7 +36,7 @@
          <![CDATA[
           INSERT INTO USERS 
         
-        VALUES (#{username},#{nickname},#{id},#{pwd},#{email},#{phone},#{gender})
+        VALUES (#{username},#{nickname},#{id},#{pwd},#{email},#{phone},#{gender},#{profile})
          ]]>
     </insert>
    

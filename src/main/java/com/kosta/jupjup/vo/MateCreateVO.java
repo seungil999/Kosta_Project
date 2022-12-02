@@ -24,6 +24,7 @@ public class MateCreateVO {
 	private String image;
 	private int regular;
 	private String timestamp;
+	private String user_id;
 	
 
 }

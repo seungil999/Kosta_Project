@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ZupgoZupup</title>
-
+<%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -144,15 +144,18 @@ h3 {
 							
 							<div class="mateC">
 								<table>
-									<tr>
+									<!-- <tr>
 										<th>작성자</th>
-										<td><input type="text" name="writer" size="30"></td>
-										<!-- 삭제후 ${users.writer}예정  -->
-									</tr>
+										<td><input type="text" name="writer" size="30"></td> 
+									</tr> -->
+									
 									<tr>
+									
 										<th>모임명</th>
 										<td><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="30"></td>
+											placeholder="모임명을 입력해주세요" size="30">
+											<input type="hidden" name="writer" value="${userVO.nickname}">
+											<input type="hidden" name="user_id" value="${userVO.id}"></td>
 									</tr>
 									<tr>
 										<th>모임장소</th>

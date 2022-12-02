@@ -52,7 +52,10 @@
           <div class="form-control peoplenum">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
         </div><br><br><br><br>
          <c:choose>
-         <c:when test="${join ==0}"> 
+         <c:when test="${userVO.id eq mate.user_id}">   
+		 </c:when>
+		 
+         <c:when test="${join ==0 || join eq null}"> 
 	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>참여하기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
 		 </c:when>					
@@ -60,6 +63,7 @@
 	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>나가기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
 		 </c:when>
+		 
        </c:choose>  
         
         <br><br><br>
@@ -184,7 +188,6 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	
 	var noValue = '<c:out value="${mate.no}"/>';
 	
 	var replyUL = $(".chat");
@@ -438,9 +441,9 @@ $(document).on("click", "#matejoin", function(e){
 
 	no = $('#no').val(),
 	count = $('#joincheck').val(),
-
 	
 	data = {
+				"userid" : "${userVO.id}",
 				"no" : no,
 				"count" : count
 				};
@@ -451,15 +454,17 @@ $(document).on("click", "#matejoin", function(e){
 		data : JSON.stringify(data),
 		success : function(result){
 		
+			if(result.result=='login'){
+				alert('로그인 후 이용 가능한 서비스입니다.');
+				location.href="/user/loginPage";
 			
-			console.log("수정" + result.result);
-			if(count == 1){
+			}else if(count == 1){
 			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
 			 console.log("나가요~");
 			 $('#joincheck').val(0);
 			 $('#matejoin').html('참여하기');		
 			 window.location.reload();
-			}else if(result.result=='fail'){
+			}else if(result.result=='full'){
 				alert("인원수가 가득찼습니다.");
 				return false;
 			}else if(count == 0){

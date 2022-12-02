@@ -69,7 +69,7 @@ public class UserController {
 		
 		if (userVO != null) { //로그인성공
 			session.setAttribute("userVO", userVO); //회원정보저장
-			return "main"; //홈
+			return "redirect:/"; //홈
 		}else { //로그인실패
 			model.addAttribute("msg", "로그인실패,아이디 비밀번호를 확인하세요");
 			
@@ -80,7 +80,7 @@ public class UserController {
 		@RequestMapping("/logout")
 		public String logout(HttpSession session) {
 			session.invalidate();
-			return "redirect:/main";
+			return "redirect:/";
 		}
 		
 	

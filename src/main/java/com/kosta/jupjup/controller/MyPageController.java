@@ -4,12 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kosta.jupjup.vo.UserVO;
+
 @Controller
 @RequestMapping("/mypage/*")
 public class MyPageController {
  
 	@GetMapping("/activity")
-	public String activity() { 
+	public String activity(UserVO uservo) { 
+		
+		uservo.getId();
+		
 		
 		return "/mypage/activity";
 	}

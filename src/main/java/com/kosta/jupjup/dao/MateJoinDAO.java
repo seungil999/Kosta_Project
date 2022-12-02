@@ -14,7 +14,7 @@ public interface MateJoinDAO {
 	
 	public int joinCount(MateJoinVO vo);
 	
-	public int joinGetInfo(MateJoinVO vo);
+	public Integer joinGetInfo(MateJoinVO vo);
 	
 	public void joinInsert(MateJoinVO vo);
 	
@@ -22,5 +22,5 @@ public interface MateJoinDAO {
 	
 	public void joinCntUpdate(MateJoinVO vo);
 
-
+	public MateJoinVO userCheck(MateJoinVO vo);
 }

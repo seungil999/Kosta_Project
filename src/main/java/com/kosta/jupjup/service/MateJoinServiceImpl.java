@@ -13,13 +13,13 @@ public class MateJoinServiceImpl implements MateJoinService {
 	MateJoinDAO dao;
 
 	@Override
-	public int joinCount(MateJoinVO vo) {
+	public Integer joinCount(MateJoinVO vo) {
 		
 		return dao.joinCount(vo);
 	}
 
 	@Override
-	public int joinGetInfo(MateJoinVO vo) {
+	public Integer joinGetInfo(MateJoinVO vo) {
 		
 		return dao.joinGetInfo(vo);
 	}
@@ -38,6 +38,12 @@ public class MateJoinServiceImpl implements MateJoinService {
 	public void joinCntUpdate(MateJoinVO vo) {
 		dao.joinCntUpdate(vo);
 	
+	}
+
+	@Override
+	public MateJoinVO userCheck(MateJoinVO vo) {
+
+		return dao.userCheck(vo);
 	}
 	
 }

@@ -8,4 +8,5 @@ import com.kosta.jupjup.vo.MateCreateVO;
 @Service
 public interface MateCreateService {
 	void matecreate(MateCreateVO matecreatevo);
+	Long getThisNo(String id);
 }	

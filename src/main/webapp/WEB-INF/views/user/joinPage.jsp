@@ -121,6 +121,8 @@ body {
 							</select>
 						</div>
 					</div>
+				
+				<input type="hidden" value="기본프로필.jpg" id="profile" name="profile">
 
 
 

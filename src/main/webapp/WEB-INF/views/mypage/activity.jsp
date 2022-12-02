@@ -27,14 +27,8 @@
 		 <div class="myp-info">2022년 10월 24일 여의도역</div>
 	</div>	 
 	<br><br><br><br>
-	<div class="activity-Info">
-	<span class="myp-image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
-		 <div class="myp-titleInfo">서울 특별시 남산 플로깅</div>
 	
-		 <div class="myp-info">4명 / 6명</div>
-		 <div class="myp-info">2022년 10월 24일 여의도역</div>
-	</div>
-	<br><br><br><br><br>
+	<br>
 	<span class="myp-allview"><a href="/mypage/finish">전체보기 ></a></span>
 	<div class="bold">종료된 활동내역</div>
 <hr>
