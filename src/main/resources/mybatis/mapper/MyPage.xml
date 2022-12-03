@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.MyPageDAO">
+	<select id="getNo" resultType="com.kosta.jupjup.vo.MateJoinVO">
+		select no from mate_join where userid=#{id} and jno=1
+	</select>
+	
+	<select id="getRegular" resultType="int">
+		select regular from mate where no=#{no}
+	</select>
+	
+	<select id="getMate" resultType="com.kosta.jupjup.vo.MateVO">
+		select * from mate where no=#{no} and timestamp>sysdate
+	</select>
+	
+	<select id="endMate" resultType="com.kosta.jupjup.vo.MateVO">
+	<![CDATA[
+		select * from mate where no=#{no} and timestamp<sysdate
+		]]>
+	</select>
+	
+	<select id="getlist" resultType="com.kosta.jupjup.vo.MateVO">
+	<![CDATA[
+	select no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	  from ( select
+	  
+	  ]]> /*+INDEX_DESC(mate pk_mate ) */
+	  <![CDATA[
+ 		rownum rn, m.no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+ 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	      from 
+				mate m inner join mate_join mj
+			    on m.no=mj.no and mj.jno=1 and mj.userid=#{id} and timestamp<sysdate and
+	      rownum <=#{cri.pageNum} * #{cri.amount}
+	      )  
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount}   
+		]]>
+	
+	</select>
+	
+	<select id="getMateList" resultType="com.kosta.jupjup.vo.MateVO">
+	<![CDATA[
+	select no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	  from ( select
+	  
+	  ]]> /*+INDEX_DESC(mate pk_mate ) */
+	  <![CDATA[
+ 		rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+ 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	      from mate where user_id=#{id} and timestamp>sysdate and
+	      rownum <=#{cri.pageNum} * #{cri.amount}
+	      )  
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount}   
+		]]>
+	
+	</select>
+	
+	<select id="getMateTotal" resultType="int">
+    <![CDATA[ 
+	  select count(*) from mate where user_id=#{id} and
+	  	
+	 	 no > 0  
+	   ]]>
+  </select>
+  
+  <select id="getReviewList" resultType="com.kosta.jupjup.vo.ReviewVO">
+   <![CDATA[
+	select no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
+	  from ( select
+	    ]]>
+	    	/*+INDEX_DESC(review pk_review ) */
+	    <![CDATA[	
+ 		rownum rn, no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
+	      from review
+
+	   where rownum <= #{cri.pageNum} * #{cri.amount} and user_id=#{id}
+	      )  
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount}   
+		]]>
+	
+	</select>
+	
+	<select id="getReviewTotal" resultType="int">
+    <![CDATA[ 
+	  select count(*) from mate where user_id=#{id} and
+	  	
+	 	 no > 0  
+	   ]]>
+  </select>
+  
+  <select id="getLikeReview" resultType="com.kosta.jupjup.vo.ReviewVO">
+   <![CDATA[
+	select no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
+	  from ( select
+	    ]]>
+	    	/*+INDEX_DESC(review pk_review ) */
+	    <![CDATA[	
+ 		rownum rn, r.no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
+	      from review r inner join review_like rl
+          on r.no=rl.no and rl.lno=1 and rl.userid=#{id}
+	      )  
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount}   
+		]]>
+	
+	</select>
+	
+	<select id="getLikeReviewTotal" resultType="int">
+    <![CDATA[ 
+	   select count(*) from review_like where userid=#{id} and lno=1 and
+	  	
+	 	 no > 0 
+	   ]]>
+  	</select>
+  	
+  	<select id="getLikeActivity" resultType="com.kosta.jupjup.vo.MateVO">
+   <![CDATA[
+	select no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	  from ( select
+	    ]]>
+	    	/*+INDEX_DESC(mate pk_mate) */
+	    <![CDATA[	
+ 		rownum rn, m.no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+ 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	      from mate m inner join mate_like ml
+          on m.no=ml.no and ml.lno=1 and ml.userid=#{id}
+            where rownum <= #{cri.pageNum} * #{cri.amount}
+	      )    
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount}   
+		]]>
+	
+	</select>
+	
+	<select id="getLikeActivityTotal" resultType="int">
+    <![CDATA[ 
+	   select count(*) from mate_like where userid=#{id} and lno=1 and
+	  	
+	 	 no > 0 
+	   ]]>
+  	</select>
+	
+	
+</mapper>

@@ -122,7 +122,7 @@ body {
 						</div>
 					</div>
 				
-				<input type="hidden" value="기본프로필.jpg" id="profile" name="profile">
+				<input type="hidden" value="기본프로필.png" id="profile" name="profile">
 
 
 

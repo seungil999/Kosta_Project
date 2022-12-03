@@ -89,8 +89,7 @@
             
             <!--End of row-->
             
-	<div class="infinite">
-		<div class="list">
+	
 		               
              <c:forEach items="${list}" var="mate">
                 <div class="col-md-3">
@@ -141,10 +140,7 @@
                 </div>
                </c:forEach>
             </div>
-          </div>
-		<!-- list end -->  
-		</div>
-       <!-- infinite end -->
+         
 	   </section>
 	
 
@@ -376,7 +372,14 @@ $(document)
 						var meetingtime = $(item).html();
 						if(meetingtime.length==4){
 						meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
-						}else{
+						}else if(meetingtime==0){
+							meetingtime="00:00";
+						}else if(meetingtime.length==1 &&meetingtime!=0){
+							meetingtime="00:0"+meetingtime;
+						}else if(meetingtime.length==2){
+							meetingtime="00:"+meetingtime;
+						}
+						else{
 							meetingtime=meetingtime.slice(0,0) +"0"+meetingtime.slice(0,1)+":"+meetingtime.slice(1,4);	
 						}
 						$(item).html(meetingtime);

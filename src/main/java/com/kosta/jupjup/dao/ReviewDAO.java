@@ -22,4 +22,6 @@ public interface ReviewDAO {
 	public int delete(Long no);
 	public void hit(Long no);
 	
+	public String getActivityName(Long no);
+	
 }

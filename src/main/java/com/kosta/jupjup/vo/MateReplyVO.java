@@ -13,4 +13,5 @@ public class MateReplyVO {
 	private String replyer;
 	private Date replyDate;
 	private Date updateDate;
+	private String user_id;
 }

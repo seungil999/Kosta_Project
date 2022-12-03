@@ -20,4 +20,6 @@ public interface ReviewService {
 	public void write(ReviewVO vo);
 
 	public void hit(Long no);
+	
+	public String getActivityName(Long no);
 }

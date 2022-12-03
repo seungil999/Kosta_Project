@@ -14,23 +14,18 @@
 	<div class="main">
 		<span class="bold">예정된 활동</span>
 	<hr>
+	<c:forEach items="${list }" var="mate">	
+		<div class="activity-Info">
+		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate.image}"/></span>
+			 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate.no}">${mate.activityname}</a></div>
+		
+			 <div class="myp-info">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
+			 <div class="myp-info" id="meetingdate">${mate.meetingdate}</div>
+			 <div class="myp-info">${mate.meetingplace}</div>
+		</div>	 
+		<br><br><br><br>
+	</c:forEach>
 	
-	<div class="activity-Info">
-	<span class="myp-image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
-		 <div class="myp-titleInfo">서울 특별시 남산 플로깅</div>
-	
-		 <div class="myp-info">4명 / 6명</div>
-		 <div class="myp-info">2022년 10월 24일 여의도역</div>
-	</div>	 
-	<br><br><br><br>
-	<div class="activity-Info">
-	<span class="myp-image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
-		 <div class="myp-titleInfo">서울 특별시 남산 플로깅</div>
-	
-		 <div class="myp-info">4명 / 6명</div>
-		 <div class="myp-info">2022년 10월 24일 여의도역</div>
-	</div>
-	<br><br>
 </div>
 
 

@@ -74,12 +74,12 @@
 								<!--로그인 / 로그아웃-->
 								<li class="nav-item">
 								<c:choose>
-										<c:when test="${userVO.id eq null}">
+										<c:when test="${userVO eq null}">
 											<li><a href="user/joinPage">회원가입</a></li>
 											<li><a class="nav-link" href="/user/loginPage">로그인</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="/mypage/activity?userVO=${userVO}">마이페이지</a></li>
+											<li><a href="/mypage/activity">마이페이지</a></li>
 											<li><a class="nav-link" href="/user/logout">로그아웃</a></li>
 
 										</c:otherwise>

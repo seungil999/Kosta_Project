@@ -12,7 +12,9 @@
 	<div style="width:60%; margin:0 auto;">
 		<div class="review-write">후기</div>
 			<textarea class="form-control title" id="title" name="title" placeholder="제목을 입력해주세요."></textarea>
-		
+			<input type="hidden" id="mate_no" name="mate_no" value="${no}">
+			<input type="hidden" id="writer" name="writer" value="${userVO.nickname}">
+			<input type="hidden" id="user_id" name="user_id" value="${userVO.id}">
 		<div>
                 <textarea class="editor" id = "content" name = "content"></textarea>
         </div>

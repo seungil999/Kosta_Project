@@ -83,8 +83,15 @@ public class MateCreateController {
 		SimpleDateFormat meetingDateFormat = new SimpleDateFormat("yyyyMMdd");
 		String date = meetingDateFormat.format(matecreatevo.getMeetingdate());
 		String time = Integer.toString(matecreatevo.getMeetingtime());
-		
+		if(time.length()==1) {
+			time="000"+time;
+		}else if(time.length()==2) {
+			time="00"+time;
+		}else if(time.length()==3) {
+			time="0"+time;
+		}
 		String yymm = date+time;
+		
 		System.out.println(yymm);
 
 		matecreatevo.setTimestamp(yymm);
@@ -94,6 +101,14 @@ public class MateCreateController {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 			String date = now.format(formatter);
 			String time = Integer.toString(matecreatevo.getMeetingtime());
+			if(time.length()==1) {
+				time="000"+time;
+			}else if(time.length()==2) {
+				time="00"+time;
+			}else if(time.length()==3) {
+				time="0"+time;
+			}
+			
 			
 			String yymm = date+time;
 			System.out.println(yymm);

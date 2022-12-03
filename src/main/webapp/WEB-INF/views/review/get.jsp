@@ -18,7 +18,7 @@
 		<div class="get-top">
 			<div class="get-act" >${review.hit}</div><div class="act-bold">조회</div>
 			<div class="get-writer">${review.writer}</div><div class="wri-bold">작성자</div>
-			<div class="get-act" >${review.mate_no}</div><div class="act-bold">모임명</div>
+			<div class="get-act" >${review.mate_activity}</div><div class="act-bold">모임명</div>
 		
 			
 		</div>
@@ -42,7 +42,7 @@
 	<img id="reply" src="/resources/img/말풍선.png" alt="" width="30px" height="30px">
 	댓글<span id='replycnt'>${review.replycnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<c:choose>
-		<c:when test="${like ==0}">
+		<c:when test="${like ==0 || like eq null}">
 			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/빈하트.png" alt="" width="30px" height="30px"></a>좋아요
 			<span id='likecnt'>${review.likecnt}</span>
 			<input type="hidden" id="likecheck" value="${like }">
@@ -53,9 +53,10 @@
 			<input type="hidden" id="likecheck" value="${like }">
 		</c:when>
 	</c:choose>
+	<c:if test="${userVO.id eq review.user_id}">
 	<button id='remove' type="button" class="modrem">삭제</button>		
 	<button id='modify' type="button" class="modrem">수정</button>
-	
+	</c:if>
 		<hr style="background:#ccc; border:0; height:1px; ">
 	
 	
@@ -72,16 +73,17 @@
 			
 				<!-- ./ end ul -->
 			</div>
+	<c:if test="${userVO ne null }">
 		<div class="reply">	
 			<div class="form-group replyform">
-				<div class="nickname" name="replyer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;닉네임</div>
+				<div class="nickname" name="replyer">${userVO.nickname }</div>
                 <textarea class="form-control" id='reply' name='reply' placeholder="댓글을 입력해보세요."></textarea>
                  
               </div>      
      	 <button id='modalRegisterBtn' type="button" class="uploadBtn">댓글작성</button>
        
-       
       </div>
+    </c:if>
 			<!-- /.panel-heading -->
 			
 		</div>	
@@ -113,7 +115,8 @@ $(document).ready(function() {
 	var replyUL = $(".chat");
 	var clearfix = $(".left clearfix");
 	showList(1);
-	
+	var userid = "<c:out value='${userVO.id}'/>";
+
 	function showList(page){
 		
 		replyService.getList({no:noValue, page: page|| 1}, function(list){
@@ -125,8 +128,10 @@ $(document).ready(function() {
 			}
 			for(var i=0, len = list.length || 0; i<len; i++){
 				str +="<div><li class='replyList'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
+				if(userid==list[i].user_id){
 				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>"
 				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
+				}
 				str +="<div class='header'><strong class= 'primary-font'>"
 						+list[i].replyer+"</strong>";
 						
@@ -158,12 +163,13 @@ $(document).ready(function() {
         var reply = {
               reply: InputReply.val(),
               replyer:InputReplyer.html(),
+              user_id: userid,
               no:noValue
             };
         replyService.add(reply, function(result){
           
           
-          replyForm.find("input").val("");
+          replyForm.find("textarea").val("");
    		  
           var repcnt = $("#replycnt").html();
           
@@ -193,7 +199,7 @@ $(document).ready(function() {
     	    				console.log("에러") 
     	    			});
     			}
-    			alert(result);
+    			
     			var repcnt = $("#replycnt").html();
     	        $("#replycnt").html(parseInt(repcnt)-1);
     			repReply.val("");
@@ -252,7 +258,7 @@ $(document).ready(function() {
     	 var reply = {rno:repReplyNo.val(), reply:replyEditContent} 
     	 
     	 replyService.update(reply, function(result){
- 	    	alert(result);
+ 	    	
  	    	repReply.val("");
  	    	showList(1);
  	    	}); 
@@ -280,6 +286,7 @@ function like_func(){
 	no = $('#no').val(),
 	count = $('#likecheck').val(),
 	data = {
+			"userid": "${userVO.id}",
 			"no" : no,
 			"count" : count
 			};
@@ -295,7 +302,9 @@ $.ajax({
 	success : function(result){
 		console.log("수정" + result.result);
 		var like_img='';
-		if(count == 1){
+		if(result.result=='login'){
+			alert('로그인 후 이용 가능한 서비스입니다.');
+		}else if(count == 1){
 			console.log("좋아요 취소");
 			 $('#likecheck').val(0);
 			 number = parseInt(number) - 1;

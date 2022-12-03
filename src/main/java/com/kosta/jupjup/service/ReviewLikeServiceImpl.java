@@ -20,7 +20,7 @@ public class ReviewLikeServiceImpl implements ReviewLikeService {
 	}
 
 	@Override
-	public int likeGetInfo(MateLikeVO vo) {
+	public Integer likeGetInfo(MateLikeVO vo) {
 
 		return likedao.likeGetInfo(vo);
 	}
