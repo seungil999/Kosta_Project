@@ -26,12 +26,12 @@
 					</thead>
 
           <c:forEach items="${list}" var="review">
-            <tr>
-               <td><a href="/review/get?no=${review.no}">
+            <tr >
+               <td style="border-color :#42DF2B;"><a href="/review/get?no=${review.no}">
                   <c:out value="${review.title}" />
                   </a> 
-              <td>${review.mate_activity}</td>    
-              <td><fmt:formatDate pattern="yyyy-MM-dd"
+              <td style="border-color :#42DF2B;">${review.mate_activity}</td>    
+              <td style="border-color :#42DF2B;"><fmt:formatDate pattern="yyyy-MM-dd"
                   value="${review.regdate}" /></td>
             </tr>
           </c:forEach>

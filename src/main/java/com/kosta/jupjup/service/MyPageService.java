@@ -6,6 +6,7 @@ import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.ReviewVO;
+import com.kosta.jupjup.vo.UserVO;
 
 public interface MyPageService {
 
@@ -35,4 +36,7 @@ public interface MyPageService {
 	
 	public List<MateVO> getLikeActivity(Criteria cri, String id);
 
+	int userUpdate(UserVO vo);
+	
+	void withdraw(String id);
 }

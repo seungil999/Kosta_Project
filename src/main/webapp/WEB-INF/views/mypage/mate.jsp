@@ -26,12 +26,12 @@
 
           <c:forEach items="${list}" var="mate">
             <tr>
-               <td><a href="/matefind/get?no=${mate.no}">
+               <td style="border-color :#42DF2B;"><a href="/matefind/get?no=${mate.no}">
                   <c:out value="${mate.activityname}" />
                   </a>
-              <td><fmt:formatDate pattern="yyyy-MM-dd"
+              <td style="border-color :#42DF2B;"><fmt:formatDate pattern="yyyy-MM-dd"
                   value="${mate.regdate}" /></td>
-              <td>${mate.peoplenum}명 / ${mate.peoplemaxnum}명</td>    
+              <td style="border-color :#42DF2B;">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</td>    
             </tr>
           </c:forEach>
 

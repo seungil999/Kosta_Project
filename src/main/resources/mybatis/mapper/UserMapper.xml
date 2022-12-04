@@ -11,7 +11,7 @@
 	<select id="login" 
 		resultType="com.kosta.jupjup.vo.UserVO">
           <![CDATA[
-            SELECT USERNAME,NICKNAME,ID,PWD,EMAIL,PHONE,GENDER
+            SELECT USERNAME,NICKNAME,ID,PWD,EMAIL,PHONE,GENDER,PROFILE
             FROM USERS
             WHERE ID = #{id}
             AND PWD  = #{pwd}

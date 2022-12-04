@@ -10,6 +10,7 @@ import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.ReviewVO;
+import com.kosta.jupjup.vo.UserVO;
 
 @Mapper
 @Repository
@@ -39,4 +40,8 @@ public interface MyPageDAO {
 	public Integer getLikeActivityTotal(String id);
 	
 	public List<MateVO> getLikeActivity(@Param("cri")Criteria cri,@Param("id") String id);
+	
+	public int userUpdate(UserVO vo);
+	
+	public void withdraw(String id);
 }

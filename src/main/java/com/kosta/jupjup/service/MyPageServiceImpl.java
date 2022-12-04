@@ -10,6 +10,7 @@ import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.ReviewVO;
+import com.kosta.jupjup.vo.UserVO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService{
@@ -104,6 +105,20 @@ public class MyPageServiceImpl implements MyPageService{
 	public List<MateVO> getLikeActivity(Criteria cri, String id) {
 		
 		return  dao.getLikeActivity(cri,id);
+	}
+
+
+	@Override
+	public int userUpdate(UserVO vo) {
+
+		return dao.userUpdate(vo);
+	}
+
+
+	@Override
+	public void withdraw(String id) {
+
+		dao.withdraw(id);
 	}
 
 }

@@ -48,8 +48,7 @@
 	<section id="header">
 		<div class="header-area">
 
-			<div class="header_menu text-center" data-spy="affix"
-				data-offset-top="50" id="nav">
+			<div class="header_menu text-center" data-offset-top="50" id="nav"> <!-- 반응형제거 data-spy="affix" -->
 				<div class="container">
 					<nav class="navbar navbar-default zero_mp ">
 						<!-- Brand and toggle get grouped for better mobile display -->
@@ -113,6 +112,7 @@
 	
 	
 <!--Isotope-->
+
 	<script
 		src="${pageContext.request.contextPath}/resources/js/isotope/min/scripts-min.js"></script>
 	<script
@@ -146,6 +146,8 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+		
+		
 	<!-- Custom JavaScript-->
 	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	

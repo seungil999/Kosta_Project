@@ -116,6 +116,7 @@ hr{
 	 font-weight:700px;
 	 color:#46e02f; 
 	 font-family: 'Open Sans', sans-serif;
+	 margin-bottom:12px;
 }
 
 .modtab{
@@ -170,3 +171,59 @@ text-align:center;
  	padding-top:16px;
  	padding-bottom:16px;
  }
+ 
+ 
+ 
+ 
+ /**프로필 수정**/
+ #my_modal {
+        display: none;
+        width: 600px;
+        height:300px;
+        padding: 20px 60px;
+        background-color: #f1f1f1;
+        border: 1px solid #888;
+        border-radius: 3px;
+    }
+
+    #my_modal .modal_close_btn {
+     position: absolute; top: 80%;
+     left: 65%; transform: translate(-50%,-50%);
+     width: 150px;
+	 height:33px;
+	 vertical-align: middle;
+	 border: 3px solid #46e02f; 
+	 border-radius: 15px; 
+	 font-size: 15px;
+	 font-weight:700px;
+	 color:#46e02f; 
+	 font-family: 'Open Sans', sans-serif;
+    }
+    #my_modal .modal_submit_btn {
+     position: absolute; top: 80%;
+     left: 35%; transform: translate(-50%,-50%);
+     width: 150px;
+	 height:33px;
+	 vertical-align: middle;
+	 border: 3px solid #46e02f; 
+	 border-radius: 15px; 
+	 font-size: 15px;
+	 font-weight:700px;
+	 color:#46e02f; 
+	 font-family: 'Open Sans', sans-serif;
+    }
+    .modal_pwChk{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  
+    font-size:19px;
+    color:#42df2b;
+    }
+    #result{
+    position: absolute;
+    top: 65%; left: 50%;
+    transform: translate(-50%,-50%);
+    color:red;
+    }

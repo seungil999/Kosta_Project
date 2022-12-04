@@ -1,7 +1,5 @@
 package com.kosta.jupjup.controller;
 
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kosta.jupjup.service.MyPageService;
@@ -19,7 +19,6 @@ import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.PageVO;
-import com.kosta.jupjup.vo.ReviewVO;
 import com.kosta.jupjup.vo.UserVO;
 
 @Controller
@@ -158,10 +157,28 @@ public class MyPageController {
 		
 		return "/mypage/withdraw";
 	}
+	@PostMapping("/withdraw")
+	public String UserWithdraw() {
+	HttpSession session = request.getSession();
+	UserVO vo = (UserVO) session.getAttribute("userVO");
+	
+	service.withdraw(vo.getId());
+	return "redirect:/";
+	}
 	@GetMapping("/profile")
 	public String profile() { 
 		
 		return "/mypage/profile";
 	}
+	
+	@PostMapping("/profileUpdate")
+	public String profileUpdate(@ModelAttribute UserVO vo, HttpSession session) {
+		System.out.println(vo);
+		
+		int update = service.userUpdate(vo);
+		session.setAttribute("userVO", vo);
+		return "/mypage/profile";
+	}
+	
 	
 }
