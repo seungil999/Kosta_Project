@@ -8,61 +8,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 
 <%-- <%@include file="../includes/header.jsp"%> --%>    
-<script type="text/javascript">
 
-
-function YesScroll () {
-
-	const pagination = document.querySelector('.paginaiton'); // 페이지네이션 정보획득
-	const fullContent = document.querySelector('.infinite'); // 전체를 둘러싼 컨텐츠 정보획득
-	const screenHeight = screen.height; // 화면 크기
-	
-	var currentPage = $("#currentPage").html();
-	$("#currentPage").html(parseInt(currentPage)+1);
-	const nextURL = "/matefind/list?pageNum="+currentPage+"&amount=${pageMaker.cri.amount}&type=${ pageMaker.cri.type }"
-					+"&keyword=${ pageMaker.cri.keyword }&meeting=${pageMaker.cri.meeting}"
-					+"&filter=${ pageMaker.cri.filter}";
-		
-			
-			
-	let oneTime = false; // 일회용 글로벌 변수
-	document.addEventListener('scroll',OnScroll,{passive:true}) // 스크롤 이벤트함수정의
-	 function OnScroll () { //스크롤 이벤트 함수
-	   const fullHeight = fullContent.clientHeight; // infinite 클래스의 높이   
-	   const scrollPosition = pageYOffset; // 스크롤 위치
-	   if (fullHeight-screenHeight/2 <= scrollPosition && !oneTime) { // 만약 전체높이-화면높이/2가 스크롤포지션보다 작아진다면, 그리고 oneTime 변수가 거짓이라면
-	     oneTime = true; // oneTime 변수를 true로 변경해주고,
-	     console.log(nextURL);
-	     madeBox(); // 컨텐츠를 추가하는 함수를 불러온다.
-	   }
-	 }
-	function madeBox(){ 
-	    const xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function() { 
-		  if (xhr.readyState === xhr.DONE) { 
-		    if (xhr.status === 200 || xhr.status === 201) {
-		      const data = xhr.response; // 다음페이지의 정보
-		      const addList = data.querySelector('.list'); // 다음페이지에서 list아이템을 획득
-		      fullContent.appendChild(addList); // infinite에 list를 더해주기
-		      oneTime = false; // oneTime을 다시 false로 돌려서 madeBox를 불러올 수 있게 해주기
-		    } else {
-		      console.error(xhr.response);
-		    }
-		  }
-		};
-		
-		
-		xhr.open('GET', nextURL); // 다음페이지의 정보를 get
-		xhr.send();
-		xhr.responseType = "document";
-		
-	 }
-
-	}
-
-	YesScroll();
-
-</script>
 
 <section id="portfolio" class="text-center">
 		<ul id="portfolio_menu" class="portfolio_custom_menu">
@@ -142,9 +88,9 @@ function YesScroll () {
                 
             
             <!--End of row-->
-           <div id="currentPage">1</div>
-	<div class="infinite">
-		<div class="list">
+            
+	
+		               
              <c:forEach items="${list}" var="mate">
                 <div class="col-md-3">
                     <div class="blog_news">
@@ -194,14 +140,9 @@ function YesScroll () {
                 </div>
                </c:forEach>
             </div>
-          </div>
-		<!-- list end -->  
-		</div>
-       <!-- infinite end -->
+         
 	   </section>
 	
-			
-  
 
 <div class="panel-body">
 
@@ -213,21 +154,19 @@ function YesScroll () {
 								href="${pageMaker.startPage -1}">Previous</a></li>
 						</c:if>
 	
-						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-						
+						<c:forEach var="num" begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}">
 							<li class="paginate_button  ${pageMaker.cri.pageNum == num ? "active":""} " >
 								<a href="${num}">${num}</a>
 							</li>
+							
 						</c:forEach>
-
+						<c:if test="${pageMaker.next}">
+						<li class="paginate_button next"><a
+								href="${pageMaker.startPage +1 }">Next</a>	
+						</c:if>
 						
 						
-							<li class="paginate_button next"><a
-								href="${pageMaker.startPage +1 }">Next</a></li>
-						
-		<li><a href="/matefind/list?pageNum=${ pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}&type=${ pageMaker.cri.type }
-		&keyword=${ pageMaker.cri.keyword }&meeting=${pageMaker.cri.meeting}
-		&filter=${ pageMaker.cri.filter}" class="nextPage" id=""></a></li>
 
 
 					</ul>
@@ -235,7 +174,7 @@ function YesScroll () {
 				<!--  end Pagination -->
 			</div>
 
-		<form id='actionForm' action="/matefind/list" method='get'>
+			<form id='actionForm' action="/matefind/list" method='get'>
 				<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
 				<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 
@@ -247,8 +186,7 @@ function YesScroll () {
 				<input type='hidden' name='filter' value='<c:out value="${ pageMaker.cri.filter }"/>'>
 				
 				
-			</form>	
-			
+			</form>
 			
 <script type="text/javascript">
 $(document)
@@ -434,7 +372,14 @@ $(document)
 						var meetingtime = $(item).html();
 						if(meetingtime.length==4){
 						meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
-						}else{
+						}else if(meetingtime==0){
+							meetingtime="00:00";
+						}else if(meetingtime.length==1 &&meetingtime!=0){
+							meetingtime="00:0"+meetingtime;
+						}else if(meetingtime.length==2){
+							meetingtime="00:"+meetingtime;
+						}
+						else{
 							meetingtime=meetingtime.slice(0,0) +"0"+meetingtime.slice(0,1)+":"+meetingtime.slice(1,4);	
 						}
 						$(item).html(meetingtime);
@@ -461,9 +406,8 @@ $(document)
 				  	
 					
 				  };
-				  
 </script>
-			
+
 			
 			
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

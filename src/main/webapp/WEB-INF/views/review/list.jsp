@@ -55,7 +55,7 @@
 		<div class="content">${review.content }</div>
 		<div class="content">작성자:${review.writer}</div>
 		<div class="content">조회 ${review.hit} 좋아요 ${review.likecnt }</div>
-		<div class="content" style="color:#42df2b; font-weight:bold;">모임명:${review.mate_no}</div>
+		<div class="content" style="color:#42df2b; font-weight:bold;">모임명:${review.mate_activity}</div>
 		<hr>
 		</c:forEach>		
 	</div>

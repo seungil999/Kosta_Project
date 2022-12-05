@@ -1,5 +1,6 @@
 package com.kosta.jupjup.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,24 +29,38 @@ public class MateJoinController {
 		
 		
 		Map<String,String> map = new HashMap<String, String>();
+		MateVO matevo= new MateVO();
 		
-		try {
-			MateVO matevo= new MateVO();
-			MateJoinVO mjv = new MateJoinVO();
+		try {	
+			System.out.println(vo);
 			
-			Long no = vo.getNo();
-			mjv.setNo(no);
-			int jno = service.joinGetInfo(mjv);  //해당 모임에 참여 되어있는지 확인
-			matevo = findservice.get(no);  //모임 인원 확인용도
-			if(matevo.getPeoplenum()==matevo.getPeoplemaxnum()&& jno==0) {
-				map.put("result", "fail");
-				
+			Integer peopleNum = service.joinCount(vo); // 해당 모임에 몇명이 있는지
+			matevo = findservice.get(vo.getNo());  //해당 모임 최대 인원 수
+			MateJoinVO userCheck = service.userCheck(vo); // 해당 모임에 참여했던적이 있는지(jno,userid)
+			
+			System.out.println(peopleNum);
+			System.out.println(matevo.getPeoplemaxnum());
+			if(vo.getUserid()==null ||vo.getUserid().equals("")) { //로그인 안되어있으면
+				map.put("result", "login");
+				return map;
+			}else if(peopleNum < matevo.getPeoplemaxnum() && userCheck==null) {
+				service.joinInsert(vo);
+				service.joinCntUpdate(vo);
+				map.put("result", "success");
+			}else if(peopleNum < matevo.getPeoplemaxnum() && userCheck.getJno()==0) {
+				service.joinUpdate(vo);
+				service.joinCntUpdate(vo);
+				map.put("result", "success");
+			}else if(peopleNum == matevo.getPeoplemaxnum() && (userCheck==null||userCheck.getJno()==0)) {
+				map.put("result", "full");
 			}else {
+				service.joinUpdate(vo);
+				service.joinCntUpdate(vo);
+				map.put("result", "success");
+			}
 			
-			service.joinUpdate(vo);
-			service.joinCntUpdate(vo);
-			map.put("result", "success");
-		}
+			
+
 		}catch(Exception e) {
 			e.printStackTrace();
 			map.put("result", "fail");

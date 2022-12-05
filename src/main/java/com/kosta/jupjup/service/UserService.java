@@ -1,15 +1,21 @@
 package com.kosta.jupjup.service;
 
-import java.util.Map;
-
 import org.springframework.stereotype.Service;
+
+import com.kosta.jupjup.vo.UserVO;
 
 @Service
 public interface UserService {
 
-	Map<String, Object> Join(Map<String, Object> param);
+	public int idCheck(String id); //중복체크
 
-	Map<String, Object> checkgetLoginAvailable(Map<String, Object> param);
+	public int join(UserVO vo);//가입
+
+	public UserVO login(UserVO vo); //로그인
+	
+
+	
+		
 
 	
 

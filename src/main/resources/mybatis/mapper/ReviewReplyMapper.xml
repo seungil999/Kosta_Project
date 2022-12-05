@@ -9,8 +9,8 @@
 	</select>
 	
 	<insert id="insert">
-		insert into review_reply (rno, no, reply, replyer) values
-		(seq_review_reply.nextval,#{no}, #{reply},#{replyer})
+		insert into review_reply (rno, no, reply, replyer,user_id) values
+		(seq_review_reply.nextval,#{no}, #{reply},#{replyer},#{user_id})
 	</insert>
 	
 	<update id="update">
@@ -22,7 +22,7 @@
 	</delete>
 	
 	<select id="getListWithPaging" resultType="com.kosta.jupjup.vo.MateReplyVO">
-		select rno, no, reply, replyer, replyDate, updatedate
+		select rno, no, reply, replyer, replyDate, updatedate,user_id
 		from review_reply where no =#{no}
 		order by rno asc
 	</select>

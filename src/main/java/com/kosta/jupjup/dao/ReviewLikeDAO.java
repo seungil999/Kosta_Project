@@ -11,7 +11,7 @@ public interface ReviewLikeDAO {
 	
 	public int likeCount(MateLikeVO vo);
 	
-	public int likeGetInfo(MateLikeVO vo);
+	public Integer likeGetInfo(MateLikeVO vo);
 	
 	public void likeInsert(MateLikeVO vo);
 	

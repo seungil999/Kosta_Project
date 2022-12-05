@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,7 +11,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JupgoJupup : 회원가입</title>
+<title>ZupgoZupup : 회원가입</title>
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -20,7 +22,7 @@
 <style>
 body {
 	min-height: 100vh;
-	background-image: linear-gradient(120deg, #125349, #367341);
+	background-image: linear-gradient(120deg, #E0FFDB, #E0FFDB);
 }
 
 .input-form {
@@ -46,14 +48,14 @@ body {
 				<h4 class="mb-3">회원가입</h4>
 
 				<form onsubmit="submitjoinPage(this); return false;"
-					action="/user/doJoin" method="POST" class="validation-form"
+					action="/user/joinPage" method="POST" id="join" class="validation-form"
 					novalidate>
 
 
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="name">이름</label> <input type="text" name="username"
-								class="form-control" id=name placeholder="" value=""
+							<label for="username">이름</label> <input type="text" name="username"
+								class="form-control" id=username placeholder="" value=""
 								required>
 							<div class="invalid-feedback">이름을 입력해주세요.</div>
 						</div>
@@ -67,16 +69,18 @@ body {
 
 
 					<div class="mb-3">
-						<label for="loginId">아이디</label> <input maxlength="30" type="text"
-							class="form-control" id="loginId" name="loginId"
+						<label for="id">아이디</label> <input maxlength="30" type="text"
+							class="form-control" id="id" name="id"
 							placeholder="아이디를 입력해주세요." required>
+					<input type="button" value="ID중복확인" id="idCheck">
+					                        <span id="result"></span>	
 						<div class="invalid-feedback">필수 정보입니다.</div>
 					</div>
 
 
 					<div class="mb-3">
-						<label for="loginPw">비밀번호</label> <input maxlength="30"
-							type="password" class="form-control" id="loginPw" name="pwd"
+						<label for="pwd">비밀번호</label> <input maxlength="30"
+							type="password" class="form-control" id="pwd" name="pwd"
 							placeholder="영문조합8자이상" required>
 						<div class="invalid-feedback">유효한 비밀번호가 필요합니다.</div>
 					</div>
@@ -117,6 +121,8 @@ body {
 							</select>
 						</div>
 					</div>
+				
+				<input type="hidden" value="기본프로필.png" id="profile" name="profile">
 
 
 
@@ -128,83 +134,108 @@ body {
 					</div>
 
 					<div class="mb-4"></div>
-					<button class="btn btn-primary btn-lg btn-block" type="submit">가입
+					<button class="btn btn-primary btn-lg btn-block" id="joinbtn" type="submit">가입
 						완료</button>
 				</form>
 			</div>
 		</div>
 	</div>
+<script type="text/javascript">
+    	// 아이디 중복체크
+    	$("#idCheck").click(function() {
+    		
+    		var userId = $("#id").val();
+    		
+    		if( userId == '' || userId.length < 4 ) {
+    			$("#id").focus(); // 포커싱함수
+    			alert("아이디 형식을 확인하세요");
+    			return; // 함수 종료
+    		};
+    		
+    
+    		
+    		// 비동기처리
+    		$.ajax({
+    			type : "post",
+    			url : "/user/idCheck",
+    			contentType : "application/json",
+    			data : userId,
+    			success : function(data) {
+    				
+					if(data == 0){ // 사용가능
+						$("#id").attr("readonly", true); // 리드온리 속성지정
+						$("#result").html("사용가능한 아이디 입니다");
+					} else { // 중복
+						$("#result").html("중복된 아이디입니다");
+					}
+    				
+    			},
+    			error : function(status, error) {
+    				alert("서버문제가 발생했습니다. 관리자에게 문의하세요.");
+    			}
+    		});
+    		
+    	}); // 아이디 중복체크
+</script>
 
-
-
-
-	<script>
-function isAlphaNumeric(str){
-	var code, i, len;
+<script>
+	// 폼검증
+    	$("join").click( function() {
+    		
+    		console.log( $("#id").attr("readonly") );
+    	
+    		if( $("#id").attr("readonly") != 'readonly' ){ // 중복검사를 하지 않은 경우
+    			alert("아이디 중복검사는 필수 입니다.");
+    			$("id").focus();
+    			return;
+   
+    		  } else {
+    			$("#join").submit(); // 전송
+    		 }
+    	});	
+    		
+    </script> 
 	
-	for (i =0 ,len = str.length; i <len; i++){
-		
-		code = str.charCodeAt(i);
-		if(!(code > 47 && code < 58) &&
-		!(code > 64 && code < 91) &&
-		!(code > 96 && code < 123)) {
-			return false;
-		}
-	
-	}  
-	return true;
-	
-}
-
- </script>
-
-
-	<script>
+	 <script>
   
   	function submitjoinPage(form){
   		
-  		form.name.value = form.name.value.trim();
-  		if (form.name.value.length == 0){
+  		form.username.value = form.username.value.trim();
+  		if (form.username.value.length == 0){
   			alert('이름을 입력해주세요');
-  			 form.name.focus();
+  			 form.username.focus();
   			 return false;
   		}
   		
-  		if (form.name.value.length < 2) {
+  		if (form.username.value.length < 2) {
   			alert('이름을 2자 이상 입력해주세요');
- 			 form.name.focus();
+ 			 form.username.focus();
  			 return false;
   			
   		}
   		
   		
   		
-  		if (form.loginId.value.length == 0){
+  		if (form.id.value.length == 0){
   			alert('로그인 아이디를 입력해주세요');
-  			 form.loginId.focus();
+  			 form.id.focus();
   			 return false;
   		}
   		
-  		 if (form.loginId.value.length < 4){
-  			 alert('로그인 아이디를 4자 이상 입력해 주세요');
-  			 form.loginId.focus();
-  			 return false;
-  		 }
-  		 
-  		 if (isAlphaNumeric(form.loginId.value) == false){
-  			 alert('로그인 비밀번호 영문자 소문자와 숫자만 사용 가능');
- 			 form.loginId.focus();
+  		 if (isAlphaNumeric(form.id.value) == false){
+  			 alert('로그인 아이디 영문자 소문자와 숫자만 사용 가능');
+ 			 form.id.focus();
  			 return false;
   			    			  
   		  }
   	
-  		 form.loginId.value = form.loginId.value.toLowerCase();
+  		 form.id.value = form.id.value.toLowerCase();
   		 
   		
-  		 form.loginpw.value = form.loginpw.value.trim();
-  		if(form.loginpw.value.length == 0){
+  		 form.pwd.value = form.pwd.value.trim();
+  		if(form.pwd.value.length == 0){
   			alert('로그인 비밀번호를 입력해주세요');
-  			 form.loginpw.focus();
+  			 form.pwd.focus();
   			 return false;
   			
   		}
@@ -216,7 +247,7 @@ function isAlphaNumeric(str){
   			 return false;
   			
   		}
-  		 if (form.loginpw.value != form.loginPwConfirm.value){
+  		 if (form.pwd.value != form.loginPwConfirm.value){
   			 alert('로그인 비밀번호가 일치하지 않습니다.');
   			 return false;
   			 
@@ -225,7 +256,6 @@ function isAlphaNumeric(str){
   			form.submit();
   		}
     </script>
-
 
 	<script>
     window.addEventListener('load', () => {
@@ -244,7 +274,6 @@ function isAlphaNumeric(str){
     }, false);
 
   </script>
-
 
 
 

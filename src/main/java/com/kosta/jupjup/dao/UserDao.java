@@ -1,22 +1,22 @@
 package com.kosta.jupjup.dao;
 
-import java.util.Map;
-
-
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.jupjup.vo.User;
+import com.kosta.jupjup.vo.UserVO;
 
 @Repository
 @Mapper
 public interface UserDao {
 
-	void Join(Map<String, Object> param);
+	public int idCheck(String id); //중복체크
 
-	User getUserByLoginId(@Param("loginId") String loginId);
+	public int join(UserVO vo);//가입
 
+	public UserVO login(UserVO vo); //로그인
+
+
+	
 
 
 }

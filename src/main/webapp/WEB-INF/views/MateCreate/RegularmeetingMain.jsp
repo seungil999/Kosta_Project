@@ -35,6 +35,7 @@
 	width: 1000px;
 	padding-bottom: 40px;
 	position: relative;
+	
 }
 
 .style_content {
@@ -142,15 +143,17 @@ h3 {
 							</div>
 							<div class="mateC">
 								<table>
-									<tr>
+									<!-- <tr>
 										<th>작성자</th>
-										<!--<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용-->
+										<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용
 										<td><input type="text" name="writer" size="35"></td>
-									</tr>
+									</tr> -->
 									<tr>
 										<th>모임명</th>
 										<td colspan="5"><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="35"></td>
+											placeholder="모임명을 입력해주세요" size="35">
+											<input type="hidden" name="writer" value="${userVO.nickname}">
+											<input type="hidden" name="user_id" value="${userVO.id}"></td>
 									</tr>
 									<tr>
 										<th>모임날짜</th>

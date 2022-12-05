@@ -57,5 +57,11 @@ public class ReviewServiceImpl implements ReviewService{
 		dao.hit(no);
 	}
 
+	@Override
+	public String getActivityName(Long no) {
+
+		return dao.getActivityName(no);
+	}
+
 
 }

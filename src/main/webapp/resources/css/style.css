@@ -129,12 +129,12 @@ body {
 }
 
 /*Remove chrome Input Field’s Unwanted Yellow Background Color*/
-
+/**
 input: -webkit-autofill,
 input: -webkit-autofill:hover,
 input: -webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 100px white inset !important;
-}
+}**/
 
 /*Input focus color removed*/
 
@@ -928,7 +928,7 @@ section#counter {
     color: #43a906;
 }
 
-/*purches*/
+
 section#market {
     padding: 80px;
 }

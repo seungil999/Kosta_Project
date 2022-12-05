@@ -93,7 +93,7 @@
         meetingtime,
 		starttime,
 		endtime, content,regdate, updatedate,
-		replycnt, image, regular, likecnt
+		replycnt, image, regular, likecnt,user_id
 		 from mate where no =
 		#{no}
         

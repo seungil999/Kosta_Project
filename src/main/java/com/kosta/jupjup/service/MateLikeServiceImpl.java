@@ -13,13 +13,13 @@ public class MateLikeServiceImpl implements MateLikeService {
 	private MateLikeDAO likedao;
 	
 	@Override
-	public int likeCount(MateLikeVO vo) {
+	public Integer likeCount(MateLikeVO vo) {
 
 		return likedao.likeCount(vo);
 	}
 
 	@Override
-	public int likeGetInfo(MateLikeVO vo) {
+	public Integer likeGetInfo(MateLikeVO vo) {
 
 		return likedao.likeGetInfo(vo);
 	}

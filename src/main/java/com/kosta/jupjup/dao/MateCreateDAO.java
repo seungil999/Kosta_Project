@@ -10,5 +10,6 @@ import com.kosta.jupjup.vo.MateCreateVO;
 public interface MateCreateDAO {
 	
 	 void insertmate(MateCreateVO matecreatevo);
-	      
+	 
+	 Long getThisNo(String id);
 }

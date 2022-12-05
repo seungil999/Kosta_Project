@@ -4,9 +4,9 @@
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 <div class="sidebar">
 	<div class="profile">
-		<img src="/resources/img/기본프로필.png">
+		<img src='/Mate/display?fileName=${userVO.profile}'>
 	</div>
-		<div class="nickname">닉네임</div>
+		<div class="nickname">${userVO.nickname }</div>
 	<div>
 		<button type="button" class="modInfo" onclick="location.href='/mypage/profile'">프로필 수정
 		 <i class="fa fa-pencil" aria-hidden="true"></i></button>

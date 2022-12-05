@@ -83,12 +83,24 @@ public class MainController {
 		  try {
 			 String pStime =  Integer.toString(starttime.get(i).getStarttime()); //string으로 변환
 			 String pEtime =  Integer.toString(endtime.get(i).getEndtime());
+		
+			 
 			 if(pStime.length() ==3) {
 				 pStime = "0"+pStime;
-			 }
+			 }else if(pStime.length() ==2) {
+				 pStime = "00"+pStime;
+			 }else if(pStime.length() ==1) {
+				 pStime = "000"+pStime;
+			 } 
 			 if(pEtime.length() ==3) {
 				 pEtime = "0"+pEtime;
+			 }else if(pEtime.length() ==2) {
+				 pEtime = "00"+pEtime;
+			 }else if(pEtime.length() ==1) {
+				 pEtime = "000"+pEtime;
 			 }
+			 
+			 
 			  d1 = format.parse(pStime);  //날짜형식으로
 			  d2 = format.parse(pEtime);
 		  }catch(ParseException e) {

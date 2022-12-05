@@ -17,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,7 @@ import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.PageVO;
 import com.kosta.jupjup.vo.ReviewVO;
+import com.kosta.jupjup.vo.UserVO;
 
 @Controller
 @RequestMapping("/review/*")
@@ -58,7 +60,9 @@ public class ReviewController {
 	  
 	  List<ReviewVO> vo = new ArrayList<ReviewVO>(); 
 	  vo= reviewService.getlist(cri);
+	  
 	 
+	  
 	  for(ReviewVO a : vo) {
 		  System.out.println(a.toString());
 	  }
@@ -71,7 +75,8 @@ public class ReviewController {
 	}
 	
 	@GetMapping("/writeForm")
-	public String writeForm() {
+	public String writeForm(int no,Model model) {
+		model.addAttribute("no",no);
 		
 		return "/review/writeForm";
 	} 
@@ -179,20 +184,20 @@ public class ReviewController {
 
 
 	@GetMapping("/get")
-	  public void get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri,Model model) {
-		
+	  public void get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri,Model model, HttpServletRequest request) {
 		reviewService.hit(no);
+		HttpSession session = request.getSession();
+		UserVO uservo = (UserVO) session.getAttribute("userVO");
+		
 		model.addAttribute("review", reviewService.get(no));
 		 MateLikeVO likeVO = new MateLikeVO();
 		  likeVO.setNo(no);
-		  // like.setUserno(0);
+		  
 		
-		  int like = 0;
-		  int check = LikeService.likeCount(likeVO);
+		  Integer like = null;
 		
-		  if(check==0) {
-			  LikeService.likeInsert(likeVO);
-		  }else if(check==1) {
+		  if(uservo!=null) {
+			  likeVO.setUserid(uservo.getId());
 			  like = LikeService.likeGetInfo(likeVO);
 		  }
 		  model.addAttribute("like", like);
@@ -220,11 +225,12 @@ public class ReviewController {
 		    imgTag = match.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
 		}
 		 
-		
 		rvo.setThumbnail(imgTag);
 		if(null == rvo.getThumbnail()) {
 			rvo.setThumbnail("<img src=\"/resources/img/logo2.png\">");
 		}
+		 String activityName = reviewService.getActivityName(rvo.getMate_no());
+		 rvo.setMate_activity(activityName);
 		reviewService.write(rvo);
 		
 		return "redirect:/review/list";

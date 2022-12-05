@@ -1,6 +1,7 @@
 package com.kosta.jupjup.vo;
 
 import lombok.Getter;
+
 import lombok.ToString;
 
 @Getter

@@ -33,7 +33,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Controller
 @RequestMapping("/mypage/*")
 public class MyPageUploadController {
- 
+
 	@Value("C:\\upload")
 	private String uploadPath;
 	

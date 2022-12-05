@@ -18,43 +18,54 @@
 		<span class="bold">참여중인 활동내역</span>
 		 <span class="myp-allview"><a href="/mypage/schedule">전체보기 ></a></span>
 	<hr>
-	
-	<div class="activity-Info">
-	<span class="myp-image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
-		 <div class="myp-titleInfo">서울 특별시 남산 플로깅</div>
-	
-		 <div class="myp-info">4명 / 6명</div>
-		 <div class="myp-info">2022년 10월 24일 여의도역</div>
-	</div>	 
-	<br><br><br><br>
-	<div class="activity-Info">
-	<span class="myp-image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
-		 <div class="myp-titleInfo">서울 특별시 남산 플로깅</div>
-	
-		 <div class="myp-info">4명 / 6명</div>
-		 <div class="myp-info">2022년 10월 24일 여의도역</div>
-	</div>
-	<br><br><br><br><br>
+	<c:if test="${mate[0] ne null }">	
+		<div class="activity-Info">
+		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate[0].image}"/></span>
+			 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate[0].no}">${mate[0].activityname}</a></div>
+		
+			 <div class="myp-info">${mate[0].peoplenum}명 / ${mate[0].peoplemaxnum}명</div>
+			 <div class="myp-info" id="meetingdate">${mate[0].meetingdate}</div>
+			 <div class="myp-info">${mate[0].meetingplace}</div>
+		</div>	 
+		<br><br><br><br>
+	</c:if>
+	<c:if test="${mate[1] ne null }">
+		<div class="activity-Info">
+		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate[1].image}"/></span>
+			 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate[1].no}">${mate[1].activityname}</a></div>
+		
+			 <div class="myp-info">${mate[1].peoplenum}명 / ${mate[1].peoplemaxnum}명</div>
+			 <div class="myp-info" id="meetingdate">${mate[1].meetingdate}</div>
+			 <div class="myp-info">${mate[1].meetingplace}</div>
+		</div>	 
+		<br><br><br><br>
+	</c:if>
+	<br>
 	<span class="myp-allview"><a href="/mypage/finish">전체보기 ></a></span>
 	<div class="bold">종료된 활동내역</div>
 <hr>
+<c:if test="${emate[0] ne null }">
 	<div class="activity-Info">
-		<span class="myp-image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
-			 <div class="myp-titleInfo">서울 특별시 남산 플로깅</div>
-		
-			 <div class="myp-info">4명 / 6명</div>
-			 <div class="myp-info">2022년 10월 24일 여의도역</div>
-			 <button type="button" class="uploadbtn">후기작성</button>
+		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${emate[0].image}"/></span>
+			 <div class="myp-titleInfo">${emate[0].activityname }</div>
+			 <div class="myp-info">${emate[0].peoplenum }명 / ${emate[0].peoplemaxnum }명</div>
+			 <div class="myp-info">${emate[0].meetingdate }</div>
+			 <div class="myp-info">${emate[0].meetingplace }</div>
+			 <button type="button" data-no="${emate[0].no}" class="uploadbtn">후기작성</button>
 		</div>
-		<br><br>
+</c:if>
+<c:if test="${emate[1] ne null }">
+<br><br>
 		<div class="activity-Info">
-		<span class="myp-image"><img class="activity-Img" src="/resources/img/기본프로필.png"></span>
-			 <div class="myp-titleInfo">서울 특별시 남산 플로깅</div>
+		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${emate[1].image}"/></span>
+			 <div class="myp-titleInfo">${emate[1].activityname }</div>
 		
-			 <div class="myp-info">4명 / 6명</div>
-			 <div class="myp-info">2022년 10월 24일 여의도역</div>
-			 <button type="button" class="uploadbtn">후기작성</button>
+			 <div class="myp-info">${emate[1].peoplenum }명 / ${emate[1].peoplemaxnum }명</div>
+			 <div class="myp-info">${emate[1].meetingdate }</div>
+			 <div class="myp-info">${emate[1].meetingplace }</div>
+			 <button type="button" data-no="${emate[1].no}" class="uploadbtn">후기작성</button>
 	</div>
+</c:if>	
 	<br><br>
 	
 	
@@ -62,10 +73,16 @@
 
 <script type="text/javascript">
 	$(document).on("click", '.uploadbtn', function(e){
-		location.href="/review/writeForm";
-		console.log("click!");
+	
+	 var no = $(this).data("no");
+	
+	 location.href="/review/writeForm?no="+no;
+	 
+		
 	});
 </script>
+
+
 	
 </html>
 
