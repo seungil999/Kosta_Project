@@ -56,7 +56,7 @@
 }
 .uploadResult {
 	position: relative; 
-	top: -200px;
+	top: -150px;
 	background-color: white;
 }
 .uploadBtn, .removeBtn {

@@ -164,6 +164,9 @@
        
        
       </div>
+      <div>
+      	<button data-oper='list' class="uploadBtn">목록</button>
+      </div>
 			<!-- /.panel-heading -->
 			
 		</div>
