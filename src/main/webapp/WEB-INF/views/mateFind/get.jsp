@@ -52,7 +52,10 @@
           <div class="form-control peoplenum">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
         </div><br><br><br><br>
          <c:choose>
-         <c:when test="${join ==0}"> 
+         <c:when test="${userVO.id eq mate.user_id}">   
+		 </c:when>
+		 
+         <c:when test="${join ==0 || join eq null}"> 
 	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>참여하기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
 		 </c:when>					
@@ -60,6 +63,7 @@
 	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>나가기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
 		 </c:when>
+		 
        </c:choose>  
         
         <br><br><br>
@@ -72,7 +76,7 @@
           <h2 class="mate-title">모임시간</h2> <div class="form-control meetingtime">${mate.meetingtime }</div>
         </div>
          <div class="form-group">
-          <h2 class="mate-title">활동시간</h2><div class="form-control time">${mate.starttime}~${mate.endtime}</div>
+          <h2 class="mate-title">활동시간</h2><div class="form-control starttime">${mate.starttime}</div>~<div class="form-control endtime">${mate.endtime}</div>
         </div>
   		
         
@@ -103,8 +107,10 @@
 	
         <br><br><br>
         <div class="form-group">
-        <button id='remove' type="button" class="modrem">삭제</button>		
-		<button id='modify' type="button" class="modrem">수정</button>
+        <c:if test="${userVO.id eq mate.user_id}">
+	        <button id='remove' type="button" class="modrem">삭제</button>	
+			<button id='modify' type="button" class="modrem">수정</button>
+		</c:if>
         <h2 class="mate-title">현재 모임 참여중인 인원( ${mate.peoplenum} )</h2>
         
         </div>
@@ -127,7 +133,7 @@
 	<img id="reply" src="/resources/img/말풍선.png" alt="" width="30px" height="30px">
 	댓글<span id='replycnt'>${mate.replycnt}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<c:choose>
-		<c:when test="${like ==0}">
+		<c:when test="${like ==0 || like eq null}">
 			<a href='javascript: like_func();'><img id="likeImg" src="/resources/img/빈하트.png" alt="" width="30px" height="30px"></a>좋아요
 			<span id='likecnt'>${mate.likecnt}</span>
 			<input type="hidden" id="likecheck" value="${like }">
@@ -154,25 +160,25 @@
 			
 				<!-- ./ end ul -->
 			</div>
-		<div class="reply">	
-			<div class="form-group replyform">
-				<div class="nickname" name="replyer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;닉네임</div>
-                <textarea class="form-control" id='reply' name='reply' placeholder="댓글을 입력해보세요."></textarea>
-                 
-              </div>      
-     	 <button id='modalRegisterBtn' type="button" class="uploadBtn">댓글작성</button>
-       
-       
-      </div>
-      <div>
-      	<button data-oper='list' class="uploadBtn">목록</button>
-      </div>
+		<c:if test="${userVO ne null}">
+			<div class="reply">	
+				<div class="form-group replyform">
+					<div class="nickname" name="replyer">${userVO.nickname}</div>
+	                <textarea class="form-control" id='reply' name='reply' placeholder="댓글을 입력해보세요."></textarea>
+	                 
+	              </div>      
+	     	 <button id='modalRegisterBtn' type="button" class="uploadBtn">댓글작성</button>
+	       
+	       
+	      </div>
+      </c:if>
 			<!-- /.panel-heading -->
 			
 		</div>
 	</div>
 	<!-- ./ end row -->
 </div>
+
 
 <!-- end mate container  -->
 <!-- end mate border -->
@@ -187,12 +193,12 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	
 	var noValue = '<c:out value="${mate.no}"/>';
 	
 	var replyUL = $(".chat");
 	var clearfix = $(".left clearfix");
 	showList(1);
+	var userid = "<c:out value='${userVO.id}'/>";
 	
 	function showList(page){
 		
@@ -205,14 +211,16 @@ $(document).ready(function() {
 			}
 			for(var i=0, len = list.length || 0; i<len; i++){
 				str +="<div><li class='replyList'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
-				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>"
+				if(userid==list[i].user_id){
+				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>";
 				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
+				}
 				str +="<div class='header'><strong class= 'primary-font'>"
 						+list[i].replyer+"</strong>";
 						
 				str +="<small class='pull-right text-musted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
 				
-				str +="<p class='repContent'>"+list[i].reply+"</p></div></li></div><hr>";
+				str +="<p class='repContent'>"+list[i].reply +"</p></div></li></div><hr>";
 			}
 			replyUL.html(str);
 			
@@ -238,12 +246,13 @@ $(document).ready(function() {
         var reply = {
               reply: InputReply.val(),
               replyer:InputReplyer.html(),
+              user_id:"${userVO.id}",
               no:noValue
             };
         replyService.add(reply, function(result){
           
           
-          replyForm.find("input").val("");
+          replyForm.find("textarea").val("");
    		  
           var repcnt = $("#replycnt").html();
           
@@ -273,7 +282,6 @@ $(document).ready(function() {
     	    				console.log("에러") 
     	    			});
     			}
-    			alert(result);
     			var repcnt = $("#replycnt").html();
     	        $("#replycnt").html(parseInt(repcnt)-1);
     			repReply.val("");
@@ -331,7 +339,6 @@ $(document).ready(function() {
     	 var reply = {rno:repReplyNo.val(), reply:replyEditContent} 
     	 
     	 replyService.update(reply, function(result){
- 	    	alert(result);
  	    	repReply.val("");
  	    	showList(1);
  	    	}); 
@@ -359,26 +366,47 @@ $(document).ready(function() {
 
   function typeChange(){
 		
-		var time = $(".time").html();
+		var stime = $(".starttime").html();
+		var etime = $(".endtime").html();
 		var meetingtime = $(".meetingtime").html();
-		console.log(meetingtime);
-		if(time.length==8){
-			time=time.slice(0,0) +"0" + time.slice(0,1)+":"+time.slice(1,6)+":"+time.slice(6,8);	
-		}else if(time.length==7){
-			time=time.slice(0,0) +"0" + time.slice(0,1)+":"+time.slice(1,4)+"0"+time.slice(4,5)+":"+time.slice(5,7);
+		if(stime.length==4){
+			stime=stime.slice(0,2) +":"+stime.slice(2,4);
+		}else if(stime==0){
+			stime="00:00";
+		}else if(stime.length==1 &&stime!=0){
+			stime="00:0"+stime;
+		}else if(stime.length==2){
+			stime="00:"+stime;
 		}else{
-			time=time.slice(0,2) +":" + time.slice(2,7)+":"+time.slice(7,9);
+			stime=stime.slice(0,0) +"0"+stime.slice(0,1)+":"+stime.slice(1,4);	
 		}
+		if(etime.length==4){
+			etime=etime.slice(0,2) +":"+etime.slice(2,4);
+		}else if(etime==0){
+			etime="00:00";
+		}else if(etime.length==1 &&etime!=0){
+			etime="00:0"+etime;
+		}else if(etime.length==2){
+			etime="00:"+etime;
+		}else{
+			etime=etime.slice(0,0) +"0"+etime.slice(0,1)+":"+etime.slice(1,4);	
+			}
+		
 		
 		if(meetingtime.length==4){
 			meetingtime=meetingtime.slice(0,2) +":"+meetingtime.slice(2,4);
+		}else if(meetingtime==0){
+			meetingtime="00:00";
+		}else if(meetingtime.length==1 &&meetingtime!=0){
+			meetingtime="00:0"+meetingtime;
+		}else if(meetingtime.length==2){
+			meetingtime="00:"+meetingtime;
 		}else{
 			meetingtime=meetingtime.slice(0,0) +"0"+meetingtime.slice(0,1)+":"+meetingtime.slice(1,4);	
 			}
 			
-		console.log(meetingtime);
-		console.log(time);
-      $(".time").html(time);
+      $(".starttime").html(stime);
+      $(".endtime").html(etime);
       $(".meetingtime").html(meetingtime);
       
 	        
@@ -401,6 +429,7 @@ function like_func(){
 	no = $('#no').val(),
 	count = $('#likecheck').val(),
 	data = {
+			"userid" : "${userVO.id}",
 			"no" : no,
 			"count" : count
 			};
@@ -416,7 +445,9 @@ $.ajax({
 	success : function(result){
 		console.log("수정" + result.result);
 		var like_img='';
-		if(count == 1){
+		if(result.result=='login'){
+			alert('로그인 후 이용 가능한 서비스입니다.');
+		}else if(count == 1){
 			console.log("좋아요 취소");
 			 $('#likecheck').val(0);
 			 number = parseInt(number) - 1;
@@ -441,9 +472,9 @@ $(document).on("click", "#matejoin", function(e){
 
 	no = $('#no').val(),
 	count = $('#joincheck').val(),
-
 	
 	data = {
+				"userid" : "${userVO.id}",
 				"no" : no,
 				"count" : count
 				};
@@ -454,15 +485,17 @@ $(document).on("click", "#matejoin", function(e){
 		data : JSON.stringify(data),
 		success : function(result){
 		
+			if(result.result=='login'){
+				alert('로그인 후 이용 가능한 서비스입니다.');
+				location.href="/user/loginPage";
 			
-			console.log("수정" + result.result);
-			if(count == 1){
+			}else if(count == 1){
 			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
 			 console.log("나가요~");
 			 $('#joincheck').val(0);
 			 $('#matejoin').html('참여하기');		
 			 window.location.reload();
-			}else if(result.result=='fail'){
+			}else if(result.result=='full'){
 				alert("인원수가 가득찼습니다.");
 				return false;
 			}else if(count == 0){
