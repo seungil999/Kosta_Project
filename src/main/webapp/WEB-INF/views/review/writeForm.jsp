@@ -11,7 +11,7 @@
 <form name="sub" action="/review/write" method="post" onsubmit="Chk();" >
 	<div style="width:60%; margin:0 auto;">
 		<div class="review-write">후기</div>
-			<textarea class="form-control title" id="title" name="title" placeholder="제목을 입력해주세요."></textarea>
+			<textarea class="form-control title" id="title" name="title" placeholder="제목을 입력해주세요." style="width:912px;"></textarea>
 			<input type="hidden" id="mate_no" name="mate_no" value="${no}">
 			<input type="hidden" id="writer" name="writer" value="${userVO.nickname}">
 			<input type="hidden" id="user_id" name="user_id" value="${userVO.id}">
@@ -21,7 +21,7 @@
 		
 		<span class="submit"><button type="button">등록</button></span>
 		<span class="cancel"><button type="button">목록</button></span>
-	</div>
+	</div>	
 </form>		
 	
 	

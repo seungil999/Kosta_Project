@@ -5,16 +5,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.jupjup.service.UserService;
-import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.UserVO;
 
 @Controller
@@ -44,6 +43,7 @@ public class UserController {
 	@RequestMapping(value = "/joinPage",method = RequestMethod.POST)
     public String JoinForm (UserVO vo, RedirectAttributes RA) {
 		System.out.println(vo.toString());
+		System.out.println(vo.getProfile_open());
 		int result = userService.join(vo);
 		if(result == 1){ //가입성공
 			RA.addFlashAttribute("msg","가입을 축하합니다.");

@@ -33,35 +33,19 @@ public class MyPageController {
 	public String activity(Model model) { 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
-		List<MateJoinVO> mjv = new ArrayList<MateJoinVO>();
-		List<MateVO> matevo = new ArrayList<MateVO>();  //참여중인
-		List<MateVO> ematevo = new ArrayList<MateVO>(); //종료된
-		mjv = service.getNo(vo.getId()); // 로그인한 유저가 참여중인 모임 전체
-		
-		for(int i=0; i<mjv.size(); i++) {
-			matevo.add(service.getMate(mjv.get(i).getNo()));
-			ematevo.add(service.endMate(mjv.get(i).getNo()));
-			
-		}
-		model.addAttribute("mate",matevo);
-		model.addAttribute("emate",ematevo);
+
+		model.addAttribute("mate",service.getMate(vo.getId()));
+		model.addAttribute("emate",service.endMate(vo.getId()));
 		
 		return "/mypage/activity";
 	}
 	@GetMapping("/schedule")
-	public String schedule(Model model) {
+	public String schedule(Model model,Criteria cri) {
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
-		List<MateJoinVO> mjv = new ArrayList<MateJoinVO>();
-		List<MateVO> matevo = new ArrayList<MateVO>();
-		mjv = service.getNo(vo.getId());
-		for(int i=0; i<mjv.size(); i++) {
-			if(service.getMate(mjv.get(i).getNo())!=null) {
-				matevo.add(service.getMate(mjv.get(i).getNo()));
-			}
-		}
 		
-		  model.addAttribute("list", matevo); 
+		
+		  model.addAttribute("list", service.getMateList(cri,vo.getId())); 
 		
 		return "/mypage/schedule";
 	}
@@ -71,17 +55,9 @@ public class MyPageController {
 	public String finish(Model model,Criteria cri) { 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
-		List<MateJoinVO> mjv = new ArrayList<MateJoinVO>();
-		List<MateVO> matevo = new ArrayList<MateVO>();
-		mjv = service.getNo(vo.getId());
-		for(int i=0; i<mjv.size(); i++) {
-			matevo.add(service.endMate(mjv.get(i).getNo()));
-		}
-		  System.out.println(vo.getId());
-		 model.addAttribute("list", service.getlist(cri,vo.getId())); 
-		
-		  int total = matevo.size();
-		  model.addAttribute("pageMaker", new PageVO(cri, total));
+		int total = service.getEndActivityTotal(vo.getId());
+		model.addAttribute("list", service.getlist(cri,vo.getId())); 
+		model.addAttribute("pageMaker", new PageVO(cri, total));
 		  
 		
 		
@@ -163,6 +139,9 @@ public class MyPageController {
 	UserVO vo = (UserVO) session.getAttribute("userVO");
 	
 	service.withdraw(vo.getId());
+	service.deleteMate(vo.getId());
+	service.deleteReview(vo.getId());
+	session.invalidate();
 	return "redirect:/";
 	}
 	@GetMapping("/profile")
@@ -176,9 +155,16 @@ public class MyPageController {
 		System.out.println(vo);
 		
 		int update = service.userUpdate(vo);
+		System.out.println(update);
 		session.setAttribute("userVO", vo);
 		return "/mypage/profile";
 	}
 	
+	@GetMapping("/getProfile")
+	public String getProfile(String id,Model model) {
+		model.addAttribute("user",service.getProfile(id));
+		
+		return "/mypage/getProfile";
+	}
 	
 }

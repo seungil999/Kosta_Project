@@ -12,12 +12,24 @@
 	</select>
 	
 	<select id="getMate" resultType="com.kosta.jupjup.vo.MateVO">
-		select * from mate where no=#{no} and timestamp>sysdate
+		<![CDATA[
+		select m.no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	  from
+      mate m inner join mate_join mj
+      on m.no=mj.no and mj.jno=1 and user_id=#{id} and timestamp>sysdate and
+      rownum <= 2
+		]]>
 	</select>
 	
 	<select id="endMate" resultType="com.kosta.jupjup.vo.MateVO">
 	<![CDATA[
-		select * from mate where no=#{no} and timestamp<sysdate
+		select m.no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	  from
+      mate m inner join mate_join mj
+      on m.no=mj.no and mj.jno=1 and user_id=#{id} and timestamp<sysdate and
+      rownum <= 2
 		]]>
 	</select>
 	
@@ -142,16 +154,34 @@
 	 	 no > 0 
 	   ]]>
   	</select>
+  	<select id="getEndActivityTotal" resultType="int">
+    <![CDATA[ 
+	  select count(*)
+        from mate m inner join mate_join mj
+        on m.no=mj.no and mj.jno=1 and user_id=#{id} and timestamp<sysdate
+	   ]]>
+  	</select>
+  	
   	
   	<update id="userUpdate">
   	<![CDATA[ 
   		update users set username=#{username}, nickname=#{nickname},id=#{id} ,pwd=#{pwd}, 
-  		email=#{email}, phone=#{phone},gender=#{gender},profile=#{profile} where id=#{id}
+  		email=#{email}, phone=#{phone},gender=#{gender},profile=#{profile},profile_open=#{profile_open} where id=#{id}
   		]]>
   	</update>
   	
+  	<select id="getProfile" resultType="com.kosta.jupjup.vo.UserVO">
+  		select * from users where id=#{id}
+  	</select>
+  	
   	<delete id="withdraw">
   		DELETE FROM users WHERE id=#{id}
+  	</delete>
+  	<delete id="deleteMate">
+  		DELETE FROM mate WHERE user_id=#{id}
+  	</delete>
+  	<delete id="deleteReview">
+  		DELETE FROM review WHERE user_id=#{id}
   	</delete>
 	
 	

@@ -8,6 +8,72 @@
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 
+<!--   모달창   -->
+<c:forEach items="${users}" var="user">
+<c:choose>
+		<c:when test="${user.profile_open eq 'Y' }">
+<div class="my_modal" id="${user.id}">
+     <button class="modal_close_btn ${user.id}">✖</button>    	
+	<div class="main">
+		<div class="bold">${user.nickname }님의 프로필</div>
+	
+	<hr>
+	
+ 	<table class="modtab">
+ 		
+ 		<tr>
+	 		<td class="bold">이름</td>
+	 		<td class="profile-input"><textarea rows="1" id="username" name="username" class="form-control id" readonly>${user.username }</textarea></td>
+	 		<td rowspan="2"> 
+            	<div class="uploadResult">
+            		<img class='profileImg' id="profileImg" src='/Mate/display?fileName=${user.profile}'>
+            	</div>
+        	</td>
+		
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">닉네임</td>
+	 		<td class="profile-input"><textarea rows="1" name="nickname" id="nickname" class="form-control id" readonly>${user.nickname}</textarea></td>
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">이메일</td>
+	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id" readonly>${user.email}</textarea></td>
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">휴대폰</td>
+	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly>${user.phone }</textarea></td>
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">성별</td>
+	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${user.gender eq 'man' ? '남자':'여자' }"/></textarea></td>
+	 		
+ 		</tr>
+ 	</table>
+ 	</div>
+    
+</div>
+ 	</c:when>
+ 	<c:otherwise>
+ 	<div class="my_modal" id="${user.id}">
+     <button class="modal_close_btn ${user.id}">✖</button>    	
+	<div class="main">
+		<div class="bold">${user.nickname }님의 프로필</div>
+	
+	<hr>
+	<div style="text-align:center;">
+ 		<img  src='/resources/img/404.png'>
+         	<p class="private">비공개 프로필입니다!</p>
+     </div>    	   
+           </div>
+        </div>
+            
+ 	</c:otherwise>
+ 	</c:choose>	
+
+
+</c:forEach>
+
+
 <div class="flashOrRegular">
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
@@ -116,8 +182,9 @@
         </div>
         	
         <hr>
-        
-        <img class="user-img" src="/Mate/display?fileName=${mate.image}"/>
+        <c:forEach items="${users}" var="user">
+        <a class="userProfile" data-user="${user.id}"><img class="user-img" src="/Mate/display?fileName=${user.profile}" style="margin-left:5px;"/></a>
+        </c:forEach>
         <br><br>
         
     <form id='operForm'>
@@ -217,7 +284,6 @@ $(document).ready(function() {
 				}
 				str +="<div class='header'><strong class= 'primary-font'>"
 						+list[i].replyer+"</strong>";
-						
 				str +="<small class='pull-right text-musted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
 				
 				str +="<p class='repContent'>"+list[i].reply +"</p></div></li></div><hr>";
@@ -578,7 +644,79 @@ $(document).ready(function() {
 	});
 
 </script>
-</script>	
 
+
+<!-- 모달 -->
+
+<script>
+        $(document).ready(function(){
+        	
+            function modal(id) {
+                var zIndex = 9999;
+                var modal = document.getElementsByClassName(id);
+                var modalId = document.getElementById(id);
+				console.log(modal);
+                // 모달 div 뒤에 희끄무레한 레이어
+                var bg = document.createElement('div');
+                bg.setStyle({
+                    position: 'fixed',
+                    zIndex: zIndex,
+                    left: '0px',
+                    top: '0px',
+                    width: '100%',
+                    height: '100%',
+                    overflow: 'auto',
+                    // 레이어 색갈은 여기서 바꾸면 됨
+                    backgroundColor: 'rgba(0,0,0,0.4)'
+                });
+                document.body.append(bg);
+
+                // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+               $(modal).on('click',function(e){
+            	   bg.remove();
+            	    modalId.style.display = 'none';
+	
+				});
+               $(bg).on('click',function(e){
+            	   bg.remove();
+            	   modalId.style.display = 'none';
+	
+				});
+				
+
+                modalId.setStyle({
+                    position: 'fixed',
+                    display: 'block',
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+                    // 시꺼먼 레이어 보다 한칸 위에 보이기
+                    zIndex: zIndex + 1,
+
+                    // div center 정렬
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    msTransform: 'translate(-50%, -50%)',
+                    webkitTransform: 'translate(-50%, -50%)'
+                });
+            }
+
+            // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+            Element.prototype.setStyle = function(styles) {
+                for (var k in styles) this.style[k] = styles[k];
+                return this;
+            };
+			
+            $('.userProfile').on("click",function(e){
+            	var userid = $(this).data("user");
+    			 modal(userid);
+    		});	
+			
+			
+        });
+        </script>	
+<script>
+
+</script>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

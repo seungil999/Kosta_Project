@@ -14,9 +14,9 @@ public interface MyPageService {
 	
 	int getRegular(Long no);
 	
-	MateVO getMate(Long no);
+	List<MateVO> getMate(String id);
 	
-	MateVO endMate(Long no);
+	List<MateVO> endMate(String id);
 	
 	public List<MateVO> getlist(Criteria cri,String id);
 	
@@ -39,4 +39,12 @@ public interface MyPageService {
 	int userUpdate(UserVO vo);
 	
 	void withdraw(String id);
+	
+	void deleteMate(String id);
+	
+	void deleteReview(String id);
+	
+	int getEndActivityTotal(String id);
+	
+	UserVO getProfile(String id);
 }

@@ -140,5 +140,13 @@
 	<delete id="delete">
 		delete mate where no = #{no}
 	</delete>
+	
+	<select id="mateInUsers" resultType="com.kosta.jupjup.vo.UserVO">
+	 	<![CDATA[
+	 		select u.* from 
+			users u, mate_join mj, mate m where
+			u.id=mj.userid and mj.no=m.no and mj.jno=1 and m.no=#{no}
+	 	]]>
+	</select>
 			
 </mapper>		

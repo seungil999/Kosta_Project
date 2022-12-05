@@ -37,6 +37,86 @@ body {
 	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
 	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
 }
+
+    /** 스위치 **/
+    
+    label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+[type="checkbox"] {
+  appearance: none;
+  position: relative;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 1.25em;
+  width: 2.25em;
+  height: 1.25em;
+}
+
+[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  transform: scale(0.8);
+  background-color: gray;
+  transition: left 250ms linear;
+}
+
+[type="checkbox"]:checked {
+  background-color: #46e02f;
+  border-color: #46e02f;
+}
+
+[type="checkbox"]:checked::before {
+  background-color: white;
+  left: 1em;
+}
+
+[type="checkbox"]:disabled {
+  border-color: lightgray;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="checkbox"]:disabled:before {
+  background-color: lightgray;
+}
+
+[type="checkbox"]:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="checkbox"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) solid tomato;
+}
+
+[type="checkbox"]:enabled:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+}
+
+/* Global CSS */
+
+
+fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 </style>
 
 </head>
@@ -123,7 +203,11 @@ body {
 					</div>
 				
 				<input type="hidden" value="기본프로필.png" id="profile" name="profile">
-
+                 <label style="color:#46e02f;">
+    			<input role="switch" type="checkbox" id="open" name="open"/>
+    			<input type="hidden" id="profile_open" name="profile_open"/>
+   				 <span>프로필 공개</span>
+ 			    </label>  
 
 
 					<hr class="mb-4">
@@ -200,6 +284,14 @@ body {
   
   	function submitjoinPage(form){
   		
+  		
+  		if(form.open.checked==true){
+			$('#profile_open').val('Y');
+		}else{
+			$('#profile_open').val('N');
+		}
+  		
+  		
   		form.username.value = form.username.value.trim();
   		if (form.username.value.length == 0){
   			alert('이름을 입력해주세요');
@@ -252,6 +344,9 @@ body {
   			 return false;
   			 
   		 }
+  		 
+  		
+  		 
   		
   			form.submit();
   		}

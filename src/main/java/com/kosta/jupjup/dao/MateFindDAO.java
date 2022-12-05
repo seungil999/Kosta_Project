@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateVO;
+import com.kosta.jupjup.vo.UserVO;
 
 @Mapper
 @Repository
@@ -22,4 +23,6 @@ public interface MateFindDAO {
 	public int update(MateVO vo);
 	
 	public int delete(Long no);
+	
+	public List<UserVO> mateInUsers(Long no);
 }
