@@ -27,7 +27,7 @@
 	<div class="main">
 		<div class="bold">회원정보 수정</div>
 	<hr>
-	<form id='form' action="/mypage/profileUpdate" method="POST" id="update" novalidate>
+	<form id='update' action="/mypage/profileUpdate" method="POST" novalidate>
 	
  	<table class="modtab">
  		<tr class="profile-tr">
@@ -75,13 +75,27 @@
  		<tr>
 	 		<td class="bold">성별</td>
 	 		
-	 		<td>
+	 		<td class="profile-input">
 		 		<select class="form-control id" name="gender" style="height:37px;" >
 					<option value="choice" >선택</option>
 					<option value='man' <c:out value="${userVO.gender eq 'man' ? 'selected':'' }"/>>남자</option>
 					<option value='woman' <c:out value="${userVO.gender eq 'woman' ? 'selected':'' }"/>>여자</option>
 					<option value='not_choice' <c:out value="${userVO.gender eq 'not_choice' ? 'selected':'' }"/>>선택 안함</option>
 				</select>
+	 		</td>
+	 		<td>
+	 		<label style="margin-left:20px; color:#46e02f;">
+	 		<c:choose>
+		 		<c:when test="${userVO.profile_open eq 'Y'}">
+	    			<input role="switch" type="checkbox" class="open" checked/>
+	    		</c:when>
+	    		<c:otherwise>
+	    			<input role="switch" type="checkbox" class="open"/>
+	    		</c:otherwise>
+    		</c:choose>	
+    			<input type="hidden" id="profile_open" name="profile_open"/>
+   				 <span>프로필 공개</span>
+ 			 </label>
 	 		</td>
  		</tr>
  	</table>
@@ -239,10 +253,11 @@ $("#idCheck").click(function() {
  <script>
         $(document).ready(function(){
         	
+        	
             function modal(id) {
                 var zIndex = 9999;
                 var modal = document.getElementById(id);
-
+				console.log(modal);
                 // 모달 div 뒤에 희끄무레한 레이어
                 var bg = document.createElement('div');
                 bg.setStyle({
@@ -320,7 +335,16 @@ $("#idCheck").click(function() {
     				alert('휴대폰 번호를 입력해주세요');
     				$('#phone').focus();
     				 return false;
-    			} 
+    			}
+    			if($('.open').is(':checked')){
+        			$('#profile_open').val('Y');
+        			
+        		}else{
+        			$('#profile_open').val('N');
+        			
+        		}
+    			
+    				
     			 modal('my_modal');
     		});	
 			

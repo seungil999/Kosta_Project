@@ -19,9 +19,9 @@ public interface MyPageDAO {
 	
 	public int getRegular(Long no);
 	
-	public MateVO getMate(Long no);
+	public List<MateVO> getMate(String id);
 	
-	public MateVO endMate(Long no);
+	public List<MateVO> endMate(String id);
 	
 	public List<MateVO> getlist(@Param("cri")Criteria cri,@Param("id")String id);
 	
@@ -44,4 +44,12 @@ public interface MyPageDAO {
 	public int userUpdate(UserVO vo);
 	
 	public void withdraw(String id);
+	
+	public void deleteMate(String id);
+	
+	public void deleteReview(String id);
+	
+	public int getEndActivityTotal(String id);
+	
+	public UserVO getProfile(String id);
 }

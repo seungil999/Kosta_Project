@@ -11,7 +11,7 @@
 	<select id="login" 
 		resultType="com.kosta.jupjup.vo.UserVO">
           <![CDATA[
-            SELECT USERNAME,NICKNAME,ID,PWD,EMAIL,PHONE,GENDER,PROFILE
+            SELECT USERNAME,NICKNAME,ID,PWD,EMAIL,PHONE,GENDER,PROFILE,PROFILE_OPEN
             FROM USERS
             WHERE ID = #{id}
             AND PWD  = #{pwd}
@@ -36,7 +36,7 @@
          <![CDATA[
           INSERT INTO USERS 
         
-        VALUES (#{username},#{nickname},#{id},#{pwd},#{email},#{phone},#{gender},#{profile})
+        VALUES (#{username},#{nickname},#{id},#{pwd},#{email},#{phone},#{gender},#{profile},#{profile_open})
          ]]>
     </insert>
    

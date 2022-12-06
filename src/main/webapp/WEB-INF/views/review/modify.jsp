@@ -11,7 +11,7 @@
 <form name="sub" action="/review/modify" method="post" onsubmit="Chk();" >
 	<div style="width:60%; margin:0 auto;">
 		<div class="review-write">후기</div>
-			<textarea class="form-control title" id="title" name="title">${review.title}</textarea>
+			<textarea class="form-control title" id="title" name="title" style="width:912px;">${review.title}</textarea>
 		<div>
             <textarea class="editor" id = "content" name = "content">${review.content}</textarea>
         </div>

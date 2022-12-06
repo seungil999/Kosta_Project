@@ -18,14 +18,19 @@ button:disabled {
 	<div class="main">
 		<div class="bold">회원탈퇴</div>
 	<hr>
-	<h2>회원 탈퇴 주의사항</h2>
-	<p>ZupgoZupup 온라인/모바일 로그인 및 게시판이용 불가, 일반계정 삭제
-	   회원탈퇴 시 ZupgoZupup에 로그인할 수 없습니다.
+	<h2 style="text-align:center; color:#42DF2B;">회원 탈퇴 주의사항</h2><br><br>
+	<p style="text-align:center; font-weight:600; font-size:17px;">ZupgoZupup 온라인/모바일 로그인 및 게시판이용 불가, 일반계정 삭제,<br><br>
+	   회원탈퇴 시 ZupgoZupup에 로그인할 수 없습니다.<br><br>
 	   작성 했던 모든 게시글 및 모든 모임이 삭제됩니다.</p>
-	   
-	 <input type='password' id='pwd' class="form-control id" style="height:35px;" placeholder="비밀번호를 입력해주세요" >
-	 <input id='agreeprov' type="checkbox">위의 회원 탈퇴 시 주의사항을 모두 확인하였습니다.<br>
-	 <button id='withdraw' class="withdraw" disabled>회원탈퇴</button>
+	   <br><br>
+	 <input type='password' id='pwd' class="form-control id" style="height:35px; margin:0 auto;" placeholder="비밀번호를 입력해주세요" >
+	 <br>
+	 <p style="text-align:center;">
+	 <input id='agreeprov' type="checkbox" style="margin:0 auto;" >
+	 위의 회원 탈퇴 시 주의사항을 모두 확인하였습니다.</p><br>
+	 <div style="text-align:center;">
+	 <button id='withdraw' class="withdraw" style="width:250px; height:50px; border-radius:80px 80px;" disabled>회원탈퇴</button>
+	 </div>
 </div>
 <form id='submit' action='/mypage/withdraw' method='post'>
 

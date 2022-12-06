@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kosta.jupjup.dao.MateFindDAO;
 import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateVO;
+import com.kosta.jupjup.vo.UserVO;
 
 @Service
 public class MateFindServiceImpl implements MateFindService {
@@ -49,6 +50,12 @@ public class MateFindServiceImpl implements MateFindService {
 	public boolean remove(Long no) {
 
 		return matefindDAO.delete(no)==1;
+	}
+
+	@Override
+	public List<UserVO> mateInUsers(Long no) {
+
+		return matefindDAO.mateInUsers(no);
 	}
 
 }

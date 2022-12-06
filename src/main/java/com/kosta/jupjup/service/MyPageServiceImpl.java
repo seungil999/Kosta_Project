@@ -33,16 +33,16 @@ public class MyPageServiceImpl implements MyPageService{
 
 
 	@Override
-	public MateVO getMate(Long no) {
+	public List<MateVO> getMate(String id) {
 
-		return dao.getMate(no);
+		return dao.getMate(id);
 	}
 
 
 	@Override
-	public MateVO endMate(Long no) {
+	public List<MateVO> endMate(String id) {
 
-		return dao.endMate(no);
+		return dao.endMate(id);
 	}
 
 
@@ -119,6 +119,34 @@ public class MyPageServiceImpl implements MyPageService{
 	public void withdraw(String id) {
 
 		dao.withdraw(id);
+	}
+
+
+	@Override
+	public void deleteMate(String id) {
+		dao.deleteMate(id);
+		
+	}
+
+
+	@Override
+	public void deleteReview(String id) {
+		dao.deleteReview(id);
+		
+	}
+
+
+	@Override
+	public int getEndActivityTotal(String id) {
+
+		return dao.getEndActivityTotal(id);
+	}
+
+
+	@Override
+	public UserVO getProfile(String id) {
+
+		return dao.getProfile(id);
 	}
 
 }

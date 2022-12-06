@@ -6,7 +6,10 @@
 	<div class="profile">
 		<img src='/Mate/display?fileName=${userVO.profile}'>
 	</div>
-		<div class="nickname">${userVO.nickname }</div>
+		<div class="nickname" style="margin-left:0px;">${userVO.nickname }</div>
+		<fieldset>
+  
+</fieldset>
 	<div>
 		<button type="button" class="modInfo" onclick="location.href='/mypage/profile'">프로필 수정
 		 <i class="fa fa-pencil" aria-hidden="true"></i></button>
