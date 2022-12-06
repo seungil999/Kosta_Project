@@ -274,15 +274,21 @@ p {
 
 	<!--날씨-->
 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>-->
-	<script src="js/jquery-1.12.3.min.js"></script>
+	<!-- <script src="js/jquery-1.12.3.min.js"></script>-->
 
 	<!--Counter UP Waypoint-->
-	<script src="js/waypoints.min.js"></script>
+	<!-- <script src="js/waypoints.min.js"></script> -->
 	<!--Counter UP-->
-	<script src="js/jquery.counterup.min.js"></script>
-
+	<script src="resources/js/jquery.counterup.min.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+	<script>
+		$('.counter').counterUp({
+			delay : 10,
+			time : 1000
+		});
+	</script>
+	
 	<script type="text/javascript">
 		$(document)
 				.ready(
@@ -308,13 +314,6 @@ p {
 
 											});
 						});
-	</script>
-
-	<script>
-		$('.counter').counterUp({
-			delay : 10,
-			time : 1000
-		});
 	</script>
 
 	<script>
