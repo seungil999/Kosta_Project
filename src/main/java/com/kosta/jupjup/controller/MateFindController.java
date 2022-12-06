@@ -61,8 +61,6 @@ public class MateFindController {
 		  model.addAttribute("active", "regular");
 	  }
 	  
-	  
-	  
 	  int total = service.getTotal(cri);
 	  model.addAttribute("pageMaker", new PageVO(cri, total));
 	  

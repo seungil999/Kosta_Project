@@ -11,9 +11,11 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <style>
-A:link,A:visited,A:active,A:hover {
-	text-decoration:none; color:black;
+A:link, A:visited, A:active, A:hover {
+	text-decoration: none;
+	color: black;
 }
+
 .leftbtn {
 	float: left;
 	height: 100%;
@@ -111,12 +113,13 @@ A:link,A:visited,A:active,A:hover {
 
 #Gnb .list_menu {
 	margin-top: 20px;
-	float:left;
+	float: left;
 }
+
 #Gnb .list_menu li {
-    margin: 0 0 20px 5px;
-    font-size: 15px;
-    text-align: left;
+	margin: 0 0 20px 5px;
+	font-size: 15px;
+	text-align: left;
 }
 </style>
 <body>
@@ -125,31 +128,22 @@ A:link,A:visited,A:active,A:hover {
 			<div class="leftbtn">
 				<div id="scmenu" class="scmenu">
 					<h2 class="tit_menu">자주찾는 질문</h2>
-						<nav id="Gnb" aria-labelledby="lnb">
-							<ul class="list_menu">
-								<li>
-								<a class="link_menu" href="http://localhost:8088/ServiceCenter/">전체보기</a>
-								</li>
-								<li>
-								<a class="link_menu" href="http://localhost:8088/ServiceCenter/">계정관련</a>
-								</li>
-								<li>
-								<a class="link_menu" href="http://localhost:8088/ServiceCenter/">도용.보안</a>
-								</li>
-								<li>
-								<a class="link_menu" href="http://localhost:8088/ServiceCenter/">모임관련</a>
-								</li>
-								<li>
-								<a class="link_menu" href="http://localhost:8088/ServiceCenter/">이용제한</a>
-								</li>
-								<li>
-								<a class="link_menu" href="http://localhost:8088/ServiceCenter/">게시판관련</a>
-								</li>
-								<li style="font-size:21px; padding-top:20px; font-weight:bold;">
-								<a class="link_menu" href="http://localhost:8088/ServiceCenter/notice">공지사항</a>
-								</li>
-							</ul>
-						</nav>
+					<nav id="Gnb" aria-labelledby="lnb">
+						<ul class="list_menu">
+							<li><a class="link_menu"
+								href="/ServiceCenter/">전체보기</a></li>
+							<li><a class="link_menu" href="1">계정관련</a></li>
+							<li><a class="link_menu" href="2">도용.보안</a></li>
+							<li><a class="link_menu" href="3">모임관련</a></li>
+							<li><a class="link_menu" href="4">이용제한</a></li>
+							<li><a class="link_menu" href="5">게시판관련</a></li>
+							<li
+								style="font-size: 21px; padding-top: 20px; font-weight: bold;">
+								<a class="link_menu1"
+								href="http://localhost:8088/ServiceCenter/notice">공지사항</a>
+							</li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 			<div class="sc_content">
@@ -176,6 +170,11 @@ A:link,A:visited,A:active,A:hover {
 			</div>
 		</div>
 	</div>
+	<form id='actionForm' action="/ServiceCenter/" method='get'>
+		<input type='hidden' name='filter' value='<c:out value="${filter }"/>'>
+	</form>
+	
+	
 	<%@ include file="/WEB-INF/views/includes/footer.jsp"%>
 
 	<!-- 리스트 모달창 -->
@@ -197,6 +196,7 @@ A:link,A:visited,A:active,A:hover {
 				};
 			};
 		}
+		
 		<!-- for문 안 주면 모달창 각각의 값을 받아올 수 없고, 맨 첫번째 모달창 값만 가져올 수 있음 -->
 		for (var i = 0; i < btns.length; i++) {
 			funcs[i] = Modal(i);
@@ -212,7 +212,29 @@ A:link,A:visited,A:active,A:hover {
 			}
 		};
 	</script>
-
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+		var actionForm = $("#actionForm");
+		
+		$('.link_menu').on("click",
+				function(e) {
+			
+				e.preventDefault();
+				
+				actionForm.find("input[name='filter']")
+				.val("");
+				
+				actionForm.find("input[name='filter']")
+				.val($(this).attr("href"));
+				
+				
+				actionForm.submit();
+				
+		});
+});
+</script>
 
 
 

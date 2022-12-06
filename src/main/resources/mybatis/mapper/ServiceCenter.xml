@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-                        
+
 <mapper namespace="com.kosta.jupjup.dao.ServiceCenterDAO">
-	
-	<select id="getallList" resultType="com.kosta.jupjup.vo.ServiceCenterVO">
+
+	<sql id="filter">
+		<choose>
+			<when test="filter == '1'.toString()">
+				and value=1
+			</when>
+			<when test="filter == '2'.toString()">
+				and value=2
+			</when>
+			<when test="filter == '3'.toString()">
+				and value=3
+			</when>
+			<when test="filter == '4'.toString()">
+				and value=4
+			</when>
+			<when test="filter == '5'.toString()">
+				and value=5
+			</when>
+		</choose>
+	</sql>
+
+	<select id="getallList"
+		resultType="com.kosta.jupjup.vo.ServiceCenterVO">
 		<![CDATA[
-			SELECT * FROM QUESTIONS where rownum<=10
-		]]>
+			SELECT * FROM QUESTIONS where rownum<=10 ]]>
+		<include refid="filter"></include>
 	</select>
-	
-	<select id="getnoticelist" resultType="com.kosta.jupjup.vo.NoticeVO">
+
+
+
+	<select id="getnoticelist"
+		resultType="com.kosta.jupjup.vo.NoticeVO">
 		<![CDATA[
 			SELECT * FROM NOTICE where rownum<=10
 		]]>
