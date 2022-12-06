@@ -73,7 +73,7 @@
 
 </c:forEach>
 
-
+<div class="repMod"></div>  
 <div class="flashOrRegular">
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
@@ -130,7 +130,8 @@
 	        <input type="hidden" id="joincheck" value="${join }">
 		 </c:when>
 		 
-       </c:choose>  
+       </c:choose>
+       
         
         <br><br><br>
         <button data-oper='list' class="uploadBtn">목록</button>
@@ -263,6 +264,7 @@ $(document).ready(function() {
 	var noValue = '<c:out value="${mate.no}"/>';
 	
 	var replyUL = $(".chat");
+	var replyMod = $(".repMod");
 	var clearfix = $(".left clearfix");
 	showList(1);
 	var userid = "<c:out value='${userVO.id}'/>";
@@ -270,7 +272,7 @@ $(document).ready(function() {
 	function showList(page){
 		
 		replyService.getList({no:noValue, page: page|| 1}, function(list){
-			
+			var mod="";
 			var str="";
 			if(list == null || list.length == 0){
 				replyUL.html("");
@@ -282,14 +284,47 @@ $(document).ready(function() {
 				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>";
 				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
 				}
-				str +="<div class='header'><strong class= 'primary-font'>"
+				str +="<strong class= 'primary-font'>"+"<a class='repUserProfile' data-user='"+list[i].user_id+"'><img class='user-img' src='/Mate/display?fileName="+list[i].profile+"'/></a>"
 						+list[i].replyer+"</strong>";
-				str +="<small class='pull-right text-musted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
+				str +="<small class='repDate'>"+replyService.displayTime(list[i].replyDate)+"</small>";
 				
-				str +="<p class='repContent'>"+list[i].reply +"</p></div></li></div><hr>";
+				str +="<p class='repContent'>"+list[i].reply +"</p></li></div><br><br><br><hr>";
 			}
-			replyUL.html(str);
+			for(var i=0, len = list.length || 0; i<len; i++){
 			
+				if(list[i].profile_open == 'Y'){
+					mod += "<div class='my_modal' id='"+list[i].user_id+"'>";
+					mod += "<button class='modal_close_btn "+list[i].user_id+"'>✖</button>";    	
+					mod += "<div class='main'>";
+					mod += "<div class='bold'>"+list[i].nickname+"님의 프로필</div>";
+					mod +="<hr>";
+					mod += "<table class='modtab'><tr>";
+				 	mod += "<td class='bold'>이름</td>";
+					mod += "<td class='profile-input'><textarea rows='1' id='username' name='username' class='form-control id' readonly>"+list[i].username+"</textarea></td>";
+					mod += "<td rowspan='2'><div class='uploadResult'>";
+					mod += "<img class='profileImg' id='profileImg' src='/Mate/display?fileName="+list[i].profile+"'></div> </td></tr>";
+					mod += "<tr><td class='bold'>닉네임</td>";
+				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
+					mod += "<tr><td class='bold'>이메일</td>";
+					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
+					mod += "<tr><td class='bold'>휴대폰</td>";		
+				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
+				 	mod += "<tr><td class='bold'>성별</td>";
+					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
+				 	mod += "</tr></table></div></div>";
+				}else{
+					mod +="<div class='my_modal' id='"+list[i].user_id+"'>"
+				    mod +="<button class='modal_close_btn"+list[i].user_id+"'>✖</button>"    	
+					mod +="<div class='main'><div class='bold'>"+list[i].user_id+"님의 프로필</div><hr>"
+					mod +="<div style='text-align:center;'><img  src='/resources/img/404.png'><p class='private'>비공개 프로필입니다!</p></div></div></div>"
+					
+					    	   
+				           
+				}	
+			}
+			
+			replyUL.html(str);
+			replyMod.html(mod);
 		}); //end function
 	}//end showList
 	
@@ -330,6 +365,8 @@ $(document).ready(function() {
         });
         
       });
+     
+     
     
      
      $(document).on("click", '#rembtn', function(e){
@@ -478,6 +515,7 @@ $(document).ready(function() {
 	        
 	  };  
   
+	  
 });
 
 
@@ -485,6 +523,8 @@ $(document).ready(function() {
 
 </script>
 <script type="text/javascript">
+
+
 
 function like_func(){
 	const clickLikeUrl = "/resources/img/꽉찬하트.png";
@@ -711,12 +751,14 @@ $(document).ready(function() {
             	var userid = $(this).data("user");
     			 modal(userid);
     		});	
+            $(document).on("click", '.repUserProfile',function(e){
+             	var userid = $(this).data("user");
+        			 modal(userid);
+        		});
 			
 			
         });
         </script>	
-<script>
 
-</script>
 
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

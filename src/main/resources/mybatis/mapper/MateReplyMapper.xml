@@ -22,8 +22,8 @@
 	</delete>
 	
 	<select id="getListWithPaging" resultType="com.kosta.jupjup.vo.MateReplyVO">
-		select rno, no, reply, replyer, replyDate, updatedate,user_id
-		from mate_reply where no =#{no}
+		select m.rno, m.no, m.reply, m.replyer, m.replyDate, m.updatedate,m.user_id, u.*
+		from mate_reply m,users u where m.user_id=u.id and m.no=#{no}
 		order by rno asc
 	</select>
 	
