@@ -11,4 +11,6 @@ public interface ServiceCenterService {
 	
 	public List<ServiceCenterVO> getallList();
 
+	public List<ServiceCenterVO> getnoticelist();
+
 }

@@ -23,8 +23,8 @@ public class ServiceCenterControlloer {
 	}
 	
 	@GetMapping("/notice")
-	public String notice() {
-		
+	public String notice(Model model) {
+		model.addAttribute("list", SCservice.getnoticelist());
 	return "/ServiceCenter/notice";
 	}
 	

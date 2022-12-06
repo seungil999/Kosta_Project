@@ -19,4 +19,9 @@ public class ServiceCenterServiceImpl implements ServiceCenterService {
 		return servicecenterDAO.getallList();
 	}
 
+	@Override
+	public List<ServiceCenterVO> getnoticelist() {
+		return servicecenterDAO.getnoticelist();
+	}
+
 }

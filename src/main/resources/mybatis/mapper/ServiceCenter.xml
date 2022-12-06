@@ -6,14 +6,13 @@
 	
 	<select id="getallList" resultType="com.kosta.jupjup.vo.ServiceCenterVO">
 		<![CDATA[
-			SELECT name,content FROM QUESTIONS where regular=1
+			SELECT * FROM QUESTIONS where rownum<=10
 		]]>
 	</select>
 	
-	<!--  
-	<select id="getlList" resultType="ServiceCenterVO">
+	<select id="getnoticelist" resultType="com.kosta.jupjup.vo.NoticeVO">
 		<![CDATA[
-			SELECT name,content FROM QUESTIONS where regular=${regular}
+			SELECT * FROM NOTICE where rownum<=10
 		]]>
-	</select>-->
+	</select>
 </mapper>		

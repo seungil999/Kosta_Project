@@ -122,6 +122,7 @@
   </select> 
   
   <update id="update" >
+  <![CDATA[
 	 	update mate
 	 	set activityname=#{activityname},
 	 	meetingplace = #{meetingplace},
@@ -135,6 +136,7 @@
 	 	content=#{content},
 	 	updatedate=sysdate
 	 	where no=#{no}
+	 	 ]]>
 	</update>
 	
 	<delete id="delete">

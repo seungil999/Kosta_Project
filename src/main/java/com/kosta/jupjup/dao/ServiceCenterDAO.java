@@ -13,4 +13,6 @@ public interface ServiceCenterDAO {
 
 	public List<ServiceCenterVO> getallList();
 
+	public List<ServiceCenterVO> getnoticelist();
+
 }

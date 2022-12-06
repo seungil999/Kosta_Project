@@ -139,7 +139,7 @@ p {
 							</div>
 							<div class="blog_content">
 								<h2 class="mate-title">
-									<a class='move' href="${mate.no}">활동명 : ${mate.activityname }</a>
+									<a class='move' href="${mate.no}">${mate.activityname }</a>
 								</h2>
 								<div class="expert">
 									<div class="left-side text-left">
