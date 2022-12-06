@@ -7,7 +7,8 @@
 	border-color:#42df2b;
   	margin-top:30px;
   	margin-left:10px;
-  	
+  	margin-bottom:150px;
+  	margin-right:50px;
 }
 button.modInfo{
 	 
@@ -48,15 +49,15 @@ hr{
   	margin-top:60px;
   	margin-left:283px;
   	padding:30px;
-  	
+  	height:70%;
 }
 .myp-title{
 	text-align:left;
 	position:relative;
-	left:80px;
+	left:25px;
 	top:50px;
 	font-weight:bolder;
-	font-size:17;
+	font-size:20;
 }
 .bold{
 	font-weight:bolder;

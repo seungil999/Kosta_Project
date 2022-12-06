@@ -397,4 +397,16 @@ textarea#editContent{
 	position:relative;
 	float:right;
 	margin-top:20px;
-	}
+}
+
+
+
+
+
+
+
+
+.replyList {
+	width:100%;
+	padding:50px;
+}

@@ -1082,7 +1082,6 @@ li.fw-flash-message {
 }
 #footer .copyright,
 #footer .designer {
-    
     font-size: 14px;
 }
 #footer .copyright p {
@@ -1104,7 +1103,7 @@ li.fw-flash-message {
     font-size: 12px;
     color: #b1b1b1;
     font-family: 'Open Sans', sans-serif;
-    padding-left: 3px;
+    padding-left: 50px;
 }
 
 /*Back to Top*/
