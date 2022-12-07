@@ -62,7 +62,7 @@ A:link, A:visited, A:active, A:hover {
 	height: 100%;
 	overflow: auto;
 	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4);
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .modal-content {
@@ -132,11 +132,11 @@ A:link, A:visited, A:active, A:hover {
 						<ul class="list_menu">
 							<li><a class="link_menu"
 								href="/ServiceCenter/">전체보기</a></li>
-							<li><a class="link_menu" href="1">계정관련</a></li>
-							<li><a class="link_menu" href="2">도용.보안</a></li>
-							<li><a class="link_menu" href="3">모임관련</a></li>
-							<li><a class="link_menu" href="4">이용제한</a></li>
-							<li><a class="link_menu" href="5">게시판관련</a></li>
+							<li><a class="link_menu" href="0">계정관련</a></li>
+							<li><a class="link_menu" href="1">도용.보안</a></li>
+							<li><a class="link_menu" href="2">모임관련</a></li>
+							<li><a class="link_menu" href="3">이용제한</a></li>
+							<li><a class="link_menu" href="4">게시판관련</a></li>
 							<li
 								style="font-size: 21px; padding-top: 20px; font-weight: bold;">
 								<a class="link_menu1"

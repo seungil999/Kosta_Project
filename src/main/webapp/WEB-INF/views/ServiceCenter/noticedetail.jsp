@@ -49,35 +49,19 @@ A:link,A:visited,A:active,A:hover {
 	font-weight: bold;
 	letter-spacing: -.5px;
 }
-
-.modal {
-	display: none;
-	position: fixed;
-	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-	background-color: #fefefe;
-	margin: 15% auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 50%;
-}
-
-.close {
-	color: #aaa;
-	float: right;
-	font-size: 28px;
+.Btn {
+	background-color: white;
+	border: 1px solid #42DF2B ;
+	color: white;
+	padding: 3px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+	border-radius: 15px;
 	font-weight: bold;
+	margin: 30px 30px;
 }
-
 .Qbtn {
 	cursor: pointer;
 }
@@ -158,16 +142,17 @@ A:link,A:visited,A:active,A:hover {
 					<br>
 					<div class="QList">
 						<ol>
-							<c:forEach items="${list}" var="NOTICE">
-								<li><a href="/ServiceCenter/notice/detail?no=${NOTICE.no}">${NOTICE.name }</a></li>
-							</c:forEach>
+							<li><b>${noticeVO.name }</b></li>
+							<li>${noticeVO.regdate }</li>
+							<li>${noticeVO.content }</li>
 						</ol>
 					</div>
+					<a class="Btn" href="/ServiceCenter/notice">목록</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/includes/footer.jsp"%>
-	
+
 </body>
 </html>

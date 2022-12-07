@@ -6,6 +6,9 @@
 
 	<sql id="filter">
 		<choose>
+			<when test="filter == '0'.toString()">
+				and value=0
+			</when>
 			<when test="filter == '1'.toString()">
 				and value=1
 			</when>
@@ -17,9 +20,6 @@
 			</when>
 			<when test="filter == '4'.toString()">
 				and value=4
-			</when>
-			<when test="filter == '5'.toString()">
-				and value=5
 			</when>
 		</choose>
 	</sql>
@@ -36,7 +36,23 @@
 	<select id="getnoticelist"
 		resultType="com.kosta.jupjup.vo.NoticeVO">
 		<![CDATA[
-			SELECT * FROM NOTICE where rownum<=10
+			SELECT * FROM NOTICE where rownum<=10 ORDER BY regdate desc
 		]]>
 	</select>
+	
+	<select id="getnoticedetail" parameterType="Long" resultType="com.kosta.jupjup.vo.NoticeVO">
+		<![CDATA[
+			SELECT * FROM NOTICE where no = #{no} 
+		]]>
+	</select>
+	
+	<insert id="write" >
+	<![CDATA[
+		INSERT INTO notice (
+			NO,name,content)
+			VALUES (seq_questions_no.nextval,#{name},#{content})
+	]]>
+	</insert>
+	
+	
 </mapper>		

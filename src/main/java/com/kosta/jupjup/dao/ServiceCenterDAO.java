@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.jupjup.vo.Filter;
+import com.kosta.jupjup.vo.NoticeVO;
 import com.kosta.jupjup.vo.ServiceCenterVO;
 
 @Repository
@@ -16,5 +16,9 @@ public interface ServiceCenterDAO {
 
 	public List<ServiceCenterVO> getnoticelist();
 
+	public NoticeVO getnoticedetail(Long no);
 
+	public NoticeVO writeNotice();
+
+	public void write(NoticeVO noticeVO);
 }

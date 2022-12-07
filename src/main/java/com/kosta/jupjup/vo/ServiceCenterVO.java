@@ -10,4 +10,5 @@ public class ServiceCenterVO {
 	private String content;
 	private int count;
 	private int regular;
+	
 }
