@@ -35,7 +35,6 @@
 	width: 1000px;
 	padding-bottom: 40px;
 	position: relative;
-	
 }
 
 .style_content {
@@ -53,14 +52,16 @@
 	position: relative;
 	z-index: 10;
 	padding: 3px 40px;
-	margin:10px;
+	margin: 10px;
 }
+
 .uploadResult {
-	position: relative; 
+	position: relative;
 	top: -150px;
 	background-color: white;
 }
-.uploadBtn ,.removeBtn {
+
+.uploadBtn, .removeBtn {
 	background-color: white;
 	border: none;
 	color: black;
@@ -115,8 +116,6 @@ h3 {
 	padding: 10px 0px;
 	font-weight: bold;
 }
-
-
 </style>
 </head>
 
@@ -130,16 +129,16 @@ h3 {
 					<div class="style_content">
 						<div class="summary_info">
 							<div class="image">
-							
-							<div class="defaultImg">
-								<c:if test="${empty img }">
-									<img src="/resources/img/logo2.png" width=388; height=388;>
-								</c:if>
-							</div>
+
+								<div class="defaultImg">
+									<c:if test="${empty img }">
+										<img src="/resources/img/logo2.png" width=388; height=388;>
+									</c:if>
+								</div>
 								<div class="uploadResult"></div>
-								<input name="img" type="file" id="img"> 
-								<input type="button" class="uploadBtn" value="등록"> 
-								<input type="hidden" name="image" id="image">
+								<input name="img" type="file" id="img"> <input
+									type="button" class="uploadBtn" value="등록"> <input
+									type="hidden" name="image" id="image">
 							</div>
 							<div class="mateC">
 								<table>
@@ -151,13 +150,13 @@ h3 {
 									<tr>
 										<th>모임명</th>
 										<td colspan="5"><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="35">
-											<input type="hidden" name="writer" value="${userVO.nickname}">
+											placeholder="모임명을 입력해주세요" size="35"> <input
+											type="hidden" name="writer" value="${userVO.nickname}">
 											<input type="hidden" name="user_id" value="${userVO.id}"></td>
 									</tr>
 									<tr>
 										<th>모임날짜</th>
-										<td><input type="date" name="meetingdate"></td>
+										<td><input type="date" id="Date" name="meetingdate"></td>
 									</tr>
 									<tr>
 										<th>모임장소</th>
@@ -167,7 +166,7 @@ h3 {
 									</tr>
 									<tr>
 										<th></th>
-										<td ><input type="text" name="meetingplace"
+										<td><input type="text" name="meetingplace"
 											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="25"></td>
 									</tr>
 									<tr>
@@ -342,28 +341,27 @@ h3 {
 		};
 	</script>
 	<script>
-	function typeChange(){
-		
-		var starttime = $("#stime").val();
-		var endtime = $("#etime").val();
-		var meetingtime = $("#mtime").val();
-		
-		starttime=starttime.replace(":","");
-		endtime=endtime.replace(":","");
-		meetingtime=meetingtime.replace(":", "");
-		console.log(meetingtime);
-		
-        parseInt(starttime);
-        parseInt(endtime);
-        parseInt(meetingtime);
-        console.log(endtime);
-        $("#starttime").val(starttime);
-        $("#endtime").val(endtime);
-        $("#meetingtime").val(meetingtime);
-        
-	        
-	  };  
-	
+		function typeChange() {
+
+			var starttime = $("#stime").val();
+			var endtime = $("#etime").val();
+			var meetingtime = $("#mtime").val();
+
+			starttime = starttime.replace(":", "");
+			endtime = endtime.replace(":", "");
+			meetingtime = meetingtime.replace(":", "");
+			console.log(meetingtime);
+
+			parseInt(starttime);
+			parseInt(endtime);
+			parseInt(meetingtime);
+			console.log(endtime);
+			$("#starttime").val(starttime);
+			$("#endtime").val(endtime);
+			$("#meetingtime").val(meetingtime);
+
+		};
+
 		$('.uploadBtn')
 				.click(
 						function() {
@@ -387,7 +385,7 @@ h3 {
 										success : function(result) {
 
 											showUploadedImages(result);
-											var str="";
+											var str = "";
 											for (var i = 0; i < result.length; i++) {
 												str += result[i].thumbnailURL;
 											}
@@ -431,6 +429,17 @@ h3 {
 									})
 						});
 	</script>
+
+	<!-- 오늘 기준 이후 날짜를 선택할 수 있게 해주는 스크립트 -->
+	<script>
+		var now_utc = Date.now() 
+		var timeOff = new Date().getTimezoneOffset() * 60000;
+		var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
+		document.getElementById("Date").setAttribute("min", today);
+		document.getElementById('Date').value = new Date().toISOString().substring(0, 10);;
+	</script>
+
+	
 </body>
 </html>
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>

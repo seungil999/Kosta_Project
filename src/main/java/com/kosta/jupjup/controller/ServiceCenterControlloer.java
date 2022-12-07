@@ -59,7 +59,6 @@ public class ServiceCenterControlloer {
 	public ModelAndView write(@ModelAttribute NoticeVO noticeVO) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			SCservice.write(noticeVO);
 			mav.setViewName("redirecet:/notice");
 		}catch(Exception e) {
 			e.printStackTrace();

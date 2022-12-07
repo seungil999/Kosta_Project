@@ -170,7 +170,7 @@ h3 {
 									</tr>
 									<tr>
 										<th>모임시간</th>
-										<td><input type="time" id="mtime" name="mtime">
+										<td><input type="time" id="mtime" name="mtime" onchange="setMinValue()">
 											<input type="hidden" id="meetingtime" name="meetingtime"
 											value=""></td>
 									</tr>
@@ -424,6 +424,24 @@ h3 {
 									})
 						});
 	</script>
+	<!-- alert 대신 swal로 사용 가능 -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		let dateElement = document.getElementById('mtime');
+		let date = new Date(new Date().getTime()
+				- new Date().getTimezoneOffset() * 60000).toISOString().slice(
+				11, 16);
+		dateElement.value = date;
+		dateElement.setAttribute("min", date);
+
+		function setMinValue() {
+			if (dateElement.value < date) {
+				swal("", "번개 모임시간은 이전 시간에 모집할 수 없습니다. \n모임시간을 다시 설정해 주세요.", "warning");
+				dateElement.value = date;
+			}
+		}
+	</script>
+	
 </body>
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>
 </html>

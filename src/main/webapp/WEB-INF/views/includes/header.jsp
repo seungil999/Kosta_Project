@@ -74,7 +74,7 @@
 								<li class="nav-item">
 								<c:choose>
 										<c:when test="${userVO eq null}">
-											<li><a href="user/joinPage">회원가입</a></li>
+											<li><a href="/user/joinPage">회원가입</a></li>
 											<li><a class="nav-link" href="/user/loginPage">로그인</a></li>
 										</c:when>
 										<c:otherwise>

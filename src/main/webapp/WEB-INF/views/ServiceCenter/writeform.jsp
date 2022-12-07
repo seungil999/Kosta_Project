@@ -32,12 +32,6 @@ CKEDITOR.replace('content',{filebrowserUploadUrl:'/review/imageUpload', height:'
 </script>
 <script type="text/javascript">
 $(document).ready(function() {
-
-		$(".cancel").on("click",function(e){
-			location.href="/review/list";
-		})
-	
-		
 	$(".submit").on("click",function(e){
 			var content = $(".content");
 			var formData = new FormData($("form")[0]);
