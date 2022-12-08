@@ -48,17 +48,18 @@ button.find {
 	font-size:35;
 	font-weight:bolder;
 	margin-left: 180px;
+	margin-top:60px;	
 	
 }
-.main{
+.review_main{
 	
 	width:1150px;
 	border: 2px solid;
 	border-color:#42df2b;
-  	margin-top:10px;
-  	margin-left:180px;
-  	margin-right:180px;
+  	margin-top:50px;
+  	margin: 0 auto;
   	padding:10 30 60 30; 	
+  	
 }
 .filter{
 	float:right;

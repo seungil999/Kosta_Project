@@ -27,6 +27,7 @@ public class MateVO {
 	private int regular;
 	private int likecnt;
 	private String user_id;
+	private Integer report_count;
 	
 	
 }

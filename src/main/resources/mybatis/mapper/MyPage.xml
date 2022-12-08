@@ -17,7 +17,7 @@
 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
 	  from
       mate m inner join mate_join mj
-      on m.no=mj.no and mj.jno=1 and user_id=#{id} and timestamp>sysdate and
+      on m.no=mj.no and mj.jno=1 and mj.userid=#{id} and timestamp>sysdate and
       rownum <= 2
 		]]>
 	</select>
@@ -28,7 +28,7 @@
 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
 	  from
       mate m inner join mate_join mj
-      on m.no=mj.no and mj.jno=1 and user_id=#{id} and timestamp<sysdate and
+      on m.no=mj.no and mj.jno=1 and mj.userid=#{id} and timestamp<sysdate and
       rownum <= 2
 		]]>
 	</select>

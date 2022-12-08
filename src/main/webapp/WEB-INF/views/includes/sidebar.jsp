@@ -4,7 +4,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 <div class="sidebar">
 	<div class="profile">
-		<img src='/Mate/display?fileName=${userVO.profile}'>
+		<img src='/Mate/display?fileName=${userVO.profile}' style="height:150px; width:200px;">
 	</div>
 		<div class="nickname" style="margin-left:0px;">${userVO.nickname }</div>
 		<fieldset>
@@ -19,7 +19,6 @@
 		<div class="sidebar-normal"><a href="/mypage/activity">나의 플로깅 활동</a></div>
 		<div class="sidebar-normal"><a href="/mypage/schedule">예정된 활동</a></div>
 		<div class="sidebar-normal"><a href="/mypage/finish">완료한 활동</a></div>
-		<div class="sidebar-normal"><a href="/mypage/diaryList">플로깅 다이어리</a></div>
 	</div>
 		<hr>
 	<div class="list">

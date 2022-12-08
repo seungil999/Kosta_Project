@@ -31,7 +31,7 @@
 	</div>
 	<br><br><hr><br><br>
 	<div class="review-title">후기</div> 
-	<div class="main" style="width:1150px;">
+	<div class="review_main" style="width:1150px;">
 		<span class="filter replycnt"><a href="replycnt">댓글순</a></span>
 		<span class="filter like"><a href="like">좋아요순</a></span> 	
 		<span class="filter newest"><a href="newest">최신순</a></span>

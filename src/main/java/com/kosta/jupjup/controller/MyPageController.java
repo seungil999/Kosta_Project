@@ -68,6 +68,7 @@ public class MyPageController {
 		
 		return "/mypage/diaryList";
 	}
+	
 	@GetMapping("/likeActivity")
 	public String likeActivity(Model model,Criteria cri) { 
 		HttpSession session = request.getSession();

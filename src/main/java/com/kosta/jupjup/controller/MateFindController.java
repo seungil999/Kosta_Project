@@ -2,6 +2,7 @@ package com.kosta.jupjup.controller;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -26,6 +27,7 @@ import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.PageVO;
+import com.kosta.jupjup.vo.ReportVO;
 import com.kosta.jupjup.vo.UserVO;
 
 @Controller
@@ -50,7 +52,7 @@ public class MateFindController {
 	  cri.setCurrenttime(getTime);
 		  
 	  Criteria criteria = new Criteria();
-	  
+		
 	  model.addAttribute("list", service.getlist(cri)); 
 	  
 	  if("".equals(cri.getMeeting())||cri.getMeeting()==null){
@@ -99,6 +101,12 @@ public class MateFindController {
 	  List<UserVO> inUsers = service.mateInUsers(no);
 	  model.addAttribute("users", inUsers);
 	  
+	  Integer reportChk=null;
+	  if(uservo != null) {
+	  reportChk = service.reportChk(uservo.getId(), no);
+	  }
+	  model.addAttribute("reportChk", reportChk);
+	  
 	  return "/mateFind/get";
 	}
 	  
@@ -142,4 +150,13 @@ public class MateFindController {
 			String showlogin() {
 				return "/user/loginPage";
 			}
+		@PostMapping("/report")
+		public String report(ReportVO vo, Criteria cri,RedirectAttributes rttr){
+			System.out.println(vo.toString());
+			int count = service.report(vo);
+			service.reportUpdate(vo.getMate_id());
+			
+			return "redirect:/matefind/get?no="+vo.getMate_id();
+		}
+		
 }

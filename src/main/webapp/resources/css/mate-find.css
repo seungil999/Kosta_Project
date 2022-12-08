@@ -165,6 +165,8 @@ hr{
 	width:50px; 
 	height:50px;
 	border-radius:50%;
+	position: relative;
+	top:-15px;
 	
 }
 .uploadBtn {
@@ -231,22 +233,34 @@ hr{
 	margin-left:20px;
 }
 .replyUpdateBtn{
-	background-color:green;
+	background-color:#42df2b;
 	padding:5px;
-	bottom:20px;
+	bottom:4px;
 	font-size:10px;
 	position:relative;
 	float:right;
 	border-radius:30%;
+	margin-right: 2px;
 }
 #rembtn{
 	font-size:10px;
-	background-color:green;
+	background-color:#42df2b;
 	padding:5px;
-	bottom:20px;
+	bottom:4px;
 	position:relative;
 	float:right;
 	border-radius:30%;
+	margin-right: 23px;
+}
+.rembtn{
+	font-size:10px;
+	background-color:#42df2b;
+	padding:5px;
+	bottom:4px;
+	position:relative;
+	float:right;
+	border-radius:30%;
+	margin-right: 23px;
 }
 
 .primary-font{
@@ -256,11 +270,12 @@ hr{
 	position:relative;
 	float:left;
 	left:100px;
-	margin-top: 15px;
+	margin-top: 0px;
 }
 .header{
 	
-	padding:30px;
+	padding:25px;
+	padding-bottom:30px;
 }
 textarea#editContent{
 	position:relative;
@@ -328,12 +343,12 @@ textarea#editContent{
 /**  모달창  **/
  .my_modal {
         display: none;
-        width: 650px;
+        width: 651px;
         height:467px;
-        
+        border-radius:40px;
         background-color: #ffffff;
         border: 1px solid #888;
-        border-radius: 3px;
+        
     }
 
     .my_modal .modal_close_btn {
@@ -363,9 +378,10 @@ textarea#editContent{
 }
 .main{
 	width:650px;
-	border: 2px solid;
+	border: 3px solid;
 	border-color:#42df2b;
-  	
+	
+  	border-radius:40px;
   	
   	padding:30px;
 }
@@ -391,10 +407,102 @@ textarea#editContent{
 }
 .repUserProfile img{
 	margin-right:15px;
+	margin-bottom:-25px;
 	
 }
 .repDate{
-	position:relative;
+	
 	float:right;
-	margin-top:20px;
+
 }
+.replyList {
+	width:100%;
+	padding:10px;
+}
+
+/**신고**/
+.siren{
+	max-width: 28px;
+    height: auto;
+    margin-right: -6px;
+    position:relative;
+    top:-3px;
+    left:-9px;
+    
+}
+
+.siren_modrem{
+	float: right;
+    margin-right: 15px;
+    width: 84px;
+    height: 35px;
+    vertical-align: middle;
+    border: 3px solid #46e02f;
+    border-radius: 15px;
+    font-size: 15px;
+    color: #f54d0c;
+    font-family: "Nanum Gothic", sans-serif;
+    line-height:2;
+    font-weight:600;
+    
+}
+.r-main{
+	width:650px;
+	border: 3px solid;
+	border-color:#42df2b;
+	height: 519px;
+  	border-radius:40px;
+  	
+  	
+	
+	padding-left: 80;
+	padding-right: 80;
+}
+.r-title{
+	font-weight:700;
+	font-size:23;
+	text-align: center;
+	padding-top: 30;
+    padding-bottom: 10;
+}
+.r-bold{
+	font-weight:bolder;
+	font-size:17;
+	width:82px;
+}
+ .r-input{
+ 	padding-top:4px;
+ 	padding-bottom:4px;
+ }
+ label{
+ 	font-weight:500;
+ }
+ input[type=radio]{
+  	accent-color:forestgreen;
+ }
+ .r_rembtn{
+	background-color: #42df2b;
+    bottom: 4px;
+    position: absolute;
+    border-radius: 19px;
+    padding: 5px;
+    width: 101px;
+    font-size: 15px;
+    font-weight: 600;
+    margin:30 60;
+ }
+ .r_cancel{
+    background-color: #42df2b;
+    bottom: 4px;
+    position: absolute;
+    border-radius: 19px;
+    padding: 5px;
+    width: 101px;
+    font-size: 15px;
+    font-weight: 600;
+    margin:30 -160;
+ }
+ .caution{
+ 	width:16px;
+ 	margin-bottom:3px;
+ }

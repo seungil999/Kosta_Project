@@ -7,9 +7,17 @@
 <script type="text/javascript" src="/resources/js/reviewReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">		
+
+<!--   모달창   -->
+
+
+
+<div class="repMod"></div> 
+
+
 	
 	<div class="review-title">후기</div> 
-	<div class="main" style="width:1150px;">
+	<div class="review_main" style="width:1150px;">
 		<br><br>
 		<input type="hidden" id="no" value="${review.no}">
 		
@@ -113,6 +121,7 @@ $(document).ready(function() {
 	
 	var noValue = '<c:out value="${review.no}"/>';
 	var replyUL = $(".chat");
+	var replyMod = $(".repMod");
 	var clearfix = $(".left clearfix");
 	showList(1);
 	var userid = "<c:out value='${userVO.id}'/>";
@@ -120,7 +129,7 @@ $(document).ready(function() {
 	function showList(page){
 		
 		replyService.getList({no:noValue, page: page|| 1}, function(list){
-			
+			var mod="";
 			var str="";
 			if(list == null || list.length == 0){
 				replyUL.html("");
@@ -129,18 +138,49 @@ $(document).ready(function() {
 			for(var i=0, len = list.length || 0; i<len; i++){
 				str +="<div><li class='replyList'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
 				if(userid==list[i].user_id){
-				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>"
+				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>";
 				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
 				}
-				str +="<div class='header'><strong class= 'primary-font'>"
+				str +="<div class='header'><strong class= 'primary-font'>"+"<a class='repUserProfile' data-user='"+list[i].user_id+"'><img class='user-img' src='/Mate/display?fileName="+list[i].profile+"'/></a>"
 						+list[i].replyer+"</strong>";
-						
-				str +="<small class='pull-right text-musted'>"+replyService.displayTime(list[i].replyDate)+"</small>";
+				str +="<small class='repDate'>"+replyService.displayTime(list[i].replyDate)+"</small>";
 				
-				str +="<p class='repContent'>"+list[i].reply+"</p></div></li></div><hr>";
+				str +="<p class='repContent'>"+list[i].reply +"</p></div></li></div><hr>";
+			}
+			for(var i=0, len = list.length || 0; i<len; i++){
+				
+				if(list[i].profile_open == 'Y'){
+					mod += "<div class='my_modal' id='"+list[i].user_id+"'>";
+					mod += "<button class='modal_close_btn "+list[i].user_id+"'>✖</button>";    	
+					mod += "<div class='main'>";
+					mod += "<div class='bold'>"+list[i].nickname+"님의 프로필</div>";
+					mod +="<hr>";
+					mod += "<table class='modtab'><tr>";
+				 	mod += "<td class='bold'>이름</td>";
+					mod += "<td class='profile-input'><textarea rows='1' id='username' name='username' class='form-control id' readonly>"+list[i].username+"</textarea></td>";
+					mod += "<td rowspan='2'><div class='uploadResult'>";
+					mod += "<img class='profileImg' id='profileImg' src='/Mate/display?fileName="+list[i].profile+"'></div> </td></tr>";
+					mod += "<tr><td class='bold'>닉네임</td>";
+				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
+					mod += "<tr><td class='bold'>이메일</td>";
+					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
+					mod += "<tr><td class='bold'>휴대폰</td>";		
+				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
+				 	mod += "<tr><td class='bold'>성별</td>";
+					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
+				 	mod += "</tr></table></div></div>";
+				}else{
+					mod +="<div class='my_modal' id='"+list[i].user_id+"'>";
+				    mod +="<button class='modal_close_btn "+list[i].user_id+"'>✖</button>";
+					mod +="<div class='main'><div class='bold'>"+list[i].user_id+"님의 프로필</div><hr>";
+					mod +="<div style='text-align:center;'><img  src='/resources/img/404.png'><p class='private'>비공개 프로필입니다!</p></div></div></div>";
+					
+					    	   
+				           
+				}	
 			}
 			replyUL.html(str);
-			
+			replyMod.html(mod);
 		}); //end function
 	}//end showList
 	
@@ -351,5 +391,72 @@ $(document).ready(function() {
 	});
 
 </script>
+<script>
+        $(document).ready(function(){
+        	
+            function modal(id) {
+                var zIndex = 9999;
+                var modal = document.getElementsByClassName(id);
+                var modalId = document.getElementById(id);
+				console.log(modal);
+                // 모달 div 뒤에 희끄무레한 레이어
+                var bg = document.createElement('div');
+                bg.setStyle({
+                    position: 'fixed',
+                    zIndex: zIndex,
+                    left: '0px',
+                    top: '0px',
+                    width: '100%',
+                    height: '100%',
+                    overflow: 'auto',
+                    // 레이어 색갈은 여기서 바꾸면 됨
+                    backgroundColor: 'rgba(0,0,0,0.4)'
+                });
+                document.body.append(bg);
+
+                // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+               $(modal).on('click',function(e){
+            	   bg.remove();
+            	    modalId.style.display = 'none';
+	
+				});
+               $(bg).on('click',function(e){
+            	   bg.remove();
+            	   modalId.style.display = 'none';
+	
+				});
+				
+
+                modalId.setStyle({
+                    position: 'fixed',
+                    display: 'block',
+                    boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+                    // 시꺼먼 레이어 보다 한칸 위에 보이기
+                    zIndex: zIndex + 1,
+
+                    // div center 정렬
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    msTransform: 'translate(-50%, -50%)',
+                    webkitTransform: 'translate(-50%, -50%)'
+                });
+            }
+
+            // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+            Element.prototype.setStyle = function(styles) {
+                for (var k in styles) this.style[k] = styles[k];
+                return this;
+            };
+			
+            $(document).on("click", '.repUserProfile',function(e){
+             	var userid = $(this).data("user");
+        			 modal(userid);
+        		});
+			
+			
+        });
+        </script>
 </html>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

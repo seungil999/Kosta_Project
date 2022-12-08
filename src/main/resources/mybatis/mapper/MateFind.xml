@@ -38,14 +38,14 @@
 	  <![CDATA[
 	  select 
 		 no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
-		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt,report_count
 	  from (
 	    select
 	    ]]>
 	    	/*+INDEX_DESC(mate pk_mate ) */
  		 <![CDATA[
  		 rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
- 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+ 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt,report_count
 	      from ]]>
 	      <choose>
 			<when test="filter == 'soon'.toString()">
@@ -77,7 +77,7 @@
   
   <select id="getTotalCount" resultType="int">
     <![CDATA[ 
-	  select count(*) from mate where sysdate <timestamp and]]> <include refid="regular"></include> 
+	  select count(*) from mate where sysdate <timestamp and]]>  
 	  	  
 	    <include refid="criteria"></include> 
 	    
@@ -150,5 +150,17 @@
 			u.id=mj.userid and mj.no=m.no and mj.jno=1 and m.no=#{no}
 	 	]]>
 	</select>
-			
+	
+	<insert id="report">
+		insert into report (report_no,report_type,report_content,mate_id,report_writer)
+		values(seq_report.nextval,#{report_type},RTRIM(#{report_content} , ','),#{mate_id},#{report_writer})
+	</insert>
+	
+	<select id="reportChk" resultType="Integer">
+		select count(*) from report where report_writer=#{id} and mate_id=#{no}
+	</select>
+	
+	<update id="reportUpdate">
+		update mate set report_count=report_count+1 where no=#{no}
+	</update>
 </mapper>		

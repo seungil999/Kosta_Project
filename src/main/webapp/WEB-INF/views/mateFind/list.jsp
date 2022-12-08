@@ -100,7 +100,10 @@
                                  <a class='move' href="${mate.no}"><img style="height:200px;" src="/Mate/display?fileName=${mate.image}"/></a>
                             </div>
                             <div class="blog_content">
-                               <h2 class="mate-title"><a class='move' href="${mate.no}">활동명 : ${mate.activityname }</a></h2>
+                               <h2 class="mate-title"><a class='move' href="${mate.no}">활동명 : ${mate.activityname }
+                                </a><c:if test="${mate.report_count > 0}">
+                                		<img class="caution" src="/resources/img/caution.png">
+                                	</c:if></h2>
                                 <div class="expert">
                                     <div class="left-side text-left">
                                         <p class="left_side">

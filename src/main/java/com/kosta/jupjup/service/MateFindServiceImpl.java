@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kosta.jupjup.dao.MateFindDAO;
 import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateVO;
+import com.kosta.jupjup.vo.ReportVO;
 import com.kosta.jupjup.vo.UserVO;
 
 @Service
@@ -57,5 +58,25 @@ public class MateFindServiceImpl implements MateFindService {
 
 		return matefindDAO.mateInUsers(no);
 	}
+
+	@Override
+	public int report(ReportVO vo) {
+
+		return matefindDAO.report(vo);
+	}
+
+	@Override
+	public Integer reportChk(String id, Long no) {
+
+		return matefindDAO.reportChk(id,no);
+	}
+
+	@Override
+	public void reportUpdate(int no) {
+
+		matefindDAO.reportUpdate(no);
+	}
+
+	
 
 }

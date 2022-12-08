@@ -108,8 +108,7 @@ public class MateReplyController {
 	@PutMapping("/repCntUpdate")
 	public void repUpdate(@RequestBody Long noValue){
 		System.out.println(noValue);
-		service.minusRepCnt(noValue);
-		
+		service.minusRepCnt(noValue); 
 	}
 	
 }
