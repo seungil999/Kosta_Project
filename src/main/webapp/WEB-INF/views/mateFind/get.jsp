@@ -8,9 +8,7 @@
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
-<style>
 
-</style>
 <!--   모달창   -->
 <c:forEach items="${users}" var="user">
 <c:choose>
@@ -121,12 +119,11 @@
     <div><label><input type="radio" class="r_check" name="report_content" value="" id="etc"> 기타</label></div>
     <div><textarea class="form-control r_content" name="report_content" id="etc_content"
      style="resize:none; width: -webkit-fill-available;" placeholder="기타 사유는 30자 내외로 작성해주세요."></textarea></div>
-    <div style="text-align:center;"><button class="r_cancel ${mate.no}">취&nbsp;&nbsp;소</button><button class="r_rembtn" onclick="alert('신고가 접수되었습니다.')">제&nbsp;&nbsp;출</button></div>
+    <div style="text-align:center;"><button class="r_cancel ${mate.no}">취&nbsp;&nbsp;소</button><button type="button" class="r_rembtn">제&nbsp;&nbsp;출</button></div>
     
  	</div>
  </form>
 </div>
-
 
 <div class="flashOrRegular">
 <c:choose>
@@ -143,6 +140,7 @@
 <br>
  <div class="mate-container">
 	<div class="mate-bold">${mate.activityname}</div><br>
+	<c:if test="${mate.report_count > 0}"><span style="color:#ff5151; float:right;">신고가 누적된 활동입니다.</span></c:if>
 	<div class="mate-normal">${mate.writer}</div>
 	<hr>
 	
@@ -323,16 +321,21 @@
       
 </div>	
 
-
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 <script type="text/javascript">
 $(document).ready(function() {
 	var noValue = '<c:out value="${mate.no}"/>';
-	
 	var replyUL = $(".chat");
 	var replyMod = $(".repMod");
 	var clearfix = $(".left clearfix");
 	showList(1);
 	var userid = "<c:out value='${userVO.id}'/>";
+	
+	
+	
+	 function noBack(){ 
+		  location.href="/matefind/list";
+		}
 	
 	function showList(page){
 		
@@ -665,6 +668,9 @@ $(document).on("click", "#matejoin", function(e){
 				alert('로그인 후 이용 가능한 서비스입니다.');
 				location.href="/user/loginPage";
 			
+			}else if(result.result=='mateFull'){
+				
+				alert('예약된 활동이 너무 많습니다.다른 활동을 나간 뒤에 다시 시도해주세요.');
 			}else if(count == 1){
 			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
 			 console.log("나가요~");
@@ -858,10 +864,20 @@ $(document).ready(function() {
 			}
 			
 		});
-		$('#r_rembtn').on('click',function(e){
+		
 			
-			$('#rep_form').submit();
+		
+		$('.r_rembtn').on('click',function(){
+			var reportChk = "<c:out value='${reportChk}'/>";
+			
+			if(reportChk<1){
+				alert("신고가 접수 되었습니다.");
+				$('#rep_form').submit();
+			}else{
+				 alert("1개의 게시글에 1번만 신고가 가능합니다.");
+			}
 		});
+		
 	});
   </script>
 

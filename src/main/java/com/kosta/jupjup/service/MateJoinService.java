@@ -17,4 +17,5 @@ public interface MateJoinService {
 	
 	public MateJoinVO userCheck(MateJoinVO vo);
 	
+	public Integer mateCount (String id);
 	}

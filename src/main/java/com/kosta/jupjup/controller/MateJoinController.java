@@ -37,26 +37,29 @@ public class MateJoinController {
 			Integer peopleNum = service.joinCount(vo); // 해당 모임에 몇명이 있는지
 			matevo = findservice.get(vo.getNo());  //해당 모임 최대 인원 수
 			MateJoinVO userCheck = service.userCheck(vo); // 해당 모임에 참여했던적이 있는지(jno,userid)
-			
+			Integer count = service.mateCount(vo.getUserid());
 			System.out.println(peopleNum);
 			System.out.println(matevo.getPeoplemaxnum());
+			if(userCheck==null) {
+				service.joinInsert(vo);
+			}
+			MateJoinVO realUserChk = service.userCheck(vo);
+			
 			if(vo.getUserid()==null ||vo.getUserid().equals("")) { //로그인 안되어있으면
 				map.put("result", "login");
 				return map;
-			}else if(peopleNum < matevo.getPeoplemaxnum() && userCheck==null) {
-				service.joinInsert(vo);
-				service.joinCntUpdate(vo);
-				map.put("result", "success");
-			}else if(peopleNum < matevo.getPeoplemaxnum() && userCheck.getJno()==0) {
+			}else if(peopleNum < matevo.getPeoplemaxnum() && realUserChk.getJno()==0 && count<3) {
 				service.joinUpdate(vo);
 				service.joinCntUpdate(vo);
 				map.put("result", "success");
-			}else if(peopleNum == matevo.getPeoplemaxnum() && (userCheck==null||userCheck.getJno()==0)) {
+			}else if(peopleNum == matevo.getPeoplemaxnum() && realUserChk.getJno()==0) {
 				map.put("result", "full");
-			}else {
+			}else if(realUserChk.getJno()==1) {
 				service.joinUpdate(vo);
 				service.joinCntUpdate(vo);
 				map.put("result", "success");
+			}else if(count>=3) {
+				map.put("result", "mateFull");
 			}
 			
 			

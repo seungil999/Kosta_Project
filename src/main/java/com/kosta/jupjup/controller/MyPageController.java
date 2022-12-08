@@ -33,10 +33,10 @@ public class MyPageController {
 	public String activity(Model model) { 
 		HttpSession session = request.getSession();
 		UserVO vo = (UserVO) session.getAttribute("userVO");
-
+		
 		model.addAttribute("mate",service.getMate(vo.getId()));
 		model.addAttribute("emate",service.endMate(vo.getId()));
-		
+		System.out.println(service.getMate(vo.getId()));
 		return "/mypage/activity";
 	}
 	@GetMapping("/schedule")

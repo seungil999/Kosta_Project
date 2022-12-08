@@ -12,7 +12,7 @@
 	</select>
 	
 	<insert id="joinInsert">
-		insert into mate_join (jno,no,userid) values (1,#{no},#{userid})
+		insert into mate_join (jno,no,userid) values (0,#{no},#{userid})
 	</insert>
 	
 	<select id="joinGetInfo" resultType="Integer">
@@ -30,6 +30,10 @@
 		set peoplenum=<include refid="cntcal"></include>
 		where no=#{no} 
 	</update>
+	
+	<select id="mateCount" resultType="Integer">
+		select count(*) from mate_join where userid=#{id} and jno=1
+	</select>
 	
 	<sql id="cal">
 		<if test="count == 1">

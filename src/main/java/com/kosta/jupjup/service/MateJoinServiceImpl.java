@@ -45,5 +45,10 @@ public class MateJoinServiceImpl implements MateJoinService {
 
 		return dao.userCheck(vo);
 	}
+
+	@Override
+	public Integer mateCount(String id) {
+		return dao.mateCount(id);
+	}
 	
 }

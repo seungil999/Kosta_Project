@@ -27,6 +27,6 @@ public interface MateFindService {
 	
 	public Integer reportChk(String id,Long no);
 	
-	public void reportUpdate(int no);
+	public void reportUpdate(Long no);
 
 }

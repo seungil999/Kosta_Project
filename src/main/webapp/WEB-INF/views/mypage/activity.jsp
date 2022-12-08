@@ -18,6 +18,10 @@
 		<span class="bold">참여중인 활동내역</span>
 		 <span class="myp-allview"><a href="/mypage/schedule">전체보기 ></a></span>
 	<hr>
+	<c:if test="${empty mate}">
+		<div style="text-align:center;"><img style="height:100px;" src="/resources/img/404.png"></div>
+		<div style="text-align:center;">참여중인 활동이 없습니다.</div>
+	</c:if>
 	<c:forEach items="${mate }" var="mate">
 		<div class="activity-Info">
 		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate.image}"/></span>
@@ -29,11 +33,14 @@
 		</div>	 
 		<br><br><br><br>
 	</c:forEach>
-
 	<br>
 	<span class="myp-allview"><a href="/mypage/finish">전체보기 ></a></span>
 	<div class="bold">종료된 활동내역</div>
 <hr>
+	<c:if test="${empty emate}">
+		<div style="text-align:center;"><img style="height:100px;" src="/resources/img/404.png"></div>
+		<div style="text-align:center;">참여했던 활동이 없습니다.</div>
+	</c:if>
 	<c:forEach items="${emate }" var="emate">
 	<div class="activity-Info">
 		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${emate.image}"/></span>

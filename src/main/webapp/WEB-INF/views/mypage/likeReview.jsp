@@ -14,6 +14,10 @@
 	<div class="main" style="margin-top:60px; width:880px; float:center; margin-left:283px; padding:30px;">
 		<span class="bold">좋아요한 후기</span>
 	<hr>
+	<c:if test="${empty list}">
+		<div style="text-align:center;"><img style="height:100px;" src="/resources/img/404.png"></div>
+		<div style="text-align:center;">좋아요한 후기가 없습니다.</div>
+	</c:if>
 	<c:forEach items="${list}" var="review">
 	<a class="move" href="/review/get?no=${review.no}">
 	<c:choose>

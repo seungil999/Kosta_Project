@@ -23,4 +23,6 @@ public interface MateJoinDAO {
 	public void joinCntUpdate(MateJoinVO vo);
 
 	public MateJoinVO userCheck(MateJoinVO vo);
+	
+	public Integer mateCount(String id);
 }

@@ -72,7 +72,7 @@ public class MateFindServiceImpl implements MateFindService {
 	}
 
 	@Override
-	public void reportUpdate(int no) {
+	public void reportUpdate(Long no) {
 
 		matefindDAO.reportUpdate(no);
 	}

@@ -93,7 +93,7 @@
         meetingtime,
 		starttime,
 		endtime, content,regdate, updatedate,
-		replycnt, image, regular, likecnt,user_id
+		replycnt, image, regular, likecnt,user_id,report_count
 		 from mate where no =
 		#{no}
         
@@ -153,7 +153,7 @@
 	
 	<insert id="report">
 		insert into report (report_no,report_type,report_content,mate_id,report_writer)
-		values(seq_report.nextval,#{report_type},RTRIM(#{report_content} , ','),#{mate_id},#{report_writer})
+		values(seq_report.nextval,#{report_type},TRIM(both ',' from #{report_content}),#{mate_id},#{report_writer})
 	</insert>
 	
 	<select id="reportChk" resultType="Integer">

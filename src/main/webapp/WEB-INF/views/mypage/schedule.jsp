@@ -14,6 +14,10 @@
 	<div class="main">
 		<span class="bold">예정된 활동</span>
 	<hr>
+	<c:if test="${empty list}">
+		<div style="text-align:center;"><img style="height:100px;" src="/resources/img/404.png"></div>
+		<div style="text-align:center;">참여중인 활동이 없습니다.</div>
+	</c:if>
 	<c:forEach items="${list }" var="mate">	
 		<div class="activity-Info">
 		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate.image}"/></span>

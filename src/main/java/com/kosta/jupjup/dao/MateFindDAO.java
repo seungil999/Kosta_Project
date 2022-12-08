@@ -32,6 +32,6 @@ public interface MateFindDAO {
 	
 	public Integer reportChk(@Param("id")String id,@Param("no") Long no);
 	
-	public void reportUpdate(int no);
+	public void reportUpdate(Long no);
 	
 }

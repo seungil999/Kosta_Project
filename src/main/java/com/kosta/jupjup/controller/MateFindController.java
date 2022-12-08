@@ -70,7 +70,8 @@ public class MateFindController {
 	  }
 	   
 	  @GetMapping("/get")
-	  public String get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri, Model model,HttpServletRequest request ) {
+	  public String get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri, Model model,
+			  HttpServletRequest request) {
 	  HttpSession session = request.getSession();
 	  UserVO uservo = (UserVO) session.getAttribute("userVO");
 	  model.addAttribute("mate", service.get(no));
@@ -151,11 +152,17 @@ public class MateFindController {
 				return "/user/loginPage";
 			}
 		@PostMapping("/report")
-		public String report(ReportVO vo, Criteria cri,RedirectAttributes rttr){
+		public String report(ReportVO vo, Criteria cri,Model model){
 			System.out.println(vo.toString());
+			 Integer reportChk=null;
+			  
+			reportChk = service.reportChk(vo.getReport_writer(), vo.getMate_id());
+			  
+			if(reportChk!=1) {
 			int count = service.report(vo);
 			service.reportUpdate(vo.getMate_id());
-			
+			}
+			model.addAttribute("reportChk",reportChk);
 			return "redirect:/matefind/get?no="+vo.getMate_id();
 		}
 		
