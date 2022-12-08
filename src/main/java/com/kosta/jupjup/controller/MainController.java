@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.PageVO;
+import com.kosta.jupjup.vo.UserVO;
 
 @Controller 
 public class MainController {
@@ -136,20 +139,18 @@ public class MainController {
 	  }
 	  
 	  @GetMapping("/get")
-	  public String get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri, Model model) {
-
+	  public String get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri, Model model,HttpServletRequest request) {
+	  HttpSession session = request.getSession();
+      UserVO uservo = (UserVO) session.getAttribute("userVO");
 	  model.addAttribute("mate", service.get(no));
 	  
 	  MateLikeVO likeVO = new MateLikeVO();
 	  likeVO.setNo(no);
 	  // like.setUserno(0);
 	
-	  int like = 0;
-	  int check = LikeService.likeCount(likeVO);
-	
-	  if(check==0) {
-		  LikeService.likeInsert(likeVO);
-	  }else if(check==1) {
+	  Integer like = null;
+	  if(uservo!=null) {
+		  likeVO.setUserid(uservo.getId());
 		  like = LikeService.likeGetInfo(likeVO);
 	  }
 	  model.addAttribute("like", like);
@@ -158,15 +159,22 @@ public class MainController {
 	  MateJoinVO joinVO = new MateJoinVO();
 	  joinVO.setNo(no);
 	  
-	  int join = 0;
-	  int joincheck = JoinService.joinCount(joinVO);
+	  Integer join = null;
 	  
-	  if(joincheck==0) {
-		  JoinService.joinInsert(joinVO);
-	  }else if(joincheck==1) {
-		  join = JoinService.joinGetInfo(joinVO);
+	  if(uservo!=null) { //로그인이 되어있으면
+		joinVO.setUserid(uservo.getId());  
+		join = JoinService.joinGetInfo(joinVO);	//모임 참여여부를 확인하기위함 
 	  }
 	  model.addAttribute("join", join);
+	  
+	  List<UserVO> inUsers = service.mateInUsers(no);
+	  model.addAttribute("users", inUsers);
+	  
+	  Integer reportChk=null;
+	  if(uservo != null) {
+	  reportChk = service.reportChk(uservo.getId(), no);
+	  }
+	  model.addAttribute("reportChk", reportChk);
 	  
 	  return "/mateFind/get";
 	}

@@ -103,6 +103,7 @@
                                <h2 class="mate-title"><a class='move' href="${mate.no}">활동명 : ${mate.activityname }
                                 </a><c:if test="${mate.report_count > 0}">
                                 		<img class="caution" src="/resources/img/caution.png">
+                                		<p>마우스 오버시 알림메시지창이 뜹니다.<br>CSS로만 만들어졌습니다.</p>
                                 	</c:if></h2>
                                 <div class="expert">
                                     <div class="left-side text-left">
