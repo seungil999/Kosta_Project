@@ -69,6 +69,7 @@
 					value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
 					type='hidden' name='amount'
 					value='<c:out value="${pageMaker.cri.amount}"/>' />
+					<input type='hidden' name='meeting' value='<c:out value="${ pageMaker.cri.meeting }"/>'>
 				<button class='find' id='matefind'>찾기</button>
 			</form>
 	</div> 

@@ -262,6 +262,16 @@ hr{
 	border-radius:30%;
 	margin-right: 23px;
 }
+#reply-report{
+	font-size:10px;
+	background-color:palevioletred;
+	padding:5px;
+	bottom:4px;
+	position:relative;
+	float:right;
+	border-radius:30%;
+	margin-right: 23px;
+}
 
 .primary-font{
 	float:left;
@@ -553,4 +563,15 @@ textarea#editContent{
 	right: 17px;
     top: 233px;
 
+}
+.report_reply{
+	background-color: #42df2b;
+    bottom: 4px;
+    position: absolute;
+    border-radius: 19px;
+    padding: 5px;
+    width: 101px;
+    font-size: 15px;
+    font-weight: 600;
+    margin:30 60;
 }

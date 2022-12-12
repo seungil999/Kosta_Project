@@ -12,7 +12,6 @@
 		<span class="bold">좋아요한 추천장소</span>
 	<hr>
 	<c:if test="${empty list}">
-		<div style="text-align:center;"><img style="height:100px;" src="/resources/img/404.png"></div>
 		<div style="text-align:center;">좋아요한 추천장소가 없습니다.</div>
 	</c:if>
 	

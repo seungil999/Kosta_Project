@@ -122,6 +122,7 @@ public class MateCreateController {
 		mjv.setNo(no);
 		mjv.setUserid(uservo.getId());
 		matejoinservice.joinInsert(mjv);
+		matejoinservice.joinUpdate(mjv);
 		return "redirect:/matefind/list";
 	}
 	 

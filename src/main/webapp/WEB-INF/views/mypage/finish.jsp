@@ -15,7 +15,6 @@
 		<span class="bold">완료한 활동내역</span>
 	<hr>
 	<c:if test="${empty list}">
-		<div style="text-align:center;"><img style="height:100px;" src="/resources/img/404.png"></div>
 		<div style="text-align:center;">참여한 활동이 없습니다.</div>
 	</c:if>
 <c:forEach items="${list }" var="mate">		

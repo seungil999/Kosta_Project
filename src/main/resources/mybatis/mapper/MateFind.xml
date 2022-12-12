@@ -163,4 +163,13 @@
 	<update id="reportUpdate">
 		update mate set report_count=report_count+1 where no=#{no}
 	</update>
+	
+	<select id="repReportChk" resultType="Integer">
+		select count(report_no) from report where report_writer=#{report_writer} and mate_reply_id=#{mate_reply_id}
+	</select>
+	
+	<insert id="repReport">
+	insert into report (report_no,report_type,report_writer,report_content,mate_reply_id)
+	values(seq_report.nextval,#{report_type},#{report_writer},TRIM(both ',' from #{r_report_content}),#{mate_reply_id})
+	</insert>
 </mapper>		

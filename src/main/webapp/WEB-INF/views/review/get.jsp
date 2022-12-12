@@ -16,7 +16,7 @@
 
 
 	
-	<div class="review-title">후기</div> 
+	<div class="review-title" style="margin-top:60px;">후기</div> 
 	<div class="review_main" style="width:1150px;">
 		<br><br>
 		<input type="hidden" id="no" value="${review.no}">

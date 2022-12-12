@@ -29,4 +29,8 @@ public interface MateFindService {
 	
 	public void reportUpdate(Long no);
 
+	public Integer repReportChk(ReportVO vo);
+	
+	public int repReport(ReportVO vo);
+
 }
