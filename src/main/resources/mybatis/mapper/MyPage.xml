@@ -61,12 +61,13 @@
 	  
 	  ]]> /*+INDEX_DESC(mate pk_mate ) */
 	  <![CDATA[
- 		rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+ 		rownum rn, m.no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
  		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
-	      from mate where user_id=#{id} and timestamp>sysdate and
+	      from mate m inner join mate_join mj
+      on m.no=mj.no and mj.jno=1 and mj.userid=#{id} and timestamp>sysdate and
 	      rownum <=#{cri.pageNum} * #{cri.amount}
 	      )  
-	  where rn > (#{cri.pageNum} -1) * #{cri.amount}   
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount} 
 		]]>
 	
 	</select>

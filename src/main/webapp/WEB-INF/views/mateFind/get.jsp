@@ -74,7 +74,8 @@
 
 </c:forEach>
 
-<div class="repMod"></div>  
+<div class="repMod"></div>
+<div class="reportMod"></div>  
 
 <div class="my_modal" style="height:521" id="${mate.no}">
      <button class="modal_close_btn ${mate.no}">✖</button>   
@@ -119,7 +120,7 @@
     <div><label><input type="radio" class="r_check" name="report_content" value="" id="etc"> 기타</label></div>
     <div><textarea class="form-control r_content" name="report_content" id="etc_content"
      style="resize:none; width: -webkit-fill-available;" placeholder="기타 사유는 30자 내외로 작성해주세요."></textarea></div>
-    <div style="text-align:center;"><button class="r_cancel ${mate.no}">취&nbsp;&nbsp;소</button><button type="button" class="r_rembtn">제&nbsp;&nbsp;출</button></div>
+    <div style="text-align:center;"><button type="button" class="r_cancel ${mate.no}">취&nbsp;&nbsp;소</button><button type="button" class="r_rembtn">제&nbsp;&nbsp;출</button></div>
     
  	</div>
  </form>
@@ -327,10 +328,10 @@ $(document).ready(function() {
 	var noValue = '<c:out value="${mate.no}"/>';
 	var replyUL = $(".chat");
 	var replyMod = $(".repMod");
+	var reportMod = $(".reportMod");
 	var clearfix = $(".left clearfix");
 	showList(1);
 	var userid = "<c:out value='${userVO.id}'/>";
-	
 	
 	
 	 function noBack(){ 
@@ -342,6 +343,7 @@ $(document).ready(function() {
 		replyService.getList({no:noValue, page: page|| 1}, function(list){
 			var mod="";
 			var str="";
+			var rep="";
 			if(list == null || list.length == 0){
 				replyUL.html("");
 				return;
@@ -351,6 +353,8 @@ $(document).ready(function() {
 				if(userid==list[i].user_id){
 				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>";
 				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
+				}else if(userid != ''){
+				str += "<button type='button' class='reply-report' id='reply-report' data-writer='${userVO.id}' data-rno='"+list[i].rno+"'>신고</button>";
 				}
 				str +="<div class='header'><strong class= 'primary-font'>"+"<a class='repUserProfile' data-user='"+list[i].user_id+"'><img class='user-img' src='/Mate/display?fileName="+list[i].profile+"'/></a>"
 						+list[i].replyer+"</strong>";
@@ -384,13 +388,42 @@ $(document).ready(function() {
 					mod +="<div class='my_modal' id='"+list[i].user_id+"'>"
 				    mod +="<button class='modal_close_btn "+list[i].user_id+"'>✖</button>"    	
 					mod +="<div class='main'><div class='bold'>"+list[i].user_id+"님의 프로필</div><hr>"
-					mod +="<div style='text-align:center;'><img  src='/resources/img/404.png'><p class='private'>비공개 프로필입니다!</p></div></div></div>"
-					
-					    	   
-				           
-				}	
+					mod +="<div style='text-align:center;'><img  src='/resources/img/404.png'><p class='private'>비공개 프로필입니다!</p></div></div></div>"   
+				}
+				
+				for(var i=0, len = list.length || 0; i<len; i++){
+					rep+='<div class="my_modal" style="height:521" id="'+list[i].rno+'">';
+				    rep+='<button class="modal_close_btn '+list[i].rno+'">✖</button>';   
+					rep+='<form  method="post" action="/matefind/repReport" id="'+list[i].rno+'" onsubmit="return test()">'	   
+					rep+='<input type="hidden" name="report_type" value=2>' 
+					rep+='<input type="hidden" name="report_writer" value="${userVO.id}">'
+					rep+='<input type="hidden" name="mate_reply_id" value="'+list[i].rno+'">'
+					rep+='<input type="hidden" name="mate_id" value="${mate.no}">'
+					rep+='<div class="r-main">'
+					rep+='<div class="r-title">신고하기</div><hr>'
+					rep+='<table class="modtab">'
+					rep+='<tr><td class="r-bold">작&nbsp;성&nbsp;자 :&nbsp;</td>'
+					rep+='<td class="r-input"><p id="user_id" readonly>'+list[i].replyer+'</p></td></tr>'
+					rep+='<tr><td class="r-bold">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용 :&nbsp;</td>'
+					rep+= '<td class="r-input">'+list[i].reply+'</td></tr></table>'
+				 	rep+='<hr style="margin-top:7px; margin-bottom:7px;">'
+				 	rep+='<table class="modtab">'
+				 	rep+='<tr><td class="r-bold">사유선택 :</td>'
+					rep+= '<td class="r-input" style="font-size:14px">대표적인 사유 1개를 선택해 주세요.</td>'
+					rep+='</tr><tr><td></td>'
+					rep+='<td class="r-input" style="font-size:14px">기타 사유는 클릭 후 직접 작성해 주세요.</td>'
+				 	rep+='<tr></table>' 
+				 	rep+='<hr style="margin-top:7px; margin-bottom:7px;">'
+				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="욕설 또는 혐오발언"> 욕설 또는 혐오발언</label></div>'
+				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="동일내용의 댓글 반복(도배)"> 동일내용의 댓글 반복(도배)</label></div>'
+				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="음란성 또는 청소년에게 부적합한 내용"> 음란성 또는 청소년에게 부적합한 내용</label></div>'
+				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="" id="etc"> 기타</label></div>'
+				 	rep+='<div><textarea class="form-control r_r_content" name="r_report_content" id="r_etc_content"'
+				 	rep+='style="resize:none; width: -webkit-fill-available;" placeholder="기타 사유는 30자 내외로 작성해주세요."></textarea></div>'
+				 	rep+='<div style="text-align:center;"><button type="button" class="r_cancel '+list[i].rno+'">취&nbsp;&nbsp;소</button><input type="submit" class="report_reply" data-rno="'+list[i].rno+'" value="제&nbsp;&nbsp;출"></div></div></form></div>'
+				}
 			}
-			
+			reportMod.html(rep);
 			replyUL.html(str);
 			replyMod.html(mod);
 		}); //end function
@@ -670,7 +703,7 @@ $(document).on("click", "#matejoin", function(e){
 			
 			}else if(result.result=='mateFull'){
 				
-				alert('예약된 활동이 너무 많습니다.다른 활동을 나간 뒤에 다시 시도해주세요.');
+				alert('예약된 활동이 너무 많습니다. 다른 활동을 나간 뒤에 다시 시도해주세요.');
 			}else if(count == 1){
 			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
 			 console.log("나가요~");
@@ -833,6 +866,33 @@ $(document).ready(function() {
              	var userid = $(this).data("user");
         			 modal(userid);
         		});
+            
+            $(document).on("click", '.reply-report',function(e){
+            	 $('.r_r_content').hide();
+            	var no = $(this).data("rno");
+    			var writer = $(this).data("writer");
+    			data = {
+    						"mate_reply_id" : no,
+    						"report_writer" : writer
+    						};
+    			$.ajax({
+    				url : "/matefind/repReportChk",
+    				type : 'post',
+    				contentType: 'application/json',
+    				data : JSON.stringify(data),
+    				success : function(result){
+    					
+           				 modal(no);
+    					
+    				}, error : function(result){
+    					alert("이미 신고가 접수되었습니다.");
+    				}
+    				
+    				});
+            	
+            	
+             	
+        		});
             /** 신고하기 **/
       	  $("#report").on("click", function(){
       		  var reportChk = "<c:out value='${reportChk}'/>"
@@ -853,30 +913,67 @@ $(document).ready(function() {
         });
         </script>	
        
-  <script>
+  <script type="text/javascript">
+  function test(){
+		var form = $(this).data('rno');
+		var contentChk = $("input[name=r_report_content]:checked").val();
+		var etc_content =$('#r_etc_content').val();
+		if((contentChk=='' ||contentChk==null) &&etc_content==''){
+			alert('신고사유를 선택 또는 내용을 입력해 주세요.');
+			return false;
+		}else{
+			alert("신고 접수가 완료되었습니다.");
+			return true;
+		}
+	};
+	
   $(document).ready(function(){
-	    $('#etc_content').hide();
+	  
+	    $('.r_content').hide();
 		$("input[name='report_content']").change(function(){
 			if($("input[name='report_content']:checked").val() == ''){
-				$('#etc_content').show();
+				$('.r_content').show();
 			}else{
-				$('#etc_content').hide();
+				$('.r_content').hide();
 			}
 			
 		});
+	
+		 $(document).on("change", '.r_r_check',function(e){
+				
+				if($("input[name='r_report_content']:checked").val() == ''){
+					$('.r_r_content').show();
+				}else{
+					$('.r_r_content').hide();
+				}
+	
+			});
+		
+			
+		
 		
 			
 		
 		$('.r_rembtn').on('click',function(){
 			var reportChk = "<c:out value='${reportChk}'/>";
+			var contentChk = $("input[name=report_content]:checked").val();
 			
-			if(reportChk<1){
+			if((contentChk==null||contentChk=='') && $('#etc_content').val()==''){
+				alert('신고사유를 선택 또는 내용을 입력해 주세요.');
+				return false;
+			}else if(reportChk<1){
 				alert("신고가 접수 되었습니다.");
 				$('#rep_form').submit();
 			}else{
 				 alert("1개의 게시글에 1번만 신고가 가능합니다.");
 			}
+			
 		});
+	
+		
+	
+		
+		
 		
 	});
   </script>

@@ -77,6 +77,18 @@ public class MateFindServiceImpl implements MateFindService {
 		matefindDAO.reportUpdate(no);
 	}
 
+	@Override
+	public Integer repReportChk(ReportVO vo) {
+
+		return matefindDAO.repReportChk(vo);
+	}
+
+	@Override
+	public int repReport(ReportVO vo) {
+
+		return matefindDAO.repReport(vo);
+	}
+
 	
 
 }

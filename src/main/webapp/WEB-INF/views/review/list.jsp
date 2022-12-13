@@ -49,7 +49,7 @@
 			<span class="image">${review.thumbnail }</span>
 		</c:otherwise>
 	</c:choose>
-		<span class="titleInfo">${review.title}</span></a>
+		<span class="titleInfo">${review.title} <span style="color:#42DF2B; font-size:14px;">[${review.replycnt}]</span></span></a>
 		<span class="date">${review.regdate }</span>
 		<br>
 		<div class="content">${review.content }</div>
