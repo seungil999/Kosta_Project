@@ -2,7 +2,6 @@ package com.kosta.jupjup.controller;
 
 import java.io.FileInputStream;
 import java.io.OutputStream;
-import java.net.http.HttpRequest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -44,6 +43,7 @@ public class MateCreateController {
 	MateCreateService matecreateservice;
 	@Autowired
 	MateJoinService matejoinservice;
+	
 	@GetMapping("/MateCreateMain")
 	
 	public String MateCreateMaingmain (HttpServletRequest request) {
@@ -73,10 +73,13 @@ public class MateCreateController {
 		 HttpSession session = request.getSession();
 		 UserVO uservo = (UserVO) session.getAttribute("userVO");
 		
-		
 		model.addAttribute("matecreate", matecreatevo);
+		
 		if(matecreatevo.getImage().isEmpty() ) {
 			matecreatevo.setImage("기본이미지.jpg");
+		}
+		if(matecreatevo.getContent().isEmpty() ) {
+			matecreatevo.setContent("");
 		}
 		System.out.println(matecreatevo);
 		if(matecreatevo.getRegular()==1) {

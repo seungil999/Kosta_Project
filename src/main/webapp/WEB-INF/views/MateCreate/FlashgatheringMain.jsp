@@ -9,8 +9,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </head>
 <style>
+
+
 .matecreate {
 	position: relative;
 	min-width: 990px;
@@ -54,11 +58,13 @@
 	padding: 3px 40px;
 	margin: 10px;
 }
+
 .uploadResult {
-	position: relative; 
+	position: relative;
 	top: -150px;
 	background-color: white;
 }
+
 .uploadBtn, .removeBtn {
 	background-color: white;
 	border: none;
@@ -115,7 +121,6 @@ h3 {
 	padding: 10px 0px;
 	font-weight: bold;
 }
-
 </style>
 </head>
 
@@ -124,33 +129,36 @@ h3 {
 		<h3>번개모임</h3>
 		<div class="matecreate_container">
 			<form action="/Mate/matecreate" method="post"
-				onsubmit="typeChange();">
+				onsubmit="typeChange(); ">
 				<div class="matecreateF">
 					<div class="style_content">
 						<div class="summary_info">
-						
+
 							<div class="image">
-							
-							<div class="defaultImg">
-								<c:if test="${empty img }">
-									<img src="/resources/img/logo2.png" width=388; height=388;>
-								</c:if>
-							</div>
+
+								<div class="defaultImg">
+									<c:if test="${empty img }">
+										<img src="/resources/img/logo2.png" width=388; height=388;>
+									</c:if>
+								</div>
 								<div class="uploadResult"></div>
-								<input name="img" type="file" id="img"> 
-								<input type="button" class="uploadBtn" value="등록"> 
-								<input type="hidden" name="image" id="image">
-							</div>		
-							
+								<input name="img" type="file" id="img"> <input
+									type="button" class="uploadBtn" value="등록"> <input
+									type="hidden" name="image" id="image">
+							</div>
+
 							<div class="mateC">
 								<table>
 									<tr>
-									
+
 										<th>모임명</th>
 										<td><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="30">
+											placeholder="모임명을 입력해주세요" size="30" required 
+											oninvalid="this.setCustomValidity('모임명은 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"> 
 											<input type="hidden" name="writer" value="${userVO.nickname}">
-											<input type="hidden" name="user_id" value="${userVO.id}"></td>
+											<input type="hidden" name="user_id" value="${userVO.id}">
+										</td>
 									</tr>
 									<tr>
 										<th>모임장소</th>
@@ -160,7 +168,9 @@ h3 {
 									<tr>
 										<th></th>
 										<td><input type="text" name="meetingplace"
-											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="30"></td>
+											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="30" required 
+											oninvalid="this.setCustomValidity('모임장소는 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"></td>
 									</tr>
 									<tr>
 										<td colspan="4">
@@ -170,9 +180,9 @@ h3 {
 									</tr>
 									<tr>
 										<th>모임시간</th>
-										<td><input type="time" id="mtime" name="mtime" onchange="setMinValue()">
-											<input type="hidden" id="meetingtime" name="meetingtime"
-											value=""></td>
+										<td><input type="time" id="mtime" name="mtime"
+											onchange="setMinValue()"> <input type="hidden"
+											id="meetingtime" name="meetingtime" value=""></td>
 									</tr>
 									<tr>
 										<th>모임인원</th>
@@ -184,23 +194,33 @@ h3 {
 									</tr>
 									<tr>
 										<th>출발지</th>
-										<td><input type="text" name="startzone" size="30" />
+										<td><input type="text" name="startzone" size="30"
+											placeholder="출발지를 입력해주세요." required 
+											oninvalid="this.setCustomValidity('출발지는 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"/>
 									</tr>
 									<tr>
 										<th>목적지</th>
-										<td><input type="text" name="endzone" size="30" />
+										<td><input type="text" name="endzone" size="30"
+											placeholder="도착지를 입력해주세요." required 
+											oninvalid="this.setCustomValidity('목적지는 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"/>
 									</tr>
 									<tr>
 										<th>활동시간</th>
-										<td><input type="time" id="stime" name="stime">
+										<td><input type="time" id="stime" name="stime" required 
+											oninvalid="this.setCustomValidity('활동시간은 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')">
 											부터 <input type="hidden" id="starttime" name="starttime"
-											value=""> <input type="time" id="etime" name="etime">
-											까지 <input type="hidden" id="endtime" name="endtime" value=""></td>
+											value=""> <input type="time" id="etime" name="etime" required 
+											oninvalid="this.setCustomValidity('활동시간은 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"> 까지 <input type="hidden" id="endtime"
+											name="endtime" value=""></td>
 									</tr>
 									<tr>
 										<th style="vertical-align: top;">안내사항</th>
 										<td style="vertical-align: top;"><textarea name="content"
-												placeholder="안내사항을 입력해주세요&#13;&#10;예시)준비물,교통편,..."></textarea></td>
+												   placeholder="안내사항을 입력해주세요&#13;&#10;예시)준비물,교통편,..."></textarea></td>
 									</tr>
 									<tr>
 										<td style="text-align: left;"><input type="button"
@@ -441,7 +461,7 @@ h3 {
 			}
 		}
 	</script>
-	
+
 </body>
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>
 </html>

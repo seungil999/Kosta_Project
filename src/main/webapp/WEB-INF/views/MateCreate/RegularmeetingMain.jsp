@@ -9,6 +9,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </head>
 <style>
 .matecreate {
@@ -142,21 +144,22 @@ h3 {
 							</div>
 							<div class="mateC">
 								<table>
-									<!-- <tr>
-										<th>작성자</th>
-										<td>${mate.writer}</td> 아이디,회원가입 끝나서 입력이 가능하면 사용
-										<td><input type="text" name="writer" size="35"></td>
-									</tr> -->
+									
 									<tr>
 										<th>모임명</th>
 										<td colspan="5"><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="35"> <input
-											type="hidden" name="writer" value="${userVO.nickname}">
-											<input type="hidden" name="user_id" value="${userVO.id}"></td>
+											placeholder="모임명을 입력해주세요" size="35" required 
+											oninvalid="this.setCustomValidity('모임명은 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"> 
+											<input type="hidden" name="writer" value="${userVO.nickname}">
+											<input type="hidden" name="user_id" value="${userVO.id}">
+										</td>
 									</tr>
 									<tr>
 										<th>모임날짜</th>
-										<td><input type="date" id="Date" name="meetingdate"></td>
+										<td><input type="date" id="Date" name="meetingdate" required 
+											oninvalid="this.setCustomValidity('모임날짜는 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"></td>
 									</tr>
 									<tr>
 										<th>모임장소</th>
@@ -166,8 +169,10 @@ h3 {
 									</tr>
 									<tr>
 										<th></th>
-										<td><input type="text" name="meetingplace"
-											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="25"></td>
+										<td><input type="text" name="meetingplace" 
+											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="30"required 
+											oninvalid="this.setCustomValidity('모임장소는 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"></td>
 									</tr>
 									<tr>
 										<td colspan="4"><div id="map"
@@ -189,18 +194,28 @@ h3 {
 									</tr>
 									<tr>
 										<th>출발지</th>
-										<td><input type="text" name="startzone" />
+										<td><input type="text" name="startzone" size="30"
+											placeholder="출발지를 입력해주세요." required 
+											oninvalid="this.setCustomValidity('출발지는 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"/>
 									</tr>
 									<tr>
 										<th>목적지</th>
-										<td><input type="text" name="endzone" />
+										<td><input type="text" name="endzone" size="30"
+											placeholder="도착지를 입력해주세요." required 
+											oninvalid="this.setCustomValidity('목적지는 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"/>
 									</tr>
 									<tr>
 										<th>활동시간</th>
-										<td><input type="time" id="stime" name="stime">
+										<td><input type="time" id="stime" name="stime" required 
+											oninvalid="this.setCustomValidity('활동시간은 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')">
 											부터 <input type="hidden" id="starttime" name="starttime"
-											value=""> <input type="time" id="etime" name="etime">
-											까지 <input type="hidden" id="endtime" name="endtime" value=""></td>
+											value=""> <input type="time" id="etime" name="etime" required 
+											oninvalid="this.setCustomValidity('활동시간은 필수로 입력 해주세요.')"
+											oninput="this.setCustomValidity('')"> 까지 <input type="hidden" id="endtime"
+											name="endtime" value=""></td>
 									</tr>
 									<tr>
 										<th style="vertical-align: top;">안내사항</th>
