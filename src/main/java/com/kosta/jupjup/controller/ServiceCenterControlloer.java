@@ -59,7 +59,8 @@ public class ServiceCenterControlloer {
 	public ModelAndView write(@ModelAttribute NoticeVO noticeVO) {
 		ModelAndView mav = new ModelAndView();
 		try {
-			mav.setViewName("redirecet:/notice");
+			mav.addObject("noticeVO", noticeVO);
+			mav.setViewName("redirect:/ServiceCenter/notice");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

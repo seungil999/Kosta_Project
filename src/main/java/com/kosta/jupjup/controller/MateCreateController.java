@@ -78,6 +78,9 @@ public class MateCreateController {
 		if(matecreatevo.getImage().isEmpty() ) {
 			matecreatevo.setImage("기본이미지.jpg");
 		}
+		if(matecreatevo.getImage()==" " ) {
+			matecreatevo.setImage("기본이미지.jpg");
+		}
 		if(matecreatevo.getContent().isEmpty() ) {
 			matecreatevo.setContent("");
 		}

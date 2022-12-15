@@ -77,21 +77,21 @@
 					깨끗한 지구를 만들기 위해 <br>시작된 플로깅(plogging)운동! <br>조깅하면서 건강도
 					관리하고, <br>깨끗한 길거리를 만들기 위해 <br>오늘부터 실천해 보시기 바랍니다.
 				</div>
-				<br> <input type="button" class="Btn" value="메이트찾기"
-					onclick="location.href='/matefind/list'">&nbsp;&nbsp;&nbsp;
+				<br> 
+				<input type="button" class="Btn" value="메이트찾기" onclick="location.href='/matefind/list'">&nbsp;&nbsp;&nbsp;
 				<a href="/Mate/MateCreateMain" onclick="loginChk();" id="create" class="Btn">메이트모집</a>
-
 			</div>
 		</div>
 	</div>
-	<script>
+	
+<script>
 	function loginChk(){
-		if(${userVO.id eq null}){
+		if(${userVO.id == null}){
 			alert("로그인 후 이용 가능한 서비스입니다.");
 			$("#create").attr("href", "/user/loginPage")
 		}
 	}
-	</script>
+</script>
 </body>
 
 </html>

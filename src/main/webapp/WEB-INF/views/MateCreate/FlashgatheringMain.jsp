@@ -142,9 +142,9 @@ h3 {
 									</c:if>
 								</div>
 								<div class="uploadResult"></div>
-								<input name="img" type="file" id="img"> <input
-									type="button" class="uploadBtn" value="등록"> <input
-									type="hidden" name="image" id="image">
+								<input name="img" type="file" id="img"> 
+								<input type="button" class="uploadBtn" value="등록"> 
+								<input type="hidden" name="image" id="image">
 							</div>
 
 							<div class="mateC">
@@ -376,21 +376,24 @@ h3 {
 			$("#meetingtime").val(meetingtime);
 
 		};
-
-		$('.uploadBtn')
-				.click(
+		
+		$('.uploadBtn').click(
 						function() {
+							
+							//클릭 시 버튼 삭제
+							$('.uploadBtn').hide();
+							$(img).hide();
+							
 							var formData = new FormData();
 							var inputFile = $("input[type='file']");
 							var files = inputFile[0].files;
-
+							
 							for (var i = 0; i < files.length; i++) {
 								console.log(files[i]);
 								formData.append("uploadFiles", files[i]);
 							}//.uploadBtn
 
-							$
-									.ajax({
+							$.ajax({
 										url : 'uploadAjax',
 										processData : false,
 										contentType : false,
@@ -412,6 +415,7 @@ h3 {
 										}
 
 									});//.ajax
+									
 							function showUploadedImages(arr) {
 								console.log(arr);
 								var divArea = $(".uploadResult");
@@ -430,9 +434,13 @@ h3 {
 										var target = $(this);
 										var fileName = target.data("name");
 										var targetDiv = $(this).closest("div");
-
+										$('.uploadBtn').show()
+										$(img).show()
+										
+										$("#image").val("");
+										
 										console.log(fileName);
-
+										
 										$.post('removeFile', {
 											fileName : fileName
 										}, function(result) {
@@ -444,6 +452,7 @@ h3 {
 									})
 						});
 	</script>
+	
 	<!-- alert 대신 swal로 사용 가능 -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>

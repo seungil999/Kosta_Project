@@ -381,6 +381,11 @@ h3 {
 		$('.uploadBtn')
 				.click(
 						function() {
+							
+							//클릭 시 버튼 삭제
+							$('.uploadBtn').hide();
+							$(img).hide();
+							
 							var formData = new FormData();
 							var inputFile = $("input[type='file']");
 							var files = inputFile[0].files;
@@ -431,7 +436,12 @@ h3 {
 										var target = $(this);
 										var fileName = target.data("name");
 										var targetDiv = $(this).closest("div");
-
+										
+										$('.uploadBtn').show();
+										$(img).show();
+										
+										$("#image").val("");
+										
 										console.log(fileName);
 
 										$.post('removeFile', {
