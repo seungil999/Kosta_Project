@@ -163,4 +163,18 @@ public class MyPageServiceImpl implements MyPageService{
 		return dao.getTotalActivity(year,id);
 	}
 
+
+	@Override
+	public void updateGrade(String id, int grade) {
+
+		dao.updateGrade(id,grade);
+	}
+
+
+	@Override
+	public List<MateVO> getWriteMateList(Criteria cri,String id) {
+
+		return dao.getWriteMateList(cri, id);
+	}
+
 }

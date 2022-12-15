@@ -161,8 +161,10 @@
       });
       
      window.onload=function(){
+    	 var grade = "<c:out value='${time.grade}'/>";
     	 var count = "<c:out value='${time.count}'/>";
-    	 if(count>=3){
+    	 console.log(count);
+    	 if(grade>=4){
     		 $('.progress-bar').css({
     		     
     	    	  "width":"100%"

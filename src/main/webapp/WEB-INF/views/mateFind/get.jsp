@@ -16,8 +16,18 @@
 <div class="my_modal" id="${user.id}">
      <button class="modal_close_btn ${user.id}">✖</button>    	
 	<div class="main">
-		<div class="bold">${user.nickname }님의 프로필</div>
-	
+	<c:if test="${user.grade== 3}">
+		<div class="bold">${user.nickname }님의 프로필
+	<img class="grade" src="/resources/img/3grade.png"></div>
+	</c:if>
+	<c:if test="${user.grade== 2}">
+		<div class="bold">${user.nickname }님의 프로필
+	<img class="grade" src="/resources/img/2grade.png"></div>
+	</c:if>
+	<c:if test="${user.grade== 1}">
+		<div class="bold">${user.nickname }님의 프로필
+	<img class="grade" src="/resources/img/1grade.png"></div>
+	</c:if>
 	<hr>
 	
  	<table class="modtab">

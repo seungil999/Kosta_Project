@@ -32,7 +32,9 @@
 	</update>
 	
 	<select id="mateCount" resultType="Integer">
-		select count(*) from mate_join where userid=#{id} and jno=1
+		select count(*) 
+		from mate_join mj inner join mate m 
+		on mj.no=m.no and mj.userid=#{id} and mj.jno=1 and m.timestamp>sysdate
 	</select>
 	
 	<sql id="cal">

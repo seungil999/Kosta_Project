@@ -50,10 +50,8 @@ public class MateJoinController {
 				service.joinInsert(vo);
 			}
 			MateJoinVO realUserChk = service.userCheck(vo);
-			
 			if(uservo==null) { //로그인 안되어있으면
 				map.put("result", "login");
-				return map;
 			}else if(peopleNum < matevo.getPeoplemaxnum() && realUserChk.getJno()==0 && count<3) {
 				service.joinUpdate(vo);
 				service.joinCntUpdate(vo);
