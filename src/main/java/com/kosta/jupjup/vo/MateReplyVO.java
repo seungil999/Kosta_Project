@@ -34,4 +34,6 @@ public class MateReplyVO {
 	
 	private String profile_open;
 	
+	private int grade;
+	
 }

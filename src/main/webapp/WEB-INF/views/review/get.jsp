@@ -153,7 +153,15 @@ $(document).ready(function() {
 					mod += "<div class='my_modal' id='"+list[i].user_id+"'>";
 					mod += "<button class='modal_close_btn "+list[i].user_id+"'>✖</button>";    	
 					mod += "<div class='main'>";
-					mod += "<div class='bold'>"+list[i].nickname+"님의 프로필</div>";
+					mod += "<div class='bold'>"+list[i].nickname+"님의 프로필";
+					if(list[i].grade==3){
+						mod+=`<img class="grade" src="/resources/img/3grade.png"></div>`;
+					}else if(list[i].grade==2){
+						mod+=`<img class="grade" src="/resources/img/2grade.png"></div>`;
+					}else{
+						mod+=`<img class="grade" src="/resources/img/1grade.png"></div>`;
+					}
+					
 					mod +="<hr>";
 					mod += "<table class='modtab'><tr>";
 				 	mod += "<td class='bold'>이름</td>";

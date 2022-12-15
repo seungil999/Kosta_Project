@@ -57,6 +57,7 @@ public class ReviewReplyController {
 		Criteria cri = new Criteria(page,10);
 		
 		log.info(cri);
+		System.out.println(service.getList(cri, no));
 		return new ResponseEntity<>(service.getList(cri, no), HttpStatus.OK);
 	}
 	
