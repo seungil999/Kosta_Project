@@ -304,14 +304,15 @@ public class MyPageController {
 		  map.put("flash", flash);
 		  map.put("year", Iyear);
 		  int grade=1;
-		  if(total/10 >=3) {
+		  if(total/10 >=2) {
 			  grade=3;
-		  }else if(total/10 ==2) {
+		  }else if(total/10 ==1) {
 			  grade=2;
 		  }else {
 			  grade=1;
 		  }
 		  map.put("grade", grade);
+		  
 		  
 		  model.addAttribute("time",map);
 		return "/mypage/info";

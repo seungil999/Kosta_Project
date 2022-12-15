@@ -171,9 +171,7 @@
           <div class="form-control peoplenum">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
         </div><br><br><br><br>
          <c:choose>
-         <c:when test="${userVO.id eq mate.user_id}">   
-		 </c:when>
-		 
+
          <c:when test="${join ==0 || join eq null}"> 
 	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>참여하기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
