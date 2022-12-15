@@ -51,4 +51,8 @@ public interface MyPageService {
 	public List<MateVO> getTime(String id);
 	
 	List<MateVO> getTotalActivity(String year,String id);
+	
+	void updateGrade(String id, int grade);
+	
+	List<MateVO> getWriteMateList(Criteria cri, String id);
 	}

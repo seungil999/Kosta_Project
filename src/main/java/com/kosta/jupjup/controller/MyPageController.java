@@ -106,7 +106,7 @@ public class MyPageController {
 	      HttpSession session = request.getSession();
 		  UserVO vo = (UserVO) session.getAttribute("userVO");
 		  
-		  model.addAttribute("list", service.getMateList(cri,vo.getId())); 
+		  model.addAttribute("list", service.getWriteMateList(cri,vo.getId())); 
 		  
 		  
 		  int total = service.getMateTotal(vo.getId());

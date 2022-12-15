@@ -21,7 +21,7 @@
 	<div class="activity-Info">
 	
 	<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate.image}"/></span>
-		 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate.no}">${mate.activityname}</a></div>
+		 <div class="myp-titleInfo">${mate.activityname}</div>
 	
 		 <div class="myp-info">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
 		 <div class="myp-info" id="meetingdate">${mate.meetingdate}</div>
@@ -68,7 +68,16 @@
 
 <script type="text/javascript">
 	
-$(document).ready(function() {		
+$(document).ready(function() {
+	$(document).on("click", '.uploadbtn', function(e){
+		
+		 var no = $(this).data("no");
+		
+		 location.href="/review/writeForm?no="+no;
+		 
+			
+		});
+	
 	var actionForm = $("#actionForm");
 	
    	$(".paginate_button a").on("click",

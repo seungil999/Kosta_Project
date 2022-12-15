@@ -203,5 +203,27 @@
 		ON M.NO=MJ.NO AND MJ.USERID=#{id} AND MJ.JNO=1 AND M.TIMESTAMP<SYSDATE
 	]]>
 	</select>
+
+	<update id="updateGrade">
+		update users set grade=#{grade}
+		where id=#{id}
+	</update>
 	
+	<select id="getWriteMateList" resultType="com.kosta.jupjup.vo.MateVO">
+	<![CDATA[
+	select no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	  from ( select
+	  
+	  ]]> /*+INDEX_DESC(mate pk_mate ) */
+	  <![CDATA[
+ 		rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
+ 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
+	      from mate where user_id=#{id} and
+	      rownum <=#{cri.pageNum} * #{cri.amount}
+	      )  
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount} 
+		]]>
+	
+	</select>
 </mapper>

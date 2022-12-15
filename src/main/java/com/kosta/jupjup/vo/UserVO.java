@@ -27,5 +27,7 @@ public class UserVO {
 	
 	private String profile_open;
 	
+	private int grade;
+	
 
 }

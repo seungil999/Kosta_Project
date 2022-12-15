@@ -56,4 +56,8 @@ public interface MyPageDAO {
 	public List<MateVO> getTime(String id);
 	
 	public List<MateVO> getTotalActivity(@Param("year")String year,@Param("id")String id);
+	
+	public void updateGrade(@Param("id")String id, @Param("grade")int grade);
+	
+	public List<MateVO> getWriteMateList(@Param("cri")Criteria cri,@Param("id") String id);
 }

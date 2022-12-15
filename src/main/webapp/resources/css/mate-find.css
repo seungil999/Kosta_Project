@@ -44,6 +44,7 @@ button {
     transition: 0.5s;
     white-space: nowrap;
   }
+  
 .mate-keyword input[type="text"]{
 	background-color: rgb(233, 233, 233);
 	border-radius: 10;
@@ -615,4 +616,6 @@ textarea#editContent{
     font-size: 15px;
     font-weight: 600;
     margin:30 60;
+    border:0px;
+    color:white;
 }

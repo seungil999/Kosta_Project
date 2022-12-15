@@ -16,8 +16,18 @@
 <div class="my_modal" id="${user.id}">
      <button class="modal_close_btn ${user.id}">✖</button>    	
 	<div class="main">
-		<div class="bold">${user.nickname }님의 프로필</div>
-	
+	<c:if test="${user.grade== 3}">
+		<div class="bold">${user.nickname }님의 프로필
+	<img class="grade" src="/resources/img/3grade.png"></div>
+	</c:if>
+	<c:if test="${user.grade== 2}">
+		<div class="bold">${user.nickname }님의 프로필
+	<img class="grade" src="/resources/img/2grade.png"></div>
+	</c:if>
+	<c:if test="${user.grade== 1}">
+		<div class="bold">${user.nickname }님의 프로필
+	<img class="grade" src="/resources/img/1grade.png"></div>
+	</c:if>
 	<hr>
 	
  	<table class="modtab">
@@ -171,7 +181,9 @@
           <div class="form-control peoplenum">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
         </div><br><br><br><br>
          <c:choose>
-
+         <c:when test="${userVO.id eq mate.user_id}">   
+		 </c:when>
+		 
          <c:when test="${join ==0 || join eq null}"> 
 	        <button class="success" type="button" id="matejoin" data-joinchk='${join}'>참여하기</button>
 	        <input type="hidden" id="joincheck" value="${join }">
