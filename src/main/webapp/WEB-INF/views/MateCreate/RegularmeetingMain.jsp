@@ -331,6 +331,7 @@ h3 {
 	</script>
 
 	<!-- 인원수 카운트 -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		var count = 2;
 
@@ -341,7 +342,7 @@ h3 {
 				document.querySelector("#maxnum").innerText = count;
 
 			} else {
-				alert("정기 모임은 2인 이상 30인 이하로 설정해주세요.");
+				swal("", "정기 모임 모집인원은 2인 이상 30인 이하로 설정해주세요.", "error");
 			}
 		};
 		var countDown = function() {
@@ -351,7 +352,7 @@ h3 {
 				document.querySelector("#maxnum").innerText = count;
 
 			} else {
-				alert("정기 모임은 2인 이상 30인 이하로 설정해주세요.");
+				swal("", "정기 모임 모집인원은 2인 이상 30인 이하로 설정해주세요.", "error");
 			}
 		};
 	</script>

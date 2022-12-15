@@ -340,7 +340,7 @@ h3 {
 				document.querySelector("#maxnum").innerText = count;
 
 			} else {
-				alert("단기 모임은 2인 이상 6인 이하로 설정해주세요.");
+				swal("", "단기 모임 모집인원은 2인 이상 6인 이하로 설정해주세요.", "error");
 			}
 		};
 		var countDown = function() {
@@ -350,7 +350,7 @@ h3 {
 				document.querySelector("#maxnum").innerText = count;
 
 			} else {
-				alert("단기 모임은 2인 이상 6인 이하로 설정해주세요.");
+				swal("", "단기 모임 모집인원은 2인 이상 6인 이하로 설정해주세요.", "error");
 			}
 		};
 	</script>
@@ -461,6 +461,7 @@ h3 {
 			}
 		}
 	</script>
+	
 
 </body>
 <%@ include file="/WEB-INF/views/includes/footer.jsp"%>

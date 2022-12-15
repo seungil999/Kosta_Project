@@ -4,9 +4,7 @@
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,11 +47,12 @@ p {
 }
 
 .weatherAPI {
-	float:right;
-	width:25%;
+	float: right;
+	width: 25%;
 }
-.weatherAPI .ctemp{
-	font-size:20px;
+
+.weatherAPI .ctemp {
+	font-size: 20px;
 }
 </style>
 <body data-spy="scroll" data-target="#header">
@@ -94,29 +93,34 @@ p {
 	<!--end of slider section-->
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
 		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
-		crossorigin="anonymous"></script>
-	<script>
-		$
-				.getJSON(
-						'https://api.openweathermap.org/data/2.5/weather?lat=37.4730836&lon=126.8788276&appid=1739efda697cf8ad45f9120598c9257d&units=metric',
-						function(result) {
-							$('.ctemp').append(result.main.temp);
-							$('.htemp').append(result.main.temp_max);
-							$('.ltemp').append(result.main.temp_min);
-							var wiconURL = '<img src="http://openweathermap.org/img/wn/'+result.weather[0].icon+'.png" alt="'+result.weather[0].description+'">'
-							$('.icon').html(wiconURL);
-							
-						});
-	</script>
+		crossorigin="anonymous">
+</script>
+<script>
+	function onGeoOk(position) {
+		const lat = position.coords.latitude;
+		const lon = position.coords.longitude;
+		
+		$.getJSON(
+			'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=1739efda697cf8ad45f9120598c9257d&units=metric',
+			function(result) {
+				$('.ctemp').append(result.main.temp);
+				$('.htemp').append(result.main.temp_max);
+				$('.ltemp').append(result.main.temp_min);
+				var wiconURL = '<img src="http://openweathermap.org/img/wn/'+result.weather[0].icon+'.png" alt="'+result.weather[0].description+'">'
+				$('.icon').html(wiconURL);
+			});
+	}
+	navigator.geolocation.getCurrentPosition(onGeoOk);
+</script>
 
 	<section id="intro">
 		<div class="section_title">
 			<div class="weatherAPI">
 				<b class="icon"> </b> 
-				<b class="ctemp"></b><b style="font-size:20px;">°</b>
-				<b class="weather"></b>
-				<span class="ltemp"></span>°
-				<b>/</b>
+				<b class="ctemp"></b>
+				<b style="font-size: 20px;">°</b> 
+				<b class="weather"></b> 
+				<span class="ltemp"></span>° <b>/</b> 
 				<span class="htemp"></span>°
 			</div>
 		</div>
@@ -205,8 +209,9 @@ p {
 						<div class="counter_header">
 							<h2>ZupGo! ZupUp!</h2>
 							<p>
-							
-								<strong id="getMonth"></strong>월 지구를 총 ${time.HH }시간 ${time.MM }분 정화했어요!
+
+								<strong id="getMonth"></strong>월 지구를 총 ${time.HH }시간 ${time.MM }분
+								정화했어요!
 							</p>
 						</div>
 					</div>
@@ -280,15 +285,15 @@ p {
 	<!-- <script src="js/waypoints.min.js"></script> -->
 	<!--Counter UP-->
 	<script src="resources/js/jquery.counterup.min.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 	<script>
 		$('.counter').counterUp({
 			delay : 10,
 			time : 1000
 		});
 	</script>
-	
+
 	<script type="text/javascript">
 		$(document)
 				.ready(
