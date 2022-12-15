@@ -101,7 +101,7 @@
                                  <a class='move' href="${mate.no}"><img style="height:200px;" src="/Mate/display?fileName=${mate.image}"/></a>
                             </div>
                             <div class="blog_content">
-                               <h2 class="mate-title"><a class='move' href="${mate.no}">활동명 : ${mate.activityname }
+                               <h2 class="mate-title"><a class='move title' href="${mate.no}">활동명 : ${mate.activityname }
                                 </a><c:if test="${mate.report_count > 0}">
                                 	<span class="help-tip"><img class="help-tip" src="/resources/img/caution.png">
                                 		<p>신고가 누적된 활동</p>
@@ -405,7 +405,16 @@ $(document)
 						$(item).html(meetingplace+"...");
 						}
 					});
-					
+				/* 	$(".title").each(function (index, item){
+						var title = $(item).html();
+						console.log(title.length);
+						console.log(title);
+						if(title.length>=50){
+							title=title.substring(0,13);
+						$(item).html(title+"...");
+						}
+					});
+					 */
 					
 				  	
 				  	

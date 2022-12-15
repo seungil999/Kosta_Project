@@ -11,7 +11,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">	
 
 <div class="myp-title">관심 목록</div>
-	<div class="main" style="margin-top:60px; width:880px; float:center; margin-left:283px; padding:30px;">
+	<div class="main" style="margin-top:32px; width:880px; float:center; margin-left:283px; padding:30px;">
 		<span class="bold">좋아요한 후기</span>
 	<hr>
 	<c:if test="${empty list}">

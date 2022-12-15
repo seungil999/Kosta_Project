@@ -1,4 +1,7 @@
 @charset 'UTF-8';
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 #filterstyle li{
 	float:left;
 	margin:15px;
@@ -522,7 +525,9 @@ textarea#editContent{
 
 	width: 16px;
 	margin-bottom:3px;
-
+	position:absolute;
+	top:3px;
+	right:11px;
 }
 
  
@@ -536,9 +541,7 @@ textarea#editContent{
 }
 
 .help-tip p{
-
 	visibility:hidden;
-	
 	text-align: left;
 
 	background-color: antiquewhite;
@@ -560,8 +563,46 @@ textarea#editContent{
 
 	line-height: 1.4;
 	
-	right: 17px;
-    top: 233px;
+	right: 2px;
+    top: 21px;
+
+}
+
+.help-tip p:before{
+
+	position: absolute;
+
+	content: '';
+
+	width:0;
+
+	height: 0;
+
+	border:6px solid transparent;
+
+	border-bottom-color:antiquewhite;
+
+	right:10px;
+
+	top:-12px;
+
+}
+
+ 
+
+.help-tip p:after{
+
+	width:100%;
+
+	height:40px;
+
+	content:'';
+
+	position: absolute;
+
+	top:-40px;
+
+	left:0;
 
 }
 .report_reply{

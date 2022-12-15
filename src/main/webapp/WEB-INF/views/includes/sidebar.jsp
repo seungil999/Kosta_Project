@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <div class="sidebar">
 	<div class="profile">
 		<img src='/Mate/display?fileName=${userVO.profile}' style="height:150px; width:200px;">
@@ -20,22 +21,23 @@
 		<div class="sidebar-normal"><a href="/mypage/schedule">예정된 활동</a></div>
 		<div class="sidebar-normal"><a href="/mypage/finish">완료한 활동</a></div>
 	</div>
-		<hr>
+		<hr style="margin-top:0px; margin-bottom:0px;">
 	<div class="list">
 			<div class="sidebar-bold">관심 목록</div>
 			<div class="sidebar-normal"><a href="/mypage/likeActivity">좋아요한 활동</a></div>
 			<div class="sidebar-normal"><a href="/mypage/likeReview">좋아요한 후기</a></div>
 			<div class="sidebar-normal"><a href="/mypage/likeRecom">좋아요한 추천장소</a></div>
 		</div>
-		<hr>
+		<hr style="margin-top:0px; margin-bottom:0px;">
 		<div class="list">
 			<div class="sidebar-bold">내글관리</div>
 			<div class="sidebar-normal"><a href="/mypage/mate">메이트모집</a></div>
 			<div class="sidebar-normal"><a href="/mypage/free">자유게시판</a></div>
 			<div class="sidebar-normal"><a href="/mypage/review">후기</a></div>
 		</div>	
-		<hr>
+		<hr style="margin-top:0px; margin-bottom:0px;">	
 		<div class="list">
+			<div class="sidebar-normal"><a href="/mypage/info">내 정보</a></div>
 			<div class="sidebar-normal"><a href="/mypage/withdraw">회원탈퇴</a></div>
 		</div>
 </div>

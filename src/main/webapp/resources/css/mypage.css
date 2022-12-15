@@ -1,4 +1,7 @@
 @charset "UTF-8";
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
 .sidebar{
 	position:relative;
 	float:left;
@@ -24,7 +27,7 @@ button.modInfo{
 
 .sidebar-bold{
 	font-weight:bolder;
-	font-size:15;
+	font-size:12;
 }
 .sidebar-normal{
 	font-weight:normal;
@@ -46,7 +49,7 @@ hr{
 	width:880px;
 	border: 2px solid;
 	border-color:#42df2b;
-  	margin-top:60px;
+  	margin-top:32px;
   	margin-left:283px;
   	padding:30px;
   	height:auto;
@@ -55,7 +58,7 @@ hr{
 	text-align:left;
 	position:relative;
 	left:25px;
-	top:50px;
+	top:23px;
 	font-weight:bolder;
 	font-size:20;
 }
@@ -307,4 +310,13 @@ fieldset {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.info-time{
+	 color:#46e02f; 
+	 font-weight: bolder;
+}
+.grade{
+	position:relative;
+	float:left;
 }

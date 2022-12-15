@@ -322,8 +322,8 @@
       
 </div>	
 
-<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 <script type="text/javascript">
+
 $(document).ready(function() {
 	var noValue = '<c:out value="${mate.no}"/>';
 	var replyUL = $(".chat");
@@ -334,9 +334,7 @@ $(document).ready(function() {
 	var userid = "<c:out value='${userVO.id}'/>";
 	
 	
-	 function noBack(){ 
-		  location.href="/matefind/list";
-		}
+	
 	
 	function showList(page){
 		

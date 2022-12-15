@@ -26,9 +26,9 @@ public class MyPageServiceImpl implements MyPageService{
 
 
 	@Override
-	public int getRegular(Long no) {
+	public List<MateVO> getRegular(String id) {
 
-		return dao.getRegular(no);
+		return dao.getRegular(id);
 	}
 
 
@@ -147,6 +147,20 @@ public class MyPageServiceImpl implements MyPageService{
 	public UserVO getProfile(String id) {
 
 		return dao.getProfile(id);
+	}
+
+
+	@Override
+	public List<MateVO> getTime(String id) {
+
+		return dao.getTime(id);
+	}
+
+
+	@Override
+	public List<MateVO> getTotalActivity(String year, String id) {
+		// TODO Auto-generated method stub
+		return dao.getTotalActivity(year,id);
 	}
 
 }

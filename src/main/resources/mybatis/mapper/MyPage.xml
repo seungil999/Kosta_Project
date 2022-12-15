@@ -7,10 +7,6 @@
 		select no from mate_join where userid=#{id} and jno=1
 	</select>
 	
-	<select id="getRegular" resultType="int">
-		select regular from mate where no=#{no}
-	</select>
-	
 	<select id="getMate" resultType="com.kosta.jupjup.vo.MateVO">
 		<![CDATA[
 		select m.no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
@@ -159,7 +155,7 @@
     <![CDATA[ 
 	  select count(*)
         from mate m inner join mate_join mj
-        on m.no=mj.no and mj.jno=1 and user_id=#{id} and timestamp<sysdate
+        on m.no=mj.no and mj.jno=1 and mj.userid=#{id} and timestamp<sysdate
 	   ]]>
   	</select>
   	
@@ -184,6 +180,28 @@
   	<delete id="deleteReview">
   		DELETE FROM review WHERE user_id=#{id}
   	</delete>
+  	<select id="getTime" resultType="com.kosta.jupjup.vo.MateVO">
+  	<![CDATA[
+  		 select m.starttime, m.endtime
+        from mate m inner join mate_join mj
+        on m.no=mj.no and mj.jno=1 and mj.userid=#{id} and timestamp < sysdate
+  	]]>
+  	</select>
+	<select id="getTotalActivity" resultType="com.kosta.jupjup.vo.MateVO">
+	<![CDATA[
+	select m.meetingdate
+	from mate m inner join mate_join mj 
+	on m.no=mj.no and meetingdate like '%'||#{year}||'%' and mj.jno=1 and mj.userid=#{id} and m.timestamp<sysdate
+
+	]]>
+	</select>
 	
+	<select id="getRegular" resultType="com.kosta.jupjup.vo.MateVO">
+	<![CDATA[
+		SELECT M.REGULAR
+		FROM MATE M INNER JOIN MATE_JOIN MJ
+		ON M.NO=MJ.NO AND MJ.USERID=#{id} AND MJ.JNO=1 AND M.TIMESTAMP<SYSDATE
+	]]>
+	</select>
 	
 </mapper>

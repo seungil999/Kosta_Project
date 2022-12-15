@@ -4,6 +4,9 @@ import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,11 +17,13 @@ import com.kosta.jupjup.service.MateFindService;
 import com.kosta.jupjup.service.MateJoinService;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
+import com.kosta.jupjup.vo.UserVO;
 
 @RestController
 @RequestMapping("/matejoin/")
 public class MateJoinController {
-	
+	@Autowired
+	HttpServletRequest request;
 	@Autowired
 	MateJoinService service;
 	@Autowired
@@ -26,7 +31,8 @@ public class MateJoinController {
 	
 	@PutMapping("/joinUpdate")
 	public Map<String,String> joinupdate(@RequestBody MateJoinVO vo){
-		
+		HttpSession session = request.getSession();
+		UserVO uservo = (UserVO) session.getAttribute("userVO");
 		
 		Map<String,String> map = new HashMap<String, String>();
 		MateVO matevo= new MateVO();
@@ -45,7 +51,7 @@ public class MateJoinController {
 			}
 			MateJoinVO realUserChk = service.userCheck(vo);
 			
-			if(vo.getUserid()==null ||vo.getUserid().equals("")) { //로그인 안되어있으면
+			if(uservo==null) { //로그인 안되어있으면
 				map.put("result", "login");
 				return map;
 			}else if(peopleNum < matevo.getPeoplemaxnum() && realUserChk.getJno()==0 && count<3) {

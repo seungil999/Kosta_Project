@@ -12,7 +12,7 @@ public interface MyPageService {
 
 	List<MateJoinVO> getNo(String id);
 	
-	int getRegular(Long no);
+	List<MateVO> getRegular(String id);
 	
 	List<MateVO> getMate(String id);
 	
@@ -47,4 +47,8 @@ public interface MyPageService {
 	int getEndActivityTotal(String id);
 	
 	UserVO getProfile(String id);
-}
+	
+	public List<MateVO> getTime(String id);
+	
+	List<MateVO> getTotalActivity(String year,String id);
+	}

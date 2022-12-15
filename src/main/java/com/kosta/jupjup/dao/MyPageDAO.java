@@ -17,7 +17,7 @@ import com.kosta.jupjup.vo.UserVO;
 public interface MyPageDAO {
 	public List<MateJoinVO> getNo(String id);
 	
-	public int getRegular(Long no);
+	public List<MateVO> getRegular(String id);
 	
 	public List<MateVO> getMate(String id);
 	
@@ -52,4 +52,8 @@ public interface MyPageDAO {
 	public int getEndActivityTotal(String id);
 	
 	public UserVO getProfile(String id);
+	
+	public List<MateVO> getTime(String id);
+	
+	public List<MateVO> getTotalActivity(@Param("year")String year,@Param("id")String id);
 }
