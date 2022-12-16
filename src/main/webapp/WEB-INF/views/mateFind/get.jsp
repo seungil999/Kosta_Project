@@ -72,7 +72,7 @@
 	
 	<hr>
 	<div style="text-align:center;">
- 		<img  src='/resources/img/404.png'>
+ 		<img  src='/resources/img/404.png' style="width:300; height:235">
          	<p class="private">비공개 프로필입니다!</p>
      </div>    	   
            </div>
@@ -371,7 +371,6 @@ $(document).ready(function() {
 				str +="<p class='repContent'>"+list[i].reply +"</p></div></li></div><hr>";
 			}
 			for(var i=0, len = list.length || 0; i<len; i++){
-			
 				if(list[i].profile_open == 'Y'){
 					mod += "<div class='my_modal' id='"+list[i].user_id+"'>";
 					mod += "<button class='modal_close_btn "+list[i].user_id+"'>✖</button>";    	
@@ -396,7 +395,7 @@ $(document).ready(function() {
 					mod +="<div class='my_modal' id='"+list[i].user_id+"'>"
 				    mod +="<button class='modal_close_btn "+list[i].user_id+"'>✖</button>"    	
 					mod +="<div class='main'><div class='bold'>"+list[i].user_id+"님의 프로필</div><hr>"
-					mod +="<div style='text-align:center;'><img  src='/resources/img/404.png'><p class='private'>비공개 프로필입니다!</p></div></div></div>"   
+					mod +="<div style='text-align:center;'><img  src='/resources/img/404.png' style='width:456; height:236'><p class='private'>비공개 프로필입니다!</p></div></div></div>"   
 				}
 				
 				for(var i=0, len = list.length || 0; i<len; i++){
