@@ -305,7 +305,7 @@ $("#idCheck").click(function() {
             $('#submit').on("click",function(e){
         		
     			if ($('#username').val().length == 0){
-    				alert('이름을 입력해주세요');
+    				alert('변경하실 이름을 입력해주세요');
     				 form.username.focus();
     				 return false;
     			} 
@@ -317,7 +317,7 @@ $("#idCheck").click(function() {
     			}
     			
     			if($('#pwd').val().length == 0){
-    				alert('비밀번호를 입력해주세요');
+    				alert('변경하실 비밀번호를 입력해주세요');
     				 form.pwd.focus();
     				 return false;
     			} 

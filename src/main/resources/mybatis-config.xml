@@ -16,6 +16,8 @@
 		<mapper resource="mybatis/mapper/ServiceCenter.xml" />
 		<mapper resource="mybatis/mapper/Time.xml" />
 		<mapper resource="mybatis/mapper/MyPage.xml" />
+		<mapper resource="mybatis/mapper/Board.xml" />
+		<mapper resource="mybatis/mapper/Reply.xml" />
 		
 	</mappers>
 </configuration>

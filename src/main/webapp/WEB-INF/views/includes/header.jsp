@@ -95,7 +95,7 @@
 								<li><a href="/Mate/MateCreateMain" onclick="loginChk();" id="create">메이트모집</a></li>
 								<li><a href="">추천</a></li>
 								<li><a href="/review/list">후기</a></li>
-								<li><a href="">자유게시판</a></li>
+								<li><a href="/board/list">자유게시판</a></li>
 							</ul>
 						</div>
 						<!-- /.navbar-collapse -->

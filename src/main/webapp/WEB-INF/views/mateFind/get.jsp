@@ -64,6 +64,60 @@
     
 </div>
  	</c:when>
+ 	
+ 	<c:when test="${user.profile_open eq 'N' && userVO.id == user.id}">
+ 	<div class="my_modal" id="${user.id}">
+     <button class="modal_close_btn ${user.id}">✖</button>    	
+	<div class="main">
+	<c:if test="${user.grade== 3}">
+		<div class="bold">${user.nickname }님의 프로필(비공개 상태입니다.)
+	<img class="grade" src="/resources/img/3grade.png"></div>
+	</c:if>
+	<c:if test="${user.grade== 2}">
+		<div class="bold">${user.nickname }님의 프로필(비공개 상태입니다.)
+	<img class="grade" src="/resources/img/2grade.png"></div>
+	</c:if>
+	<c:if test="${user.grade== 1}">
+		<div class="bold">${user.nickname }님의 프로필(비공개 상태입니다.)
+	<img class="grade" src="/resources/img/1grade.png"></div>
+	</c:if>
+	<hr>
+	
+ 	<table class="modtab">
+ 		
+ 		<tr>
+	 		<td class="bold">이름</td>
+	 		<td class="profile-input"><textarea rows="1" id="username" name="username" class="form-control id" readonly>${user.username }</textarea></td>
+	 		<td rowspan="2"> 
+            	<div class="uploadResult">
+            		<img class='profileImg' id="profileImg" src='/Mate/display?fileName=${user.profile}'>
+            	</div>
+        	</td>
+		
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">닉네임</td>
+	 		<td class="profile-input"><textarea rows="1" name="nickname" id="nickname" class="form-control id" readonly>${user.nickname}</textarea></td>
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">이메일</td>
+	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id" readonly>${user.email}</textarea></td>
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">휴대폰</td>
+	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly>${user.phone }</textarea></td>
+ 		</tr>
+ 		<tr>
+	 		<td class="bold">성별</td>
+	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${user.gender eq 'man' ? '남자':'여자' }"/></textarea></td>
+	 		
+ 		</tr>
+ 	</table>
+ 	</div>
+    
+</div>
+ 	
+ 	</c:when>
  	<c:otherwise>
  	<div class="my_modal" id="${user.id}">
      <button class="modal_close_btn ${user.id}">✖</button>    	
@@ -376,6 +430,26 @@ $(document).ready(function() {
 					mod += "<button class='modal_close_btn "+list[i].user_id+"'>✖</button>";    	
 					mod += "<div class='main'>";
 					mod += "<div class='bold'>"+list[i].nickname+"님의 프로필</div>";
+					mod +="<hr>";
+					mod += "<table class='modtab'><tr>";
+				 	mod += "<td class='bold'>이름</td>";
+					mod += "<td class='profile-input'><textarea rows='1' id='username' name='username' class='form-control id' readonly>"+list[i].username+"</textarea></td>";
+					mod += "<td rowspan='2'><div class='uploadResult'>";
+					mod += "<img class='profileImg' id='profileImg' src='/Mate/display?fileName="+list[i].profile+"'></div> </td></tr>";
+					mod += "<tr><td class='bold'>닉네임</td>";
+				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
+					mod += "<tr><td class='bold'>이메일</td>";
+					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
+					mod += "<tr><td class='bold'>휴대폰</td>";		
+				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
+				 	mod += "<tr><td class='bold'>성별</td>";
+					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
+				 	mod += "</tr></table></div></div>";
+				}else if(list[i].profile_open == 'N' && list[i].user_id == userid ){
+					mod += "<div class='my_modal' id='"+list[i].user_id+"'>";
+					mod += "<button class='modal_close_btn "+list[i].user_id+"'>✖</button>";    	
+					mod += "<div class='main'>";
+					mod += "<div class='bold'>"+list[i].nickname+"님의 프로필(비공개 상태입니다.)</div>";
 					mod +="<hr>";
 					mod += "<table class='modtab'><tr>";
 				 	mod += "<td class='bold'>이름</td>";

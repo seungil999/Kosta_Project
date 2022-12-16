@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kosta.jupjup.dao.ReplyDAO">
+
+<!-- 댓글 조회 -->
+	<select id="readReply" resultType="com.kosta.jupjup.vo.ReplyVO">
+    	<![CDATA[	SELECT
+    		  RNO, CONTENT, WRITER, REGDATE
+    	 FROM MP_REPLY
+    	WHERE BNO = #{bno}  ]]>
+	</select>
+
+
+		<!-- 댓글 작성 -->
+		
+		<insert id="writeReply">
+	<![CDATA[	INSERT INTO MP_REPLY(
+			BNO
+			, RNO
+			, CONTENT
+			, WRITER
+		)
+		VALUES(    #{bno}
+			, MP_REPLY_SEQ.NEXTVAL
+			, #{content}
+			, #{writer}	)  ]]>
+		</insert>
+		
+		
+		<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="com.kosta.jupjup.vo.ReplyVO">
+		<![CDATA[	UPDATE MP_REPLY SET CONTENT = #{content}
+		WHERE RNO = #{rno}  ]]>
+	</update>
+
+<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="com.kosta.jupjup.vo.ReplyVO">
+	<![CDATA[		DELETE FROM MP_REPLY
+		WHERE RNO = #{rno}  ]]>
+	</delete>
+	
+<!-- 선택된 댓글 조회 -->
+	<select id="selectReply" resultType="com.kosta.jupjup.vo.ReplyVO">
+		<![CDATA[	SELECT
+				BNO
+			  , RNO
+			  , CONTENT
+			  , WRITER
+			  , REGDATE
+		  FROM MP_REPLY
+		 WHERE RNO = #{rno}  ]]>
+	</select>
+		
+		
+		
+		
+		
+		
+		</mapper>

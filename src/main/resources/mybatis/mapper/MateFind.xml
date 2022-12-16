@@ -15,17 +15,13 @@
 						<when test="type == 'M'.toString()">
 							meetingplace like '%'||#{keyword}||'%'
 						</when>
-						<when test="meeting == '1'.toString()">
-							regular=1
-						</when>
-						<when test="meeting == '0'.toString()">
-							regular=0
-						</when>
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
 	</sql>
+	
+	
 	
 	<sql id="regular">
 		<if test="meeting == 0">
@@ -64,7 +60,15 @@
 	      <![CDATA[
 	  where sysdate<timestamp and
  		]]>
-	  <include refid="criteria"></include> 
+	  <include refid="criteria"></include>
+	  <choose>
+	    <when test="meeting == '1'.toString()">
+			regular=1 and
+		</when>
+		<when test="meeting == '0'.toString()">
+			regular=0 and
+		</when>
+	  </choose> 
 	  <![CDATA[    
 	      rownum <= #{pageNum} * #{amount}
 	     ]]> 
