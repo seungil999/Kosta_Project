@@ -15,7 +15,7 @@
  <div class="mate-container">
 	
 		 <div class="mate-topinfoImg">
-  <form action="/matefind/modify" method="post" name="sub" onsubmit="typeChange();">
+  <form action="/matefind/modify" method="post" name="sub" onsubmit="typeChange()">
             <img src="/Mate/display?fileName=${mate.image}" style="width:360px; height:300px;"/>
             <input type="hidden" name="image" id="image" value="${mate.image}">
             <div class="uploadResult"></div>
@@ -132,7 +132,28 @@ $(document).ready(function() {
   
 
   $("button[id='modify']").on("click", function(e){
-	  document.sub.submit();
+	
+			
+			var starttime = $("#stime").val();
+			var endtime = $("#etime").val();
+			var meetingtime = $("#mtime").val();
+			
+			starttime=starttime.replace(":","");
+			endtime=endtime.replace(":","");
+			meetingtime=meetingtime.replace(":", "");
+			console.log(meetingtime);
+			
+	        parseInt(starttime);
+	        parseInt(endtime);
+	        parseInt(meetingtime);
+	        console.log(endtime);
+	        $("#starttime").val(starttime);
+	        $("#endtime").val(endtime);
+	        $("#meetingtime").val(meetingtime);
+	        
+	        document.sub.submit();
+	
+	 
     
   });
   
@@ -227,27 +248,7 @@ $(document).ready(function() {
 		};
 		
 		
-		function typeChange(){
-			
-			var starttime = $("#stime").val();
-			var endtime = $("#etime").val();
-			var meetingtime = $("#mtime").val();
-			
-			starttime=starttime.replace(":","");
-			endtime=endtime.replace(":","");
-			meetingtime=meetingtime.replace(":", "");
-			console.log(meetingtime);
-			
-	        parseInt(starttime);
-	        parseInt(endtime);
-	        parseInt(meetingtime);
-	        console.log(endtime);
-	        $("#starttime").val(starttime);
-	        $("#endtime").val(endtime);
-	        $("#meetingtime").val(meetingtime);
-	        
-		        
-		  };
+		
 	</script>	
 
 </html>

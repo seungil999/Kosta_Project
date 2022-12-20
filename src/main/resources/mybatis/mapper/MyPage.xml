@@ -14,7 +14,7 @@
 	  from
       mate m inner join mate_join mj
       on m.no=mj.no and mj.jno=1 and mj.userid=#{id} and timestamp>sysdate and
-      rownum <= 2
+      rownum <= 2 order by meetingdate desc
 		]]>
 	</select>
 	
@@ -95,7 +95,7 @@
 	
 	<select id="getReviewTotal" resultType="int">
     <![CDATA[ 
-	  select count(*) from mate where user_id=#{id} and
+	  select count(*) from review where user_id=#{id} and
 	  	
 	 	 no > 0  
 	   ]]>

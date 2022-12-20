@@ -127,10 +127,9 @@ public class MateFindController {
 	  
 	  @PostMapping("/modify")
 		public String modify(MateVO vo, Criteria cri, RedirectAttributes rttr) {
-
-				if (service.modify(vo)) {
-				rttr.addFlashAttribute("result", "success");
-			}
+		  		System.out.println(vo);
+				service.modify(vo);
+			
 
 			return "redirect:/matefind/list" + cri.getListLink();
 		}

@@ -81,6 +81,10 @@
 
 
 
+<form id='actionForm' action="/mypage/review" method='get'>
+	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>	
+</form>
 
 
 
@@ -90,8 +94,20 @@
 
 
 
-
-
+<script type="text/javascript">	
+$(document).ready(function() {		
+	var actionForm = $("#actionForm");
+	
+   	$(".paginate_button a").on("click",
+			function(e) {
+				e.preventDefault();
+				actionForm.find("input[name='pageNum']")
+						.val($(this).attr("href"));
+				actionForm.submit();
+				
+			})
+		});
+</script>
 
 
 

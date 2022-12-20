@@ -189,7 +189,7 @@
  	</div>
  </form>
 </div>
-
+<div style="width:1000px;margin: 0 auto;">
 <div class="flashOrRegular">
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
@@ -200,7 +200,7 @@
 	</c:otherwise>
 </c:choose>
 </div>
-
+</div>
 <div class="mate-border">
 <br>
  <div class="mate-container">
