@@ -385,7 +385,7 @@
       <input type='hidden' name='repReplyNo' value='<c:out value=""/>'>
       
 </div>	
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -523,7 +523,7 @@ $(document).ready(function() {
 
      modalRegisterBtn.on("click",function(e){
     	 if (!replyForm.find("textarea[name='reply']").val()){
-    		 	alert("댓글 내용을 입력해주세요.")
+    		 	swal("", "댓글 내용을 입력해주세요.", "warning");
     			return false;
     		}
         var reply = {
@@ -783,8 +783,7 @@ $(document).on("click", "#matejoin", function(e){
 				location.href="/user/loginPage";
 			
 			}else if(result.result=='mateFull'){
-				
-				alert('예약된 활동이 너무 많습니다. 다른 활동을 나간 뒤에 다시 시도해주세요.');
+				swal("예약된 활동이 너무 많습니다.", "다른 활동을 나간 뒤에 다시 시도해주세요", "warning");
 			}else if(count == 1){
 			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
 			 console.log("나가요~");
@@ -795,7 +794,6 @@ $(document).on("click", "#matejoin", function(e){
 				alert("인원수가 가득찼습니다.");
 				return false;
 			}else if(count == 0){
-				
 			alert('${mate.activityname} 활동에 참여하셨습니다!');
 			console.log("참여!");
 			 $('#joincheck').val(1);

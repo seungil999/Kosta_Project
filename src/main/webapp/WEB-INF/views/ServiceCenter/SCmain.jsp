@@ -158,9 +158,11 @@ A:link, A:visited, A:active, A:hover {
 									<div class="modal">
 										<div class="modal-content">
 											<span class="close">&times;</span>
-											<h3>Q ${QUESTIONS.name }</h3>
+											<h2>Q </h2>
+											<h3>${QUESTIONS.name }</h3>
 											<br>
-											<p>A ${QUESTIONS.content }</p>
+											<h2>A </h2>
+											<p>${QUESTIONS.content }</p>
 										</div>
 									</div></li>
 							</c:forEach>

@@ -97,6 +97,7 @@ p {
 		
 	</script>
 	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- Geo로 사용자의 위도,경도 값을 받아오고 weatherapi에 위도,경도값이 입력되서 자동으로 현재기온,최고기온,최저기온을 출력함 -->
 	<script>
 		function onGeoOk(position) {
@@ -118,7 +119,10 @@ p {
 								$('.icon').html(wiconURL);
 							});
 		}
-		navigator.geolocation.getCurrentPosition(onGeoOk);
+		function onGeoError() {
+			swal("날씨를 제공받을 위치를 찾을 수 없습니다.", "위치 액세스를 항상 허용으로 활성화 시켜주세요.", "error");
+		}
+		navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
 	</script>
 
 	<section id="intro">
@@ -153,9 +157,9 @@ p {
 								<div class="expert">
 									<div class="left-side text-left">
 										<p class="left_side">
-										<span class="admin">활동장 : ${mate.writer }</span><br>
-											<span class="admin">모임장소 : ${mate.meetingplace}</span><br>
-											<span class="admin">활동날짜 : ${mate.meetingdate}
+											<span class="admin">활동장 : ${mate.writer }</span><br> <span
+												class="admin">모임장소 : ${mate.meetingplace}</span><br> <span
+												class="admin">활동날짜 : ${mate.meetingdate}
 												(${mate.dayofweek }) / </span> <span class="admin meetingtime">${mate.meetingtime }</span><br>
 											<span class="admin">모임인원 :</span><span class="admin"
 												style="color: orange;">${mate.peoplenum } </span> /<span
