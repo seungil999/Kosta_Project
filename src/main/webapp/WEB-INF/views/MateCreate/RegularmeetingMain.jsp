@@ -148,7 +148,7 @@ h3 {
 									<tr>
 										<th>모임명</th>
 										<td colspan="5"><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="35" required 
+											placeholder="모임명을 입력해주세요" size="37" required 
 											oninvalid="this.setCustomValidity('모임명은 필수로 입력 해주세요.')"
 											oninput="this.setCustomValidity('')"> 
 											<input type="hidden" name="writer" value="${userVO.nickname}">
@@ -170,9 +170,9 @@ h3 {
 									<tr>
 										<th></th>
 										<td><input type="text" name="meetingplace" 
-											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="30"required 
+											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="37"required 
 											oninvalid="this.setCustomValidity('모임장소는 필수로 입력 해주세요.')"
-											oninput="this.setCustomValidity('')"></td>
+											oninput="this.setCustomValidity('')" readonly></td>
 									</tr>
 									<tr>
 										<td colspan="4"><div id="map"
@@ -194,14 +194,14 @@ h3 {
 									</tr>
 									<tr>
 										<th>출발지</th>
-										<td><input type="text" name="startzone" size="30"
+										<td><input type="text" name="startzone" size="37"
 											placeholder="출발지를 입력해주세요." required 
 											oninvalid="this.setCustomValidity('출발지는 필수로 입력 해주세요.')"
 											oninput="this.setCustomValidity('')"/>
 									</tr>
 									<tr>
 										<th>목적지</th>
-										<td><input type="text" name="endzone" size="30"
+										<td><input type="text" name="endzone" size="37"
 											placeholder="도착지를 입력해주세요." required 
 											oninvalid="this.setCustomValidity('목적지는 필수로 입력 해주세요.')"
 											oninput="this.setCustomValidity('')"/>
