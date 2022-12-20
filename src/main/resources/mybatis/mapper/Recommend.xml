@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.RecommendDAO">
+
+	<insert id="recommendInsert" parameterType="com.kosta.jupjup.vo.RecommendVO">
+		<![CDATA[
+		insert into recommend values (seq_rec_no.nextval,#{recname},#{address},#{simpledesc},#{user_id})
+		]]>
+	</insert>
+			
+</mapper>		

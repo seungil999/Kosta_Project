@@ -3,13 +3,35 @@
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<script
-		src="/resources/js/isotope/scripts.js"></script>
+<script src="/resources/js/isotope/scripts.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
 
 <%-- <%@include file="../includes/header.jsp"%> --%>    
+<head>
+<style>
+
+body , #matefind{
+	font-family: 'Yeon Sung', cursive;
+	font-size: 20px; 
+}
+
+#portfolio{
+	margin-top : 150px;
+	margin-left: 50px;
+}
+
+.search-container{
+	margin-top: 50px;
+}
 
 
+</style>
+
+</head>
+
+
+<body>
 <section id="portfolio" class="text-center">
 		<ul id="portfolio_menu" class="portfolio_custom_menu">
 		<c:choose>
@@ -19,22 +41,22 @@
            </li>
         
            <li>
-               <button data-filter=".blue, .black, .green" class="my_btn btn_active regularmate" href="1">정기활동</button>
+               <button  data-filter=".blue, .black, .green" class="my_btn btn_active regularmate" href="1">정기활동</button>
            </li>
            <li>
-               <button data-filter=".red, .green" class="my_btn flashmate" href="0">번개활동</button>
+               <button   data-filter=".red, .green" class="my_btn flashmate" href="0">번개활동</button>
            </li>
          </c:when>
          <c:when test="${active eq 'flash' }">
            <li>
-               <button data-filter="*" class="my_btn" onclick="location.href='/matefind/list'">전체보기</button>
+               <button  data-filter="*" class="my_btn" onclick="location.href='/matefind/list'">전체보기</button>
            </li>
         
            <li>
-               <button data-filter=".blue, .black, .green" class="my_btn regularmate" href="1">정기활동</button>
+               <button   data-filter=".blue, .black, .green" class="my_btn regularmate" href="1">정기활동</button>
            </li>
            <li>
-               <button data-filter=".red, .green" class="my_btn btn_active flashmate" href="0">번개활동</button>
+               <button  data-filter=".red, .green" class="my_btn btn_active flashmate" href="0">번개활동</button>
            </li>
          </c:when>
          <c:when test="${active eq 'all' }">
@@ -43,10 +65,10 @@
            </li>
         
            <li>
-               <button data-filter=".blue, .black, .green" class="my_btn regularmate" href="1">정기활동</button>
+               <button  data-filter=".blue, .black, .green" class="my_btn regularmate" href="1">정기활동</button>
            </li>
            <li>
-               <button data-filter=".red, .green" class="my_btn flashmate" href="0">번개활동</button>
+               <button  data-filter=".red, .green" class="my_btn flashmate" href="0">번개활동</button>
            </li>
          </c:when>
          </c:choose>
@@ -56,13 +78,19 @@
 
 	<div class="search-container" >
 			<form id='searchForm' action="/matefind/list" method='get'>
-				<select name='type' id='type' class='mate-select' style="margin-left:75px;">
+			<table>
+			<tr>
+			<td>
+				<select name='type' id='type' class='mate-select' style="margin-left:230px;">
 					
 					<option value="A" name="option" class="lang-option"
 						<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>활동명</option>
 					<option value="M" class="lang-option"
 						<c:out value="${pageMaker.cri.type eq 'M'?'selected':''}"/>>지역별</option>
-				</select> <div class="mate-keyword">
+				</select> 
+			</td>	
+				<td>
+				<div class="mate-keyword">
                 <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색어를 입력해주세요"
 					value='<c:out value="${pageMaker.cri.keyword}"/>' /></div> <input
 					type='hidden' name='pageNum'
@@ -70,19 +98,26 @@
 					type='hidden' name='amount'
 					value='<c:out value="${pageMaker.cri.amount}"/>' />
 					<input type='hidden' name='meeting' value='<c:out value="${ pageMaker.cri.meeting }"/>'>
-				<button class='find' id='matefind'>찾기</button>
+				</td>
+				<td>
+				<button class='find' id='matefind' >찾기</button>
+				</td>
+				</tr>
 			</form>
+			</table>
 	</div> 
 	
-<br><br><hr>	
+
+
+
 <section id="blog">
 
         <div class="container">
 		<div class="col-md-12">
 	       <ul id='filterstyle'>
-			<li class="newest"><a href="newest" style="color:#43a906;">최신순</a></li>
-			<li class="soon"><a href="soon" style="color:#43a906;">임박순</a></li>
-			<li class="like"><a href="like" style="color:#43a906;">좋아요순</a></li>
+			<li class="newest"><a href="newest" style="color:#198754 ;">최신순</a></li>
+			<li class="soon"><a href="soon" style="color:#198754 ;">임박순</a></li>
+			<li class="like"><a href="like" style="color:#198754 ;">좋아요순</a></li>
 		   </ul>
 	
                 </div>
@@ -98,10 +133,10 @@
                         <div class="single_blog_item" style="margin-bottom:30px;">
                         
                             <div class="blog_img">
-                                 <a class='move' href="${mate.no}"><img style="height:200px;" src="/Mate/display?fileName=${mate.image}"/></a>
+                                 <a class='move' href="${mate.mate_no}"><img style="height:200px;" src="/Mate/display?fileName=${mate.image}"/></a>
                             </div>
                             <div class="blog_content">
-                               <h2 class="mate-title"><a class='move title' href="${mate.no}">활동명 : ${mate.activityname }
+                               <h2 class="mate-title"><a class='move title' href="${mate.mate_no}">활동명:${mate.activityname }
                                 </a><c:if test="${mate.report_count > 0}">
                                 	<span class="help-tip"><img class="help-tip" src="/resources/img/caution.png">
                                 		<p>신고가 누적된 활동</p>
@@ -118,11 +153,11 @@
 								               <span style="color:#ff8a8a;">번개활동</span>
 								            </c:when>
 										</c:choose></span><br>
-                                        <span class="admin">활동장 : ${mate.writer }</span><br>
+                                        <span class="admin">활동장 : ${mate.writer}</span><br>
   											<span class="admin meetingplace">모임장소 : ${mate.meetingplace}</span><br>
   											<span class="admin">활동날짜 : ${mate.meetingdate} (${mate.dayofweek }) / </span>
   											<span class="admin meetingtime">${mate.meetingtime }</span><br>
-  											<span class="admin">모임인원 :</span><span class="admin" style="color:orange;">${mate.peoplenum } </span>
+  											<span class="admin">모임인원 :</span><span class="admin" style="color:orange;">${mate.peoplenum} </span>
   											/<span class="admin">${mate.peoplemaxnum } 명</span><br>                             
                                             <span class="admin">작성일 : ${mate.regdate }</span><br>
                                             <span class="admin">내용 : </span><span class="content">${mate.content }</span>
@@ -266,7 +301,7 @@ $(document)
 					$(".move") .on("click", function(e) {
 								e.preventDefault();
 								$('input').remove("#no");
-								actionForm.append("<input type='hidden' id='no' name='no' value='"
+								actionForm.append("<input type='hidden' id='mate_no' name='no' value='"
 										+ $(this).attr("href")+ "'>");
 								actionForm.attr("action", "/matefind/get");
 								actionForm.submit();
@@ -422,8 +457,11 @@ $(document)
 				  };
 </script>
 
+
+</body>
+
 			
-			
-<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
-			
+<footer>		
+	<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
+</footer>	
 

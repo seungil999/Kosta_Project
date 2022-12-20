@@ -8,7 +8,7 @@
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 
 
-<form name="sub" action="/review/write" method="post">
+<form name="sub" action="/review/write" method="post" onsubmit="Chk();" >
 	<div style="width:60%; margin:0 auto;">
 		<div class="review-write">후기</div>
 			<textarea class="form-control title" id="title" name="title" placeholder="제목을 입력해주세요." style="width:912px;"></textarea>
@@ -29,8 +29,7 @@
 	
 	
 <script>
-CKEDITOR.replace('content',{
-	filebrowserUploadUrl:'/review/imageUpload', height:'300px', width:'912px'}
+CKEDITOR.replace('content',{filebrowserUploadUrl:'/review/imageUpload', height:'300px'}
 );
 
 </script>
@@ -43,17 +42,13 @@ $(document).ready(function() {
 	
 		
 	$(".submit").on("click",function(e){
-			
 			var content = $(".content");
-			var title = $(".title");
 			var formData = new FormData($("form")[0]);
+			
 			if (CKEDITOR.instances.content.getData().length < 1) {
 			       alert("내용을 입력해주세요.");
 				   return false;
-			}else if(title.val()==""){
-				alert("제목을 입력해주세요.");
-				   return false;
-			}else{;
+			  }else{
 			   document.sub.submit();
 			};
 		});

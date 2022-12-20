@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kosta.jupjup.dao.AdminReportDAO">
+
+
+	<!-- 01. 검색 결과 개수 / 페이징 처리를 위함 -->
+	<select id="userTotalCount" resultType="int">
+		  <![CDATA[
+				select count(*) from users where 1=1 ]]>
+	</select>
+
+	<select id="selectReport" resultType="com.kosta.jupjup.vo.ReportVO" >
+		select * from mate m   ,report r where m.mate_no = r.mate_no
+	</select>
+
+</mapper>

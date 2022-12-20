@@ -7,7 +7,7 @@
 	<insert id="insertmate" >
 		<![CDATA[
 			INSERT INTO MATE (
-						NO,
+						mate_no,
 						activityname,
 						writer,
 						meetingplace,
@@ -25,7 +25,7 @@
 						regular,
 						timestamp,
 						user_id)
-			values(SEQ_find.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},]]><include refid="regular"></include>
+			values(SEQ_find_no.nextval,#{activityname},#{writer},#{meetingplace},#{meetingtime},]]><include refid="regular"></include>
 			<![CDATA[
 			,#{peoplemaxnum},
 			#{startzone},#{endzone},#{starttime},#{endtime},#{content},sysdate,sysdate,#{image},#{regular},(to_date(#{timestamp}, 'YYYYMMDDHH24MI')),#{user_id})
@@ -44,7 +44,7 @@
 	</sql>
 
 	<select id="getThisNo" resultType="Long">
-		SELECT max(no) no FROM mate where user_id=#{id}
+		SELECT max(mate_no) mate_no FROM mate where user_id=#{id}
 	</select>
 	
 </mapper>

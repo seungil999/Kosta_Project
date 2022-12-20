@@ -1,232 +1,231 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<%@ include file="/WEB-INF/views/includes/header.jsp" %>
 
 
 <!DOCTYPE html>
-<html lang="ko">
-
+<html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZupgoZupup : 회원가입</title>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-
+	<title>회원가입</title>
+	
 <style>
-body {
-	min-height: 100vh;
-	background-image: linear-gradient(120deg, #E0FFDB, #E0FFDB);
+button:hover {
+	cursor: pointer;
+}
+#container {width: 100%; height: 100%; position: relative; margin-top: 50px;}
+
+#root{
+width: 100%; height: 55px; border: 1px solid #dadada;padding: 17px; border-radius: 5px; margin-top: 20px; margin-bottom: 20px;
 }
 
-.input-form {
-	max-width: 600px;
-	margin-top: 100px;
-	padding: 50px;
-	background: #fff;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+.dpn {display: none !important;}
+.join_wrap {width:550px; margin: 0 auto; border: 1px solid #dadada; padding: 24px; border-radius: 5px;}
+.join_title {width:100%; height:35px; font-size: 19px; font-weight: bold; padding-left: 10px; padding: 0 0 10px 10px;}
+
+.join_box {width: 100%;}
+.join_box input {width: 100%; height: 50px; border: 1px solid #dadada;padding: 17px; border-radius: 5px; margin-top: 20px;}
+.join_box span {display: inline-block; color: red; font-size: 12px; padding-left: 1px; padding-top: 8px;}
+
+.auth {width: 100%; margin-top: 10px;}
+.auth input {display:inline-block; width: calc(100% - 121px); vertical-align: top; margin: 0;}
+.auth_btn{
+	display: inline-block;
+    width: 115px;
+    height: 50px;
+    padding: 17px 0 15px;
+    border-radius: 6px;
+    border: solid 1px rgba(0,0,0,.15);
+    background-color: #198754;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1;
+}
+.email_auth {width: 100%; margin-top: 10px;}
+.email_auth input {display:inline-block; width: calc(100% - 121px); vertical-align: top; margin: 0;}
+.email_auth_btn{
+	display: inline-block;
+    width: 115px;
+    height: 50px;
+    padding: 17px 0 15px;
+    border-radius: 6px;
+    border: solid 1px rgba(0,0,0,.15);
+    background-color: #198754;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1;
 }
 
-    /** 스위치 **/
-    
-    label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-}
-
-[type="checkbox"] {
-  appearance: none;
-  position: relative;
-  border: max(2px, 0.1em) solid gray;
-  border-radius: 1.25em;
-  width: 2.25em;
-  height: 1.25em;
-}
-
-[type="checkbox"]::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 1em;
-  height: 1em;
-  border-radius: 50%;
-  transform: scale(0.8);
-  background-color: gray;
-  transition: left 250ms linear;
-}
-
-[type="checkbox"]:checked {
-  background-color: #46e02f;
-  border-color: #46e02f;
-}
-
-[type="checkbox"]:checked::before {
-  background-color: white;
-  left: 1em;
-}
-
-[type="checkbox"]:disabled {
-  border-color: lightgray;
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-[type="checkbox"]:disabled:before {
-  background-color: lightgray;
-}
-
-[type="checkbox"]:disabled + span {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
-[type="checkbox"]:focus-visible {
-  outline-offset: max(2px, 0.1em);
-  outline: max(2px, 0.1em) solid tomato;
-}
-
-[type="checkbox"]:enabled:hover {
-  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
-}
-
-/* Global CSS */
-
-
-fieldset {
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.join_btn {    
+	display: block;
+    width: 100%;
+    padding: 17px 0 15px;
+    border-radius: 6px;
+    border: solid 1px rgba(0,0,0,.15);
+    background-color: #198754;
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 </style>
-
+	
 </head>
-
 <body>
-	<div class="container">
-		<div class="input-form-backgroud row">
-			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-3">회원가입</h4>
 
-				<form onsubmit="submitjoinPage(this); return false;"
-					action="/user/joinPage" method="POST" id="join" class="validation-form"
-					novalidate>
-
-
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="username">이름</label> <input type="text" name="username"
-								class="form-control" id=username placeholder="" value=""
-								required>
-							<div class="invalid-feedback">이름을 입력해주세요.</div>
-						</div>
-						<div class="col-md-6 mb-3">
-							<label for="nickname">닉네임</label> <input type="text"
-								name="nickname" class="form-control" id="nickname"
-								placeholder="" value="" required>
-							<div class="invalid-feedback">닉네임을 입력해주세요.</div>
-						</div>
-					</div>
-
-
-					<div class="mb-3">
-						<label for="id">아이디</label> <input maxlength="30" type="text"
-							class="form-control" id="id" name="id"
-							placeholder="아이디를 입력해주세요." required>
-					<input type="button" value="ID중복확인" id="idCheck">
-					                        <span id="result"></span>	
-						<div class="invalid-feedback">필수 정보입니다.</div>
-					</div>
-
-
-					<div class="mb-3">
-						<label for="pwd">비밀번호</label> <input maxlength="30"
-							type="password" class="form-control" id="pwd" name="pwd"
-							placeholder="영문조합8자이상" required>
-						<div class="invalid-feedback">유효한 비밀번호가 필요합니다.</div>
-					</div>
-
-
-					<div class="mb-3">
-						<label for="loginPwConfirm">비밀번호 확인</label> <input maxlength="30"
-							type="password" class="form-control" id="loginPwConfirm"
-							placeholder="비밀번호 확인을 입력해주세요." required>
-						<div class="invalid-feedback">유효한 비밀번호가 필요합니다.</div>
-					</div>
-
-
-					<div class="mb-3">
-						<label for="email">이메일</label> <input type="email" name="email"
-							class="form-control" id="email" placeholder="jupjup@example.com"
-							required>
-						<div class="invalid-feedback">이메일을 입력해주세요.</div>
-
-					</div>
-
-					<div class="mb-3">
-						<label for="tel">휴대전화</label> <input type="tel" name="phone"
-							class="form-control" id="tel" placeholder="- 없이 입력해주세요"
-							pattern="[0-9]+" required>
-						<div class="invalid-feedback">필수 정보입니다.</div>
-					</div>
-
-
-					<div class="row">
-						<div class="col-md-8 mb-3">
-							<label for="root">성별</label> <select
-								class="custom-select d-block w-100" id="root" name="gender">
-								<option value="choice">선택</option>
+<div id="container" class="container">
+	<div class="content">
+		<div class="join_wrap">
+			<form id="join_frm">
+				<div class="join_title">회원가입</div>
+				<br>
+				<div class="join_box">
+				    <input type="text" placeholder="이름" name="username" id="username" style="margin: 0;">
+				    
+						<label for="root"></label> 
+							<select class="" id="root" name="gender">
+								<option value="choice">성별 선택</option>
 								<option value="man">남자</option>
 								<option value="woman">여자</option>
 								<option value="not_choice">선택 안함</option>
 							</select>
-						</div>
+					<div class="auth">		
+					<input type="text" placeholder="아이디" name="id" id="id" >
+					<button type="button" id="ck_btn" class="auth_btn">중복확인</button>
+					 <span id="result"></span>	
 					</div>
+					
+					<div class="auth">
+					<input type="text" placeholder="닉네임" name="nickname" id="nickname">
+					<button type="button" id="nick_btn" class="auth_btn">중복확인</button>
+					<span id="result2"></span>
+					 </div>
+
+		
+					<input type="password" placeholder="비밀번호" name="pwd" id="pwd">
+					<input type="password" placeholder="비밀번호  확인" id="loginPwConfirm">				
 				
-				<input type="hidden" value="기본프로필.png" id="profile" name="profile">
-                 <label style="color:#46e02f;">
-    			<input role="switch" type="checkbox" id="open" name="open"/>
-    			<input type="hidden" id="profile_open" name="profile_open"/>
-   				 <span>프로필 공개</span>
- 			    </label>  
-
-
-					<hr class="mb-4">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="aggrement"
-							required> <label class="custom-control-label"
-							for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+							
+					<div class="email_auth">
+						<input type="text" placeholder="이메일" name="email" id="email" class="email">
+						<button type="button" id="email_auth_btn" class="email_auth_btn">인증번호 받기</button>
 					</div>
-
-					<div class="mb-4"></div>
-					<button class="btn btn-primary btn-lg btn-block" id="joinbtn" type="submit">가입
-						완료</button>
-				</form>
-			</div>
+					<input type="text" placeholder="인증번호 입력" id="email_auth_key">
+				</div>
+				<button type="submit" id="join" class="join_btn">가입하기</button>
+			</form>
 		</div>
 	</div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script >
+   var msg = "${msg}";
+   if (msg != ""){
+	   
+	   alert(msg);
+   }
+
+</script>
+<script>
+    	
+    	
+    	/**
+    	 *  회원가입 관련 처리
+    	 */
+    	 
+    	 function fn_join(){
+    		var f = $('#join_frm');
+    		var formData = f.serialize();
+    			
+    		$.ajax({
+    			type : "POST",
+    			url : "/user/joinPage",
+    			data : formData,
+    			success: function(data){
+    				if(data == "Y"){
+    					alert("회원가입이 완료되었습니다.");	
+    					location.href="/"
+    				}else{
+    					alert("회원가입에 실패하였습니다.");
+    				}
+    			},
+    			error: function(data){
+    				alert("회원가입 에러 발생!");
+    				console.log(data);
+    			}
+    		});
+    	 }
+    	 
+    	 $(function() { 
+    	 	
+    	 	var email_auth_cd = '';
+    	 
+    		$('#join').click(function(){
+    			
+    			if($('#id').val() == ""){
+    				alert("아이디를 입력해주세요.");
+    				return false;
+    			}
+    			
+    			if($('#nickname').val() == ""){
+    				alert("닉네임을 입력해주세요.");
+    				return false;
+    			}
+    			
+    			if($('#pwd').val() == ""){
+    				alert("비밀번호를 입력해주세요.");
+    				return false;
+    			}
+    			
+    			if($('#pwd').val() != $('#loginPwConfirm').val()){
+    				alert("비밀번호가 일치하지 않습니다.");
+    				return false;
+    			}
+    			
+    			if($('#email_auth_key').val() != email_auth_cd){
+    				alert("인증번호가 일치하지 않습니다.");
+    				return false;
+    			}
+    		
+    			fn_join();
+    		});
+    		
+    		$(".email_auth_btn").click(function(){	     	 
+    	    	 var email = $('#email').val();
+    	    	 
+    	    	 if(email == ''){
+    	    	 	alert("이메일을 입력해주세요.");
+    	    	 	return false;
+    	    	 }
+    	    	 
+    	    	 var email = {email : email}
+    	    	 
+    	    	 $.ajax({
+    				type : "POST",
+    				url : "/user/emailAuth",
+    				datatype : "json",
+    				data : email,
+    				success: function(data){
+    					alert("인증번호가 발송되었습니다.");
+    					email_auth_cd = data;
+    				},
+    				error: function(data){
+    					alert("메일 발송에 실패했습니다.");
+    				}
+    			}); 
+    		});
+    		
+    	
+    	 });
+</script>
 <script type="text/javascript">
     	// 아이디 중복체크
-    	$("#idCheck").click(function() {
+    	$("#ck_btn").click(function() {
     		
     		var userId = $("#id").val();
     		
@@ -260,116 +259,40 @@ fieldset {
     		});
     		
     	}); // 아이디 중복체크
-</script>
-
-<script>
-	// 폼검증
-    	$("join").click( function() {
-    		
-    		console.log( $("#id").attr("readonly") );
     	
-    		if( $("#id").attr("readonly") != 'readonly' ){ // 중복검사를 하지 않은 경우
-    			alert("아이디 중복검사는 필수 입니다.");
-    			$("id").focus();
-    			return;
-   
-    		  } else {
-    			$("#join").submit(); // 전송
-    		 }
-    	});	
+    	
+       $("#nick_btn").click(function() {
     		
-    </script> 
-	
-	 <script>
-  
-  	function submitjoinPage(form){
-  		
-  		
-  		if(form.open.checked==true){
-			$('#profile_open').val('Y');
-		}else{
-			$('#profile_open').val('N');
-		}
-  		
-  		
-  		form.username.value = form.username.value.trim();
-  		if (form.username.value.length == 0){
-  			alert('이름을 입력해주세요');
-  			 form.username.focus();
-  			 return false;
-  		}
-  		
-  		if (form.username.value.length < 2) {
-  			alert('이름을 2자 이상 입력해주세요');
- 			 form.username.focus();
- 			 return false;
-  			
-  		}
-  		
-  		
-  		
-  		if (form.id.value.length == 0){
-  			alert('로그인 아이디를 입력해주세요');
-  			 form.id.focus();
-  			 return false;
-  		}
-  		
-  		 if (isAlphaNumeric(form.id.value) == false){
-  			 alert('로그인 아이디 영문자 소문자와 숫자만 사용 가능');
- 			 form.id.focus();
- 			 return false;
-  			    			  
-  		  }
-  	
-  		 form.id.value = form.id.value.toLowerCase();
-  		 
-  		
-  		 form.pwd.value = form.pwd.value.trim();
-  		if(form.pwd.value.length == 0){
-  			alert('로그인 비밀번호를 입력해주세요');
-  			 form.pwd.focus();
-  			 return false;
-  			
-  		}
-  		
-  		form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
-  		if(form.loginPwConfirm.value.length == 0){
-  			alert('로그인 비밀번호 확인을 입력해주세요');
-  			 form.loginPwConfirm.focus();
-  			 return false;
-  			
-  		}
-  		 if (form.pwd.value != form.loginPwConfirm.value){
-  			 alert('로그인 비밀번호가 일치하지 않습니다.');
-  			 return false;
-  			 
-  		 }
-  		 
-  		
-  		 
-  		
-  			form.submit();
-  		}
-    </script>
-
-	<script>
-    window.addEventListener('load', () => {
-      const forms = document.getElementsByClassName('validation-form');
-
-      Array.prototype.filter.call(forms, (form) => {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-
-  </script>
-
+    		var nickName = $("#nickname").val();
+    		if( nickName == '' || nickName.length < 2 ) {
+    			$("#nickname").focus(); // 포커싱함수
+    			alert("닉네임 형식을 확인하세요 : 두글자이상");
+    			return; // 함수 종료
+    		};
+    		
+    		// 비동기처리
+    		$.ajax({
+    			type : "post",
+    			url : "/user/nicknameCheck",
+    			contentType : "application/json",
+    			data : nickName,
+    			success : function(data) {
+    				
+					if(data == 0){ // 사용가능
+						$("#nickname").attr("readonly", true); // 리드온리 속성지정
+						$("#result2").html("사용가능한 닉네임 입니다");
+					} else { // 중복
+						$("#result2").html("중복된 닉네임입니다");
+					}
+    				
+    			},
+    			error : function(status, error) {
+    				alert("서버문제가 발생했습니다. 관리자에게 문의하세요.");
+    			}
+    		});
+    		
+    	}); // 아이디 중복체크
+</script>
 
 
 </body>

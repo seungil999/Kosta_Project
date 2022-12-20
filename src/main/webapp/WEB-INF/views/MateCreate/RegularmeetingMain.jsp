@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%-- 2. 정기모임 모집 --%>
 <title>ZupgoZupup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -13,6 +15,10 @@
 	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </head>
 <style>
+body{
+	font-family: 'Yeon Sung', cursive;
+	
+}
 .matecreate {
 	position: relative;
 	min-width: 990px;
@@ -31,7 +37,7 @@
 
 .matecreateF {
 	background: white;
-	border: 3px solid #42DF2B;
+	border: 3px solid #198754 ;
 	border-radius: 15px;
 	margin: 0 auto;
 	width: 1000px;
@@ -78,7 +84,7 @@
 }
 
 .Btn {
-	background-color: #42DF2B;
+	background-color: #198754;
 	border: none;
 	color: white;
 	padding: 3px 40px;
@@ -91,7 +97,7 @@
 }
 
 .peopleBtn {
-	background-color: #42DF2B;
+	background-color: #198754;
 	border: none;
 	color: white;
 	padding: 3px 10px;
@@ -113,17 +119,21 @@ th, td {
 	padding: 12px;
 }
 
-h3 {
+h1 {
+	margin-top : 50px;
+	margin-bottom : 50px;
 	text-align: center;
 	padding: 10px 0px;
 	font-weight: bold;
 }
 </style>
 </head>
-
+<%-- --%>
+<!--  -->
 <body>
 	<div class="matecreate">
-		<h3>정기모임</h3>
+	
+		<h1>정기모임</h1>
 		<div class="matecreate_container">
 			<form action="/Mate/matecreate" method="post"
 				onsubmit="typeChange();">
@@ -137,10 +147,11 @@ h3 {
 										<img src="/resources/img/logo2.png" width=388; height=388;>
 									</c:if>
 								</div>
+								
 								<div class="uploadResult"></div>
 								<input name="img" type="file" id="img"> <input
-									type="button" class="uploadBtn" value="등록"> <input
-									type="hidden" name="image" id="image">
+									type="button" class="uploadBtn" value="등록"> 
+									<input type="hidden" name="image" id="image">
 							</div>
 							<div class="mateC">
 								<table>
@@ -148,7 +159,7 @@ h3 {
 									<tr>
 										<th>모임명</th>
 										<td colspan="5"><input type="text" name="activityname"
-											placeholder="모임명을 입력해주세요" size="37" required 
+											placeholder="모임명을 입력해주세요" size="35" required 
 											oninvalid="this.setCustomValidity('모임명은 필수로 입력 해주세요.')"
 											oninput="this.setCustomValidity('')"> 
 											<input type="hidden" name="writer" value="${userVO.nickname}">
@@ -169,10 +180,10 @@ h3 {
 									</tr>
 									<tr>
 										<th></th>
-										<td><input type="text" name="meetingplace" 
-											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="37"required 
+										<td><input type="text" name="meetingplace" readonly="readonly"
+											id="sample5_address" placeholder="주소 검색을 눌러주세요" size="30" required 
 											oninvalid="this.setCustomValidity('모임장소는 필수로 입력 해주세요.')"
-											oninput="this.setCustomValidity('')" readonly></td>
+											oninput="this.setCustomValidity('')"></td>
 									</tr>
 									<tr>
 										<td colspan="4"><div id="map"
@@ -194,17 +205,21 @@ h3 {
 									</tr>
 									<tr>
 										<th>출발지</th>
-										<td><input type="text" name="startzone" size="37"
+										<td><input type="text" name="startzone" size="30" id="start_address"
 											placeholder="출발지를 입력해주세요." required 
 											oninvalid="this.setCustomValidity('출발지는 필수로 입력 해주세요.')"
-											oninput="this.setCustomValidity('')"/>
+											oninput="this.setCustomValidity('')"
+											onclick="start_execDaumPostcode()"
+											/>
+									
+									
 									</tr>
 									<tr>
 										<th>목적지</th>
-										<td><input type="text" name="endzone" size="37"
+										<td><input type="text" name="endzone" size="30" id="end_address"
 											placeholder="도착지를 입력해주세요." required 
 											oninvalid="this.setCustomValidity('목적지는 필수로 입력 해주세요.')"
-											oninput="this.setCustomValidity('')"/>
+											onclick="end_execDaumPostcode()" oninput="this.setCustomValidity('')"/>
 									</tr>
 									<tr>
 										<th>활동시간</th>
@@ -280,6 +295,11 @@ h3 {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>
+
+  
+
+
+		
 	<!-- 주소 검색 후, 지도 나타내기 -->
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -301,6 +321,8 @@ h3 {
 			position : new daum.maps.LatLng(37.537187, 127.005476),
 			map : map
 		});
+		
+		
 		function sample5_execDaumPostcode() {
 			new daum.Postcode({
 				oncomplete : function(data) {
@@ -325,6 +347,30 @@ h3 {
 							marker.setPosition(coords)
 						}
 					});
+				}
+			}).open();
+		}
+		
+		/* 출발지 */
+		function start_execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					var addr = data.address; // 최종 주소 변수
+					// 주소 정보를 해당 필드에 넣는다.
+					document.getElementById("start_address").value = addr;
+				
+				}
+			}).open();
+		}
+		
+		/* 목적지 */
+		function end_execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					var addr = data.address; // 최종 주소 변수
+					// 주소 정보를 해당 필드에 넣는다.
+					document.getElementById("end_address").value = addr;
+		
 				}
 			}).open();
 		}

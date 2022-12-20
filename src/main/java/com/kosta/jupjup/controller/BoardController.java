@@ -138,10 +138,10 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		public String read(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
 			logger.info("read");
 			
-			model.addAttribute("read", service.read(boardVO.getBno()));
+			model.addAttribute("read", service.read(boardVO.getFno()));
 			model.addAttribute("scri", scri);
 			
-			List<ReplyVO> replyList = replyService.readReply(boardVO.getBno());
+			List<ReplyVO> replyList = replyService.readReply(boardVO.getFno());
 			model.addAttribute("replyList",replyList);
 			
 			
@@ -153,7 +153,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		public String updateView(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
 			logger.info("updateView");
 			
-			model.addAttribute("update", service.read(boardVO.getBno()));
+			model.addAttribute("update", service.read(boardVO.getFno()));
 			model.addAttribute("scri", scri);
 			
 			return "board/updateView";
@@ -179,7 +179,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		public String delete(BoardVO boardVO, @ModelAttribute("scri") SearchCriteria scri, RedirectAttributes rttr) throws Exception{
 			logger.info("delete");
 			
-			service.delete(boardVO.getBno());
+			service.delete(boardVO.getFno());
 			
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
@@ -196,7 +196,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 			
 			replyService.writeReply(vo);
 			
-			rttr.addAttribute("bno", vo.getBno());
+			rttr.addAttribute("fno", vo.getFno());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());
@@ -211,7 +211,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		public String replyUpdateView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
 			
-			model.addAttribute("replyUpdate", replyService.selectReply(vo.getRno()));
+			model.addAttribute("replyUpdate", replyService.selectReply(vo.getFrno()));
 			model.addAttribute("scri", scri);
 			
 			return "board/replyUpdateView";
@@ -224,7 +224,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 			
 			replyService.updateReply(vo);
 			
-			rttr.addAttribute("bno", vo.getBno());
+			rttr.addAttribute("frno", vo.getFrno());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());
@@ -239,7 +239,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		public String replyDeleteView(ReplyVO vo, SearchCriteria scri, Model model) throws Exception {
 			logger.info("reply Write");
 			
-			model.addAttribute("replyDelete", replyService.selectReply(vo.getRno()));
+			model.addAttribute("replyDelete", replyService.selectReply(vo.getFrno()));
 			model.addAttribute("scri", scri);
 			
 
@@ -253,7 +253,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 			
 			replyService.deleteReply(vo);
 			
-			rttr.addAttribute("bno", vo.getBno());
+			rttr.addAttribute("frno", vo.getFrno());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());

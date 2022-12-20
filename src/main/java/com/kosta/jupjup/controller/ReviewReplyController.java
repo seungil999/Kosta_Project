@@ -16,15 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kosta.jupjup.paging.Criteria;
 import com.kosta.jupjup.service.ReviewReplyService;
-import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateReplyVO;
 
 import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 
 @RequestMapping("/reviewReplies/")
 @RestController
-@Log4j 
+@Log4j2
 public class ReviewReplyController {
  
 	@Autowired

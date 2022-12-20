@@ -6,13 +6,19 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">		
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
 
-
-
-<div class="review-title" style="margin-top:60px;">자유게시판</div> 
-	<div class="review_main" style="width:1150px;">
+<body>
+<div class="review-title" style="margin-top:50px; margin-left: 400px;">자유게시판</div> 
+	
+	<div class="review_main" style="width:1150px; margin-top: 10px;">
 		<br><br>
-		<input type="hidden" id="no" value="${read.bno}">
+		<input type="hidden" id="fno" value="${read.fno}">
 		
 		<div class="title-bold">제목</div>
 		<div class="get-title">${read.title}</div>
@@ -53,8 +59,8 @@
 					  
 					<p>${replyList.content}</p>
 					<div>
-						<button type="button" class="replyUpdateBtn btn btn-warning" data-rno="${replyList.rno}">수정</button>
-						<button type="button" class="replyDeleteBtn btn btn-danger" data-rno="${replyList.rno}">삭제</button>
+						<button type="button" class="replyUpdateBtn btn btn-warning" data-frno="${replyList.frno}">수정</button>
+						<button type="button" class="replyDeleteBtn btn btn-danger" data-frno="${replyList.frno}">삭제</button>
 					</div>
 				</li>
 			</c:forEach>   
@@ -62,7 +68,7 @@
 	</div>
 
 <form name="replyForm" method="post" class="form-horizontal">
-	<input type="hidden" id="bno" name="bno" value="${read.bno}" />
+	<input type="hidden" id="fno" name="fno" value="${read.fno}" />
 	<input type="hidden" id="page" name="page" value="${scri.page}"> 
 	<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 	<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
@@ -84,7 +90,7 @@
 	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="button" class="replyWriteBtn btn btn-success">작성</button>
+			<button type="button" class="list_btn uploadbtn">작성</button>
 		</div>
 	</div>
 </form>
@@ -97,7 +103,7 @@
 		
 		
 		<form name="readForm" role="form" method="post">
-			<input type="hidden" id="bno" name="bno" value="${read.bno}" />
+			<input type="hidden" id="fno" name="fno" value="${read.fno}" />
 			<input type="hidden" id="page" name="page" value="${scri.page}"> 
 			<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 			<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
@@ -148,25 +154,25 @@
 			
 			//댓글 수정 View
 			$(".replyUpdateBtn").on("click", function(){
-				location.href = "/board/replyUpdateView?bno=${read.bno}"
+				location.href = "/board/replyUpdateView?fno=${read.fno}"
 								+ "&page=${scri.page}"
 								+ "&perPageNum=${scri.perPageNum}"
 								+ "&searchType=${scri.searchType}"
 								+ "&keyword=${scri.keyword}"
-								+ "&rno="+$(this).attr("data-rno");
+								+ "&frno="+$(this).attr("data-frno");
 			});
 			
 			//댓글 삭제 View
 			$(".replyDeleteBtn").on("click", function(){
-				location.href = "/board/replyDeleteView?bno=${read.bno}"
+				location.href = "/board/replyDeleteView?fno=${read.fno}"
 					+ "&page=${scri.page}"
 					+ "&perPageNum=${scri.perPageNum}"
 					+ "&searchType=${scri.searchType}"
 					+ "&keyword=${scri.keyword}"
-					+ "&rno="+$(this).attr("data-rno");
+					+ "&frno="+$(this).attr("data-frno");
 			});
 		})
 	</script>
-	
+	</body>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>
 </html>

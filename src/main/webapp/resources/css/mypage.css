@@ -1,18 +1,19 @@
 @charset "UTF-8";
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-}
+
 .sidebar{
 	position:relative;
 	float:left;
 	width:200px;
 	border: 2px solid;
-	border-color:#42df2b;
+	border-color:#198754 ;
   	margin-top:30px;
-  	margin-left:10px;
+  	margin-left:50px;
   	margin-bottom:150px;
   	margin-right:50px;
+	font-family: 'Yeon Sung', cursive;
+	
 }
+
 button.modInfo{
 	 
 	width:195px;
@@ -23,11 +24,12 @@ button.modInfo{
 .nickname{
 	background-color: #f5f5f5;
 	text-align:center;
+	
 }
 
 .sidebar-bold{
 	font-weight:bolder;
-	font-size:12;
+	font-size:15;
 }
 .sidebar-normal{
 	font-weight:normal;
@@ -37,34 +39,37 @@ button.modInfo{
 hr{
 	margin-top:5px;
 	margin-bottom:5px;
-	border-color: #42df2b;
+	border-color: #198754;
 }
 .list{
     left:10px;
     line-height: 1.5;
     padding:3px;
 }
+
 .main{
 	float:center;
 	width:880px;
 	border: 2px solid;
-	border-color:#42df2b;
-  	margin-top:32px;
+	border-color:#198754;
+  	margin-top:60px;
   	margin-left:283px;
   	padding:30px;
   	height:auto;
 }
+
+/* body */
 .myp-title{
 	text-align:left;
 	position:relative;
 	left:25px;
-	top:23px;
+	top:50px;
 	font-weight:bolder;
-	font-size:20;
+	font-size:30;
 }
 .bold{
 	font-weight:bolder;
-	font-size:17;
+	font-size:20;
 }
 .myp-allview{
 	margin-top:10px;
@@ -72,6 +77,12 @@ hr{
 	font-size:12;
 	font-weight: 700;
 }
+
+
+.myp-allview a{
+	color: #198754;
+}
+
 .myp-titleInfo{
 	font-weight:bolder;
 	text-align:center;
@@ -114,11 +125,11 @@ hr{
 	 width: 150px;
 	 height:33px;
 	 vertical-align: middle;
-	 border: 3px solid #46e02f; 
+	 border: 3px solid #198754 ; 
 	 border-radius: 15px; 
 	 font-size: 15px;
 	 font-weight:700px;
-	 color:#46e02f; 
+	 color:#198754 ; 
 	 font-family: 'Open Sans', sans-serif;
 	 margin-bottom:12px;
 }
@@ -136,7 +147,7 @@ hr{
 	 width: 100px;
 	 height:33px;
 	 vertical-align: middle;
-	 border: 3px solid #46e02f; 
+	 border: 3px solid #198754 ; 
 	 border-radius: 15px; 
 	 font-size: 15px;
 	 color:black; 
@@ -196,11 +207,11 @@ text-align:center;
      width: 150px;
 	 height:33px;
 	 vertical-align: middle;
-	 border: 3px solid #46e02f; 
+	 border: 3px solid #198754 ; 
 	 border-radius: 15px; 
 	 font-size: 15px;
 	 font-weight:700px;
-	 color:#46e02f; 
+	 color:#198754 ; 
 	 font-family: 'Open Sans', sans-serif;
     }
     #my_modal .modal_submit_btn {
@@ -209,11 +220,11 @@ text-align:center;
      width: 150px;
 	 height:33px;
 	 vertical-align: middle;
-	 border: 3px solid #46e02f; 
+	 border: 3px solid #198754 ; 
 	 border-radius: 15px; 
 	 font-size: 15px;
 	 font-weight:700px;
-	 color:#46e02f; 
+	 color:#198754 ; 
 	 font-family: 'Open Sans', sans-serif;
     }
     .modal_pwChk{
@@ -223,7 +234,7 @@ text-align:center;
     transform: translate(-50%,-50%);
   
     font-size:19px;
-    color:#42df2b;
+    color:#198754 ;
     }
     #result{
     position: absolute;
@@ -310,13 +321,4 @@ fieldset {
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-.info-time{
-	 color:#46e02f; 
-	 font-weight: bolder;
-}
-.grade{
-	position:relative;
-	float:left;
 }

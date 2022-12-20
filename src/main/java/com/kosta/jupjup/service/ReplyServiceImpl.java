@@ -15,9 +15,9 @@ public class ReplyServiceImpl implements ReplyService{
 	 ReplyDAO dao;
 
 	@Override
-	public List<ReplyVO> readReply(int bno) {
+	public List<ReplyVO> readReply(int fno) {
 	
-		return dao.readReply(bno);
+		return dao.readReply(fno);
 	}
 
 	@Override
@@ -39,9 +39,9 @@ public class ReplyServiceImpl implements ReplyService{
 	}
 
 	@Override
-	public ReplyVO selectReply(int rno)  {
+	public ReplyVO selectReply(int frno)  {
 		
-		return dao.selectReply(rno);
+		return dao.selectReply(frno);
 	}
 
 }

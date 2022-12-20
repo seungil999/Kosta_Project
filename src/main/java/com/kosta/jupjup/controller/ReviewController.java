@@ -31,12 +31,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kosta.jupjup.paging.Criteria;
+import com.kosta.jupjup.paging.PageVO;
 import com.kosta.jupjup.service.ReviewLikeService;
 import com.kosta.jupjup.service.ReviewReplyService;
 import com.kosta.jupjup.service.ReviewService;
-import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateLikeVO;
-import com.kosta.jupjup.vo.PageVO;
 import com.kosta.jupjup.vo.ReviewVO;
 import com.kosta.jupjup.vo.UserVO;
 
@@ -184,20 +184,20 @@ public class ReviewController {
 
 
 	@GetMapping("/get")
-	  public void get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri,Model model, HttpServletRequest request) {
+	  public void get(@RequestParam("mate_no") Long no, @ModelAttribute("cri") Criteria cri,Model model, HttpServletRequest request) {
 		reviewService.hit(no);
 		HttpSession session = request.getSession();
 		UserVO uservo = (UserVO) session.getAttribute("userVO");
 		
 		model.addAttribute("review", reviewService.get(no));
 		 MateLikeVO likeVO = new MateLikeVO();
-		  likeVO.setNo(no);
+		  likeVO.setMate_no(no);
 		  
 		
 		  Integer like = null;
 		
 		  if(uservo!=null) {
-			  likeVO.setUserid(uservo.getId());
+			  likeVO.setUser_id(uservo.getId());
 			  like = LikeService.likeGetInfo(likeVO);
 		  }
 		  model.addAttribute("like", like);

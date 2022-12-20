@@ -7,6 +7,14 @@
 <!DOCTYPE html>
 
 <html>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
+</head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
 
@@ -67,11 +75,7 @@
 	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id">${userVO.email}</textarea></td>
 	 		<td><button class="modrem">중복확인</button></td>
  		</tr>
- 		<tr>
-	 		<td class="bold">휴대폰</td>
-	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id">${userVO.phone }</textarea></td>
-	 		<td><button class="modrem">본인인증</button></td>
- 		</tr>
+ 		
  		<tr>
 	 		<td class="bold">성별</td>
 	 		
@@ -305,7 +309,7 @@ $("#idCheck").click(function() {
             $('#submit').on("click",function(e){
         		
     			if ($('#username').val().length == 0){
-    				alert('변경하실 이름을 입력해주세요');
+    				alert('이름을 입력해주세요');
     				 form.username.focus();
     				 return false;
     			} 
@@ -317,7 +321,7 @@ $("#idCheck").click(function() {
     			}
     			
     			if($('#pwd').val().length == 0){
-    				alert('변경하실 비밀번호를 입력해주세요');
+    				alert('비밀번호를 입력해주세요');
     				 form.pwd.focus();
     				 return false;
     			} 

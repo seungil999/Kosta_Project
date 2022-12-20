@@ -7,6 +7,14 @@
 <!DOCTYPE html>
 
 <html>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
+</head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
 
@@ -20,13 +28,13 @@
 	<c:forEach items="${list }" var="mate">	
 		<div class="activity-Info">
 		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate.image}"/></span>
-			 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate.no}">${mate.activityname}</a></div>
+			 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate.mate_no}">${mate.activityname}</a></div>
 			
 			 <div class="myp-info">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
 			 <div class="myp-info m-meetingdate" id="meetingdate">${mate.meetingdate}</div>
 			 <div class="myp-info">${mate.meetingplace}</div>
 			 <input type="hidden" class="m-meetingtime" value="${mate.meetingtime}">
-			 <div class="myp-info m-timer" id=${mate.no } style="color:red;"></div>
+			 <div class="myp-info m-timer" id=${mate.mate_no } style="color:red;"></div>
 		</div>	 
 		<br><br><br><br>
 	</c:forEach>
@@ -86,19 +94,7 @@ function typeChange(){
 		count++;
 	});
 	$(".m-meetingtime").each(function(index,item){
-		console.log($(item).val());
-		if($(item).val().length==4){
-			var time = $(item).val().slice(0,2)+":"+$(item).val().slice(2,4);	
-		}else if($(item).val().length==3){
-			var time = $(item).val().slice(0,1)+":"+$(item).val().slice(1,3);
-		}else if($(item).val().length==2){
-			var time = "00:"+$(item).val();
-		}else if($(item).val().length==1){
-			var time = "00:0"+$(item).val();
-		}else{
-			var time = '00:00';
-		}
-		
+		var time = $(item).val().slice(0,2)+":"+$(item).val().slice(2,4);
 		timeList.push(time);
 	});
 	for(var i=0; i<count; i++){
@@ -108,7 +104,6 @@ function typeChange(){
 $('.m-timer').each(function(index,item){
 	countDownTimer(item.id, dateList[index]+timeList[index]); 
 })
-console.log(timeList);
 </script>
 
 

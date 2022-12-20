@@ -4,6 +4,9 @@
 <link rel="shortcut icon" type="image/x-icon"
 	href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/800px-Apple_logo_black.svg.png">
 <title>ZupgoZupup</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 <!--    Google Fonts-->
@@ -40,12 +43,11 @@
 <link
 	href="${pageContext.request.contextPath}/resources/css/responsive.css"
 	rel="stylesheet"> 
-
 	
 	
 
 <!--Start Hedaer Section-->
-	<section id="header">
+	<section id="header" >
 		<div class="header-area">
 
 			<div class="header_menu text-center" data-offset-top="50" id="nav"> <!-- 반응형제거 data-spy="affix" -->
@@ -71,7 +73,7 @@
 							<ul class="nav navbar-nav navbar-right main_menu1">
 								
 								<!--로그인 / 로그아웃-->
-								<li class="nav-item">
+							<li class="nav-item">
 								<c:choose>
 										<c:when test="${userVO eq null}">
 											<li><a href="/user/joinPage">회원가입</a></li>
@@ -93,7 +95,7 @@
 							<ul class="nav navbar-nav navbar-right main_menu">
 								<li><a href="/matefind/list">메이트찾기 <span class="sr-only">(current)</span></a></li>
 								<li><a href="/Mate/MateCreateMain" onclick="loginChk();" id="create">메이트모집</a></li>
-								<li><a href="">추천</a></li>
+								<li><a href="/recommend" onclick="loginChk();" id="recommend" >추천</a></li>
 								<li><a href="/review/list">후기</a></li>
 								<li><a href="/board/list">자유게시판</a></li>
 							</ul>
@@ -156,6 +158,8 @@
 		if(${userVO.id eq null}){
 			alert("로그인 후 이용 가능한 서비스입니다.");
 			$("#create").attr("href", "/user/loginPage")
+			$("#recommend").attr("href", "/user/loginPage")
+			
 		}
 	}
 </script>

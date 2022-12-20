@@ -23,6 +23,9 @@ Version: 1.2
 14. Footer.
 */
 
+/* 추가한 font */
+@import url('https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap');
+
 
 /*
 font-family: 'Roboto Slab', serif;
@@ -177,9 +180,12 @@ input: -webkit-autofill:focus {
     background: #FBFBFB;
     border-bottom: 2px solid #F2F2F2;
     padding-top: 15px;
+    font-family: 'Yeon Sung', cursive;
 }
 #header .top_header .address {
     border-right: 1px solid #E6E5E5;
+    
+    font-family: 'Yeon Sung', cursive;
 }
 #header .top_header .address p {
     font-size: 12px;
@@ -190,7 +196,7 @@ input: -webkit-autofill:focus {
 #header .top_header .phone p {
     color: #646464;
     font-size: 12px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Yeon Sung', cursive;
     padding-top: 1px;
     display: inline-block;
 }
@@ -198,12 +204,14 @@ input: -webkit-autofill:focus {
 #header .top_header .phone i {
     padding: 3px 5px;
     font-size: 15px;
+    font-family: 'Yeon Sung', cursive;
 }
 #header .top_header .social_icon i {
     padding: 0 5px;
     color: #787878;
     font-size: 12px;
     font-weight: 700;
+    font-family: 'Yeon Sung', cursive;
 }
 #header .top_header .social_icon i:hover {
     color: #43A906;
@@ -212,17 +220,25 @@ input: -webkit-autofill:focus {
 /*End of top header*/
 
 #header .header_menu {
+	
+    font-family: 'Yeon Sung', cursive;
     min-height: 80px;
     border-bottom: 1px solid #3D3E3D;
     z-index: 9999
 }
 #header .header_menu .navbar {
+	
+    font-family: 'Yeon Sung', cursive;
     border: 0px solid transparent;
 }
 #header .header_menu .custom_navbar-brand {
+	
+    font-family: 'Yeon Sung', cursive;
     padding-left: 0;
 }
 #header .header_menu .navbar-default {
+	
+    font-family: 'Yeon Sung', cursive;
     background-color: rgba(255, 255, 255, 0);
     border-color: rgba(255, 255, 255, 0);
 }
@@ -236,17 +252,17 @@ input: -webkit-autofill:focus {
 }
 #header .header_menu ul.main_menu li a {
     color: #393939;
-    font-size: 16px;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: 'Nanum Square', sans-serif;
+    font-family: 'Yeon Sung', cursive;
 }
 .header_menu ul.main_menu1 li a {
     color: #393939;
-    font-size: 12px;
+    font-size: 15px;
     text-transform: uppercase;
     font-weight: 600;
-    font-family: 'Nanum Square', sans-serif;
+    font-family: 'Yeon Sung', cursive;
 }
 #header .header_menu ul.main_menu li a:hover {
     color: #4DA91C;
@@ -366,10 +382,7 @@ input: -webkit-autofill:focus {
 
 /*intro_notice 수정*/
 #intro {
-	background-color: #85FFBD;
-	background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
-	
-	
+	background: #86EC77;
 	height:84px;
 	width:100%;
 	font-size: 15px;
@@ -606,15 +619,15 @@ input: -webkit-autofill:focus {
     font-size: 13px;
     padding-top: 8px;
     border-radius: 4px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Yeon Sung', cursive;
 }
 
 #portfolio ul.portfolio_custom_menu li button:hover {
-    background: #43a906;
+    background: #198754 ;
     color: #fff;
 }
 #portfolio ul.portfolio_custom_menu li button.btn_active {
-    background: #43a906;
+    background: #198754;
     box-shadow: inset 0 1px 10px hsla(0, 0%, 100%, 0);
     color: #fff;
 }
@@ -636,7 +649,7 @@ input: -webkit-autofill:focus {
     opacity: 0;
     transition: 0.7s;
     font-size: 16px;
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Yeon Sung', cursive;
     font-weight: 400;
 }
 #portfolio .notes .note:hover .img_overlay,
@@ -1304,4 +1317,5 @@ ul.entry-meta {
 	margin: 20px 32px;
 	padding-bottom: 15px;
 	font-size: 20px;
+	font-family: 'Yeon Sung', cursive;
 }

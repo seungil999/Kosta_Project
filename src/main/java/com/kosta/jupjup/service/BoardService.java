@@ -20,13 +20,13 @@ public interface BoardService {
 	public int listCount(SearchCriteria scri);
 
    // 게시물 조회
-	public BoardVO read(int bno);
+	public BoardVO read(int fno);
 
 	// 게시물 수정
 	public void update(BoardVO boardVO);
 
 	// 게시물 삭제
-	public void delete(int bno);
+	public void delete(int fno);
 
 	
 

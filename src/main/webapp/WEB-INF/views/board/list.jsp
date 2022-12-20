@@ -4,14 +4,20 @@
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
 <html>
 	<head>
-
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	 
 	 	<title>게시판</title>
 	</head>
 	<body>
 		<div class="container">
-			<header>
+			<header >
+				<br>
 				<h1> 자유게시판</h1>
 			</header>
 			<hr />
@@ -25,9 +31,9 @@
 						
 						<c:forEach items="${list}" var = "list">
 							<tr>
-								<td><c:out value="${list.bno}" /></td>
+								<td><c:out value="${list.fno}" /></td>
 								<td>
-									<a href="/board/readView?bno=${list.bno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" /></a>
+									<a href="/board/readView?fno=${list.fno}&page=${scri.page}&perPageNum=${scri.perPageNum}&searchType=${scri.searchType}&keyword=${scri.keyword}"><c:out value="${list.title}" /></a>
 								</td>
 								<td><c:out value="${list.writer}" /></td>
 								<td><fmt:formatDate value="${list.regdate}" pattern="yyyy-MM-dd"/></td>
@@ -55,7 +61,8 @@
 								</span>
 							</div>
 						</div>
-						 <div>
+						 <div><br>
+						 <br>
 				<%@include file="nav.jsp" %>
 			</div>
 						<script>

@@ -2,7 +2,7 @@ package com.kosta.jupjup.service;
 
 import java.util.List;
 
-import com.kosta.jupjup.vo.Criteria;
+import com.kosta.jupjup.paging.Criteria;
 import com.kosta.jupjup.vo.MateReplyVO;
 
 public interface ReviewReplyService {

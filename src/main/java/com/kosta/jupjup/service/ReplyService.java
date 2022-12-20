@@ -6,7 +6,7 @@ import com.kosta.jupjup.vo.ReplyVO;
 
 public interface ReplyService {
 
-	public List<ReplyVO> readReply(int bno);
+	public List<ReplyVO> readReply(int fno);
 
 	// 댓글작성
 	public void writeReply(ReplyVO vo);
@@ -18,6 +18,6 @@ public interface ReplyService {
 	public void deleteReply(ReplyVO vo);
 
 	// 선택된 댓글 조회
-	public ReplyVO selectReply(int rno);
+	public ReplyVO selectReply(int frno);
 
 }

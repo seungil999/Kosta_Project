@@ -16,9 +16,16 @@
 		<mapper resource="mybatis/mapper/ServiceCenter.xml" />
 		<mapper resource="mybatis/mapper/Time.xml" />
 		<mapper resource="mybatis/mapper/MyPage.xml" />
+		<mapper resource="mybatis/mapper/AdminMainMapper.xml" />
+		<mapper resource="mybatis/mapper/AdminSearchMapper.xml" />
+		<mapper resource="mybatis/mapper/AdminReportMapper.xml" />
+		<mapper resource="mybatis/mapper/AdminWriteMapper.xml" />
+		<mapper resource="mybatis/mapper/AdminLoginMapper.xml" />
+		<mapper resource="mybatis/mapper/AdminQuestMapper.xml" />
+		<mapper resource="mybatis/mapper/Recommend.xml" />
+		<mapper resource="mybatis/mapper/Login.xml" />
 		<mapper resource="mybatis/mapper/Board.xml" />
 		<mapper resource="mybatis/mapper/Reply.xml" />
-		
 	</mappers>
 </configuration>
 

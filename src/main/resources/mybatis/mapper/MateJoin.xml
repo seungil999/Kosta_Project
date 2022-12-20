@@ -4,37 +4,39 @@
                         
 <mapper namespace="com.kosta.jupjup.dao.MateJoinDAO">
 	
-	 <select id="joinCount" resultType="Integer">
-		select count(jno) from mate_join where no=#{no} and jno=1
-	</select>
-	<select id="userCheck" resultType="com.kosta.jupjup.vo.MateJoinVO">
-		select jno,userid from mate_join where no=#{no} and userid=#{userid}
-	</select>
-	
 	<insert id="joinInsert">
-		insert into mate_join (jno,no,userid) values (0,#{no},#{userid})
+		insert into mate_join (mate_no,user_id,jno) values (#{mate_no},#{user_id},0)
 	</insert>
 	
+	 <select id="joinCount" resultType="Integer">
+		select count(jno) from mate_join where mate_no=#{mate_no} and jno=1
+	</select>
+	<select id="userCheck" resultType="com.kosta.jupjup.vo.MateJoinVO">
+		select jno,userid from mate_join where mate_no=#{mate_no} and user_id=#{user_id}
+	</select>
+	
+	
+	
 	<select id="joinGetInfo" resultType="Integer">
-		select jno from mate_join where no=#{no} and userid=#{userid}
+		select jno from mate_join where mate_no=#{mate_no} and user_id=#{user_id}
 	</select>
 	
 	<update id="joinUpdate">
 		update mate_join
 		set <include refid="cal"></include>
-		where no=#{no} and userid=#{userid}
+		where mate_no=#{mate_no} and user_id=#{user_id}
 	</update>
 	
 	<update id="joinCntUpdate">
 		update mate
 		set peoplenum=<include refid="cntcal"></include>
-		where no=#{no} 
+		where mate_no=#{mate_no} 
 	</update>
 	
 	<select id="mateCount" resultType="Integer">
 		select count(*) 
 		from mate_join mj inner join mate m 
-		on mj.no=m.no and mj.userid=#{id} and mj.jno=1 and m.timestamp>sysdate
+		on mj.mate_no=m.mate_no and mj.user_id=#{user_id} and mj.jno=1 and m.timestamp>sysdate
 	</select>
 	
 	<sql id="cal">

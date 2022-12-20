@@ -9,6 +9,14 @@
 <html>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
+</head>
 
 <div class="myp-title">내 활동 내역</div>
 	<div class="main">
@@ -26,7 +34,7 @@
 		 <div class="myp-info">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
 		 <div class="myp-info" id="meetingdate">${mate.meetingdate}</div>
 		 <div class="myp-info">${mate.meetingplace}</div>			 
-		 <button type="button" data-no="${mate.no}" class="uploadbtn">후기작성</button>
+		 <button type="button" data-no="${mate.mate_no}" class="uploadbtn">후기작성</button>
 	</div>	 
 	<br><br>
 </c:forEach>

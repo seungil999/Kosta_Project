@@ -29,8 +29,8 @@ button.find {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    --button-bg-color: #43a906;
-    --button-hover-bg-color: #218838;
+    --button-bg-color: #198754 ;
+    --button-hover-bg-color: #198754 ;
    
     position: relative;
     float:left;
@@ -51,10 +51,10 @@ button.find {
 	
 }
 .review_main{
-	
 	width:1150px;
 	border: 2px solid;
-	border-color:#42df2b;
+	border-color:#198754  ;
+	
   	margin-top:50px;
   	margin: 0 auto;
   	padding:10 30 60 30; 	
@@ -64,11 +64,15 @@ button.find {
 	float:right;
 	font-size:15;
 	font-weight: 700;
-	color:#43a906;
+	color:#198754;
 	margin:15px;
 }
+
+.filter a{
+	color:#198754;
+}
 hr{
-	border-color: #42df2b;
+	border-color: #198754;
 }
 .image{
 	float:left;
@@ -104,14 +108,14 @@ hr{
 	position:relative;
 }
 .submit button{
-	background-color:#42df2b;
+	background-color:#198754;
 	margin-left:20px;
 	padding: 0.8rem 2.5rem;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    --button-bg-color: #43a906;
-    --button-hover-bg-color: #218838;
+    --button-bg-color: #198754;
+    --button-hover-bg-color: #198754;
    	margin-top:5px;
     white-space: nowrap;
 }

@@ -94,43 +94,34 @@ p {
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"
 		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 		crossorigin="anonymous">
+</script>
+<script>
+	function onGeoOk(position) {
+		const lat = position.coords.latitude;
+		const lon = position.coords.longitude;
 		
-	</script>
-	
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	<!-- Geo로 사용자의 위도,경도 값을 받아오고 weatherapi에 위도,경도값이 입력되서 자동으로 현재기온,최고기온,최저기온을 출력함 -->
-	<script>
-		function onGeoOk(position) {
-			const lat = position.coords.latitude;
-			const lon = position.coords.longitude;
-
-			$
-					.getJSON(
-							'https://api.openweathermap.org/data/2.5/weather?lat='
-									+ lat
-									+ '&lon='
-									+ lon
-									+ '&appid=1739efda697cf8ad45f9120598c9257d&units=metric',
-							function(result) {
-								$('.ctemp').append(result.main.temp);
-								$('.htemp').append(result.main.temp_max);
-								$('.ltemp').append(result.main.temp_min);
-								var wiconURL = '<img src="http://openweathermap.org/img/wn/'+result.weather[0].icon+'.png" alt="'+result.weather[0].description+'">'
-								$('.icon').html(wiconURL);
-							});
-		}
-		function onGeoError() {
-			swal("날씨를 제공받을 위치를 찾을 수 없습니다.", "위치 액세스를 항상 허용으로 활성화 시켜주세요.", "error");
-		}
-		navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
-	</script>
+		$.getJSON(
+			'https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=1739efda697cf8ad45f9120598c9257d&units=metric',
+			function(result) {
+				$('.ctemp').append(result.main.temp);
+				$('.htemp').append(result.main.temp_max);
+				$('.ltemp').append(result.main.temp_min);
+				var wiconURL = '<img src="http://openweathermap.org/img/wn/'+result.weather[0].icon+'.png" alt="'+result.weather[0].description+'">'
+				$('.icon').html(wiconURL);
+			});
+	}
+	navigator.geolocation.getCurrentPosition(onGeoOk);
+</script>
 
 	<section id="intro">
 		<div class="section_title">
 			<div class="weatherAPI">
-				<b class="icon"> </b> <b class="ctemp"></b> <b
-					style="font-size: 20px;">°</b> <b class="weather"></b> <span
-					class="ltemp"></span>° <b>/</b> <span class="htemp"></span>°
+				<b class="icon"> </b> 
+				<b class="ctemp"></b>
+				<b style="font-size: 20px;">°</b> 
+				<b class="weather"></b> 
+				<span class="ltemp"></span>° <b>/</b> 
+				<span class="htemp"></span>°
 			</div>
 		</div>
 	</section>
@@ -146,20 +137,27 @@ p {
 						<div class="single_blog_item">
 
 							<div class="blog_img">
-								<a class='move' href="${mate.no}"><img
+								<a class='move' href="${mate.mate_no}"><img
 									style="width: 360px; height: 300px;"
 									src="/Mate/display?fileName=${mate.image}" /></a>
 							</div>
 							<div class="blog_content">
 								<h2 class="mate-title">
-									<a class='move' href="${mate.no}">${mate.activityname }</a>
+									<a class='move' href="${mate.mate_no}">${mate.activityname }</a>
 								</h2>
 								<div class="expert">
 									<div class="left-side text-left">
 										<p class="left_side">
-											<span class="admin">활동장 : ${mate.writer }</span><br> <span
-												class="admin">모임장소 : ${mate.meetingplace}</span><br> <span
-												class="admin">활동날짜 : ${mate.meetingdate}
+											<span class="admin"> <c:choose>
+													<c:when test="${mate.regular eq 1 }">
+														<span style="color: #60e44c;">정기활동</span>
+													</c:when>
+													<c:when test="${mate.regular eq 0 }">
+														<span style="color: #ff8a8a;">번개활동</span>
+													</c:when>
+												</c:choose></span><br> <span class="admin">활동장 : ${mate.writer }</span><br>
+											<span class="admin">모임장소 : ${mate.meetingplace}</span><br>
+											<span class="admin">활동날짜 : ${mate.meetingdate}
 												(${mate.dayofweek }) / </span> <span class="admin meetingtime">${mate.meetingtime }</span><br>
 											<span class="admin">모임인원 :</span><span class="admin"
 												style="color: orange;">${mate.peoplenum } </span> /<span
@@ -198,6 +196,8 @@ p {
 			value='<c:out value="${ pageMaker.cri.meeting }"/>'> <input
 			type='hidden' name='filter'
 			value='<c:out value="${ pageMaker.cri.filter }"/>'>
+
+
 	</form>
 
 	<!--Start of counter-->
@@ -276,6 +276,13 @@ p {
 	<!-- 맨 위로 가기 -->
 	<a href="#" id="back-to-top" title="Back to top">&uarr;</a>
 
+
+	<!--날씨-->
+
+	<!-- <script src="js/jquery-1.12.3.min.js"></script>-->
+
+	<!--Counter UP Waypoint-->
+	<!-- <script src="js/waypoints.min.js"></script> -->
 	<!--Counter UP-->
 	<script src="resources/js/jquery.counterup.min.js"></script>
 	<script
@@ -294,6 +301,7 @@ p {
 
 							history.replaceState({}, null, null);
 							var actionForm = $("#actionForm");
+							var searchForm = $("#searchForm");
 							$(".move")
 									.on(
 											"click",
@@ -313,7 +321,6 @@ p {
 						});
 	</script>
 
-	<!-- 매 달 값을 받아오는 스크립트 -->
 	<script>
 		var now = new Date();
 		var month = now.getMonth();

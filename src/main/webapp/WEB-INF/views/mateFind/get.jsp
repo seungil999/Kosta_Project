@@ -7,7 +7,12 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
 
 <!--   모달창   -->
 <c:forEach items="${users}" var="user">
@@ -141,11 +146,11 @@
 <div class="repMod"></div>
 <div class="reportMod"></div>  
 
-<div class="my_modal" style="height:521" id="${mate.no}">
-     <button class="modal_close_btn ${mate.no}">✖</button>   
+<div class="my_modal" style="height:521" id="${mate.mate_no}">
+     <button class="modal_close_btn ${mate.mate_no}">✖</button>   
 <form action="/matefind/report" method="post" id="rep_form">	   
 <input type="hidden" name="report_type" value=1> 
-<input type="hidden" name="mate_id" value="${mate.no}">
+<input type="hidden" name="mate_id" value="${mate.mate_no}">
 <input type="hidden" name="report_writer" value="${userVO.id}">
 	<div class="r-main">
 		<div class="r-title">신고하기</div>
@@ -184,13 +189,13 @@
     <div><label><input type="radio" class="r_check" name="report_content" value="" id="etc"> 기타</label></div>
     <div><textarea class="form-control r_content" name="report_content" id="etc_content"
      style="resize:none; width: -webkit-fill-available;" placeholder="기타 사유는 30자 내외로 작성해주세요."></textarea></div>
-    <div style="text-align:center;"><button type="button" class="r_cancel ${mate.no}">취&nbsp;&nbsp;소</button><button type="button" class="r_rembtn">제&nbsp;&nbsp;출</button></div>
+    <div style="text-align:center;"><button type="button" class="r_cancel ${mate.mate_no}">취&nbsp;&nbsp;소</button><button type="button" class="r_rembtn">제&nbsp;&nbsp;출</button></div>
     
  	</div>
  </form>
 </div>
-<div style="width:1000px;margin: 0 auto;">
-<div class="flashOrRegular">
+
+<div class="flashOrRegular" style="margin-left: 200px;">
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
 		<h2>정기활동</h2>
@@ -200,7 +205,7 @@
 	</c:otherwise>
 </c:choose>
 </div>
-</div>
+
 <div class="mate-border">
 <br>
  <div class="mate-container">
@@ -253,7 +258,10 @@
         <br><br><br>
         <button data-oper='list' class="uploadBtn">목록</button>
         <br><br>
-        <div class="mate-guide">안내사항</div>
+      
+      
+      
+        <div class="mate-guide" style="color:black; font-size: 30px;">안내사항</div>
         <hr>
         
         <div class="form-group">
@@ -290,6 +298,7 @@
 	<div class="form-control meetingplace" id="meetingplace">${mate.meetingplace }</div>
 	
         <br><br><br>
+        
         <div class="form-group">
         <c:choose>
 	        <c:when test="${userVO.id eq mate.user_id}">
@@ -300,7 +309,7 @@
 				<button id='report' type="button" class="siren_modrem"><img class="siren" src="/resources/img/siren.png">신고</button>
 			</c:otherwise>
 		</c:choose>
-        <h2 class="mate-title">현재 모임 참여중인 인원( ${mate.peoplenum} )</h2>
+        <h2 class="mate-title">현재 모임 참여중인 인원 ( ${mate.peoplenum} )</h2>
         
         </div>
         	
@@ -311,7 +320,7 @@
         <br><br>
         
     <form id='operForm'>
-	  <input type='hidden' id='no' name='no' value='<c:out value="${mate.no}"/>'>
+	  <input type='hidden' id='mate_no' name='no' value='<c:out value="${mate.mate_no}"/>'>
 	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 	  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -385,11 +394,10 @@
       <input type='hidden' name='repReplyNo' value='<c:out value=""/>'>
       
 </div>	
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript">
 
+<script type="text/javascript">
 $(document).ready(function() {
-	var noValue = '<c:out value="${mate.no}"/>';
+	var noValue = '<c:out value="${mate.mate_no}"/>';
 	var replyUL = $(".chat");
 	var replyMod = $(".repMod");
 	var reportMod = $(".reportMod");
@@ -479,7 +487,7 @@ $(document).ready(function() {
 					rep+='<input type="hidden" name="report_type" value=2>' 
 					rep+='<input type="hidden" name="report_writer" value="${userVO.id}">'
 					rep+='<input type="hidden" name="mate_reply_id" value="'+list[i].rno+'">'
-					rep+='<input type="hidden" name="mate_id" value="${mate.no}">'
+					rep+='<input type="hidden" name="mate_no" value="${mate.mate_no}">'
 					rep+='<div class="r-main">'
 					rep+='<div class="r-title">신고하기</div><hr>'
 					rep+='<table class="modtab">'
@@ -520,10 +528,9 @@ $(document).ready(function() {
      var repReplyer = repository.find("input[name='repReplyer']")
      var repReplyDate = repository.find("input[name='repReplyDate']")
 	 var repReplyNo = repository.find("input[name='repReplyNo']")
-
      modalRegisterBtn.on("click",function(e){
     	 if (!replyForm.find("textarea[name='reply']").val()){
-    		 	swal("", "댓글 내용을 입력해주세요.", "warning");
+    		 	alert("댓글 내용을 입력해주세요.")
     			return false;
     		}
         var reply = {
@@ -575,7 +582,6 @@ $(document).ready(function() {
     		
     	});
      $(document).on("click", ".replyUpdateBtn", function(e){
-
     	 if(repReply.val()!=""){
     		 showList(1);
     		 repReply.val("");
@@ -600,16 +606,12 @@ $(document).ready(function() {
 	    htmls += '<button type="button" id="modbtn" class="replyUpdateBtn">  저장  </button>';
 	    htmls += '<div class="header"><strong class="primary-font" id="mod">'+replyData.replyer+"</strong>";
 	   
-
 		
 		htmls += '<div id="rno'+ replyData.rno + '">';
 		
 		htmls += '<textarea name="editContent" id="editContent" rows="3">';
-
 		htmls += replyData.reply;
-
 		htmls += '</textarea>';
-
 		htmls += '</div>';
 		
 		$('#rno'+replyData.rno).replaceWith(htmls);	
@@ -648,7 +650,6 @@ $(document).ready(function() {
   });
   
   typeChange();
-
   function typeChange(){
 		
 		var stime = $(".starttime").html();
@@ -704,15 +705,8 @@ $(document).ready(function() {
 	  
 	  
 });
-
-
-
-
 </script>
 <script type="text/javascript">
-
-
-
 function like_func(){
 	const clickLikeUrl = "/resources/img/꽉찬하트.png";
     const emptyLikeUrl = "/resources/img/빈하트.png";
@@ -729,7 +723,6 @@ function like_func(){
 	
 	
 	
-
 $.ajax({
 	url : "/like/likeUpdate",
 	type : 'PUT',
@@ -760,9 +753,7 @@ $.ajax({
 	
 	});
 };
-
 $(document).on("click", "#matejoin", function(e){
-
 	no = $('#no').val(),
 	count = $('#joincheck').val(),
 	
@@ -783,7 +774,8 @@ $(document).on("click", "#matejoin", function(e){
 				location.href="/user/loginPage";
 			
 			}else if(result.result=='mateFull'){
-				swal("예약된 활동이 너무 많습니다.", "다른 활동을 나간 뒤에 다시 시도해주세요", "warning");
+				
+				alert('예약된 활동이 너무 많습니다. 다른 활동을 나간 뒤에 다시 시도해주세요.');
 			}else if(count == 1){
 			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
 			 console.log("나가요~");
@@ -794,6 +786,7 @@ $(document).on("click", "#matejoin", function(e){
 				alert("인원수가 가득찼습니다.");
 				return false;
 			}else if(count == 0){
+				
 			alert('${mate.activityname} 활동에 참여하셨습니다!');
 			console.log("참여!");
 			 $('#joincheck').val(1);
@@ -807,7 +800,6 @@ $(document).on("click", "#matejoin", function(e){
 		
 		});
 });
-
 </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e49668e033d2147dcdeca11f1531922&libraries=services"></script>
 	<script>
@@ -852,11 +844,9 @@ $(document).on("click", "#matejoin", function(e){
 <script type="text/javascript">
 $(document).ready(function() {
 	  var operForm = $("#operForm"); 
-
 	  $("button[id='modify']").on("click", function(e){
 		  operForm.attr("action","/matefind/modify");
 		  operForm.attr("method","get");
-
 		  operForm.submit();
 	    
 	  });
@@ -870,7 +860,6 @@ $(document).ready(function() {
 	    $('')
 	  });  
 	});
-
 </script>
 
 
@@ -899,7 +888,6 @@ $(document).ready(function() {
                     backgroundColor: 'rgba(0,0,0,0.1)'
                 });
                 document.body.append(bg);
-
                 // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
                $(modal).on('click',function(e){
             	   bg.remove();
@@ -912,7 +900,6 @@ $(document).ready(function() {
 	
 				});
 				
-
                 modalId.setStyle({
                     position: 'fixed',
                     display: 'block',
@@ -929,7 +916,6 @@ $(document).ready(function() {
                     webkitTransform: 'translate(-50%, -50%)'
                 });
             }
-
             // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
             Element.prototype.setStyle = function(styles) {
                 for (var k in styles) this.style[k] = styles[k];
@@ -976,7 +962,7 @@ $(document).ready(function() {
       	  $("#report").on("click", function(){
       		  var reportChk = "<c:out value='${reportChk}'/>"
       		  console.log(reportChk);
-      		  var no = "<c:out value='${mate.no}'/>"
+      		  var no = "<c:out value='${mate.mate_no}'/>"
       		  var userid = "<c:out value='${userVO.id}'/>";
       		console.log(userid);
       		console.log(reportChk);

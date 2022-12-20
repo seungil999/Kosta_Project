@@ -20,11 +20,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kosta.jupjup.paging.Criteria;
+import com.kosta.jupjup.paging.PageVO;
 import com.kosta.jupjup.service.MyPageService;
-import com.kosta.jupjup.vo.Criteria;
-import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
-import com.kosta.jupjup.vo.PageVO;
 import com.kosta.jupjup.vo.UserVO;
 
 @Controller

@@ -1,10 +1,6 @@
 package com.kosta.jupjup.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,16 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kosta.jupjup.paging.Criteria;
 import com.kosta.jupjup.service.MateReplyService;
-import com.kosta.jupjup.vo.Criteria;
-import com.kosta.jupjup.vo.MateLikeVO;
 import com.kosta.jupjup.vo.MateReplyVO;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 
 @RequestMapping("/replies/")
 @RestController
-@Log4j 
+@Log4j2
 public class MateReplyController {
 
 	@Autowired
