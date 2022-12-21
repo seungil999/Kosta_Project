@@ -26,7 +26,7 @@ body{
 		<div style="text-align:center;">좋아요한 후기가 없습니다.</div>
 	</c:if>
 	<c:forEach items="${list}" var="review">
-	<a class="move" href="/review/get?no=${review.no}">
+	<a class="move" href="/review/get?rev_no=${review.rev_no}">
 	<c:choose>
 		<c:when test="${empty review.thumbnail }">
 			<span class="image"><img class="activity-Img" src="/resources/img/logo2.png" width=250; height=200;></span>

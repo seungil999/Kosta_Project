@@ -32,7 +32,16 @@
 	align-items: center;
 }
 
-div #flashMate, #regularMate {
+div #flashMate{
+	background-color: #198754 ;
+	padding:10px 10px 10px 10px; 
+	width: 240px;
+	vertical-align: middle; 
+	border-radius: 15px; 
+	color: white;
+	
+}
+div #regularMate {
 	background-color: #198754 ;
 	padding:10px 10px 10px 10px; 
 	width: 240px;

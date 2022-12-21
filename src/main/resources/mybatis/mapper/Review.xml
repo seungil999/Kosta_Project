@@ -38,7 +38,7 @@
 	  select rev_no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	  from ( select
 	    ]]>
-	    	/*+INDEX_DESC(review pk_review ) */
+	    	/*+INDEX_DESC(review review_rev_no_pk ) */
  		 <![CDATA[
  		 rownum rn, rev_no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	      from ]]>
@@ -84,7 +84,7 @@
 	</insert>
 	
 	<select id="read" resultType="com.kosta.jupjup.vo.ReviewVO">
-		select * from review where no =
+		select * from review where rev_no =
 		#{no}
 	</select>
 	
@@ -94,15 +94,15 @@
 	 	content=#{content},
 	 	regdate=sysdate,
 	 	thumbnail=#{thumbnail}
-	 	where mate_no=#{mate_no}
+	 	where rev_no=#{rev_no}
 	</update>
 	
 	<delete id="delete">
-		delete review where mate_no = #{mate_no}
+		delete review where rev_no = #{rev_no}
 	</delete>
 	
 	<update id="hit">
-		update review set hit=hit+1 where mate_no=#{mate_no}
+		update review set hit=hit+1 where rev_no=#{no}
 	</update>
 	
 	<select id="getActivityName" resultType="String" >

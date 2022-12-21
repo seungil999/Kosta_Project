@@ -24,10 +24,10 @@ var replyService = (function(){
 	}
 	
 	function getList(param, callback, error){
-		var no = param.no;
+		var rev_no = param.rev_no;
 		var page = param.page || 1;	
 		
-		$.getJSON("/reviewReplies/pages/" + no + "/" + page,
+		$.getJSON("/reviewReplies/pages/" + rev_no + "/" + page,
 			function(data){
 				if(callback){
 					callback(data);
@@ -59,7 +59,7 @@ var replyService = (function(){
 	function update(reply, callback, error){
 		$.ajax({
 			type:'put',
-			url:'/reviewReplies/'+reply.rno,
+			url:'/reviewReplies/'+reply.rev_rno,
 			data:JSON.stringify(reply),
 			contentType:"application/json; charset=utf-8",
 			success : function(result,status, xhr){

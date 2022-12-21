@@ -7,7 +7,7 @@
 	border: 2px solid;
 	border-color:#198754 ;
   	margin-top:30px;
-  	margin-left:50px;
+  	margin-left:20px;
   	margin-bottom:150px;
   	margin-right:50px;
 	font-family: 'Yeon Sung', cursive;
@@ -29,7 +29,7 @@ button.modInfo{
 
 .sidebar-bold{
 	font-weight:bolder;
-	font-size:15;
+	font-size:12;
 }
 .sidebar-normal{
 	font-weight:normal;
@@ -321,4 +321,8 @@ fieldset {
 *::before,
 *::after {
   box-sizing: border-box;
+}
+.grade{
+	position:relative;
+	float:left;
 }

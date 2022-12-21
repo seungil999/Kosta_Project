@@ -335,11 +335,6 @@ $("#idCheck").click(function() {
     				$('#email').focus();
     				 return false;
     			}
-    			if($('#phone').val().length == 0){
-    				alert('휴대폰 번호를 입력해주세요');
-    				$('#phone').focus();
-    				 return false;
-    			}
     			if($('.open').is(':checked')){
         			$('#profile_open').val('Y');
         			

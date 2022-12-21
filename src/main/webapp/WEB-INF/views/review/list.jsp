@@ -152,7 +152,7 @@ $(document) .ready(function() {
 			$(".move") .on("click", function(e) {
 						e.preventDefault();
 						$('input').remove("#no");
-						actionForm.append("<input type='hidden' id='no' name='no' value='"
+						actionForm.append("<input type='hidden' id='no' name='rev_no' value='"
 								+ $(this).attr("href")+ "'>");
 						actionForm.attr("action", "/review/get");
 						actionForm.submit();

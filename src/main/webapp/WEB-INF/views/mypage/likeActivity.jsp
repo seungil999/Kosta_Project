@@ -27,7 +27,7 @@ body{
 	<c:forEach items="${list }" var="mate">	
 		<div class="activity-Info">
 		<span class="myp-image"><img class="activity-Img" src="/Mate/display?fileName=${mate.image}"/></span>
-			 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate.no}">${mate.activityname}</a></div>
+			 <div class="myp-titleInfo"><a href="/matefind/get?no=${mate.mate_no}">${mate.activityname}</a></div>
 		
 			 <div class="myp-info">${mate.peoplenum}명 / ${mate.peoplemaxnum}명</div>
 			 <div class="myp-info" id="meetingdate">${mate.meetingdate}</div>

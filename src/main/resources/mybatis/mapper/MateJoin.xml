@@ -12,7 +12,7 @@
 		select count(jno) from mate_join where mate_no=#{mate_no} and jno=1
 	</select>
 	<select id="userCheck" resultType="com.kosta.jupjup.vo.MateJoinVO">
-		select jno,userid from mate_join where mate_no=#{mate_no} and user_id=#{user_id}
+		select jno,user_id from mate_join where mate_no=#{mate_no} and user_id=#{user_id}
 	</select>
 	
 	

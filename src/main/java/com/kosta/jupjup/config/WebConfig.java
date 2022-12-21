@@ -19,8 +19,8 @@ import com.kosta.jupjup.interceptor.LoginCheckInterceptor;
 				.addPathPatterns("/**")
 				.excludePathPatterns("/","/main", 
 						"/matefind/list", "/user/loginPage","/user/joinPage" ,"/user/finduserId" , "/user/findPassword"
-						,"/review/list"
-						,"/board/**"
+						,"/review/list","/matefind/**","/review/**","/reviewReplies/**","/Mate/**","/replies/**","/reviewLike/**","/like/**"
+						,"/board/**","/matejoin/**"
 						,"/resources/**","/user/css/**","/user/kakao"
 						,"/ServiceCenter/" ,"/admin/main/**","/admin/search/**","/admin/report/**","/admin/write/**","/admin/question/**");
 			

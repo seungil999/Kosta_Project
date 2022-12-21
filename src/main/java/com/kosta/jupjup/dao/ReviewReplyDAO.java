@@ -7,23 +7,23 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.jupjup.paging.Criteria;
-import com.kosta.jupjup.vo.MateReplyVO;
+import com.kosta.jupjup.vo.ReviewReplyVO;
 
 @Repository
 @Mapper
 public interface ReviewReplyDAO {
 
-	public int insert(MateReplyVO vo);
+	public int insert(ReviewReplyVO vo);
 	
-	public MateReplyVO read(Long rno);
+	public ReviewReplyVO read(Long rno);
 	
 	public int delete(Long rno);
 	
-	public int update(MateReplyVO reply);
+	public int update(ReviewReplyVO reply);
 	
-	public List<MateReplyVO> getListWithPaging(@Param("cri")Criteria cri, @Param("no")Long no);
+	public List<ReviewReplyVO> getListWithPaging(@Param("cri")Criteria cri, @Param("rev_no")Long rev_no);
 	
-	public void updateRepCnt(MateReplyVO vo);
+	public void updateRepCnt(ReviewReplyVO vo);
 	
 	public void minusRepCnt(Long rno);
 

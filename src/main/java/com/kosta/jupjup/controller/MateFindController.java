@@ -177,6 +177,7 @@ public class MateFindController {
 	@ResponseBody
 	@PostMapping("/repReportChk")
 	public ResponseEntity<String> replyReport(@RequestBody ReportVO vo) {
+		System.out.println(vo.toString());
 		Integer insertCount = MateFindService.repReportChk(vo);
 
 		return insertCount == 0 ? new ResponseEntity<>("success", HttpStatus.OK)

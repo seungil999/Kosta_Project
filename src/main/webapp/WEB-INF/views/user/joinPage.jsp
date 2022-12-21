@@ -115,6 +115,11 @@ width: 100%; height: 55px; border: 1px solid #dadada;padding: 17px; border-radiu
 					</div>
 					<input type="text" placeholder="인증번호 입력" id="email_auth_key">
 				</div>
+				
+				<!-- 기본프로필 및 프로필 공개여부 기본값 -->
+				<input type="hidden" value="기본프로필.png" id="profile" name="profile">
+    			<input type="hidden" id="profile_open" name="profile_open" value="N"/>
+    			
 				<button type="submit" id="join" class="join_btn">가입하기</button>
 			</form>
 		</div>

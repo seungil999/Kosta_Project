@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="likeInsert">
-		insert into mate_heart (lno,mate_no,userid) values (1,#{mate_no},#{user_id})
+		insert into mate_heart (lno,mate_no,user_id) values (1,#{mate_no},#{user_id})
 	</insert>
 	
 	<select id="likeGetInfo" resultType="Integer">
@@ -19,7 +19,7 @@
 	<update id="likeUpdate">
 		update mate_heart
 		set <include refid="cal"></include>
-		where mate_no=#{mate_no} and userid=#{userid}
+		where mate_no=#{mate_no} and user_id=#{user_id}
 	</update>
 	
 	<update id="likeCntUpdate">

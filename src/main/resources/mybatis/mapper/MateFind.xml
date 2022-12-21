@@ -11,15 +11,22 @@
 		, meetingplace
 		, meetingtime
 		, meetingdate
+		, to_char(meetingdate,'dy') dayofweek
 		, peoplenum
 		, peoplemaxnum
-		, regdate
-		, regular
-		, image
-		, to_char(meetingdate,'dy') dayofweek
+		, startzone
+		, endzone
+		, starttime
+		, endtime
 		, content
-		, likecnt
+		, regdate
+		, updatedate
 		, replycnt
+		, image
+		, regular
+		, likecnt
+		, timestamp
+		, user_id
 		, report_count
 	</sql>
 	
@@ -56,15 +63,11 @@
 	
 	
 	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
-	  <![CDATA[
-	  select   ]]>
+	  select
 		<include refid="mateColumns" />
-	 <![CDATA[  from (
-	    select
-	  
-	    	/*+INDEX_DESC(mate_mate_no_pk ) */
- 		
- 		 rownum rn,]]> <include refid="mateColumns" />
+	  from (select
+	  	   /*+INDEX_DESC(mate mate_mate_no_pk) */ 
+ 		 rownum rn, <include refid="mateColumns" />
 	      from 
 	      <choose>
 			<when test="filter == 'soon'.toString()">
@@ -77,7 +80,7 @@
 						(select * from mate order by regdate desc)	
 			</when>		
 			<otherwise>
-				mate
+				mate 
 			</otherwise>
 		</choose>
 	      <![CDATA[

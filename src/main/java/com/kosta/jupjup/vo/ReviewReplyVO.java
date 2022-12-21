@@ -5,9 +5,9 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class MateReplyVO {
-	private Long mate_reply_no; // rno > mate_reply_no
-	private Long mate_no;
+public class ReviewReplyVO {
+	private Long rev_rno; 
+	private Long rev_no;
 	
 	private String reply;
 	private String replyer;

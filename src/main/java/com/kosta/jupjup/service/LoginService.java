@@ -27,6 +27,7 @@ public class LoginService {
 	
 		public String getAccessToken (String authorize_code) {
 
+			System.out.println("카카오 서비스");
 			System.out.println("access_Token 받자");
 			String access_Token = "";
 			String refresh_Token = "";
@@ -110,17 +111,26 @@ public class LoginService {
 				String gender = kakao_account.getAsJsonObject().get("gender").getAsString();
 				
 				String[] emailSep = email.split("@");
-				String id = emailSep[0];
+				String id = emailSep[0]; // 아이디 
+				String pwd =  "k+"+id; // 카카오 로그인시 비밀번호는 'k+' + 유저 id 
 				
 				System.out.println(nickname);				
 				System.out.println(id);
 				System.out.println(email);
 				System.out.println(gender);
-				
+				System.out.println(pwd);
+			
 				userInfo.put("id", id);
+				userInfo.put("username", nickname);
 				userInfo.put("nickname", nickname);
 				userInfo.put("email", email);
 				userInfo.put("gender", gender);
+				userInfo.put("pwd", pwd );
+				userInfo.put("profile", "기본이미지.jpg" );
+				userInfo.put("profile_open", 1 );
+				
+				
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -130,8 +140,60 @@ public class LoginService {
 			if(result == null) {
 				loginDAO.kakaoInsert(userInfo);
 				return loginDAO.findKakao(userInfo);
+			} else {
+				return result;
 			}
-			return result;
 		}
+		
+		
+		   public void logout(String access_Token) {
+		       String reqURL = "https://kapi.kakao.com/v1/user/logout";
+		       try {
+		           URL url = new URL(reqURL);
+		           HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		           conn.setRequestMethod("POST");
+		           conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+		           
+		           int responseCode = conn.getResponseCode();
+		           System.out.println("responseCode : " + responseCode);
+		           
+		           BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		           
+		           String result = "";
+		           String line = "";
+		           
+		           while ((line = br.readLine()) != null) {
+		               result += line;
+		           }
+		           System.out.println(result);
+		       } catch (IOException e) {
+		           e.printStackTrace();
+		       }
+		   }
+		   
+		   public void unlink(String access_Token) {
+		       String reqURL = "https://kapi.kakao.com/v1/user/unlink";
+		       try {
+		           URL url = new URL(reqURL);
+		           HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		           conn.setRequestMethod("POST");
+		           conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+		           
+		           int responseCode = conn.getResponseCode();
+		           System.out.println("responseCode : " + responseCode);
+		           
+		           BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		           
+		           String result = "";
+		           String line = "";
+		           
+		           while ((line = br.readLine()) != null) {
+		               result += line;
+		           }
+		           System.out.println(result);
+		       } catch (IOException e) {
+		           e.printStackTrace();
+		       }
+		   }
 	    
 	}

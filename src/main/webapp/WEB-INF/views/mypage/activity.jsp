@@ -132,7 +132,14 @@ function typeChange(){
 		count++;
 	});
 	$(".m-meetingtime").each(function(index,item){
-		var time = $(item).val().slice(0,2)+":"+$(item).val().slice(2,4);
+		if($(item).val().length==4){
+			var time = $(item).val().slice(0,2)+":"+$(item).val().slice(2,4);	
+		}else if($(item).val().length==3){
+			var time = $(item).val().slice(0,1)+":"+$(item).val().slice(1,3);
+		}else if($(item).val().length==2){
+			var time = $(item).val().slice(0,0)+":"+$(item).val().slice(0,2);
+		}
+		
 		timeList.push(time);
 	});
 	for(var i=0; i<count; i++){
@@ -143,6 +150,6 @@ $('.m-timer').each(function(index,item){
 	countDownTimer(item.id, dateList[index]+timeList[index]); 
 })
 </script>
-</body>
+
 </html>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

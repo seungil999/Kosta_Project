@@ -46,7 +46,7 @@ public class MateJoinController {
 			Integer count = service.mateCount(vo.getUser_id());
 			System.out.println(peopleNum);
 			System.out.println(matevo.getPeoplemaxnum());
-			if(userCheck==null) {
+			if(userCheck==null && uservo!=null) {
 				service.joinInsert(vo);
 			}
 			MateJoinVO realUserChk = service.userCheck(vo);

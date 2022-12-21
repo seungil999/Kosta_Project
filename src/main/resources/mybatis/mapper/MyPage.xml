@@ -163,7 +163,7 @@
   	<update id="userUpdate">
   	<![CDATA[ 
   		update users set username=#{username}, nickname=#{nickname},id=#{id} ,pwd=#{pwd}, 
-  		email=#{email}, phone=#{phone},gender=#{gender},profile=#{profile},profile_open=#{profile_open} where id=#{id}
+  		email=#{email}, gender=#{gender},profile=#{profile},profile_open=#{profile_open} where id=#{id}
   		]]>
   	</update>
   	

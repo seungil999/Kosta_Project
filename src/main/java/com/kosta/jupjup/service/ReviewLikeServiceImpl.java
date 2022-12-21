@@ -20,9 +20,9 @@ public class ReviewLikeServiceImpl implements ReviewLikeService {
 	}
 
 	@Override
-	public Integer likeGetInfo(MateLikeVO vo) {
+	public Integer likeGetInfo(Long rev_no,String user_id) {
 
-		return likedao.likeGetInfo(vo);
+		return likedao.likeGetInfo(rev_no,user_id);
 	}
 
 	@Override

@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
-<<style>
+<style>
 body{
 	font-family: 'Yeon Sung', cursive;
 }
@@ -56,10 +56,6 @@ body{
 	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id" readonly>${user.email}</textarea></td>
  		</tr>
  		<tr>
-	 		<td class="bold">휴대폰</td>
-	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly>${user.phone }</textarea></td>
- 		</tr>
- 		<tr>
 	 		<td class="bold">성별</td>
 	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${user.gender eq 'man' ? '남자':'여자' }"/></textarea></td>
 	 		
@@ -70,7 +66,7 @@ body{
 </div>
  	</c:when>
  	
- 	<c:when test="${user.profile_open eq 'N' && userVO.id == user.id}">
+ 	<c:when test="${user.profile_open eq 'N' && userVO.id eq user.id}">
  	<div class="my_modal" id="${user.id}">
      <button class="modal_close_btn ${user.id}">✖</button>    	
 	<div class="main">
@@ -107,10 +103,6 @@ body{
  		<tr>
 	 		<td class="bold">이메일</td>
 	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id" readonly>${user.email}</textarea></td>
- 		</tr>
- 		<tr>
-	 		<td class="bold">휴대폰</td>
-	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly>${user.phone }</textarea></td>
  		</tr>
  		<tr>
 	 		<td class="bold">성별</td>
@@ -150,7 +142,7 @@ body{
      <button class="modal_close_btn ${mate.mate_no}">✖</button>   
 <form action="/matefind/report" method="post" id="rep_form">	   
 <input type="hidden" name="report_type" value=1> 
-<input type="hidden" name="mate_id" value="${mate.mate_no}">
+<input type="hidden" name="mate_no" value="${mate.mate_no}">
 <input type="hidden" name="report_writer" value="${userVO.id}">
 	<div class="r-main">
 		<div class="r-title">신고하기</div>
@@ -160,13 +152,13 @@ body{
  	<table class="modtab">
  		
  		<tr>
-	 		<td class="r-bold">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 :&nbsp;</td>
+	 		<td class="r-bold">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 : </td>
 	 		<td class="r-input"><p id="activityname" name="activityname" readonly>${mate.activityname}</p></td>
 	 	
  		</tr>
  		<tr>
-	 		<td class="r-bold">작&nbsp;성&nbsp;자 :&nbsp;</td>
-	 		<td class="r-input"> ${mate.writer} </td>
+	 		<td class="r-bold">작&nbsp;성&nbsp;자 :</td>
+	 		<td class="r-input">${mate.writer} </td>
  		</tr>
  	</table>
  	<hr style="margin-top:7px; margin-bottom:7px;">
@@ -195,7 +187,8 @@ body{
  </form>
 </div>
 
-<div class="flashOrRegular" style="margin-left: 200px;">
+<div style="width:1000px;margin: 0 auto;">
+<div class="flashOrRegular">
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
 		<h2>정기활동</h2>
@@ -205,6 +198,8 @@ body{
 	</c:otherwise>
 </c:choose>
 </div>
+</div>
+
 
 <div class="mate-border">
 <br>
@@ -419,12 +414,12 @@ $(document).ready(function() {
 				return;
 			}
 			for(var i=0, len = list.length || 0; i<len; i++){
-				str +="<div><li class='replyList'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
+				str +="<div><li class='replyList'  id='mate_reply_no"+list[i].mate_reply_no+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-mate_reply_no='"+list[i].mate_reply_no+"'>";
 				if(userid==list[i].user_id){
-				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>";
-				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
+				str += "<button type='button' id='rembtn' data-mate_reply_no='"+list[i].mate_reply_no+"'>삭제</button>";
+				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-mate_reply_no='"+list[i].mate_reply_no+"'>수정</button>";
 				}else if(userid != ''){
-				str += "<button type='button' class='reply-report' id='reply-report' data-writer='${userVO.id}' data-rno='"+list[i].rno+"'>신고</button>";
+				str += "<button type='button' class='reply-report' id='reply-report' data-writer='${userVO.id}' data-mate_reply_no='"+list[i].mate_reply_no+"'>신고</button>";
 				}
 				str +="<div class='header'><strong class= 'primary-font'>"+"<a class='repUserProfile' data-user='"+list[i].user_id+"'><img class='user-img' src='/Mate/display?fileName="+list[i].profile+"'/></a>"
 						+list[i].replyer+"</strong>";
@@ -448,8 +443,6 @@ $(document).ready(function() {
 				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
 					mod += "<tr><td class='bold'>이메일</td>";
 					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
-					mod += "<tr><td class='bold'>휴대폰</td>";		
-				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
 				 	mod += "<tr><td class='bold'>성별</td>";
 					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
 				 	mod += "</tr></table></div></div>";
@@ -468,8 +461,6 @@ $(document).ready(function() {
 				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
 					mod += "<tr><td class='bold'>이메일</td>";
 					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
-					mod += "<tr><td class='bold'>휴대폰</td>";		
-				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
 				 	mod += "<tr><td class='bold'>성별</td>";
 					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
 				 	mod += "</tr></table></div></div>";
@@ -481,12 +472,12 @@ $(document).ready(function() {
 				}
 				
 				for(var i=0, len = list.length || 0; i<len; i++){
-					rep+='<div class="my_modal" style="height:521" id="'+list[i].rno+'">';
-				    rep+='<button class="modal_close_btn '+list[i].rno+'">✖</button>';   
-					rep+='<form  method="post" action="/matefind/repReport" id="'+list[i].rno+'" onsubmit="return test()">'	   
+					rep+='<div class="my_modal" style="height:521" id="'+list[i].mate_reply_no+'">';
+				    rep+='<button class="modal_close_btn '+list[i].mate_reply_no+'">✖</button>';   
+					rep+='<form  method="post" action="/matefind/repReport" id="'+list[i].mate_reply_no+'" onsubmit="return test()">'
 					rep+='<input type="hidden" name="report_type" value=2>' 
 					rep+='<input type="hidden" name="report_writer" value="${userVO.id}">'
-					rep+='<input type="hidden" name="mate_reply_id" value="'+list[i].rno+'">'
+					rep+='<input type="hidden" name="mate_reply_id" value="'+list[i].mate_reply_no+'">'
 					rep+='<input type="hidden" name="mate_no" value="${mate.mate_no}">'
 					rep+='<div class="r-main">'
 					rep+='<div class="r-title">신고하기</div><hr>'
@@ -506,10 +497,7 @@ $(document).ready(function() {
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="욕설 또는 혐오발언"> 욕설 또는 혐오발언</label></div>'
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="동일내용의 댓글 반복(도배)"> 동일내용의 댓글 반복(도배)</label></div>'
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="음란성 또는 청소년에게 부적합한 내용"> 음란성 또는 청소년에게 부적합한 내용</label></div>'
-				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="" id="etc"> 기타</label></div>'
-				 	rep+='<div><textarea class="form-control r_r_content" name="r_report_content" id="r_etc_content"'
-				 	rep+='style="resize:none; width: -webkit-fill-available;" placeholder="기타 사유는 30자 내외로 작성해주세요."></textarea></div>'
-				 	rep+='<div style="text-align:center;"><button type="button" class="r_cancel '+list[i].rno+'">취&nbsp;&nbsp;소</button><input type="submit" class="report_reply" data-rno="'+list[i].rno+'" value="제&nbsp;&nbsp;출"></div></div></form></div>'
+				 	rep+='<div style="text-align:center;"><button type="button" class="r_cancel '+list[i].mate_reply_no+'">취&nbsp;&nbsp;소</button><input type="submit" class="report_reply" data-mate_reply_no="'+list[i].mate_reply_no+'" value="제&nbsp;&nbsp;출"></div></div></form></div>'
 				}
 			}
 			reportMod.html(rep);
@@ -537,7 +525,7 @@ $(document).ready(function() {
               reply: InputReply.val(),
               replyer:InputReplyer.html(),
               user_id:"${userVO.id}",
-              no:noValue
+              mate_no:noValue
             };
         replyService.add(reply, function(result){
           
@@ -559,26 +547,31 @@ $(document).ready(function() {
     
      
      $(document).on("click", '#rembtn', function(e){
-    	    var rno = $(this).data("rno");
-    		console.log(rno);
-    		replyService.remove(rno,function(result){
-    			if(result=='success'){
-    				$.ajax({
-    	    			url : "/replies/repCntUpdate",
-    	    			type : 'PUT',
-    	    			contentType: 'application/json',
-    	    			data : JSON.stringify(noValue),
-    	    			success :
-    	    				console.log("성공")	
-    	    			, error : 
-    	    				console.log("에러") 
-    	    			});
-    			}
-    			var repcnt = $("#replycnt").html();
-    	        $("#replycnt").html(parseInt(repcnt)-1);
-    			repReply.val("");
-    			showList(1);
-    		});
+    	 if (!confirm("정말로 삭제하시겠습니까?")) {
+    		 return false;
+    	    } else {
+    	        var mate_reply_no = $(this).data("mate_reply_no");
+         		console.log(mate_reply_no);
+         		replyService.remove(mate_reply_no,function(result){
+         			if(result=='success'){
+         				$.ajax({
+         	    			url : "/replies/repCntUpdate",
+         	    			type : 'PUT',
+         	    			contentType: 'application/json',
+         	    			data : JSON.stringify(noValue),
+         	    			success :
+         	    				console.log("성공")	
+         	    			, error : 
+         	    				console.log("에러") 
+         	    			});
+         			}
+         			var repcnt = $("#replycnt").html();
+         	        $("#replycnt").html(parseInt(repcnt)-1);
+         			repReply.val("");
+         			showList(1);
+         		});
+    	    }
+    	   
     		
     	});
      $(document).on("click", ".replyUpdateBtn", function(e){
@@ -590,12 +583,12 @@ $(document).ready(function() {
     	 }
     	
     	 
-    	 repReplyNo.val($(this).data("rno"));
+    	 repReplyNo.val($(this).data("mate_reply_no"));
     	 repReplyer.val($(this).data("replyer"));
     	 repReply.val($(this).data("reply"));
     	 
     	 var replyData ={
-         rno:repReplyNo.val(),
+         mate_reply_no:repReplyNo.val(),
          replyer:repReplyer.val(),
          reply:repReply.val()
     	 };
@@ -607,15 +600,15 @@ $(document).ready(function() {
 	    htmls += '<div class="header"><strong class="primary-font" id="mod">'+replyData.replyer+"</strong>";
 	   
 		
-		htmls += '<div id="rno'+ replyData.rno + '">';
+		htmls += '<div id="mate_reply_no'+ replyData.mate_reply_no + '">';
 		
 		htmls += '<textarea name="editContent" id="editContent" rows="3">';
 		htmls += replyData.reply;
 		htmls += '</textarea>';
 		htmls += '</div>';
 		
-		$('#rno'+replyData.rno).replaceWith(htmls);	
-		$('#rno'+replyData.rno+' #editContent').focus();
+		$('#mate_reply_no'+replyData.mate_reply_no).replaceWith(htmls);	
+		$('#mate_reply_no'+replyData.mate_reply_no+' #editContent').focus();
 	    
   });
      
@@ -623,7 +616,7 @@ $(document).ready(function() {
     	 
     	
     	var replyEditContent = $("#editContent").val();
-    	 var reply = {rno:repReplyNo.val(), reply:replyEditContent} 
+    	 var reply = {mate_reply_no:repReplyNo.val(), reply:replyEditContent} 
     	 
     	 replyService.update(reply, function(result){
  	    	repReply.val("");
@@ -713,11 +706,11 @@ function like_func(){
     const resultElement = document.getElementById('likecnt');
 	var number=resultElement.innerText;
 	
-	no = $('#no').val(),
+	mate_no = $('#mate_no').val(),
 	count = $('#likecheck').val(),
 	data = {
-			"userid" : "${userVO.id}",
-			"no" : no,
+			"user_id" : "${userVO.id}",
+			"mate_no" : mate_no,
 			"count" : count
 			};
 	
@@ -754,12 +747,12 @@ $.ajax({
 	});
 };
 $(document).on("click", "#matejoin", function(e){
-	no = $('#no').val(),
+	mate_no = $('#mate_no').val(),
 	count = $('#joincheck').val(),
 	
 	data = {
-				"userid" : "${userVO.id}",
-				"no" : no,
+				"user_id" : "${userVO.id}",
+				"mate_no" : mate_no,
 				"count" : count
 				};
 	$.ajax({
@@ -853,11 +846,14 @@ $(document).ready(function() {
 	  
 	    
 	  $("button[id='remove']").on("click", function(e){
-	   
-	    operForm.attr("action","/matefind/remove");
-	    operForm.attr("method","post");
-	    operForm.submit();
-	    $('')
+		  if (!confirm("정말로 삭제하시겠습니까?")) {
+		     return false;
+		    } else {
+		        operForm.attr("action","/matefind/remove");
+			    operForm.attr("method","post");
+			    operForm.submit();
+			    $('')
+		    }
 	  });  
 	});
 </script>
@@ -934,7 +930,7 @@ $(document).ready(function() {
             
             $(document).on("click", '.reply-report',function(e){
             	 $('.r_r_content').hide();
-            	var no = $(this).data("rno");
+            	var no = $(this).data("mate_reply_no");
     			var writer = $(this).data("writer");
     			data = {
     						"mate_reply_id" : no,
@@ -961,8 +957,9 @@ $(document).ready(function() {
             /** 신고하기 **/
       	  $("#report").on("click", function(){
       		  var reportChk = "<c:out value='${reportChk}'/>"
-      		  console.log(reportChk);
+      		  
       		  var no = "<c:out value='${mate.mate_no}'/>"
+      			
       		  var userid = "<c:out value='${userVO.id}'/>";
       		console.log(userid);
       		console.log(reportChk);
@@ -980,10 +977,10 @@ $(document).ready(function() {
        
   <script type="text/javascript">
   function test(){
-		var form = $(this).data('rno');
+		var form = $(this).attr('id');
+		console.log(form)
 		var contentChk = $("input[name=r_report_content]:checked").val();
-		var etc_content =$('#r_etc_content').val();
-		if((contentChk=='' ||contentChk==null) &&etc_content==''){
+		if(contentChk=='' ||contentChk==null){
 			alert('신고사유를 선택 또는 내용을 입력해 주세요.');
 			return false;
 		}else{

@@ -21,7 +21,7 @@
 	</div>
 	
 	
-	  <input type='hidden' id='no' name='no' value='<c:out value="${review.no}"/>'>
+	  <input type='hidden' id='rev_no' name='rev_no' value='<c:out value="${review.rev_no}"/>'>
 	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 	  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -31,7 +31,7 @@
 </form>		
 
 	<form id='operForm' action="/review/list" method="get">
-	  <input type='hidden' id='no' name='no' value='<c:out value="${review.no}"/>'>
+	  <input type='hidden' id='rev_no' name='rev_no' value='<c:out value="${review.rev_no}"/>'>
 	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 	  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -51,7 +51,7 @@ $(document).ready(function() {
 	  var operForm = $("#operForm"); 
 		
 	  $(".cancel").on("click", function(e){
-	    operForm.find("#no").remove();
+	    operForm.find("#rev_no").remove();
 	    operForm.attr("action","/review/list")
 	    operForm.submit();
 	  });

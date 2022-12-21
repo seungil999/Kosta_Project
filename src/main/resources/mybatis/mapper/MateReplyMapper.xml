@@ -5,33 +5,34 @@
 <mapper namespace="com.kosta.jupjup.dao.MateReplyDAO">
 	
 	<select id="read" resultType="com.kosta.jupjup.vo.MateReplyVO">
-		select * from Mate_Reply where rno=#{rno}
+		select * from Mate_Reply where mate_reply_no=#{mate_reply_no}
 	</select>
 	
 	<insert id="insert">
-		insert into mate_reply (rno, no, reply, replyer,user_id) values
-		(seq_matereply.nextval,#{no}, #{reply},#{replyer},#{user_id})
+		insert into mate_reply (mate_reply_no, mate_no, reply, replyer,user_id) values
+		(seq_matereply_no.nextval,#{mate_no}, #{reply},#{replyer},#{user_id})
 	</insert>
 	
 	<update id="update">
-		update mate_reply set reply = #{reply}, replydate=sysdate where rno=#{rno}
+		update mate_reply set reply = #{reply}, replydate=sysdate where mate_reply_no=#{mate_reply_no}
 	</update>
 			
 	<delete id="delete">
-		delete from mate_reply where rno = #{rno}
+		delete from mate_reply where mate_reply_no = #{mate_reply_no}
 	</delete>
 	
 	<select id="getListWithPaging" resultType="com.kosta.jupjup.vo.MateReplyVO">
-		select m.mate_reply_no, m.no, m.reply, m.replyer, m.replyDate, m.updatedate, u.*
-		from mate_reply m,users u where m.user_id=u.id and m.no=#{no}
-		order by rno asc
+		select m.mate_reply_no, m.mate_no, m.reply, m.replyer, m.replydate, m.updatedate, m.user_id, u.*
+		from mate_reply m,users u where m.user_id=u.id and m.mate_no=#{mate_no}
+		order by mate_reply_no asc
 	</select>
-	
+
+
 	<update id="updateRepCnt">
-		update mate set replyCnt = replycnt+1 where no=#{no}
+		update mate set replyCnt = replycnt+1 where mate_no=#{mate_no}
 	</update>
 	<update id="minusRepCnt">
-		update mate set replyCnt = replycnt-1 where no=#{no}
+		update mate set replyCnt = replycnt-1 where mate_no=#{mate_no}
 	</update>
 	
 	

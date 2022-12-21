@@ -35,7 +35,7 @@ body{
 
           <c:forEach items="${list}" var="review">
             <tr >
-               <td style="border-color :#42DF2B;"><a href="/review/get?no=${review.no}">
+               <td style="border-color :#42DF2B;"><a href="/review/get?rev_no=${review.rev_no}">
                   <c:out value="${review.title}" />
                   </a> 
               <td style="border-color :#42DF2B;">${review.mate_activity}</td>    

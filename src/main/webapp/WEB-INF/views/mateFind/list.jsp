@@ -13,7 +13,6 @@
 
 body , #matefind{
 	font-family: 'Yeon Sung', cursive;
-	font-size: 20px; 
 }
 
 #portfolio{
@@ -78,7 +77,7 @@ body , #matefind{
 
 	<div class="search-container" >
 			<form id='searchForm' action="/matefind/list" method='get'>
-			<table>
+			<table style="margin:0 auto;">
 			<tr>
 			<td>
 				<select name='type' id='type' class='mate-select' style="margin-left:230px;">
@@ -300,7 +299,7 @@ $(document)
 							});
 					$(".move") .on("click", function(e) {
 								e.preventDefault();
-								$('input').remove("#no");
+								$('input').remove("#mate_no");
 								actionForm.append("<input type='hidden' id='mate_no' name='no' value='"
 										+ $(this).attr("href")+ "'>");
 								actionForm.attr("action", "/matefind/get");
@@ -427,8 +426,8 @@ $(document)
 					
 					$(".content").each(function (index, item){
 						var content = $(item).html();
-						if(content.length>20){
-						content=content.substring(0,20);
+						if(content.length>15){
+						content=content.substring(0,15);
 						$(item).html(content+"...");
 						}
 					});

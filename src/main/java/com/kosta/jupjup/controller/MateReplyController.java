@@ -36,7 +36,7 @@ public class MateReplyController {
 			produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> create(@RequestBody MateReplyVO vo){
 		
-		log.info("MateReplyVO:"+vo);
+		System.out.println("MateReplyVO:"+vo);
 		
 		int insertCount = service.register(vo);
 		service.updateRepCnt(vo);
@@ -60,37 +60,37 @@ public class MateReplyController {
 		return new ResponseEntity<>(service.getList(cri, no), HttpStatus.OK);
 	}
 	
-	@GetMapping(value ="/{rno}",
+	@GetMapping(value ="/{mate_reply_no}",
 			produces= {MediaType.APPLICATION_XML_VALUE,    //return값 xml/json
 					   MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<MateReplyVO> get(@PathVariable("rno")Long rno){
+	public ResponseEntity<MateReplyVO> get(@PathVariable("mate_reply_no")Long mate_reply_no){
 		
-		log.info("get:"+rno);
-		System.out.println(service.get(rno));
-		return new ResponseEntity<>(service.get(rno),HttpStatus.OK);
+		log.info("get:"+mate_reply_no);
+		System.out.println(service.get(mate_reply_no));
+		return new ResponseEntity<>(service.get(mate_reply_no),HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value="/{rno}", produces= {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
+	@DeleteMapping(value="/{mate_reply_no}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> remove(@PathVariable("mate_reply_no") Long mate_reply_no){
 		
-		service.minusRepCnt(rno);
+		service.minusRepCnt(mate_reply_no);
 		
-		return service.remove(rno)==1
+		return service.remove(mate_reply_no)==1
 				?new ResponseEntity<>("success", HttpStatus.OK)
 				:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
-			value="/{rno}",
+			value="/{mate_reply_no}",
 			consumes = "application/json",
 			produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> modify(@RequestBody MateReplyVO vo,
-			@PathVariable("rno") Long rno){
+			@PathVariable("mate_reply_no") Long mate_reply_no){
 		
-		vo.setRno(rno);
+		vo.setMate_reply_no(mate_reply_no);
 		
-		log.info("rno:" + rno);
+		log.info("mate_reply_no:" + mate_reply_no);
 		log.info("MODIFY:" + vo);
 		
 		return service.modify(vo)==1

@@ -4,34 +4,34 @@
                         
 <mapper namespace="com.kosta.jupjup.dao.ReviewReplyDAO">
 	
-	<select id="read" resultType="com.kosta.jupjup.vo.MateReplyVO">
-		select * from review_reply where rno=#{rno}
+	<select id="read" resultType="com.kosta.jupjup.vo.ReviewReplyVO">
+		select * from review_reply where rev_rno=#{rev_rno}
 	</select>
 	
 	<insert id="insert">
-		insert into review_reply (rno, no, reply, replyer,user_id) values
-		(seq_review_reply.nextval,#{no}, #{reply},#{replyer},#{user_id})
+		insert into review_reply (rev_rno, rev_no, reply, replyer,user_id) values
+		(seq_reviewreply_no.nextval,#{rev_no}, #{reply},#{replyer},#{user_id})
 	</insert>
 	
 	<update id="update">
-		update review_reply set reply = #{reply}, updatedate=sysdate where rno=#{rno}
+		update review_reply set reply = #{reply}, updatedate=sysdate where rev_rno=#{rev_rno}
 	</update>
 			
 	<delete id="delete">
-		delete from review_reply where rno = #{rno}
+		delete from review_reply where rev_rno = #{rev_rno}
 	</delete>
 	
-	<select id="getListWithPaging" resultType="com.kosta.jupjup.vo.MateReplyVO">
-		select m.rno, m.no, m.reply, m.replyer, m.replyDate, m.updatedate,m.user_id, u.*
-		from review_reply m,users u where m.user_id=u.id and m.no=#{no}
-		order by rno asc
+	<select id="getListWithPaging" resultType="com.kosta.jupjup.vo.ReviewReplyVO">
+		select m.rev_rno, m.rev_no, m.reply, m.replyer, m.replyDate, m.updatedate,m.user_id, u.*
+		from review_reply m,users u where m.user_id=u.id and m.rev_no=#{rev_no}
+		order by rev_rno asc
 	</select>
 	
 	<update id="updateRepCnt">
-		update review set replyCnt = replycnt+1 where no=#{no}
+		update review set replyCnt = replycnt+1 where rev_no=#{rev_no}
 	</update>
 	<update id="minusRepCnt">
-		update review set replyCnt = replycnt-1 where no=#{no}
+		update review set replyCnt = replycnt-1 where rev_no=#{rev_no}
 	</update>
 	
 	
