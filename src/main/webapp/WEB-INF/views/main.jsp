@@ -95,6 +95,7 @@ p {
 		integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
 		crossorigin="anonymous">
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 	function onGeoOk(position) {
 		const lat = position.coords.latitude;
@@ -110,7 +111,10 @@ p {
 				$('.icon').html(wiconURL);
 			});
 	}
-	navigator.geolocation.getCurrentPosition(onGeoOk);
+	function onGeoError() {
+		swal("날씨를 제공받을 위치를 찾을 수 없습니다.", "위치 액세스를 항상 허용으로 활성화 시켜주세요.", "error");
+	}
+	navigator.geolocation.getCurrentPosition(onGeoOk,onGeoError);
 </script>
 
 	<section id="intro">
