@@ -3,16 +3,55 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
-
 <mapper namespace="com.kosta.jupjup.dao.UserDao">
 
+<sql id="usersColumns">
+		 id
+		, username
+		, nickname
+		, pwd
+		, email
+		, gender
+		, status
+		, regdate
+		, updatedate
+		, deletedate
+		, profile
+		, profile_open
+		, grade
+	</sql>
+
+	<!-- 1. 회원 가입 -->
+	<insert id="join" parameterType="com.kosta.jupjup.vo.UserVO">
+         <![CDATA[
+          INSERT INTO USERS VALUES (#{id},#{username},#{nickname},#{pwd},#{email},#{gender},NVL(#{status, jdbcType=VARCHAR}, '가입'),sysdate,sysdate,sysdate,#{profile},#{profile_open},NVL(#{grade, jdbcType=VARCHAR}, '1'))
+         ]]>
+	</insert>
+
+  <!-- 2. 중복아이디 -->
+    <select id="idCheck" parameterType="String" resultType="int">
+          <![CDATA[
+            SELECT COUNT(*) 
+            FROM USERS
+            WHERE ID = #{id}
+          ]]>
+    </select>
+    
+	<!-- 3. 중복닉네임 -->
+    <select id="nicknameCheck" parameterType="String"  resultType="int">
+          <![CDATA[
+            SELECT COUNT(*) 
+            FROM USERS
+            WHERE NICKNAME = #{nickname}
+           ]]>
+    </select>    
+    
 <!-- 로그인 -->
 	<select id="login" 
 		resultType="com.kosta.jupjup.vo.UserVO">
-          <![CDATA[
-            SELECT USERNAME,NICKNAME,ID,PWD,EMAIL,PHONE,GENDER,PROFILE,PROFILE_OPEN
-            FROM USERS
+    
+            SELECT <include refid="usersColumns" />
+             <![CDATA[     FROM USERS
             WHERE ID = #{id}
             AND PWD  = #{pwd}
    
@@ -20,25 +59,22 @@
              ]]>
 	</select>
 	
-     <!-- 중복아이디 -->
-    <select id="idCheck" parameterType="String"  resultType="int">
-          <![CDATA[
-            SELECT COUNT(*) 
-            FROM USERS
-            WHERE ID = #{id}
-          
-             ]]>
-    </select>
-    
-    
-      <!-- 회원 가입 -->
-    <insert id="join" parameterType="com.kosta.jupjup.vo.UserVO">
-         <![CDATA[
-          INSERT INTO USERS 
-        
-        VALUES (#{username},#{nickname},#{id},#{pwd},#{email},#{phone},#{gender},#{profile},#{profile_open},1)
-         ]]>
-    </insert>
+   <!-- 이메일 중복체크-->
+   <select id="selectByEmail" parameterType="string" resultType="string">
+      SELECT email FROM users WHERE email = #{email}
+   </select>
    
-
+		<!-- 아이디 찾기 -->
+   <select id="selectFindId" parameterType="string" resultType="string">
+      SELECT id FROM users WHERE email = #{email}
+   </select>
+   
+   <!-- 비밀번호 찾기 -->
+   <select id="selectFindPwd" parameterType="string" resultType="string">
+      SELECT pwd FROM users WHERE id = #{id} AND email = #{email}
+   </select>
+    
+   
+    
+       
 </mapper>

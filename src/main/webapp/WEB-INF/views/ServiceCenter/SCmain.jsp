@@ -5,12 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <style>
+body{
+
+	font-family: 'Yeon Sung', cursive;
+}
 A:link, A:visited, A:active, A:hover {
 	text-decoration: none;
 	color: black;
@@ -25,7 +32,7 @@ A:link, A:visited, A:active, A:hover {
 }
 
 .scmain {
-	border: 3px solid #42DF2B;
+	border: 3px solid #198754;
 	border-radius: 15px;
 	display: block;
 	width: 990px;
@@ -50,6 +57,7 @@ A:link, A:visited, A:active, A:hover {
 	font-size: 20px;
 	font-weight: bold;
 	letter-spacing: -.5px;
+	
 }
 
 .modal {
@@ -158,11 +166,9 @@ A:link, A:visited, A:active, A:hover {
 									<div class="modal">
 										<div class="modal-content">
 											<span class="close">&times;</span>
-											<h2>Q </h2>
-											<h3>${QUESTIONS.name }</h3>
+											<h3>Q ${QUESTIONS.name }</h3>
 											<br>
-											<h2>A </h2>
-											<p>${QUESTIONS.content }</p>
+											<p>A ${QUESTIONS.content }</p>
 										</div>
 									</div></li>
 							</c:forEach>

@@ -6,7 +6,9 @@ import lombok.Data;
 
 @Data
 public class MateVO {
-	private Long no;
+	// TODO 수정된 테이블에 맞춰서 수정했음.
+	
+	private Long mate_no; // private Long no;
 	private String activityname;
 	private String writer;
 	private Date meetingdate;

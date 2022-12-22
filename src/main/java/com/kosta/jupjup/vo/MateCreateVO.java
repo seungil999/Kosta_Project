@@ -9,7 +9,10 @@ import lombok.Data;
 
 @Data
 public class MateCreateVO {
-	private Long no;
+	
+	// no > mate_no
+	
+	private Long mate_no;
 
 	@NotBlank(message = "모임명을 입력 해주세요.")
 	private String activityname;
@@ -29,6 +32,7 @@ public class MateCreateVO {
 	
 	@NotBlank(message = "출발지를 입력 해주세요.")
 	private String startzone;
+	
 	@NotBlank(message = "도착지를 입력 해주세요.")
 	private String endzone;
 	

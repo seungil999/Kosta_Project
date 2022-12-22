@@ -5,10 +5,11 @@ import lombok.Data;
 @Data
 public class MateJoinVO {
 
+	// no > mate_no
+	
 	private Long jno;
-	private Long no;
-	private String userid;
-	private int regular;
+	private Long mate_no;
+	private String user_id;
 	private int count;
 
 }

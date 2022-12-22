@@ -7,6 +7,14 @@
 <!DOCTYPE html>
 
 <html>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
+</head>
 <div class="myp-title">내글관리</div>
 	<div class="main">
 		<span class="bold">후기</span>
@@ -27,7 +35,7 @@
 
           <c:forEach items="${list}" var="review">
             <tr >
-               <td style="border-color :#42DF2B;"><a href="/review/get?no=${review.no}">
+               <td style="border-color :#42DF2B;"><a href="/review/get?rev_no=${review.rev_no}">
                   <c:out value="${review.title}" />
                   </a> 
               <td style="border-color :#42DF2B;">${review.mate_activity}</td>    
@@ -81,10 +89,6 @@
 
 
 
-<form id='actionForm' action="/mypage/review" method='get'>
-	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-	<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>	
-</form>
 
 
 
@@ -94,20 +98,8 @@
 
 
 
-<script type="text/javascript">	
-$(document).ready(function() {		
-	var actionForm = $("#actionForm");
-	
-   	$(".paginate_button a").on("click",
-			function(e) {
-				e.preventDefault();
-				actionForm.find("input[name='pageNum']")
-						.val($(this).attr("href"));
-				actionForm.submit();
-				
-			})
-		});
-</script>
+
+
 
 
 

@@ -4,13 +4,19 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>고객센터</title>
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+
 </head>
 <style>
+
+
+
 A:link,A:visited,A:active,A:hover {
 	text-decoration:none; color:black;
 }
@@ -23,7 +29,7 @@ A:link,A:visited,A:active,A:hover {
 }
 
 .scmain {
-	border: 3px solid #42DF2B;
+	border: 3px solid #198754;
 	border-radius: 15px;
 	display: block;
 	width: 990px;
@@ -40,7 +46,7 @@ A:link,A:visited,A:active,A:hover {
 
 .scmain_title {
 	border-bottom-style: solid;
-	border-bottom-color: #43a906;
+	border-bottom-color: #198754;
 	border-bottom-width: 1px;
 	text-align: left;
 	margin: 25px 25px;
@@ -48,6 +54,8 @@ A:link,A:visited,A:active,A:hover {
 	font-size: 20px;
 	font-weight: bold;
 	letter-spacing: -.5px;
+	font-family: 'Yeon Sung', cursive;
+	
 }
 
 .modal {
@@ -61,14 +69,16 @@ A:link,A:visited,A:active,A:hover {
 	overflow: auto;
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.4);
+	font-family: 'Yeon Sung', cursive;
 }
 
 .modal-content {
 	background-color: #fefefe;
 	margin: 15% auto;
 	padding: 20px;
-	border: 1px solid #888;
+	border: 1px solid #198754;
 	width: 50%;
+	font-family: 'Yeon Sung', cursive;
 }
 
 .close {
@@ -97,7 +107,7 @@ A:link,A:visited,A:active,A:hover {
 .sc_content {
 	position: relative;
 	float: right;
-	border-left: 1px solid #e8e8e8;
+	border-left: 1px solid #198754;
 	width: 750px;
 	min-height: 700px;
 	padding-bottom: 60px;
@@ -107,17 +117,23 @@ A:link,A:visited,A:active,A:hover {
 	font-size: 21px;
 	margin-top: 50px;
 	font-weight: bold;
+	
+	font-family: 'Yeon Sung', cursive;
 }
 
 #Gnb .list_menu {
 	margin-top: 20px;
 	float:left;
+	font-family: 'Yeon Sung', cursive;
 }
 #Gnb .list_menu li {
     margin: 0 0 20px 5px;
     font-size: 15px;
     text-align: left;
+    
 }
+
+
 </style>
 <body>
 	<div class="scmain">

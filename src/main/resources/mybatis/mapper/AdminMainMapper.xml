@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.AdminMainDAO">
+
+	<!-- 회원정보 컬럼, 회원 테이블 수정되면 사용 > 컬럼 추가하세요~!  -->
+	<sql id="AdminusersColumns">
+			 id
+		, username
+		, nickname
+		, pwd
+		, email
+		, gender
+		, status
+		, regdate
+		, updatedate
+		, deletedate
+		, profile
+		, profile_open
+		, grade
+	</sql>
+	
+
+	<!-- 01. 검색 결과 개수 / 페이징 처리를 위함  -->
+	<select id="userTotalCount" resultType="int"  >
+		  <![CDATA[
+				select count(*) from users 
+		  ]]>  
+	 <choose>
+			<when test="filter == 'all'.toString()">
+				WHERE  1=1
+			</when>
+			<when test="filter == '가입'.toString()">
+				WHERE  status = '가입'
+			</when>
+			<when test="filter == '탈퇴'.toString()">
+				WHERE  status = '탈퇴'
+			</when>
+						
+	</choose>
+	</select>
+	
+
+<!-- 
+SELECT * 
+    FROM (
+        SELECT ROWNUM AS RNUM, Z.* 
+        FROM (
+            SELECT * 
+                from  users
+                order by id desc
+            ) Z WHERE ROWNUM <= 30
+) WHERE RNUM >= 1;
+
+ -->
+
+	<!-- 02. 전체 회원 조회 / 페이징 -->
+	<select id="selectAllUserPaging" 
+		resultType="com.kosta.jupjup.vo.UserVO" parameterType="com.kosta.jupjup.paging.Criteria">
+          SELECT  <include refid="AdminusersColumns" />
+ 			FROM ( SELECT ROWNUM AS  RNUM, u.* FROM (
+ 			SELECT *
+ 			FROM users ORDER BY id DESC) u WHERE  
+		<![CDATA[    
+	      ROWNUM <= (#{pageNum} * #{amount})
+	     ]]> 
+	     )  
+	 	<![CDATA[ 
+	  		WHERE RNUM > ((#{pageNum} -1) * #{amount})
+	 ]]>
+	 <choose>
+			<when test="filter == 'all'.toString()">
+				AND 1=1
+			</when>
+			<when test="filter == '가입'.toString()">
+				AND status = '가입'
+			</when>
+			<when test="filter == '탈퇴'.toString()">
+				AND status = '탈퇴'
+			</when>
+						
+	</choose>
+	 
+	</select>
+	
+	<!-- 
+	
+	
+SELECT * 
+    FROM (
+        SELECT ROWNUM AS RNUM, Z.* 
+        FROM (
+            SELECT * 
+                from  users
+                order by id desc
+            ) Z WHERE ROWNUM <= 30
+) WHERE RNUM >= 1 and status='가입';
+	
+	
+	
+	 -->
+	<!-- 03. 회원 추가-->
+    <insert id="insertUser" parameterType="com.kosta.jupjup.vo.UserVO">
+         <![CDATA[
+             INSERT INTO USERS VALUES (#{id},#{username},#{nickname},#{pwd},#{email},#{gender}, NVL(#{status, jdbcType=VARCHAR}, '가입'),sysdate,sysdate,sysdate,#{profile, jdbcType=VARCHAR},1,1)
+         ]]>
+    </insert>
+    
+    <!--05. 회원 수정 -->
+	<update id="updateUser" parameterType="com.kosta.jupjup.vo.UserVO">
+		UPDATE users SET username=#{username}, nickname = #{nickname}, pwd = #{pwd}, email = #{email}, updatedate = sysdate WHERE id = #{id} 
+	</update>
+	
+	<!-- 회원 삭제 -->
+	<update id="deleteUser" parameterType="com.kosta.jupjup.vo.UserVO">
+		UPDATE users SET status = '탈퇴', deletedate = sysdate WHERE id = #{userIdxArray} 
+	</update>
+</mapper>	

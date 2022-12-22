@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,6 @@ import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.UserVO;
 
 import lombok.extern.log4j.Log4j2;
-
 
 
 @Log4j2
@@ -72,9 +72,9 @@ public class MateCreateController {
 	public String matecreate(Model model, @ModelAttribute MateCreateVO matecreatevo) {
 		 HttpSession session = request.getSession();
 		 UserVO uservo = (UserVO) session.getAttribute("userVO");
-		
 		model.addAttribute("matecreate", matecreatevo);
 		
+		System.out.println("모임!");
 		if(matecreatevo.getImage().isEmpty() ) {
 			matecreatevo.setImage("기본이미지.jpg");
 		}
@@ -84,6 +84,7 @@ public class MateCreateController {
 		if(matecreatevo.getContent().isEmpty() ) {
 			matecreatevo.setContent("");
 		}
+		
 		System.out.println(matecreatevo);
 		if(matecreatevo.getRegular()==1) {
 		SimpleDateFormat meetingDateFormat = new SimpleDateFormat("yyyyMMdd");
@@ -96,6 +97,8 @@ public class MateCreateController {
 		}else if(time.length()==3) {
 			time="0"+time;
 		}
+		
+		// timestamp
 		String yymm = date+time;
 		
 		System.out.println(yymm);
@@ -125,8 +128,8 @@ public class MateCreateController {
 		matecreateservice.matecreate(matecreatevo);
 		MateJoinVO mjv = new MateJoinVO();
 		Long no = matecreateservice.getThisNo(uservo.getId());
-		mjv.setNo(no);
-		mjv.setUserid(uservo.getId());
+		mjv.setMate_no(no);
+		mjv.setUser_id(uservo.getId());
 		matejoinservice.joinInsert(mjv);
 		matejoinservice.joinUpdate(mjv);
 		return "redirect:/matefind/list";

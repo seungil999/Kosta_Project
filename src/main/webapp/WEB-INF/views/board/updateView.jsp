@@ -49,7 +49,7 @@
 		
 		$(".cancel_btn").on("click", function(){
 			event.preventDefault();
-			location.href = "/board/readView?bno=${update.bno}"
+			location.href = "/board/readView?fno=${update.fno}"
 				   + "&page=${scri.page}"
 				   + "&perPageNum=${scri.perPageNum}"
 				   + "&searchType=${scri.searchType}"
@@ -71,7 +71,7 @@
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/board/update">
-					<input type="hidden" name="bno" value="${update.bno}" readonly="readonly"/>
+					<input type="hidden" name="fno" value="${update.fno}" readonly="readonly"/>
 					<table>
 						<tbody>
 							<tr>

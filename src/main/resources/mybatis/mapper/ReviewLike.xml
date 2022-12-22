@@ -5,27 +5,27 @@
 <mapper namespace="com.kosta.jupjup.dao.ReviewLikeDAO">
 	
 	 <select id="likeCount" resultType="Integer">
-		select count(lno) from review_like where no=#{no} and userid=#{userid} 
+		select count(lno) from review_heart where rev_no=#{rev_no} and user_id=#{user_id} 
 	</select>
 	
 	<insert id="likeInsert">
-		insert into review_like (lno,no,userid) values (1,#{no},#{userid})
+		insert into review_heart (lno,rev_no,user_id) values (1,#{rev_no},#{user_id})
 	</insert>
 	
 	<select id="likeGetInfo" resultType="Integer">
-		select lno from review_like where no=#{no} and userid=#{userid} 
+		select lno from review_heart where rev_no=#{rev_no} and user_id=#{user_id} 
 	</select>
 	
 	<update id="likeUpdate">
-		update review_like
+		update review_heart
 		set <include refid="cal"></include>
-		where no=#{no} and userid=#{userid}
+		where rev_no=#{rev_no} and user_id=#{user_id}
 	</update>
 	
 	<update id="likeCntUpdate">
 		update review
 		set likecnt=<include refid="cntcal"></include>
-		where no=#{no}
+		where rev_no=#{rev_no}
 	</update>
 	
 	<sql id="cal">

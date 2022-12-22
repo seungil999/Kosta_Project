@@ -15,7 +15,7 @@
  <div class="mate-container">
 	
 		 <div class="mate-topinfoImg">
-  <form action="/matefind/modify" method="post" name="sub" onsubmit="typeChange()">
+  <form action="/matefind/modify" method="post" name="sub" onsubmit="typeChange();">
             <img src="/Mate/display?fileName=${mate.image}" style="width:360px; height:300px;"/>
             <input type="hidden" name="image" id="image" value="${mate.image}">
             <div class="uploadResult"></div>
@@ -86,11 +86,11 @@
         
         
         
-      <input type='hidden' id='no' name='no' value='<c:out value="${mate.no}"/>'>
+      <input type='hidden' id='no' name='mate_no' value='<c:out value="${mate.mate_no}"/>'>
 	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 	  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
-	  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>  
+	  <input type='hidden' name='type' value='<c:out value="${cri.type}"/>'>
   	  <input type='hidden' name='meeting' value='<c:out value="${cri.meeting }"/>'>
       <input type='hidden' name='filter' value='<c:out value="${cri.filter }"/>'>
         
@@ -107,7 +107,7 @@
 
 </div>      
     <form id='operForm'>
-	  <input type='hidden' id='no' name='no' value='<c:out value="${mate.no}"/>'>
+	  <input type='hidden' id='no' name='no' value='<c:out value="${mate.mate_no}"/>'>
 	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 	  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -132,28 +132,7 @@ $(document).ready(function() {
   
 
   $("button[id='modify']").on("click", function(e){
-	
-			
-			var starttime = $("#stime").val();
-			var endtime = $("#etime").val();
-			var meetingtime = $("#mtime").val();
-			
-			starttime=starttime.replace(":","");
-			endtime=endtime.replace(":","");
-			meetingtime=meetingtime.replace(":", "");
-			console.log(meetingtime);
-			
-	        parseInt(starttime);
-	        parseInt(endtime);
-	        parseInt(meetingtime);
-	        console.log(endtime);
-	        $("#starttime").val(starttime);
-	        $("#endtime").val(endtime);
-	        $("#meetingtime").val(meetingtime);
-	        
-	        document.sub.submit();
-	
-	 
+	  document.sub.submit();
     
   });
   
@@ -248,7 +227,27 @@ $(document).ready(function() {
 		};
 		
 		
-		
+		function typeChange(){
+			
+			var starttime = $("#stime").val();
+			var endtime = $("#etime").val();
+			var meetingtime = $("#mtime").val();
+			
+			starttime=starttime.replace(":","");
+			endtime=endtime.replace(":","");
+			meetingtime=meetingtime.replace(":", "");
+			console.log(meetingtime);
+			
+	        parseInt(starttime);
+	        parseInt(endtime);
+	        parseInt(meetingtime);
+	        console.log(endtime);
+	        $("#starttime").val(starttime);
+	        $("#endtime").val(endtime);
+	        $("#meetingtime").val(meetingtime);
+	        
+		        
+		  };
 	</script>	
 
 </html>

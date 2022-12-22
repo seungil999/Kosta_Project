@@ -7,6 +7,14 @@
 <!DOCTYPE html>
 
 <html>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
+</head>
 <div class="myp-title">관심 목록</div>
 	<div class="main">
 		<span class="bold">좋아요한 추천장소</span>

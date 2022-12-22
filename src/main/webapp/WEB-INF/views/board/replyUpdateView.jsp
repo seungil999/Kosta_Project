@@ -14,7 +14,7 @@
 			var formObj = $("form[name='updateForm']");
 			
 			$(".cancel_btn").on("click", function(){
-				location.href = "/board/readView?bno=${replyUpdate.bno}"
+				location.href = "/board/readView?fno=${replyUpdate.fno}"
 					   + "&page=${scri.page}"
 					   + "&perPageNum=${scri.perPageNum}"
 					   + "&searchType=${scri.searchType}"
@@ -39,8 +39,8 @@
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/board/replyUpdate">
-					<input type="hidden" name="bno" value="${replyUpdate.bno}" readonly="readonly"/>
-					<input type="hidden" id="rno" name="rno" value="${replyUpdate.rno}" />
+					<input type="hidden" name="fno" value="${replyUpdate.fno}" readonly="readonly"/>
+					<input type="hidden" id="frno" name="frno" value="${replyUpdate.frno}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 

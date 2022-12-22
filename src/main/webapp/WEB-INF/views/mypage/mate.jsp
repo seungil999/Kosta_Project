@@ -6,27 +6,37 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+
+
+</style>
+</head>
 <div class="myp-title">내글관리</div>
 	<div class="main">
 		<span class="bold">메이트모집</span>
 	
 	<div class="row" >
 	<div class="col-lg-12" >
-		<div class="panel panel-default" style="border-color :#42DF2B;">
+		<div class="panel panel-default" style="border-color :#198754 ;">
 			<!-- /.panel-heading -->
 			<div class="panel-body" >
-				<table class="table table-striped table-bordered table-hover" style="border-color :#42DF2B;">
+				<table class="table table-striped table-bordered table-hover" style="border-color :#198754 ;">
 					<thead>
 						<tr >
-							<th style="border-color :#42DF2B;">제목</th>
-							<th style="border-color :#42DF2B;">작성일</th>
-							<th style="border-color :#42DF2B;">모집인원</th>
+							<th style="border-color :#198754 ;">제목</th>
+							<th style="border-color :#198754 ;">작성일</th>
+							<th style="border-color :#198754 ;">모집인원</th>
 						</tr>
 					</thead>
 
           <c:forEach items="${list}" var="mate">
             <tr>
-               <td style="border-color :#42DF2B;"><a href="/matefind/get?no=${mate.no}">
+               <td style="border-color :#42DF2B;"><a href="/matefind/get?no=${mate.mate_no}">
                   <c:out value="${mate.activityname}" />
                   </a>
               <td style="border-color :#42DF2B;"><fmt:formatDate pattern="yyyy-MM-dd"

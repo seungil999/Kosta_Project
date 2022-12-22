@@ -5,27 +5,27 @@
 <mapper namespace="com.kosta.jupjup.dao.MateLikeDAO">
 	
 	 <select id="likeCount" resultType="Integer">
-		select count(lno) from mate_like where no=#{no} and userid=#{userid} 
+		select count(lno) from mate_heart where mate_no=#{mate_no} and user_id=#{user_id} 
 	</select>
 	
 	<insert id="likeInsert">
-		insert into mate_like (lno,no,userid) values (1,#{no},#{userid})
+		insert into mate_heart (lno,mate_no,user_id) values (1,#{mate_no},#{user_id})
 	</insert>
 	
 	<select id="likeGetInfo" resultType="Integer">
-		select lno from mate_like where no=#{no} and userid=#{userid} 
+		select lno from mate_heart where mate_no=#{mate_no} and user_id=#{user_id} 
 	</select>
 	
 	<update id="likeUpdate">
-		update mate_like
+		update mate_heart
 		set <include refid="cal"></include>
-		where no=#{no} and userid=#{userid}
+		where mate_no=#{mate_no} and user_id=#{user_id}
 	</update>
 	
 	<update id="likeCntUpdate">
 		update mate
 		set likecnt=<include refid="cntcal"></include>
-		where no=#{no}
+		where mate_no=#{mate_no}
 	</update>
 	
 	<sql id="cal">

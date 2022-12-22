@@ -1,12 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/includes/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">	
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">	
-	<div class="search-container">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body, .find{
+	font-family: 'Yeon Sung', cursive;
+	font-size: 20px; 
+}
+</style>
+</head>
+<body>
+
+	<div class="search-container" style="margin-top: 50px; margin-left: 200px;">
 		<form id='searchForm' action="/review/list" method='get'>
+		<table>
+		<tr>
+		<td>
 			<select name='type' id='type' class='review mate-select' style="margin-left:180px;">
 				<option value="T" name="option" class="lang-option"
 					<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
@@ -19,19 +34,26 @@
 				<option value="A" class="lang-option"
 					<c:out value="${pageMaker.cri.type eq 'A'?'selected':''}"/>>활동명</option>
 			</select> 
+			</td>
+			<td>
 			<div class="mate-keyword">
                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색어를 입력해주세요"
 				value="${pageMaker.cri.keyword}" />
 			</div>
 				 <input type='hidden' name='pageNum' value="${pageMaker.cri.pageNum}" />
 				 <input type='hidden' name='amount' value="${pageMaker.cri.amount}" />
+				 	</td>
+			<td>
 			<button class='find' >찾기</button>
+			</td>
 		</form>
-		
+		</tr>
+		</table>
 	</div>
-	<br><br><hr><br><br>
-	<div class="review-title">후기</div> 
+	<br>
+	
 	<div class="review_main" style="width:1150px;">
+		<span style="font-size: 40px;">&nbsp;<b>후기</b></span>
 		<span class="filter replycnt"><a href="replycnt">댓글순</a></span>
 		<span class="filter like"><a href="like">좋아요순</a></span> 	
 		<span class="filter newest"><a href="newest">최신순</a></span>
@@ -39,7 +61,7 @@
 		<br><br>
 		<hr>
 	<c:forEach items="${list}" var="review">
-	<a class="move" href="${review.no}">
+	<a class="move" href="${review.rev_no}">
 	<c:choose>
 	
 		<c:when test="${empty review.thumbnail }">
@@ -130,7 +152,7 @@ $(document) .ready(function() {
 			$(".move") .on("click", function(e) {
 						e.preventDefault();
 						$('input').remove("#no");
-						actionForm.append("<input type='hidden' id='no' name='no' value='"
+						actionForm.append("<input type='hidden' id='no' name='rev_no' value='"
 								+ $(this).attr("href")+ "'>");
 						actionForm.attr("action", "/review/get");
 						actionForm.submit();
@@ -250,6 +272,8 @@ $(document) .ready(function() {
 		
 </script>
 
+
+</body>
 
 </html>
 <%@ include file="/WEB-INF/views/includes/footer.jsp" %>

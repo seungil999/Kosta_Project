@@ -30,7 +30,7 @@ public class MateLikeController {
 	public Map<String,String> likeupdate(@RequestBody MateLikeVO vo){
 		 HttpSession session = request.getSession();
 		 UserVO uservo = (UserVO) session.getAttribute("userVO");
-		
+		System.out.println(vo.toString());
 		Map<String,String> map = new HashMap<String, String>();
 		
 		try {

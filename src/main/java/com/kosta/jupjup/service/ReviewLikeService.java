@@ -7,7 +7,7 @@ public interface ReviewLikeService {
 	
 	public int likeCount(MateLikeVO vo);
 	
-	public Integer likeGetInfo(MateLikeVO vo);
+	public Integer likeGetInfo(Long rev_no,String user_id);
 	
 	public void likeInsert(MateLikeVO vo);
 	

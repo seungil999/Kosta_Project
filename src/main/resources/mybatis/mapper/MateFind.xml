@@ -4,6 +4,34 @@
                         
 <mapper namespace="com.kosta.jupjup.dao.MateFindDAO">
 	
+	<sql id="mateColumns">
+		 mate_no
+		, activityname
+		, writer
+		, meetingplace
+		, meetingtime
+		, meetingdate
+		, to_char(meetingdate,'dy') dayofweek
+		, peoplenum
+		, peoplemaxnum
+		, startzone
+		, endzone
+		, starttime
+		, endtime
+		, content
+		, regdate
+		, updatedate
+		, replycnt
+		, image
+		, regular
+		, likecnt
+		, timestamp
+		, user_id
+		, report_count
+	</sql>
+	
+	
+	
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR"> <!-- 앞에있는 OR없애줌 -->
 			<foreach item='type' collection="typeArr">
@@ -15,13 +43,17 @@
 						<when test="type == 'M'.toString()">
 							meetingplace like '%'||#{keyword}||'%'
 						</when>
+						<when test="meeting == '1'.toString()">
+							regular=1
+						</when>
+						<when test="meeting == '0'.toString()">
+							regular=0
+						</when>
 					</choose>
 				</trim>
 			</foreach>
 		</trim>
 	</sql>
-	
-	
 	
 	<sql id="regular">
 		<if test="meeting == 0">
@@ -31,18 +63,12 @@
 	
 	
 	<select id="getlistWithPaging" resultType="com.kosta.jupjup.vo.MateVO" >
-	  <![CDATA[
-	  select 
-		 no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
-		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt,report_count
-	  from (
-	    select
-	    ]]>
-	    	/*+INDEX_DESC(mate pk_mate ) */
- 		 <![CDATA[
- 		 rownum rn, no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
- 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt,report_count
-	      from ]]>
+	  select
+		<include refid="mateColumns" />
+	  from (select
+	  	   /*+INDEX_DESC(mate mate_mate_no_pk) */ 
+ 		 rownum rn, <include refid="mateColumns" />
+	      from 
 	      <choose>
 			<when test="filter == 'soon'.toString()">
 						(select * from mate order by meetingdate asc)	
@@ -54,28 +80,20 @@
 						(select * from mate order by regdate desc)	
 			</when>		
 			<otherwise>
-				mate
+				mate 
 			</otherwise>
 		</choose>
 	      <![CDATA[
 	  where sysdate<timestamp and
  		]]>
-	  <include refid="criteria"></include>
-	  <choose>
-	    <when test="meeting == '1'.toString()">
-			regular=1 and
-		</when>
-		<when test="meeting == '0'.toString()">
-			regular=0 and
-		</when>
-	  </choose> 
+	  <include refid="criteria"></include> 
 	  <![CDATA[    
 	      rownum <= #{pageNum} * #{amount}
 	     ]]> 
 	      )  
 	 <![CDATA[ 
 	  where rn > (#{pageNum} -1) * #{amount}   
-	 ]]>
+	 ]]> 
   </select> 
   
   
@@ -85,32 +103,21 @@
 	  	  
 	    <include refid="criteria"></include> 
 	    
-	 	 no > 0  
+	 	 mate_no > 0  
 	   
   </select>
   
   <select id="read" resultType="com.kosta.jupjup.vo.MateVO">
-  <![CDATA[
-		select no, activityname, writer, meetingplace,
-		to_char(meetingdate,'dy') dayofweek,meetingdate, peoplenum,
-		peoplemaxnum, startzone, endzone,
-        meetingtime,
-		starttime,
-		endtime, content,regdate, updatedate,
-		replycnt, image, regular, likecnt,user_id,report_count
-		 from mate where no =
-		#{no}
-        
-		]]>
+  	select<include refid="mateColumns" />
+  		<![CDATA[from mate where mate_no = #{mate_no} ]]>
 	</select> 
 	
 	
 	
 	<select id="getBestlist" resultType="com.kosta.jupjup.vo.MateVO" >
-	  <![CDATA[
-	 SELECT no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
-		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
-		FROM (
+	select 
+	<include refid="mateColumns" />
+		 <![CDATA[ FROM (
 			SELECT *
 			FROM (
 					SELECT * 
@@ -139,33 +146,33 @@
 	 	endtime = #{endtime},
 	 	content=#{content},
 	 	updatedate=sysdate
-	 	where no=#{no}
+	 	where mate_no=#{mate_no}
 	 	 ]]>
 	</update>
 	
 	<delete id="delete">
-		delete mate where no = #{no}
+		delete mate where mate_no = #{mate_no}
 	</delete>
 	
 	<select id="mateInUsers" resultType="com.kosta.jupjup.vo.UserVO">
 	 	<![CDATA[
 	 		select u.* from 
-			users u, mate_join mj, mate m where
-			u.id=mj.userid and mj.no=m.no and mj.jno=1 and m.no=#{no}
+			users u, mate_join mj, mate m where u.id=mj.user_id and mj.mate_no=m.mate_no and mj.jno=1 
+			and m.mate_no=#{mate_no}
 	 	]]>
 	</select>
 	
 	<insert id="report">
-		insert into report (report_no,report_type,report_content,mate_id,report_writer)
-		values(seq_report.nextval,#{report_type},TRIM(both ',' from #{report_content}),#{mate_id},#{report_writer})
+		insert into report (report_no,report_type,report_content,mate_no,report_writer)
+		values(seq_report_no.nextval,#{report_type},TRIM(both ',' from #{report_content}),#{mate_no},#{report_writer})
 	</insert>
 	
 	<select id="reportChk" resultType="Integer">
-		select count(*) from report where report_writer=#{id} and mate_id=#{no}
+		select count(*) from report where report_writer=#{id} and mate_no=#{no}
 	</select>
 	
 	<update id="reportUpdate">
-		update mate set report_count=report_count+1 where no=#{no}
+		update mate set report_count=report_count+1 where mate_no=#{mate_no}
 	</update>
 	
 	<select id="repReportChk" resultType="Integer">
@@ -174,6 +181,6 @@
 	
 	<insert id="repReport">
 	insert into report (report_no,report_type,report_writer,report_content,mate_reply_id)
-	values(seq_report.nextval,#{report_type},#{report_writer},TRIM(both ',' from #{r_report_content}),#{mate_reply_id})
+	values(seq_report_no.nextval,#{report_type},#{report_writer},TRIM(both ',' from #{r_report_content}),#{mate_reply_id})
 	</insert>
 </mapper>		

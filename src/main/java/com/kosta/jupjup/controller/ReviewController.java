@@ -31,12 +31,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kosta.jupjup.paging.Criteria;
+import com.kosta.jupjup.paging.PageVO;
 import com.kosta.jupjup.service.ReviewLikeService;
 import com.kosta.jupjup.service.ReviewReplyService;
 import com.kosta.jupjup.service.ReviewService;
-import com.kosta.jupjup.vo.Criteria;
 import com.kosta.jupjup.vo.MateLikeVO;
-import com.kosta.jupjup.vo.PageVO;
 import com.kosta.jupjup.vo.ReviewVO;
 import com.kosta.jupjup.vo.UserVO;
 
@@ -184,28 +184,29 @@ public class ReviewController {
 
 
 	@GetMapping("/get")
-	  public void get(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri,Model model, HttpServletRequest request) {
+	  public void get(@RequestParam("rev_no") Long no, @ModelAttribute("cri") Criteria cri,Model model, HttpServletRequest request) {
+		System.out.println(no);
+
 		reviewService.hit(no);
 		HttpSession session = request.getSession();
 		UserVO uservo = (UserVO) session.getAttribute("userVO");
-		
 		model.addAttribute("review", reviewService.get(no));
 		 MateLikeVO likeVO = new MateLikeVO();
-		  likeVO.setNo(no);
+		  likeVO.setMate_no(no);
 		  
 		
 		  Integer like = null;
 		
 		  if(uservo!=null) {
-			  likeVO.setUserid(uservo.getId());
-			  like = LikeService.likeGetInfo(likeVO);
+			  likeVO.setUser_id(uservo.getId());
+			  like = LikeService.likeGetInfo(no, uservo.getId());
 		  }
 		  model.addAttribute("like", like);
 	}
 	@GetMapping("/modify")
-	  public void modify(@RequestParam("no") Long no, @ModelAttribute("cri") Criteria cri,Model model) {
+	  public void modify(@RequestParam("rev_no") Long rev_no, @ModelAttribute("cri") Criteria cri,Model model) {
 		
-		model.addAttribute("review", reviewService.get(no));
+		model.addAttribute("review", reviewService.get(rev_no));
 		 
 	}
 	
@@ -264,11 +265,11 @@ public class ReviewController {
 	}
 	
 	 @PostMapping("/remove")
-		 public String remove(@RequestParam("no") Long no, Criteria cri,
+		 public String remove(@RequestParam("rev_no") Long rev_no, Criteria cri,
 		 RedirectAttributes rttr) {
 		
 	
-		 if (reviewService.remove(no)) {
+		 if (reviewService.remove(rev_no)) {
 		 rttr.addFlashAttribute("result", "success");
 		 }
 		 

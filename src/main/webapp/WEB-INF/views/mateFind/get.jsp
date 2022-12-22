@@ -7,7 +7,12 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/mateReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
 
 <!--   모달창   -->
 <c:forEach items="${users}" var="user">
@@ -51,10 +56,6 @@
 	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id" readonly>${user.email}</textarea></td>
  		</tr>
  		<tr>
-	 		<td class="bold">휴대폰</td>
-	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly>${user.phone }</textarea></td>
- 		</tr>
- 		<tr>
 	 		<td class="bold">성별</td>
 	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${user.gender eq 'man' ? '남자':'여자' }"/></textarea></td>
 	 		
@@ -65,7 +66,7 @@
 </div>
  	</c:when>
  	
- 	<c:when test="${user.profile_open eq 'N' && userVO.id == user.id}">
+ 	<c:when test="${user.profile_open eq 'N' && userVO.id eq user.id}">
  	<div class="my_modal" id="${user.id}">
      <button class="modal_close_btn ${user.id}">✖</button>    	
 	<div class="main">
@@ -104,10 +105,6 @@
 	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id" readonly>${user.email}</textarea></td>
  		</tr>
  		<tr>
-	 		<td class="bold">휴대폰</td>
-	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly>${user.phone }</textarea></td>
- 		</tr>
- 		<tr>
 	 		<td class="bold">성별</td>
 	 		<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${user.gender eq 'man' ? '남자':'여자' }"/></textarea></td>
 	 		
@@ -141,11 +138,11 @@
 <div class="repMod"></div>
 <div class="reportMod"></div>  
 
-<div class="my_modal" style="height:521" id="${mate.no}">
-     <button class="modal_close_btn ${mate.no}">✖</button>   
+<div class="my_modal" style="height:521" id="${mate.mate_no}">
+     <button class="modal_close_btn ${mate.mate_no}">✖</button>   
 <form action="/matefind/report" method="post" id="rep_form">	   
 <input type="hidden" name="report_type" value=1> 
-<input type="hidden" name="mate_id" value="${mate.no}">
+<input type="hidden" name="mate_no" value="${mate.mate_no}">
 <input type="hidden" name="report_writer" value="${userVO.id}">
 	<div class="r-main">
 		<div class="r-title">신고하기</div>
@@ -155,13 +152,13 @@
  	<table class="modtab">
  		
  		<tr>
-	 		<td class="r-bold">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 :&nbsp;</td>
+	 		<td class="r-bold">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 : </td>
 	 		<td class="r-input"><p id="activityname" name="activityname" readonly>${mate.activityname}</p></td>
 	 	
  		</tr>
  		<tr>
-	 		<td class="r-bold">작&nbsp;성&nbsp;자 :&nbsp;</td>
-	 		<td class="r-input"> ${mate.writer} </td>
+	 		<td class="r-bold">작&nbsp;성&nbsp;자 :</td>
+	 		<td class="r-input">${mate.writer} </td>
  		</tr>
  	</table>
  	<hr style="margin-top:7px; margin-bottom:7px;">
@@ -184,11 +181,12 @@
     <div><label><input type="radio" class="r_check" name="report_content" value="" id="etc"> 기타</label></div>
     <div><textarea class="form-control r_content" name="report_content" id="etc_content"
      style="resize:none; width: -webkit-fill-available;" placeholder="기타 사유는 30자 내외로 작성해주세요."></textarea></div>
-    <div style="text-align:center;"><button type="button" class="r_cancel ${mate.no}">취&nbsp;&nbsp;소</button><button type="button" class="r_rembtn">제&nbsp;&nbsp;출</button></div>
+    <div style="text-align:center;"><button type="button" class="r_cancel ${mate.mate_no}">취&nbsp;&nbsp;소</button><button type="button" class="r_rembtn">제&nbsp;&nbsp;출</button></div>
     
  	</div>
  </form>
 </div>
+
 <div style="width:1000px;margin: 0 auto;">
 <div class="flashOrRegular">
 <c:choose>
@@ -201,6 +199,8 @@
 </c:choose>
 </div>
 </div>
+
+
 <div class="mate-border">
 <br>
  <div class="mate-container">
@@ -253,7 +253,10 @@
         <br><br><br>
         <button data-oper='list' class="uploadBtn">목록</button>
         <br><br>
-        <div class="mate-guide">안내사항</div>
+      
+      
+      
+        <div class="mate-guide" style="color:black; font-size: 30px;">안내사항</div>
         <hr>
         
         <div class="form-group">
@@ -290,6 +293,7 @@
 	<div class="form-control meetingplace" id="meetingplace">${mate.meetingplace }</div>
 	
         <br><br><br>
+        
         <div class="form-group">
         <c:choose>
 	        <c:when test="${userVO.id eq mate.user_id}">
@@ -300,7 +304,7 @@
 				<button id='report' type="button" class="siren_modrem"><img class="siren" src="/resources/img/siren.png">신고</button>
 			</c:otherwise>
 		</c:choose>
-        <h2 class="mate-title">현재 모임 참여중인 인원( ${mate.peoplenum} )</h2>
+        <h2 class="mate-title">현재 모임 참여중인 인원 ( ${mate.peoplenum} )</h2>
         
         </div>
         	
@@ -311,7 +315,7 @@
         <br><br>
         
     <form id='operForm'>
-	  <input type='hidden' id='no' name='no' value='<c:out value="${mate.no}"/>'>
+	  <input type='hidden' id='mate_no' name='no' value='<c:out value="${mate.mate_no}"/>'>
 	  <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
 	  <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
 	  <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -385,11 +389,10 @@
       <input type='hidden' name='repReplyNo' value='<c:out value=""/>'>
       
 </div>	
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript">
 
+<script type="text/javascript">
 $(document).ready(function() {
-	var noValue = '<c:out value="${mate.no}"/>';
+	var noValue = '<c:out value="${mate.mate_no}"/>';
 	var replyUL = $(".chat");
 	var replyMod = $(".repMod");
 	var reportMod = $(".reportMod");
@@ -411,12 +414,12 @@ $(document).ready(function() {
 				return;
 			}
 			for(var i=0, len = list.length || 0; i<len; i++){
-				str +="<div><li class='replyList'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
+				str +="<div><li class='replyList'  id='mate_reply_no"+list[i].mate_reply_no+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-mate_reply_no='"+list[i].mate_reply_no+"'>";
 				if(userid==list[i].user_id){
-				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>";
-				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
+				str += "<button type='button' id='rembtn' data-mate_reply_no='"+list[i].mate_reply_no+"'>삭제</button>";
+				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-mate_reply_no='"+list[i].mate_reply_no+"'>수정</button>";
 				}else if(userid != ''){
-				str += "<button type='button' class='reply-report' id='reply-report' data-writer='${userVO.id}' data-rno='"+list[i].rno+"'>신고</button>";
+				str += "<button type='button' class='reply-report' id='reply-report' data-writer='${userVO.id}' data-mate_reply_no='"+list[i].mate_reply_no+"'>신고</button>";
 				}
 				str +="<div class='header'><strong class= 'primary-font'>"+"<a class='repUserProfile' data-user='"+list[i].user_id+"'><img class='user-img' src='/Mate/display?fileName="+list[i].profile+"'/></a>"
 						+list[i].replyer+"</strong>";
@@ -440,8 +443,6 @@ $(document).ready(function() {
 				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
 					mod += "<tr><td class='bold'>이메일</td>";
 					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
-					mod += "<tr><td class='bold'>휴대폰</td>";		
-				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
 				 	mod += "<tr><td class='bold'>성별</td>";
 					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
 				 	mod += "</tr></table></div></div>";
@@ -460,8 +461,6 @@ $(document).ready(function() {
 				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
 					mod += "<tr><td class='bold'>이메일</td>";
 					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
-					mod += "<tr><td class='bold'>휴대폰</td>";		
-				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
 				 	mod += "<tr><td class='bold'>성별</td>";
 					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
 				 	mod += "</tr></table></div></div>";
@@ -473,13 +472,13 @@ $(document).ready(function() {
 				}
 				
 				for(var i=0, len = list.length || 0; i<len; i++){
-					rep+='<div class="my_modal" style="height:521" id="'+list[i].rno+'">';
-				    rep+='<button class="modal_close_btn '+list[i].rno+'">✖</button>';   
-					rep+='<form  method="post" action="/matefind/repReport" id="'+list[i].rno+'" onsubmit="return test()">'	   
+					rep+='<div class="my_modal" style="height:521" id="'+list[i].mate_reply_no+'">';
+				    rep+='<button class="modal_close_btn '+list[i].mate_reply_no+'">✖</button>';   
+					rep+='<form  method="post" action="/matefind/repReport" id="'+list[i].mate_reply_no+'" onsubmit="return test()">'
 					rep+='<input type="hidden" name="report_type" value=2>' 
 					rep+='<input type="hidden" name="report_writer" value="${userVO.id}">'
-					rep+='<input type="hidden" name="mate_reply_id" value="'+list[i].rno+'">'
-					rep+='<input type="hidden" name="mate_id" value="${mate.no}">'
+					rep+='<input type="hidden" name="mate_reply_id" value="'+list[i].mate_reply_no+'">'
+					rep+='<input type="hidden" name="mate_no" value="${mate.mate_no}">'
 					rep+='<div class="r-main">'
 					rep+='<div class="r-title">신고하기</div><hr>'
 					rep+='<table class="modtab">'
@@ -498,10 +497,7 @@ $(document).ready(function() {
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="욕설 또는 혐오발언"> 욕설 또는 혐오발언</label></div>'
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="동일내용의 댓글 반복(도배)"> 동일내용의 댓글 반복(도배)</label></div>'
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="음란성 또는 청소년에게 부적합한 내용"> 음란성 또는 청소년에게 부적합한 내용</label></div>'
-				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="" id="etc"> 기타</label></div>'
-				 	rep+='<div><textarea class="form-control r_r_content" name="r_report_content" id="r_etc_content"'
-				 	rep+='style="resize:none; width: -webkit-fill-available;" placeholder="기타 사유는 30자 내외로 작성해주세요."></textarea></div>'
-				 	rep+='<div style="text-align:center;"><button type="button" class="r_cancel '+list[i].rno+'">취&nbsp;&nbsp;소</button><input type="submit" class="report_reply" data-rno="'+list[i].rno+'" value="제&nbsp;&nbsp;출"></div></div></form></div>'
+				 	rep+='<div style="text-align:center;"><button type="button" class="r_cancel '+list[i].mate_reply_no+'">취&nbsp;&nbsp;소</button><input type="submit" class="report_reply" data-mate_reply_no="'+list[i].mate_reply_no+'" value="제&nbsp;&nbsp;출"></div></div></form></div>'
 				}
 			}
 			reportMod.html(rep);
@@ -520,17 +516,16 @@ $(document).ready(function() {
      var repReplyer = repository.find("input[name='repReplyer']")
      var repReplyDate = repository.find("input[name='repReplyDate']")
 	 var repReplyNo = repository.find("input[name='repReplyNo']")
-
      modalRegisterBtn.on("click",function(e){
     	 if (!replyForm.find("textarea[name='reply']").val()){
-    		 	swal("", "댓글 내용을 입력해주세요.", "warning");
+    		 	alert("댓글 내용을 입력해주세요.")
     			return false;
     		}
         var reply = {
               reply: InputReply.val(),
               replyer:InputReplyer.html(),
               user_id:"${userVO.id}",
-              no:noValue
+              mate_no:noValue
             };
         replyService.add(reply, function(result){
           
@@ -552,30 +547,34 @@ $(document).ready(function() {
     
      
      $(document).on("click", '#rembtn', function(e){
-    	    var rno = $(this).data("rno");
-    		console.log(rno);
-    		replyService.remove(rno,function(result){
-    			if(result=='success'){
-    				$.ajax({
-    	    			url : "/replies/repCntUpdate",
-    	    			type : 'PUT',
-    	    			contentType: 'application/json',
-    	    			data : JSON.stringify(noValue),
-    	    			success :
-    	    				console.log("성공")	
-    	    			, error : 
-    	    				console.log("에러") 
-    	    			});
-    			}
-    			var repcnt = $("#replycnt").html();
-    	        $("#replycnt").html(parseInt(repcnt)-1);
-    			repReply.val("");
-    			showList(1);
-    		});
+    	 if (!confirm("정말로 삭제하시겠습니까?")) {
+    		 return false;
+    	    } else {
+    	        var mate_reply_no = $(this).data("mate_reply_no");
+         		console.log(mate_reply_no);
+         		replyService.remove(mate_reply_no,function(result){
+         			if(result=='success'){
+         				$.ajax({
+         	    			url : "/replies/repCntUpdate",
+         	    			type : 'PUT',
+         	    			contentType: 'application/json',
+         	    			data : JSON.stringify(noValue),
+         	    			success :
+         	    				console.log("성공")	
+         	    			, error : 
+         	    				console.log("에러") 
+         	    			});
+         			}
+         			var repcnt = $("#replycnt").html();
+         	        $("#replycnt").html(parseInt(repcnt)-1);
+         			repReply.val("");
+         			showList(1);
+         		});
+    	    }
+    	   
     		
     	});
      $(document).on("click", ".replyUpdateBtn", function(e){
-
     	 if(repReply.val()!=""){
     		 showList(1);
     		 repReply.val("");
@@ -584,12 +583,12 @@ $(document).ready(function() {
     	 }
     	
     	 
-    	 repReplyNo.val($(this).data("rno"));
+    	 repReplyNo.val($(this).data("mate_reply_no"));
     	 repReplyer.val($(this).data("replyer"));
     	 repReply.val($(this).data("reply"));
     	 
     	 var replyData ={
-         rno:repReplyNo.val(),
+         mate_reply_no:repReplyNo.val(),
          replyer:repReplyer.val(),
          reply:repReply.val()
     	 };
@@ -600,20 +599,16 @@ $(document).ready(function() {
 	    htmls += '<button type="button" id="modbtn" class="replyUpdateBtn">  저장  </button>';
 	    htmls += '<div class="header"><strong class="primary-font" id="mod">'+replyData.replyer+"</strong>";
 	   
-
 		
-		htmls += '<div id="rno'+ replyData.rno + '">';
+		htmls += '<div id="mate_reply_no'+ replyData.mate_reply_no + '">';
 		
 		htmls += '<textarea name="editContent" id="editContent" rows="3">';
-
 		htmls += replyData.reply;
-
 		htmls += '</textarea>';
-
 		htmls += '</div>';
 		
-		$('#rno'+replyData.rno).replaceWith(htmls);	
-		$('#rno'+replyData.rno+' #editContent').focus();
+		$('#mate_reply_no'+replyData.mate_reply_no).replaceWith(htmls);	
+		$('#mate_reply_no'+replyData.mate_reply_no+' #editContent').focus();
 	    
   });
      
@@ -621,7 +616,7 @@ $(document).ready(function() {
     	 
     	
     	var replyEditContent = $("#editContent").val();
-    	 var reply = {rno:repReplyNo.val(), reply:replyEditContent} 
+    	 var reply = {mate_reply_no:repReplyNo.val(), reply:replyEditContent} 
     	 
     	 replyService.update(reply, function(result){
  	    	repReply.val("");
@@ -648,7 +643,6 @@ $(document).ready(function() {
   });
   
   typeChange();
-
   function typeChange(){
 		
 		var stime = $(".starttime").html();
@@ -704,32 +698,24 @@ $(document).ready(function() {
 	  
 	  
 });
-
-
-
-
 </script>
 <script type="text/javascript">
-
-
-
 function like_func(){
 	const clickLikeUrl = "/resources/img/꽉찬하트.png";
     const emptyLikeUrl = "/resources/img/빈하트.png";
     const resultElement = document.getElementById('likecnt');
 	var number=resultElement.innerText;
 	
-	no = $('#no').val(),
+	mate_no = $('#mate_no').val(),
 	count = $('#likecheck').val(),
 	data = {
-			"userid" : "${userVO.id}",
-			"no" : no,
+			"user_id" : "${userVO.id}",
+			"mate_no" : mate_no,
 			"count" : count
 			};
 	
 	
 	
-
 $.ajax({
 	url : "/like/likeUpdate",
 	type : 'PUT',
@@ -760,15 +746,13 @@ $.ajax({
 	
 	});
 };
-
 $(document).on("click", "#matejoin", function(e){
-
-	no = $('#no').val(),
+	mate_no = $('#mate_no').val(),
 	count = $('#joincheck').val(),
 	
 	data = {
-				"userid" : "${userVO.id}",
-				"no" : no,
+				"user_id" : "${userVO.id}",
+				"mate_no" : mate_no,
 				"count" : count
 				};
 	$.ajax({
@@ -783,7 +767,8 @@ $(document).on("click", "#matejoin", function(e){
 				location.href="/user/loginPage";
 			
 			}else if(result.result=='mateFull'){
-				swal("예약된 활동이 너무 많습니다.", "다른 활동을 나간 뒤에 다시 시도해주세요", "warning");
+				
+				alert('예약된 활동이 너무 많습니다. 다른 활동을 나간 뒤에 다시 시도해주세요.');
 			}else if(count == 1){
 			 alert('${mate.activityname} 활동에서 나가셨습니다.');	
 			 console.log("나가요~");
@@ -794,6 +779,7 @@ $(document).on("click", "#matejoin", function(e){
 				alert("인원수가 가득찼습니다.");
 				return false;
 			}else if(count == 0){
+				
 			alert('${mate.activityname} 활동에 참여하셨습니다!');
 			console.log("참여!");
 			 $('#joincheck').val(1);
@@ -807,7 +793,6 @@ $(document).on("click", "#matejoin", function(e){
 		
 		});
 });
-
 </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4e49668e033d2147dcdeca11f1531922&libraries=services"></script>
 	<script>
@@ -852,25 +837,25 @@ $(document).on("click", "#matejoin", function(e){
 <script type="text/javascript">
 $(document).ready(function() {
 	  var operForm = $("#operForm"); 
-
 	  $("button[id='modify']").on("click", function(e){
 		  operForm.attr("action","/matefind/modify");
 		  operForm.attr("method","get");
-
 		  operForm.submit();
 	    
 	  });
 	  
 	    
 	  $("button[id='remove']").on("click", function(e){
-	   
-	    operForm.attr("action","/matefind/remove");
-	    operForm.attr("method","post");
-	    operForm.submit();
-	    $('')
+		  if (!confirm("정말로 삭제하시겠습니까?")) {
+		     return false;
+		    } else {
+		        operForm.attr("action","/matefind/remove");
+			    operForm.attr("method","post");
+			    operForm.submit();
+			    $('')
+		    }
 	  });  
 	});
-
 </script>
 
 
@@ -899,7 +884,6 @@ $(document).ready(function() {
                     backgroundColor: 'rgba(0,0,0,0.1)'
                 });
                 document.body.append(bg);
-
                 // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
                $(modal).on('click',function(e){
             	   bg.remove();
@@ -912,7 +896,6 @@ $(document).ready(function() {
 	
 				});
 				
-
                 modalId.setStyle({
                     position: 'fixed',
                     display: 'block',
@@ -929,7 +912,6 @@ $(document).ready(function() {
                     webkitTransform: 'translate(-50%, -50%)'
                 });
             }
-
             // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
             Element.prototype.setStyle = function(styles) {
                 for (var k in styles) this.style[k] = styles[k];
@@ -948,7 +930,7 @@ $(document).ready(function() {
             
             $(document).on("click", '.reply-report',function(e){
             	 $('.r_r_content').hide();
-            	var no = $(this).data("rno");
+            	var no = $(this).data("mate_reply_no");
     			var writer = $(this).data("writer");
     			data = {
     						"mate_reply_id" : no,
@@ -975,8 +957,9 @@ $(document).ready(function() {
             /** 신고하기 **/
       	  $("#report").on("click", function(){
       		  var reportChk = "<c:out value='${reportChk}'/>"
-      		  console.log(reportChk);
-      		  var no = "<c:out value='${mate.no}'/>"
+      		  
+      		  var no = "<c:out value='${mate.mate_no}'/>"
+      			
       		  var userid = "<c:out value='${userVO.id}'/>";
       		console.log(userid);
       		console.log(reportChk);
@@ -994,10 +977,10 @@ $(document).ready(function() {
        
   <script type="text/javascript">
   function test(){
-		var form = $(this).data('rno');
+		var form = $(this).attr('id');
+		console.log(form)
 		var contentChk = $("input[name=r_report_content]:checked").val();
-		var etc_content =$('#r_etc_content').val();
-		if((contentChk=='' ||contentChk==null) &&etc_content==''){
+		if(contentChk=='' ||contentChk==null){
 			alert('신고사유를 선택 또는 내용을 입력해 주세요.');
 			return false;
 		}else{

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.kosta.jupjup.vo.Criteria;
+import com.kosta.jupjup.paging.Criteria;
 import com.kosta.jupjup.vo.MateReplyVO;
 
 @Repository
@@ -21,7 +21,7 @@ public interface MateReplyDAO {
 	
 	public int update(MateReplyVO reply);
 	
-	public List<MateReplyVO> getListWithPaging(@Param("cri")Criteria cri, @Param("no")Long no);
+	public List<MateReplyVO> getListWithPaging(@Param("cri")Criteria cri, @Param("mate_no")Long no);
 	
 	public void updateRepCnt(MateReplyVO vo);
 	

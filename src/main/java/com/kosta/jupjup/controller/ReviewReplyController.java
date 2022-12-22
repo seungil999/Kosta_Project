@@ -16,15 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kosta.jupjup.paging.Criteria;
 import com.kosta.jupjup.service.ReviewReplyService;
-import com.kosta.jupjup.vo.Criteria;
-import com.kosta.jupjup.vo.MateReplyVO;
+import com.kosta.jupjup.vo.ReviewReplyVO;
+import com.kosta.jupjup.vo.ReviewReplyVO;
 
-import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
 
 @RequestMapping("/reviewReplies/")
 @RestController
-@Log4j 
+@Log4j2
 public class ReviewReplyController {
  
 	@Autowired
@@ -34,9 +35,9 @@ public class ReviewReplyController {
 	@PostMapping(value ="/new",
 			consumes = "application/json",
 			produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> create(@RequestBody MateReplyVO vo){
+	public ResponseEntity<String> create(@RequestBody ReviewReplyVO vo){
 		
-		log.info("MateReplyVO:"+vo);
+		log.info("ReviewReplyVO:"+vo);
 		
 		int insertCount = service.register(vo);
 		service.updateRepCnt(vo);
@@ -48,49 +49,49 @@ public class ReviewReplyController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	@GetMapping(value="/pages/{no}/{page}", 
+	@GetMapping(value="/pages/{rev_no}/{page}", 
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<MateReplyVO>> getList(
-			@PathVariable("page") Integer page, @PathVariable("no") Long no){
+	public ResponseEntity<List<ReviewReplyVO>> getList(
+			@PathVariable("page") Integer page, @PathVariable("rev_no") Long rev_no){
 		Criteria cri = new Criteria(page,10);
 		
 		log.info(cri);
-		System.out.println(service.getList(cri, no));
-		return new ResponseEntity<>(service.getList(cri, no), HttpStatus.OK);
+		System.out.println(service.getList(cri, rev_no));
+		return new ResponseEntity<>(service.getList(cri, rev_no), HttpStatus.OK);
 	}
 	
-	@GetMapping(value ="/{rno}",
+	@GetMapping(value ="/{rev_rno}",
 			produces= {MediaType.APPLICATION_XML_VALUE,    //return값 xml/json
 					   MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<MateReplyVO> get(@PathVariable("rno")Long rno){
+	public ResponseEntity<ReviewReplyVO> get(@PathVariable("rev_rno")Long rev_rno){
 		
-		log.info("get:"+rno);
-		System.out.println(service.get(rno));
-		return new ResponseEntity<>(service.get(rno),HttpStatus.OK);
+		log.info("get:"+rev_rno);
+		System.out.println(service.get(rev_rno));
+		return new ResponseEntity<>(service.get(rev_rno),HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value="/{rno}", produces= {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
+	@DeleteMapping(value="/{rev_rno}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> remove(@PathVariable("rev_rno") Long rev_rno){
 		
-		log.info("remove:"+rno);
-		service.minusRepCnt(rno);
-		return service.remove(rno)==1
+		log.info("remove:"+rev_rno);
+		service.minusRepCnt(rev_rno);
+		return service.remove(rev_rno)==1
 				?new ResponseEntity<>("success", HttpStatus.OK)
 				:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH},
-			value="/{rno}",
+			value="/{rev_rno}",
 			consumes = "application/json",
 			produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> modify(@RequestBody MateReplyVO vo,
-			@PathVariable("rno") Long rno){
+	public ResponseEntity<String> modify(@RequestBody ReviewReplyVO vo,
+			@PathVariable("rev_rno") Long rev_rno){
 		
-		vo.setRno(rno);
+		vo.setRev_rno(rev_rno);
 		
-		log.info("rno:" + rno);
+		log.info("rev_rno:" + rev_rno);
 		log.info("MODIFY:" + vo);
 		
 		return service.modify(vo)==1

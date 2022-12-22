@@ -6,8 +6,9 @@ import lombok.Data;
 public class MateLikeVO {
 
 	private Long lno;
-	private Long no;
-	private String userid;
+	private Long mate_no;
+	private Long rev_no;
+	private String user_id;
 	private int likenum;
 	private int count;
 }

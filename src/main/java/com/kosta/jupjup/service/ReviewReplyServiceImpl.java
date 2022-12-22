@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.jupjup.dao.ReviewReplyDAO;
-import com.kosta.jupjup.vo.Criteria;
-import com.kosta.jupjup.vo.MateReplyVO;
+import com.kosta.jupjup.paging.Criteria;
+import com.kosta.jupjup.vo.ReviewReplyVO;
 
 @Service
 public class ReviewReplyServiceImpl implements ReviewReplyService {
@@ -17,19 +17,19 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 	
 	
 	@Override
-	public int register(MateReplyVO vo) {
+	public int register(ReviewReplyVO vo) {
 
 		return dao.insert(vo);
 	}
 
 	@Override
-	public MateReplyVO get(Long rno) {
+	public ReviewReplyVO get(Long rno) {
 		
 		return dao.read(rno);
 	}
 
 	@Override
-	public int modify(MateReplyVO vo) {
+	public int modify(ReviewReplyVO vo) {
 
 		return dao.update(vo);
 	}
@@ -41,13 +41,13 @@ public class ReviewReplyServiceImpl implements ReviewReplyService {
 	}
 
 	@Override
-	public List<MateReplyVO> getList(Criteria cri, Long no) {
+	public List<ReviewReplyVO> getList(Criteria cri, Long rev_no) {
 
-		return dao.getListWithPaging(cri, no);
+		return dao.getListWithPaging(cri, rev_no);
 	}
 
 	@Override
-	public void updateRepCnt(MateReplyVO vo) {
+	public void updateRepCnt(ReviewReplyVO vo) {
 
 		dao.updateRepCnt(vo);
 	}

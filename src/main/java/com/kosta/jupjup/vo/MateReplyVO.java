@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class MateReplyVO {
-	private Long rno;
-	private Long no;
+	private Long mate_reply_no; // rno > mate_reply_no
+	private Long mate_no;
 	
 	private String reply;
 	private String replyer;

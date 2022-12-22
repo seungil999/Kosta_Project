@@ -6,19 +6,27 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+<head>
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
+</head>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">	
 
-<div class="myp-title">관심 목록</div>
-	<div class="main" style="margin-top:32px; width:880px; float:center; margin-left:283px; padding:30px;">
+<div class="myp-title" >관심 목록</div>
+	<div class="main" style="margin-top:60px; width:880px; float:center; margin-left:283px; padding:30px;">
 		<span class="bold">좋아요한 후기</span>
 	<hr>
 	<c:if test="${empty list}">
 		<div style="text-align:center;">좋아요한 후기가 없습니다.</div>
 	</c:if>
 	<c:forEach items="${list}" var="review">
-	<a class="move" href="/review/get?no=${review.no}">
+	<a class="move" href="/review/get?rev_no=${review.rev_no}">
 	<c:choose>
 		<c:when test="${empty review.thumbnail }">
 			<span class="image"><img class="activity-Img" src="/resources/img/logo2.png" width=250; height=200;></span>

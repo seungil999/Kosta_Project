@@ -60,7 +60,7 @@ var replyService = (function(){
 	function update(reply, callback, error){
 		$.ajax({
 			type:'put',
-			url:'/replies/'+reply.rno,
+			url:'/replies/'+reply.mate_reply_no,
 			data:JSON.stringify(reply),
 			contentType:"application/json; charset=utf-8",
 			success : function(result,status, xhr){

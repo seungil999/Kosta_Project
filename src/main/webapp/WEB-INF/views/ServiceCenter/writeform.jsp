@@ -26,9 +26,8 @@
 	
 	
 <script>
-CKEDITOR.replace('content',{
-	filebrowserUploadUrl:'/review/imageUpload', height:'300px', width:'912px'}
-);
+CKEDITOR.replace('content',{filebrowserUploadUrl:'/review/imageUpload', height:'300px'});
+
 </script>
 <script type="text/javascript">
 $(document).ready(function() {

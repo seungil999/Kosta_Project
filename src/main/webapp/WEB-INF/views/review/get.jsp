@@ -7,7 +7,11 @@
 <script type="text/javascript" src="/resources/js/reviewReply.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/review.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resources/css/mate-find.css" rel="stylesheet">		
-
+<style>
+body{
+	font-family: 'Yeon Sung', cursive;
+}
+</style>
 <!--   모달창   -->
 
 
@@ -19,7 +23,7 @@
 	<div class="review-title" style="margin-top:60px;">후기</div> 
 	<div class="review_main" style="width:1150px;">
 		<br><br>
-		<input type="hidden" id="no" value="${review.no}">
+		<input type="hidden" id="no" value="${review.rev_no}">
 		
 		<div class="title-bold">제목</div>
 		<div class="get-title">${review.title}</div>
@@ -104,7 +108,7 @@
 </div>		
 
 <form id='operForm'>
-  <input type='hidden' id='no' name='no' value='<c:out value="${review.no}"/>'>
+  <input type='hidden' id='rev_no' name='rev_no' value='<c:out value="${review.rev_no}"/>'>
   <input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
   <input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
   <input type='hidden' name='keyword' value='<c:out value="${cri.keyword}"/>'>
@@ -119,7 +123,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	var noValue = '<c:out value="${review.no}"/>';
+	var noValue = '<c:out value="${review.rev_no}"/>';
 	var replyUL = $(".chat");
 	var replyMod = $(".repMod");
 	var clearfix = $(".left clearfix");
@@ -128,7 +132,7 @@ $(document).ready(function() {
 
 	function showList(page){
 		
-		replyService.getList({no:noValue, page: page|| 1}, function(list){
+		replyService.getList({rev_no:noValue, page: page|| 1}, function(list){
 			var mod="";
 			var str="";
 			if(list == null || list.length == 0){
@@ -136,10 +140,11 @@ $(document).ready(function() {
 				return;
 			}
 			for(var i=0, len = list.length || 0; i<len; i++){
-				str +="<div><li class='replyList'  id='rno"+list[i].rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>";
+				str +="<div><li class='replyList'  id='rev_rno"+list[i].rev_rno+"' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rev_rno='"+list[i].rev_rno+"'>";
 				if(userid==list[i].user_id){
-				str += "<button type='button' id='rembtn' data-rno='"+list[i].rno+"'>삭제</button>";
-				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rno='"+list[i].rno+"'>수정</button>";
+				str += "<button type='button' id='rembtn' data-rev_rno='"+list[i].rev_rno+"'>삭제</button>";
+				console.log(list[i].rev_rno);
+				str += "<button class='replyUpdateBtn' data-replyer="+list[i].replyer+" data-reply='"+list[i].reply+"' data-rev_rno='"+list[i].rev_rno+"'>수정</button>";
 				}
 				str +="<div class='header'><strong class= 'primary-font'>"+"<a class='repUserProfile' data-user='"+list[i].user_id+"'><img class='user-img' src='/Mate/display?fileName="+list[i].profile+"'/></a>"
 						+list[i].replyer+"</strong>";
@@ -172,8 +177,6 @@ $(document).ready(function() {
 				 	mod += "<td class='profile-input'><textarea rows='1' name='nickname' id='nickname' class='form-control id' readonly>"+list[i].nickname+"</textarea></td></tr>";
 					mod += "<tr><td class='bold'>이메일</td>";
 					mod += "<td class='profile-input'><textarea rows='1' name='email' id='email' class='form-control id' readonly>"+list[i].email+"</textarea></td></tr>";
-					mod += "<tr><td class='bold'>휴대폰</td>";		
-				    mod += "<td class='profile-input'><textarea rows='1' name='phone' id='phone' class='form-control id' readonly>"+list[i].phone+"</textarea></td></tr>";		
 				 	mod += "<tr><td class='bold'>성별</td>";
 					mod += `<td class="profile-input"><textarea rows="1" name="phone" id="phone" class="form-control id" readonly><c:out value="${list[i].gender eq 'man' ? '남자':'여자' }"/></textarea></td>`;		
 				 	mod += "</tr></table></div></div>";
@@ -212,7 +215,7 @@ $(document).ready(function() {
               reply: InputReply.val(),
               replyer:InputReplyer.html(),
               user_id: userid,
-              no:noValue
+              rev_no:noValue
             };
         replyService.add(reply, function(result){
           
@@ -232,9 +235,9 @@ $(document).ready(function() {
     
 
      $(document).on("click", '#rembtn', function(e){
-    	    var rno = $(this).data("rno");
-    		console.log(rno);
-    		replyService.remove(rno,function(result){
+    	    var rev_rno = $(this).data("rev_rno");
+    		console.log(rev_rno);
+    		replyService.remove(rev_rno,function(result){
     			if(result=='success'){
     				$.ajax({
     	    			url : "/reviewReplies/repCntUpdate",
@@ -264,14 +267,14 @@ $(document).ready(function() {
     		 
     		 return false;
     	 }
-    	
     	 
-    	 repReplyNo.val($(this).data("rno"));
+    	 
+    	 repReplyNo.val($(this).data("rev_rno"));
     	 repReplyer.val($(this).data("replyer"));
     	 repReply.val($(this).data("reply"));
     	 
     	 var replyData ={
-         rno:repReplyNo.val(),
+         rev_rno:repReplyNo.val(),
          replyer:repReplyer.val(),
          reply:repReply.val()
     	 };
@@ -284,7 +287,7 @@ $(document).ready(function() {
 	   
 
 		
-		htmls += '<div id="rno'+ replyData.rno + '">';
+		htmls += '<div id="rev_rno'+ replyData.rev_rno + '">';
 		
 		htmls += '<textarea name="editContent" id="editContent" rows="3">';
 
@@ -294,8 +297,8 @@ $(document).ready(function() {
 
 		htmls += '</div>';
 		
-		$('#rno'+replyData.rno).replaceWith(htmls);	
-		$('#rno'+replyData.rno+' #editContent').focus();
+		$('#rev_rno'+replyData.rev_rno).replaceWith(htmls);	
+		$('#rev_rno'+replyData.rev_rno+' #editContent').focus();
 	    
   });
      
@@ -303,7 +306,8 @@ $(document).ready(function() {
     	 
     	
     	var replyEditContent = $("#editContent").val();
-    	 var reply = {rno:repReplyNo.val(), reply:replyEditContent} 
+    	console.log(replyEditContent);
+    	 var reply = {rev_rno:repReplyNo.val(), reply:replyEditContent} 
     	 
     	 replyService.update(reply, function(result){
  	    	
@@ -331,11 +335,11 @@ function like_func(){
     const resultElement = document.getElementById('likecnt');
 	var number=resultElement.innerText;
 	
-	no = $('#no').val(),
+	rev_no = $('#rev_no').val(),
 	count = $('#likecheck').val(),
 	data = {
-			"userid": "${userVO.id}",
-			"no" : no,
+			"user_id": "${userVO.id}",
+			"rev_no" : rev_no,
 			"count" : count
 			};
 	
@@ -350,6 +354,7 @@ $.ajax({
 	success : function(result){
 		console.log("수정" + result.result);
 		var like_img='';
+		console.log(result.result);
 		if(result.result=='login'){
 			alert('로그인 후 이용 가능한 서비스입니다.');
 		}else if(count == 1){
@@ -390,11 +395,13 @@ $(document).ready(function() {
 	  
 	    
 	  $("button[id='remove']").on("click", function(e){
-	   
+		  if (!confirm("정말로 삭제하시겠습니까?")) {
+			     return false;
+			    } else {
 	    operForm.attr("action","/review/remove");
 	    operForm.attr("method","post");
 	    operForm.submit();
-	    
+		}
 	  });  
 	});
 

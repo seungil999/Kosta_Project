@@ -4,15 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+
 <html lang="en">
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="css/animatedLogin.css">
+
+	
 <meta charset="UTF-8">
 <title>ZupgoZupup : 로그인</title>
 
 <style type="text/css">
-@import
-	url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,700;1,500&display=swap')
-	;
+
 
 * {
 	margin: 0;
@@ -110,6 +113,12 @@ body {
 	text-align: center;
 	font-size: 13px;
 }
+
+.login_find_info a{text-decoration: none; color: gray; font-size: 0.8em; line-height: 20px;
+
+}
+
+
 </style>
 
 
@@ -117,9 +126,6 @@ body {
 
 
 
-<link rel="stylesheet" href="css/animatedLogin.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	
 	<script >
    var msg = "${msg}";
    if (msg != ""){
@@ -128,45 +134,6 @@ body {
    }
 
 </script>
-	
-</head>
-<body>
-     
-	<form onsubmit="submitloginPage(this); return false;"
-		action="/user/loginPage" method="POST" class="login-form">
-		<h1>ZupgoZupup</h1>
-
-
-		<div class="txtb ">
-			<input type="text" id="id" name="id" value=""> <span
-				data-placeholder="아이디를 입력해주세요"></span>
-		</div>
-
-		<div class="txtb">
-			<input type="password" id="pwd" name="pwd" value=""> <span
-				data-placeholder="비밀번호를 입력해주세요"></span>
-		</div>
-		<!--아이디 혹은 비밀번호가 안맞는 경우 controller에서 result값을 받아와서 뿌려줌-->
-		<%-- 	<c:if test="${param.result  eq 'fail'}">
-			<p class="form-error">
-				로그인 실패<br> 아이디/패스워드를 확인해 주세요.
-			</p>
-		</c:if> --%>
-		<input type="submit" class="logbtn" value="로그인">
-
-		<div class="form-check">
-			<label class="form-check-label"> <input type="checkbox"
-				class="form-check-input"> ID/PW 기억하기
-			</label>
-		</div>
-		<input type="hidden" value="기본프로필.jpg" id="profile" name="profile">
-		<div class="bottom-text">
-			<a href="/user/joinPage">회원가입</a> <a href="#">비밀번호 찾기</a>
-		</div>
-
-
-	</form>
-
 
 	<script>
 		function submitloginPage(form) {
@@ -202,11 +169,6 @@ body {
 
 
 
-
-
-
-
-
 	<script type="text/javascript">
 		$(".txtb input").on("focus", function() {
 			$(this).addClass("focus");
@@ -217,6 +179,66 @@ body {
 				$(this).removeClass("focus");
 		})
 	</script>
+	<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+	
+	
+	<!-- 카카오 로그인 -->
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        Kakao.init('6e3c3664c60870aea7164522a62f8825');
+        Kakao.isInitialized();
+    });
+
+    function loginWithKakao() {
+        Kakao.Auth.authorize({ 
+        redirectUri: 'http://localhost:8088/user/kakao' 
+        }); // 등록한 리다이렉트uri 입력
+    }
+    
+   
+	</script>
+</head>
+<body>
+     
+	<form onsubmit="submitloginPage(this); return false;"
+		action="/user/loginPage" method="POST" class="login-form">
+		<h1>ZupgoZupup</h1>
+
+
+		<div class="txtb ">
+			<input type="text" id="id" name="id" value=""> <span
+				data-placeholder="아이디를 입력해주세요"></span>
+		</div>
+
+		<div class="txtb">
+			<input type="password" id="pwd" name="pwd" value=""> <span
+				data-placeholder="비밀번호를 입력해주세요"></span>
+		</div>
+		
+		<input type="submit" class="logbtn" value="로그인">
+
+          	<!-- 카카오 로그인 -->      
+          <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=c54da2a5f03d3994996f0e79f1f70ae2&redirect_uri=http://localhost:8088/user/kakao&response_type=code">      
+	
+		<img src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png" style="height:60px">
+      		</a>
+
+
+
+
+		<div class="login_find_info">
+			<a href="/user/finduserId">아이디</a><span style="color: gray;">
+				/ </span> <a href="/user/findPassword">비밀번호 찾기</a><span
+				style="color: gray; font-weight: bold;"> | </span> <a
+				href="/user/joinPage">회원가입</a>
+		</div>
+
+
+
+
+
+	</form>
 
 </body>
 </html>

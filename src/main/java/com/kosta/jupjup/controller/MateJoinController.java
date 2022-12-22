@@ -1,6 +1,5 @@
 package com.kosta.jupjup.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,12 +41,12 @@ public class MateJoinController {
 			System.out.println(vo);
 			
 			Integer peopleNum = service.joinCount(vo); // 해당 모임에 몇명이 있는지
-			matevo = findservice.get(vo.getNo());  //해당 모임 최대 인원 수
+			matevo = findservice.get(vo.getMate_no());  //해당 모임 최대 인원 수
 			MateJoinVO userCheck = service.userCheck(vo); // 해당 모임에 참여했던적이 있는지(jno,userid)
-			Integer count = service.mateCount(vo.getUserid());
+			Integer count = service.mateCount(vo.getUser_id());
 			System.out.println(peopleNum);
 			System.out.println(matevo.getPeoplemaxnum());
-			if(userCheck==null) {
+			if(userCheck==null && uservo!=null) {
 				service.joinInsert(vo);
 			}
 			MateJoinVO realUserChk = service.userCheck(vo);

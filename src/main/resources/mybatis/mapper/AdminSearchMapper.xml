@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<mapper namespace="com.kosta.jupjup.dao.AdminSearchDAO">
+<!--  com.kosta.jupjup.vo.UserVO -->
+
+	<!-- 회원정보 컬럼, 회원 테이블 수정되면 사용 > 컬럼 추가하세요~!  -->
+		<sql id="usersColumns">
+		id
+		, username
+		, nickname
+		, pwd
+		, email
+		, gender
+		, status
+		, regdate
+		, updatedate
+		, deletedate
+		, profile
+		, profile_open
+		, grade
+	</sql>
+
+	<!-- 00. 검색용 -->
+	<sql id="criteria">
+		<if test="keyword != null and keyword != ''">
+	
+	  <trim prefix="(" suffix=")" prefixOverrides="OR"> <!-- 앞에있는 OR없애줌 -->
+      <choose>
+        <!-- 검색 유형이 있을 때 -->
+        <when test="type != null and type != ''">
+          <choose>
+			<when test="type == 'ID'.toString()">
+				 id like '%'||#{keyword}||'%'
+			</when>
+			<when test="type == 'NICK'.toString()">
+				  nickname like '%'||#{keyword}||'%'
+			</when>
+			<when test="type == 'UNAME'.toString()">
+				  username like '%'||#{keyword}||'%'
+			</when>
+		  </choose>
+        </when>
+        
+      </choose>
+      </trim>
+    </if>
+	</sql>
+
+	<!-- 01. 검색 결과 개수 / 페이징 처리를 위함  -->
+	<select id="userTotalCount" resultType="int"  >
+		  <![CDATA[
+				select count(*) from users where ]]>   
+				 <include refid="criteria"></include>
+	</select>
+	
+	<!-- 	검색 쿼리. 확인용으로 쓰세용. 
+	SELECT username
+		, nickname
+		, id
+		, pwd
+		, email
+
+		, gender FROM (
+            SELECT  ROWNUM AS RNUM, u.* 
+            FROM (
+                SELECT * 
+                from users
+                where username like '%4%' 
+                order by id desc
+            ) u WHERE ROWNUM <= 20
+        ) WHERE RNUM >= 1;
+	
+	 -->	
+	
+	<!-- 02.검색시 - 검색O, 페이징 O-->
+	<select id="selectSearchMemberPaging" 
+		resultType="com.kosta.jupjup.vo.UserVO" parameterType="int">
+         SELECT  <include refid="usersColumns" />
+ 			FROM ( SELECT ROWNUM AS  RNUM, u.* FROM (
+ 			SELECT *
+ 			FROM users WHERE <include refid="criteria"></include>
+ 			ORDER BY id DESC) u WHERE  
+		<![CDATA[    
+	      ROWNUM <= #{pageNum} * #{amount}
+	     ]]> 
+	     )  
+	 	<![CDATA[ 
+	  		WHERE RNUM > (#{pageNum} -1) * #{amount}   
+	 ]]>
+
+	</select>
+	
+	<!-- 03. 회원 추가-->
+    <insert id="insertUser" parameterType="com.kosta.jupjup.vo.UserVO">
+         <![CDATA[
+             INSERT INTO USERS VALUES (#{username},#{nickname},#{id},#{pwd},#{email},#{gender}, NVL(#{status, jdbcType=VARCHAR}, '가입'),sysdate,sysdate,sysdate)
+         ]]>
+    </insert>
+    
+    <!--04. 회원 삭제 -->
+	<update id="deleteUser" parameterType="com.kosta.jupjup.vo.UserVO">
+		UPDATE users SET status = '탈퇴', deletedate= sysdate WHERE id = #{userIdxArray} 
+	</update>
+	
+	<!--05. 회원 수정 -->
+	<update id="updateUser" parameterType="com.kosta.jupjup.vo.UserVO">
+		UPDATE users SET username=#{username}, nickname = #{nickname}, pwd = #{pwd}, email = #{email}, updatedate= sysdate WHERE id = #{id} 
+	</update>
+</mapper>	

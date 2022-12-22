@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kosta.jupjup.dao.MateReplyDAO;
-import com.kosta.jupjup.vo.Criteria;
+import com.kosta.jupjup.paging.Criteria;
 import com.kosta.jupjup.vo.MateReplyVO;
 
 @Service
