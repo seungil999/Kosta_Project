@@ -193,7 +193,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		@RequestMapping(value="/replyWrite", method = RequestMethod.POST)
 		public String replyWrite(ReplyVO vo, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 			logger.info("reply Write");
-			
+			System.out.println(vo);
 			replyService.writeReply(vo);
 			
 			rttr.addAttribute("fno", vo.getFno());
@@ -224,7 +224,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 			
 			replyService.updateReply(vo);
 			
-			rttr.addAttribute("frno", vo.getFrno());
+			rttr.addAttribute("fno", vo.getFno());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());
@@ -253,7 +253,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 			
 			replyService.deleteReply(vo);
 			
-			rttr.addAttribute("frno", vo.getFrno());
+			rttr.addAttribute("fno", vo.getFno());
 			rttr.addAttribute("page", scri.getPage());
 			rttr.addAttribute("perPageNum", scri.getPerPageNum());
 			rttr.addAttribute("searchType", scri.getSearchType());

@@ -50,18 +50,21 @@ body{
 <!-- 댓글 -->
 	<div id="reply">
 		<ol class="replyList">
+		
+				
+				
+				
 			<c:forEach items="${replyList}" var="replyList">
-				<li>
-					<p>
-					작성자 : ${replyList.writer}<br />
-					작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
-					</p>
-					  
-					<p>${replyList.content}</p>
+				<li  class='replyList' style="list-style: none">
 					<div>
-						<button type="button" class="replyUpdateBtn btn btn-warning" data-frno="${replyList.frno}">수정</button>
-						<button type="button" class="replyDeleteBtn btn btn-danger" data-frno="${replyList.frno}">삭제</button>
+						<button type="button" id="rembtn" class="replyDeleteBtn" data-frno="${replyList.frno}">삭제</button>
+						<button type="button" id="rembtn" class="replyUpdateBtn" data-frno="${replyList.frno}" style="margin-right:2px;">수정</button>
 					</div>
+					<div class='header'><strong class= 'primary-font'>${replyList.writer}</strong>
+					
+					
+					<small class='repDate'><fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" /></small>
+					<p class='repContent'>${replyList.content}</p></div>
 				</li>
 			</c:forEach>   
 		</ol>
@@ -70,29 +73,32 @@ body{
 <form name="replyForm" method="post" class="form-horizontal">
 	<input type="hidden" id="fno" name="fno" value="${read.fno}" />
 	<input type="hidden" id="page" name="page" value="${scri.page}"> 
+	<input type="hidden" id="writer" name="writer" value="${userVO.id}"> 
 	<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum}"> 
 	<input type="hidden" id="searchType" name="searchType" value="${scri.searchType}"> 
 	<input type="hidden" id="keyword" name="keyword" value="${scri.keyword}"> 
 
+<c:if test="${userVO ne null }">
 	<div class="form-group">
-		<label for="writer" class="col-sm-2 control-label">댓글 작성자</label>
-		<div class="col-sm-10">
-			<input type="text" id="writer" name="writer" class="form-control" />
+		<label for="writer" class="col-sm-2 control-label" style="margin-top:-8px;">댓글 작성자</label>
+		<div class="col-sm-10" >
+			${userVO.nickname }
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<label for="content" class="col-sm-2 control-label">댓글 내용</label>
 		<div class="col-sm-10">
-			<input type="text" id="content" name="content" class="form-control"/>
+			<input type="text" id="content" name="content" class="form-control" style="height:90px;"/>
 		</div>
 	</div>
 	
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="button" class="list_btn uploadbtn">작성</button>
+			<button type="button" class="replyWriteBtn uploadbtn" style="float:right; margin-right:50px;">작성</button>
 		</div>
 	</div>
+	</c:if>
 </form>
 
 					

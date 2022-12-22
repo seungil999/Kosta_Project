@@ -27,16 +27,7 @@
 	<body>
 	
 		<div id="root">
-			<header>
-				<h1> 게시판</h1>
-			</header>
-			<hr />
-			 
-			<div>
-				<%@include file="nav.jsp" %>
-			</div>
-			<hr />
-			
+		
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/board/replyUpdate">
 					<input type="hidden" name="fno" value="${replyUpdate.fno}" readonly="readonly"/>
