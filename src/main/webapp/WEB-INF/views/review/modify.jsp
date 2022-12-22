@@ -41,7 +41,7 @@
 	
 	
 <script>
-CKEDITOR.replace('content',{filebrowserUploadUrl:'/review/imageUpload', height:'300px'}
+CKEDITOR.replace('content',{filebrowserUploadUrl:'/review/imageUpload', height:'300px', width:'912px'}
 );
 
 </script>

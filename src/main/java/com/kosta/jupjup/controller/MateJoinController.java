@@ -50,24 +50,26 @@ public class MateJoinController {
 				service.joinInsert(vo);
 			}
 			MateJoinVO realUserChk = service.userCheck(vo);
-			if(uservo==null) { //로그인 안되어있으면
+			//로그인 안되어있으면
+			if(uservo==null) { 
 				map.put("result", "login");
+			//인원이 가득찼거나,활동에 참여중이아니거나, 세 모임 이상 참여한것이 아니라면	
 			}else if(peopleNum < matevo.getPeoplemaxnum() && realUserChk.getJno()==0 && count<3) {
-				service.joinUpdate(vo);
+				service.joinUpdate(vo);       
 				service.joinCntUpdate(vo);
 				map.put("result", "success");
+			//인원이 가득찼고, 해당 모임에 참여중이 아니라면
 			}else if(peopleNum == matevo.getPeoplemaxnum() && realUserChk.getJno()==0) {
-				map.put("result", "full");
+				map.put("result", "full");	
+			// 해당 모임에 참여중이라면	
 			}else if(realUserChk.getJno()==1) {
-				service.joinUpdate(vo);
+				service.joinUpdate(vo);		
 				service.joinCntUpdate(vo);
 				map.put("result", "success");
+			// 예약중인 활동이 3개가 초과된다면
 			}else if(count>=3) {
 				map.put("result", "mateFull");
 			}
-			
-			
-
 		}catch(Exception e) {
 			e.printStackTrace();
 			map.put("result", "fail");

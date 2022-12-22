@@ -53,14 +53,7 @@ public class MateFindController {
 	@GetMapping("/list")
 	public String list(Criteria cri, Model model) {
 		
-		LocalTime now = LocalTime.now();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
-		String formatedNow = now.format(formatter);
-		
-		int getTime = Integer.parseInt(formatedNow);
-		cri.setCurrenttime(getTime);
-
-
+	
 		if ("".equals(cri.getMeeting()) || cri.getMeeting() == null) {
 			model.addAttribute("active", "all");
 		} else if (cri.getMeeting().equals("0")) {

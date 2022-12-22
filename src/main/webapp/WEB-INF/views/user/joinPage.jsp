@@ -249,7 +249,7 @@ width: 100%; height: 55px; border: 1px solid #dadada;padding: 17px; border-radiu
     			contentType : "application/json",
     			data : userId,
     			success : function(data) {
-    				
+    				console.log(data);
 					if(data == 0){ // 사용가능
 						$("#id").attr("readonly", true); // 리드온리 속성지정
 						$("#result").html("사용가능한 아이디 입니다");

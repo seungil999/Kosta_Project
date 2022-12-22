@@ -175,7 +175,7 @@ A:link,A:visited,A:active,A:hover {
 					<div class="QList">
 						<ol>
 							<c:forEach items="${list}" var="NOTICE">
-								<li><a href="/ServiceCenter/notice/detail?no=${NOTICE.no}">${NOTICE.name }</a></li>
+								<li><a href="/ServiceCenter/notice/detail?no=${NOTICE.nno}">${NOTICE.name }</a></li>
 							</c:forEach>
 						</ol>
 					</div>

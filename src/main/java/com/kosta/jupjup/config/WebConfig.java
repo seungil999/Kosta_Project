@@ -21,7 +21,7 @@ import com.kosta.jupjup.interceptor.LoginCheckInterceptor;
 						"/matefind/list", "/user/loginPage","/user/joinPage" ,"/user/finduserId" , "/user/findPassword"
 						,"/review/list","/matefind/**","/review/**","/reviewReplies/**","/Mate/**","/replies/**","/reviewLike/**","/like/**"
 						,"/board/**","/matejoin/**"
-						,"/resources/**","/user/css/**","/user/kakao"
+						,"/resources/**","/user/css/**","/user/kakao","/user/**"
 						,"/ServiceCenter/" ,"/admin/main/**","/admin/search/**","/admin/report/**","/admin/write/**","/admin/question/**");
 			
 		}

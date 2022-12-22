@@ -152,7 +152,7 @@ body{
  	<table class="modtab">
  		
  		<tr>
-	 		<td class="r-bold">제&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 : </td>
+	 		<td class="r-bold">제&nbsp;&nbsp;&nbsp;목 : </td>
 	 		<td class="r-input"><p id="activityname" name="activityname" readonly>${mate.activityname}</p></td>
 	 	
  		</tr>
@@ -484,7 +484,7 @@ $(document).ready(function() {
 					rep+='<table class="modtab">'
 					rep+='<tr><td class="r-bold">작&nbsp;성&nbsp;자 :&nbsp;</td>'
 					rep+='<td class="r-input"><p id="user_id" readonly>'+list[i].replyer+'</p></td></tr>'
-					rep+='<tr><td class="r-bold">내&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;용 :&nbsp;</td>'
+					rep+='<tr><td class="r-bold">내&nbsp;&nbsp;&nbsp;용 :&nbsp;</td>'
 					rep+= '<td class="r-input">'+list[i].reply+'</td></tr></table>'
 				 	rep+='<hr style="margin-top:7px; margin-bottom:7px;">'
 				 	rep+='<table class="modtab">'

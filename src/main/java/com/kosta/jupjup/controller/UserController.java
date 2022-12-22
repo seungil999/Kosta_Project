@@ -31,7 +31,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-@RequestMapping("user/*")
+@RequestMapping("/user/*")
 public class UserController {
 
 
@@ -48,7 +48,7 @@ public class UserController {
 
 	// 중복처리메서드
 	@ResponseBody
-	@PostMapping(value = "/idCheck")
+	@PostMapping("/idCheck")
 	public int idCheck(@RequestBody String id) {
 		System.out.println("***id :" + id);
 
@@ -175,7 +175,7 @@ public class UserController {
 		public Map<String, Object> findId(String email) throws FindException{
 			Map<String, Object> map = new HashMap<>();
 			String id ;
-
+			System.out.println(email);
 			try {
 				id = userService.selectFindId(email);
 				

@@ -19,7 +19,6 @@ public class Criteria {
 	
 	private String meeting;
 	private String filter;
-	private int currenttime;
 	
 
 	
