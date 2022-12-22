@@ -26,7 +26,7 @@
 			<div class="sidebar-bold">관심 목록</div>
 			<div class="sidebar-normal"><a href="/mypage/likeActivity">좋아요한 활동</a></div>
 			<div class="sidebar-normal"><a href="/mypage/likeReview">좋아요한 후기</a></div>
-			<div class="sidebar-normal"><a href="/mypage/likeRecom">좋아요한 추천장소</a></div>
+			<div class="sidebar-normal"><a href="/mypage/likeRecom">찜한 추천장소</a></div>
 		</div>
 		<hr style="margin-top:0px; margin-bottom:0px;">
 		<div class="list">

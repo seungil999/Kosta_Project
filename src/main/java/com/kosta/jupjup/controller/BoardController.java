@@ -59,7 +59,7 @@ private static final Logger logger = LoggerFactory.getLogger(BoardController.cla
 		
 		service.write(boardVO);
 		
-		return "redirect:/";
+		return "redirect:/board/list";
 	}
 	
 	//미사용

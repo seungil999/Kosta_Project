@@ -51,19 +51,31 @@
 	
 	<select id="getMateList" resultType="com.kosta.jupjup.vo.MateVO">
 	<![CDATA[
-	select mate_no,activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
-		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
-	  from ( select
-	  
-	  ]]> /*+INDEX_DESC(mate pk_mate ) */
-	  <![CDATA[
- 		rownum rn, m.mate_no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
- 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
-	      from mate m inner join mate_join mj
-      on m.mate_no=mj.mate_no and mj.jno=1 and mj.user_id=#{id} and timestamp>sysdate and
-	      rownum <=#{cri.pageNum} * #{cri.amount}
-	      )  
-	  where rn > (#{cri.pageNum} -1) * #{cri.amount} 
+	select m.mate_no
+		, m.activityname
+		, m.writer
+		, m.meetingplace
+		, m.meetingtime
+		, m.meetingdate
+		, m.peoplenum
+		, m.peoplemaxnum
+		, m.startzone
+		, m.endzone
+		, m.starttime
+		, m.endtime
+		, m.content
+		, m.regdate
+		, m.updatedate
+		, m.replycnt
+		, m.image
+		, m.regular
+		, m.likecnt
+		, m.timestamp
+		, m.user_id
+		, m.report_count
+	  from mate m inner join mate_join mj
+      on m.mate_no=mj.mate_no and mj.jno=1 and mj.user_id=#{id} and timestamp>sysdate 
+      order by meetingdate asc
 		]]>
 	
 	</select>
@@ -94,6 +106,31 @@
 	</select>
 	
 	<select id="getReviewTotal" resultType="int">
+    <![CDATA[ 
+	  select count(*) from review where user_id=#{id} and
+	  	
+	 	 mate_no > 0  
+	   ]]>
+  </select>
+  
+   <select id="getFreeList" resultType="com.kosta.jupjup.vo.BoardVO">
+   <![CDATA[
+	select fno,title,content,writer,regdate,hit,user_id
+	  from ( select
+	    ]]>
+	    	/*+INDEX_DESC(free free_fno_pk) */
+	    <![CDATA[	
+ 		rownum rn, fno,title,content,writer,regdate,hit,user_id
+	      from free
+
+	   where rownum <= #{cri.pageNum} * #{cri.amount} and user_id=#{id}
+	      )  
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount}   
+		]]>
+	
+	</select>
+	
+	<select id="getFreeTotal" resultType="int">
     <![CDATA[ 
 	  select count(*) from mate where user_id=#{id} and
 	  	
@@ -144,6 +181,22 @@
 	
 	</select>
 	
+	<select id="getLikeRecom" resultType="com.kosta.jupjup.vo.RecommendVO">
+   <![CDATA[
+	select rec_no, recname, address, simpledesc, user_id
+	  from ( select
+	    ]]>
+	    	/*+INDEX_DESC(recommend recommend_rec_no_pk) */
+	    <![CDATA[	
+ 		rownum rn, rec_no, recname, address, simpledesc, user_id
+	      from recommend where user_id=#{id} and 
+             rownum <= #{cri.pageNum} * #{cri.amount} 
+	      )    
+	  where rn > (#{cri.pageNum} -1) * #{cri.amount}  
+		]]>
+	
+	</select>
+	
 	<select id="getLikeActivityTotal" resultType="int">
     <![CDATA[ 
 	   select count(*) from mate_heart where user_id=#{id} and lno=1 and
@@ -156,6 +209,14 @@
 	  select count(*)
         from mate m inner join mate_join mj
         on m.mate_no=mj.mate_no and mj.jno=1 and mj.user_id=#{id} and timestamp<sysdate
+	   ]]>
+  	</select>
+  	
+  	<select id="getLikeRecomTotal" resultType="int">
+    <![CDATA[ 
+	   select count(*) from recommend where user_id=#{id} and
+	  	
+	 	 rec_no > 0
 	   ]]>
   	</select>
   	

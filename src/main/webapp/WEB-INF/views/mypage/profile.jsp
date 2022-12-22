@@ -68,12 +68,11 @@ body{
  		<tr>
 	 		<td class="bold">닉네임</td>
 	 		<td class="profile-input"><textarea rows="1" name="nickname" id="nickname" class="form-control id">${userVO.nickname}</textarea></td>
-	 		<td><button class="modrem" id="nickChk">중복확인</button></td>
  		</tr>
  		<tr>
 	 		<td class="bold">이메일</td>
 	 		<td class="profile-input"><textarea rows="1" name="email" id="email" class="form-control id">${userVO.email}</textarea></td>
-	 		<td><button class="modrem">중복확인</button></td>
+	 		
  		</tr>
  		
  		<tr>
