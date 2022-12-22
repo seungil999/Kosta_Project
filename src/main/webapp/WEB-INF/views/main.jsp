@@ -311,9 +311,9 @@ p {
 											"click",
 											function(e) {
 												e.preventDefault();
-												$('input').remove("#no");
+												$('input').remove("#mate_no");
 												actionForm
-														.append("<input type='hidden' id='no' name='no' value='"
+														.append("<input type='hidden' id='mate_no' name='mate_no' value='"
 																+ $(this).attr(
 																		"href")
 																+ "'>");
