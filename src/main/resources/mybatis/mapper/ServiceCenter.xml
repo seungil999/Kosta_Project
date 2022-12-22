@@ -42,14 +42,14 @@
 	
 	<select id="getnoticedetail" parameterType="Long" resultType="com.kosta.jupjup.vo.NoticeVO">
 		<![CDATA[
-			SELECT * FROM NOTICE where no = #{no} 
+			SELECT * FROM NOTICE where nno = #{nno} 
 		]]>
 	</select>
 	
 	<insert id="write" >
 	<![CDATA[
 		INSERT INTO notice (
-			NO,name,content)
+			nNO,name,content)
 			VALUES (seq_questions_no.nextval,#{name},#{content})
 	]]>
 	</insert>

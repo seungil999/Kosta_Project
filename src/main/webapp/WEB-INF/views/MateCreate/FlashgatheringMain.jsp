@@ -204,14 +204,14 @@ h1 {
 											placeholder="출발지를 입력해주세요." required 
 											oninvalid="this.setCustomValidity('출발지는 필수로 입력 해주세요.')"
 											oninput="this.setCustomValidity('')"
-											onclick="start_execDaumPostcode()" />
+											/>
 									</tr>
 									<tr>
 										<th>목적지</th>
 										<td><input type="text" name="endzone" size="30" id="end_address"
 											placeholder="도착지를 입력해주세요." required 
 											oninvalid="this.setCustomValidity('목적지는 필수로 입력 해주세요.')"
-											onclick="end_execDaumPostcode()"  oninput="this.setCustomValidity('')"/>
+											oninput="this.setCustomValidity('')"/>
 									</tr>
 									<tr>
 										<th>활동시간</th>

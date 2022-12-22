@@ -111,7 +111,7 @@ public class UserController {
 	      } else if(userVO != null) {
 	         System.out.println("일반유저!");
 	         session.setAttribute("userVO", userVO);
-	         return "main";
+	         return "redirect:/";
 	      } else {
 	         model.addAttribute("msg","로그인 실패, 아이디 비밀번호를 확인하세요.");
 	         return "user/loginPage";
