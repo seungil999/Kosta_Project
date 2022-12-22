@@ -462,7 +462,7 @@ h3 {
 		var timeOff = new Date().getTimezoneOffset() * 60000;
 		var today = new Date(now_utc - timeOff).toISOString().split("T")[0];
 		document.getElementById("Date").setAttribute("min", today);
-		document.getElementById('Date').value = new Date().toISOString().substring(0, 10);;
+		document.getElementById('Date').value = new Date().toISOString().substring(0, 10);
 	</script>
 
 	

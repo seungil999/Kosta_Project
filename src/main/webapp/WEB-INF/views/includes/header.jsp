@@ -44,11 +44,11 @@
 	
 	
 
-<!--Start Hedaer Section-->
+<!--헤더 시작-->
 	<section id="header">
 		<div class="header-area">
 
-			<div class="header_menu text-center" data-offset-top="50" id="nav"> <!-- 반응형제거 data-spy="affix" -->
+			<div class="header_menu text-center" data-offset-top="50" id="nav" data-spy="affix"> <!-- 반응형제거 data-spy="affix" -->
 				<div class="container">
 					<nav class="navbar navbar-default zero_mp ">
 						<!-- Brand and toggle get grouped for better mobile display -->
@@ -65,7 +65,8 @@
 							<img src="${pageContext.request.contextPath}/resources/img/logo1.png"
 								alt=""></a>
 						</div>
-						<!--End of navbar-header-->
+						<!--헤더 끝-->
+						
 						<div class="collapse navbar-collapse zero_mp"
 							id="bs-example-navbar-collapse-2">
 							<ul class="nav navbar-nav navbar-right main_menu1">
