@@ -18,69 +18,74 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kosta.jupjup.paging.Criteria;
 import com.kosta.jupjup.paging.PageVO;
 import com.kosta.jupjup.service.AdminSearchService;
-import com.kosta.jupjup.vo.ManagerVO;
 import com.kosta.jupjup.vo.UserVO;
 @Controller
 @RequestMapping("/admin/*")
 public class AdminSearchController {
 
-	@Autowired
-	HttpServletRequest request;
-	
-	@Autowired
-	AdminSearchService adminSearchService;
+   @Autowired
+   HttpServletRequest request;
+   
+   @Autowired
+   AdminSearchService adminSearchService;
 
-	// 01. 페이징, 검색 처리된 출력용
-	@GetMapping("/search/list")
-	public String searchlist(Criteria cri,Model model) {
-		System.out.println("*** 관리자 > 회원검색");	
-		HttpSession session = request.getSession();
-		session.getAttribute("ManagerVO");
-		
-		
-		int total = adminSearchService.countTotal(cri); // 페이징을 위한 검색 후 총 갯수 
-		model.addAttribute("total",total); // 검색 카운트용 
-		
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-		model.addAttribute("userlist",adminSearchService.SearchList(cri));
-		return "/manager/manager_search";
-	}
-	
-	// 02. 회원 추가
-	@PostMapping("/search/list/add")
-	public String insertUser(@ModelAttribute UserVO userVO) {
-		System.out.println("*** 관리자 > 회원검색 > 회원추가");
-		HttpSession session = request.getSession();
-		session.getAttribute("ManagerVO");
-		
-		
-		System.out.println(userVO.toString());
-		adminSearchService.insertUser(userVO);
-		return "redirect:/admin/search/list";
+   // 01. 페이징, 검색 처리된 출력용
+   @GetMapping("/search/list")
+   public String searchlist(Criteria cri,Model model) {
+      System.out.println("*** 관리자 > 회원검색");   
+      HttpSession session = request.getSession();
+      session.getAttribute("ManagerVO");
+      
+      
+      int total = adminSearchService.countTotal(cri); // 페이징을 위한 검색 후 총 갯수 
+      model.addAttribute("total",total); // 검색 카운트용 
+      
+      model.addAttribute("pageMaker", new PageVO(cri, total));
+      model.addAttribute("userlist",adminSearchService.SearchList(cri));
+      return "/manager/manager_search";
+   }
+   
+   // 02. 회원 추가
+   @PostMapping("/search/list/add")
+   public String insertUser(@ModelAttribute UserVO userVO) {
+      System.out.println("*** 관리자 > 회원검색 > 회원추가");
+      HttpSession session = request.getSession();
+      session.getAttribute("ManagerVO");
+      
+      
+      System.out.println(userVO.toString());
+      adminSearchService.insertUser(userVO);
+      return "redirect:/admin/search/list";
 
-	}
-	
-	// 03. 회원 삭제 
-	@ResponseBody
-	@PostMapping("/search/list/delete")
-	public List<String> deleteUser(@RequestBody List<String> userIdxArray) {
-		System.out.println("*** 관리자 > 회원검색 > 회원삭제");
-		HttpSession session = request.getSession();
-		session.getAttribute("ManagerVO");
-		
-		System.out.println(userIdxArray.get(0));
-		adminSearchService.deleteUser(userIdxArray);
-		return userIdxArray;
-	}
+   }
+   
+   // 03. 회원 삭제 
+   @ResponseBody
+   @PostMapping("/search/list/delete")
+   public List<String> deleteUser(@RequestBody List<String> userIdxArray) {
+      System.out.println("*** 관리자 > 회원검색 > 회원삭제");
+      HttpSession session = request.getSession();
+      session.getAttribute("ManagerVO");
+      
+      System.out.println(userIdxArray.get(0));
+      adminSearchService.deleteUser(userIdxArray);
+      return userIdxArray;
+   }
 
-	// 04. 회원 정보 수정
-	@PostMapping("/search/list/update")
-	public String updateUser(@ModelAttribute UserVO userVO) {
-		System.out.println("*** 관리자 > 회원검색 > 회원수정");
-		HttpSession session = request.getSession();
-		session.getAttribute("ManagerVO");
-		System.out.println(userVO);
-		adminSearchService.updateUser(userVO);
-		return "redirect:/admin/search/list";
-	}
+   // 04. 회원 정보 수정
+   @PostMapping("/search/list/update")
+   public String updateUser(Criteria cri, @ModelAttribute UserVO userVO) {
+      System.out.println("*** 관리자 > 회원검색 > 회원수정");
+      HttpSession session = request.getSession();
+      session.getAttribute("ManagerVO");
+      System.out.println(userVO);
+      adminSearchService.updateUser(userVO);
+      // http://localhost:8088/admin/search/list?type=ID&keyword=w&pageNum=1&amount=10
+      System.out.println(cri.getType());
+      System.out.println(cri.getKeyword());
+      System.out.println(cri.getPageNum());
+      System.out.println(cri.getAmount());
+      
+      return "redirect:/admin/search/list?type="+cri.getType()+"&keyword="+cri.getKeyword()+"&pageNum="+cri.getPageNum()+"&amount="+cri.getAmount();
+   }
 }

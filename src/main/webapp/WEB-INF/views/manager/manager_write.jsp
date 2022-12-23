@@ -82,7 +82,7 @@ $(document).ready(function(){
       <a class="nav-link " data-bs-toggle="tab" href="/admin/search/main"><a href="/admin/search/main" class="btn">&nbsp;회원 검색&nbsp;</a></a>
     </li>
      <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" ><a href="/admin/report/main" class="btn">&nbsp;신고 내역 확인&nbsp;</a></a>
+      <a class="nav-link" data-bs-toggle="tab" ><a href="/admin/report/list" class="btn">&nbsp;신고 내역 확인&nbsp;</a></a>
     </li>
      <li class="nav-item">
       <a class="nav-link active " data-bs-toggle="tab" ><a href="/admin/write/main" class="btn">&nbsp;<b>공지사항</b>&nbsp;</a></a>

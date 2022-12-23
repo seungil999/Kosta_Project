@@ -85,6 +85,12 @@ $(document).ready(function(){
    
 });
 
+
+function closeAdmin(){
+	alert("접속이 종료됩니다.");
+}
+
+
 //체크박스 회원 삭제 > alert, confirm 모달로 바꿔야함
 function userDelete(){
 
@@ -140,7 +146,7 @@ if(confirmAlert){
          <!-- Float links to the right. Hide them on small screens -->
          <li class="w3-right w3-hide-small"> 
          <a href="/main" class="w3-left">사용자 홈페이지로</a> 
-         <a href="/user/logout" class="w3-left w3-margin-right">접속 종료</a></li>
+         <a href="/main" class="w3-left w3-margin-right" onclick="closeAdmin();">접속 종료</a></li>
       </ul>
    </div>
 <!-- navbar end -->
@@ -198,6 +204,7 @@ if(confirmAlert){
         <th>아이디</th>
         <th>이름</th>
         <th>닉네임</th>
+        <th>등급</th>
         <th>가입일</th>
         <th>수정일</th>
         <th>탈퇴일</th>
@@ -215,6 +222,17 @@ if(confirmAlert){
                	<th>${userlist.id}</th>
         		<th>${userlist.username}</th>
         		<th>${userlist.nickname}</th>
+        		<c:choose>
+        			<c:when test="${userlist.grade eq 1}">
+        		    <th>일반 회원</th>
+        		    </c:when>
+        		    <c:when test="${userlist.grade eq 2}">
+        		    <th>열심 회원</th>
+        		    </c:when>
+        		    <c:when test="${userlist.grade eq 3}">
+        		    <th>우등 회원</th>
+        		    </c:when>
+        		</c:choose>
         		<th>${userlist.regdate}</th>
         		<c:choose>
                 	<c:when test="${userlist.status eq '가입' && userlist.regdate == userlist.updatedate }">
@@ -237,7 +255,12 @@ if(confirmAlert){
 				</c:when>    
 				</c:choose>
         		<th>${userlist.status}</th>
-        		<th> <button type="button" class="btn btn-sm btn-outline-success modify"  data-bs-toggle="modal" data-bs-target="#${userlist.id}" 
+        		
+        		<th> 
+        		<button type="button" class="btn btn-sm btn-outline-success"  data-bs-toggle="modal" data-bs-target="#${userlist.username}" 
+        		data-id="${userlist.id}" data-name="${userlist.username}" data-nick="${userlist.nickname}" data-pwd="${userlist.pwd}" data-email="${userlist.email}"  >회원 정보</button>
+        	
+        		<button type="button" class="btn btn-sm btn-outline-success modify"  data-bs-toggle="modal" data-bs-target="#${userlist.id}" 
         		data-id="${userlist.id}" data-name="${userlist.username}" data-nick="${userlist.nickname}" data-pwd="${userlist.pwd}" data-email="${userlist.email}"  >회원 수정</button> </th>
       		</tr>
      		</c:forEach>
@@ -388,6 +411,67 @@ if(confirmAlert){
                       
            			
                </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div> </c:forEach>  <!-- modal end -->
+
+
+
+<!-- The Modal / 회원 보기 -->
+ <c:forEach items="${userlist}" var="userlist" varStatus="idx">
+<div class="modal fade" id="${userlist.username}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">회원 보기</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+    
+				
+					<input type="hidden" id="uid" value="${userlist.id}" name="id" />
+                  <br>
+                   <div class="form-group">
+                     <label for=""pwd"">아이디 :</label> <input type="text"
+                         class="form-control" id="id" name="id"  value="" placeholder="${userlist.id}" readonly="readonly">
+                  </div>
+                  <br>
+                  
+                  <div class="form-group">
+                     <label for="username">이름:</label> <input type="text"
+                         class="form-control" id="username" name="username" value="" placeholder="${userlist.username}" readonly="readonly">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                     <label for="nickname">닉네임:</label> <input type="text"
+                       class="form-control" id="nickname" name="nickname" value="" placeholder="${userlist.nickname}" readonly="readonly">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                     <label for=""pwd"">비밀번호 :</label> <input type="text"
+                         class="form-control" id="pwd" name="pwd"  value="" placeholder="${userlist.pwd}"readonly="readonly">
+                  </div>
+                  <br>
+                  <div class="form-group">
+                  <label for="email">이메일:</label> <input type="text"
+                      class="form-control" id="email" name="email"  value="" placeholder="${userlist.email}"readonly="readonly">
+                  </div>
+                  <br>
+                 
+            
+                  <br>
+          
       </div>
 
       <!-- Modal footer -->

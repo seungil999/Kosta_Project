@@ -98,3 +98,4 @@ $(document).ready(function() {
 });
 </script>
 </html>
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>

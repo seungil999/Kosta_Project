@@ -26,16 +26,16 @@
 	<sql id="criteria">
 		<if test="keyword != null and keyword != ''">
 	
-	  <trim prefix="(" suffix=")" prefixOverrides="OR"> <!-- 앞에있는 OR없애줌 -->
+	  <trim prefix="(" suffix=")" prefixOverrides="AND"> <!-- 앞에있는 OR없애줌 -->
       <choose>
         <!-- 검색 유형이 있을 때 -->
         <when test="type != null and type != ''">
           <choose>
 			<when test="type == 'ID'.toString()">
-				 id like '%'||#{keyword}||'%'
+				id like '%'||#{keyword}||'%' 
 			</when>
 			<when test="type == 'NICK'.toString()">
-				  nickname like '%'||#{keyword}||'%'
+				  nickname like '%'||#{keyword}||'%' 
 			</when>
 			<when test="type == 'UNAME'.toString()">
 				  username like '%'||#{keyword}||'%'
@@ -51,8 +51,12 @@
 	<!-- 01. 검색 결과 개수 / 페이징 처리를 위함  -->
 	<select id="userTotalCount" resultType="int"  >
 		  <![CDATA[
-				select count(*) from users where ]]>   
-				 <include refid="criteria"></include>
+				select count(*) from users 
+				
+				]]>  
+				 where <trim prefix="(" suffix=")" prefixOverrides="AND"> <!-- 앞에있는 OR없애줌 --> 
+				  <include refid="criteria"></include>
+				  </trim>
 	</select>
 	
 	<!-- 	검색 쿼리. 확인용으로 쓰세용. 
@@ -106,6 +110,6 @@
 	
 	<!--05. 회원 수정 -->
 	<update id="updateUser" parameterType="com.kosta.jupjup.vo.UserVO">
-		UPDATE users SET username=#{username}, nickname = #{nickname}, pwd = #{pwd}, email = #{email}, updatedate= sysdate WHERE id = #{id} 
+		UPDATE users SET nickname = #{nickname}, pwd = #{pwd}, email = #{email}, updatedate= sysdate WHERE id = #{id} 
 	</update>
 </mapper>	

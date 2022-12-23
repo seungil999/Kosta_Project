@@ -160,7 +160,7 @@ function userDelete(){
          <!-- Float links to the right. Hide them on small screens -->
          <li class="w3-right w3-hide-small"> 
          <a href="/main" class="w3-left">사용자 홈페이지로</a> 
-         <a href="/user/logout" class="w3-left w3-margin-right">접속 종료</a></li>
+         <a href="/main" class="w3-left w3-margin-right">접속 종료</a></li>
       </ul>
    </div>
 <!-- navbar end -->
@@ -416,6 +416,10 @@ function userDelete(){
         <form class="updateForm" action="/admin/search/list/update" method="post">
 			<!--   -->
 			<input type="hidden" id="id" value="${userlist.id}" name="id" />
+			  <input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+        		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+				<input type='hidden' name='type' value='<c:out value="${ pageMaker.cri.type }"/>'>
+        		<input type='hidden' name='keyword' value='<c:out value="${ pageMaker.cri.keyword }"/>'>
 			   <br>
                   <div class="form-group">
                      <label for="username">이름:</label> <input type="text"

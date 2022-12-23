@@ -24,7 +24,7 @@
 	<!-- 1. 회원 가입 -->
 	<insert id="join" parameterType="com.kosta.jupjup.vo.UserVO">
          <![CDATA[
-          INSERT INTO USERS VALUES (#{id},#{username},#{nickname},#{pwd},#{email},#{gender},NVL(#{status, jdbcType=VARCHAR}, '가입'),sysdate,sysdate,sysdate,#{profile},#{profile_open},NVL(#{grade, jdbcType=VARCHAR}, '1'))
+          INSERT INTO USERS VALUES (#{id},#{username},#{nickname},#{pwd},#{email},#{gender},NVL(#{status, jdbcType=VARCHAR}, '가입'),sysdate,sysdate,sysdate,#{profile},#{profile_open},1)
          ]]>
 	</insert>
 
