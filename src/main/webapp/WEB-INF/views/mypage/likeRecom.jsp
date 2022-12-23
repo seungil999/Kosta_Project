@@ -12,13 +12,15 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/mypage.css" rel="stylesheet">	
-<!--  bs-modal-margin: 1.75rem;
-    bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); -->
+
 <style>
 body{
 	font-family: 'Yeon Sung', cursive;
 }
-
+.modal{
+bs-modal-margin: 1.75rem;
+    bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
 </style>
 </head>
 

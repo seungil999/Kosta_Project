@@ -35,7 +35,7 @@
 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
 	  from ( select
 	  
-	  ]]> /*+INDEX_DESC(mate pk_mate ) */
+	  ]]> /*+INDEX_DESC(mate mate_mate_no_pk ) */
 	  <![CDATA[
  		rownum rn, m.mate_no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
  		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
@@ -93,7 +93,7 @@
 	select rev_no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	  from ( select
 	    ]]>
-	    	/*+INDEX_DESC(review pk_review ) */
+	    	/*+INDEX_DESC(review review_rev_no_pk) */
 	    <![CDATA[	
  		rownum rn, rev_no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	      from review
@@ -143,7 +143,7 @@
 	select rev_no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	  from ( select
 	    ]]>
-	    	/*+INDEX_DESC(review pk_review ) */
+	    	/*+INDEX_DESC(review review_rev_no_pk ) */
 	    <![CDATA[	
  		rownum rn, r.rev_no, mate_no,mate_activity, title, writer, content, regdate, replycnt, likecnt, hit, thumbnail
 	      from review r inner join review_heart rl
@@ -168,7 +168,7 @@
 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
 	  from ( select
 	    ]]>
-	    	/*+INDEX_DESC(mate pk_mate) */
+	    	/*+INDEX_DESC(mate mate_mate_no_pk) */
 	    <![CDATA[	
  		rownum rn, m.mate_no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
  		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
@@ -276,7 +276,7 @@
 		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
 	  from ( select
 	  
-	  ]]> /*+INDEX_DESC(mate pk_mate ) */
+	  ]]> /*+INDEX_DESC(mate mate_mate_no_pk ) */
 	  <![CDATA[
  		rownum rn, mate_no, activityname, writer, meetingtime, meetingplace,meetingdate, peoplenum,peoplemaxnum,
  		 regdate,regular,image,to_char(meetingdate,'dy') dayofweek,content,likecnt,replycnt
