@@ -15,8 +15,7 @@ public class ReportVO {
 	private String user_id;
 	private String report_user_id;
 	private String report_mate_id;
-	private int cnt;
 	private Long mate_reply_id;
-	
-	
+	private String regdate;
+	private int regular;
 }

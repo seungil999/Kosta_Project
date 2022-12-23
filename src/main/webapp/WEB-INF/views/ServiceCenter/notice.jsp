@@ -132,6 +132,9 @@ A:link,A:visited,A:active,A:hover {
     text-align: left;
     
 }
+body{
+	font-family: 'Yeon Sung', cursive;
+}
 
 
 </style>

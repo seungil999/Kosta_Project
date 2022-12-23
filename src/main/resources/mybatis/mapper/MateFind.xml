@@ -166,8 +166,8 @@
 	</select>
 	
 	<insert id="report">
-		insert into report (report_no,report_type,report_content,mate_no,report_writer)
-		values(seq_report_no.nextval,#{report_type},TRIM(both ',' from #{report_content}),#{mate_no},#{report_writer})
+		insert into report (report_no,report_type,report_content,mate_no,report_writer,regdate)
+		values(seq_report_no.nextval,#{report_type},TRIM(both ',' from #{report_content}),#{mate_no},#{report_writer},sysdate)
 	</insert>
 	
 	<select id="reportChk" resultType="Integer">
@@ -183,7 +183,7 @@
 	</select>
 	
 	<insert id="repReport">
-	insert into report (report_no,report_type,report_writer,report_content,mate_reply_id)
-	values(seq_report_no.nextval,#{report_type},#{report_writer},TRIM(both ',' from #{r_report_content}),#{mate_reply_id})
+	insert into report (report_no,report_type,report_writer,report_content,mate_reply_id,regdate)
+	values(seq_report_no.nextval,#{report_type},#{report_writer},TRIM(both ',' from #{r_report_content}),#{mate_reply_id},sysdate)
 	</insert>
 </mapper>		

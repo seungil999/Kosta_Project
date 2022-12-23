@@ -14,7 +14,11 @@ body{
 </style>
 
 <body>
-<div class="review-title" style="margin-top:50px; margin-left: 400px;">자유게시판</div> 
+<div style="width:1000px;margin: 0 auto;">
+	<div class="flashOrRegular">
+		<h2 style="margin-left:-70; margin-bottom:50;">자유게시판</h2>
+	</div>
+</div> 
 	
 	<div class="review_main" style="width:1150px; margin-top: 10px;">
 		<br><br>
@@ -57,8 +61,10 @@ body{
 			<c:forEach items="${replyList}" var="replyList">
 				<li  class='replyList' style="list-style: none">
 					<div>
+					<c:if test="${userVO.id eq replyList.writer}">
 						<button type="button" id="rembtn" class="replyDeleteBtn" data-frno="${replyList.frno}">삭제</button>
 						<button type="button" id="rembtn" class="replyUpdateBtn" data-frno="${replyList.frno}" style="margin-right:2px;">수정</button>
+					</c:if>
 					</div>
 					<div class='header'><strong class= 'primary-font'>${replyList.writer}</strong>
 					

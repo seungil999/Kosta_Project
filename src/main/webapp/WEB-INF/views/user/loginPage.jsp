@@ -207,13 +207,11 @@ body {
 
 
 		<div class="txtb ">
-			<input type="text" id="id" name="id" value=""> <span
-				data-placeholder="아이디를 입력해주세요"></span>
+			<input type="text" id="id" name="id" value="" placeholder="아이디를 입력해주세요">
 		</div>
 
 		<div class="txtb">
-			<input type="password" id="pwd" name="pwd" value=""> <span
-				data-placeholder="비밀번호를 입력해주세요"></span>
+			<input type="password" id="pwd" name="pwd" value="" placeholder="비밀번호를 입력해주세요">
 		</div>
 		
 		<input type="submit" class="logbtn" value="로그인">

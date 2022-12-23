@@ -5,14 +5,44 @@
 <mapper namespace="com.kosta.jupjup.dao.AdminReportDAO">
 
 
-	<!-- 01. 검색 결과 개수 / 페이징 처리를 위함 -->
-	<select id="userTotalCount" resultType="int">
+	<!-- 01. 검색 결과 개수 / 페이징 처리를 위함  -->
+	<select id="reportTotalCount" resultType="int"  >
 		  <![CDATA[
-				select count(*) from users where 1=1 ]]>
+				select count(*) from users 
+		  ]]>  
+	 <choose>
+			<when test="filter == 'all'.toString()">
+				WHERE  1=1
+			</when>
+			<when test="filter == '가입'.toString()">
+				WHERE  status = '가입'
+			</when>
+			<when test="filter == '탈퇴'.toString()">
+				WHERE  status = '탈퇴'
+			</when>
+						
+	</choose>
 	</select>
+	
+<!-- 
+select  m.regular as "정기/번개 카테고리", c.report_type as "모임신고1,댓글신고2",m.user_id "신고글 글쓴이" ,c.report_writer as "신고자",  c.report_content as "신고내용",c.regdate as "신고 등록일"
+from (SELECT R.*
+        FROM MATE M , REPORT R
+        WHERE M.MATE_NO = R.MATE_NO
+      ) c ,mate m 
+where c.mate_no = m.mate_no
+order by c.regdate desc;
 
-	<select id="selectReport" resultType="com.kosta.jupjup.vo.ReportVO" >
-		select * from mate m   ,report r where m.mate_no = r.mate_no
+ -->
+
+	<select id="selectReport" resultType="com.kosta.jupjup.vo.ReportVO" parameterType="com.kosta.jupjup.vo.ReportVO" >
+		select  m.regular , c.report_type ,m.user_id , c.report_writer ,  c.report_content, c.regdate 
+			from (	SELECT R.*
+					FROM MATE M , REPORT R
+        			WHERE M.MATE_NO = R.MATE_NO
+      		) c ,mate m 
+			where c.mate_no = m.mate_no
+			order by c.regdate desc
 	</select>
 
 </mapper>

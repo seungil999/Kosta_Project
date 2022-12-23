@@ -11,7 +11,7 @@ import com.kosta.jupjup.vo.ReportVO;
 public interface AdminReportService {
 
 	// 01. 조회 결과수
-	int countTotal(Criteria cri);
+	int reportTotalCount(Criteria cri);
 	
-	List<ReportVO> SearchList( );
+	List<ReportVO> reportList( );
 }

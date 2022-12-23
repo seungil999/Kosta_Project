@@ -160,7 +160,7 @@ function userDelete(){
          <!-- Float links to the right. Hide them on small screens -->
          <li class="w3-right w3-hide-small"> 
          <a href="/admin/main/list" class="w3-left">사용자 홈페이지로</a> 
-         <a href="" class="w3-left w3-margin-right">접속 종료</a></li>
+         <a href="/user/logout" class="w3-left w3-margin-right">접속 종료</a></li>
       </ul>
    </div>
 <!-- navbar end -->
@@ -178,7 +178,7 @@ function userDelete(){
       <a class="nav-link " data-bs-toggle="tab" href="/admin/search/main"><a href="/admin/search/main" class="btn">&nbsp;회원 검색&nbsp;</a></a>
     </li>
      <li class="nav-item">
-      <a class="nav-link active" data-bs-toggle="tab" ><a href="/admin/report/main" class="btn">&nbsp;<b>신고 내역 확인&nbsp;</b></a></a>
+      <a class="nav-link active" data-bs-toggle="tab" ><a href="/admin/report/list" class="btn">&nbsp;<b>신고 내역 확인&nbsp;</b></a></a>
     </li>
     
      <li class="nav-item">
@@ -198,40 +198,7 @@ function userDelete(){
   	<h3>신고 내역 확인</h3>
 	</div>
 	
-<!-- 검색 -->
-  <div class="search-container" >
-     <br>  
-         <form id="searchForm" action="/admin/search/list" method="get">
-         <table>
-            <tr>
-         <td><button type="button" class="btn btn-success">
- 				 Count <span class="badge bg-dark">${total}</span>
-			</button></td>
-            <td>
-            <select name='type' id='type' class='form-select form-select' style="width: 100px;">
-               <option value="ID"  class="lang-option"
-                  <c:out value="${pageMaker.cri.type eq 'ID'?'selected':''}"/>>아이디</option>
-               <option value="NICK" class="lang-option"
-                  <c:out value="${pageMaker.cri.type eq 'NICK'?'selected':''}"/>>닉네임</option>
-               <option value="UNAME" class="lang-option"
-                  <c:out value="${pageMaker.cri.type eq 'UNAME'?'selected':''}"/>>이름</option>
-            </select>
-            </td>
-            <td>
-                <input type="text" class="form-control" name="keyword" id="keyword" placeholder="검색어를 입력해주세요" style="width: 200px;"
-               value='<c:out value="${pageMaker.cri.keyword}"/>' /> 
-            <input  type="hidden" type="number" name="pageNum" value='<c:out value="${pageMaker.cri.pageNum}"/>' /> 
-            <input  type="hidden" type="number" name="amount" value='<c:out value="${pageMaker.cri.amount}"/>' /> 
-            
-            </td>
-            <td>
-               <button class="btn btn-success" id="searchBtn">찾기</button>
-            </td>
-            </tr>
-         </table>
-         </form>  
-   </div> 
- <!-- 검색 end --> 
+
     
          
     <!--  검색 결과에 따라 페이징 처리를 하기 위함. -->   
@@ -257,11 +224,11 @@ function userDelete(){
         <th><input type="checkbox" id="allChk" class="chk"></input></th>
          <th>번호</th>
         <th>카테고리</th>
-        <th>글쓴이</th>
-        <th>작성자</th> 
+        <th>신고자</th>
+        <th>원글작성자</th> 
         <th>신고내용</th>
-        <th>신고일</th>
-        <th>비고</th>
+        <th>타입</th>
+        <th>날짜</th>
       </tr>
     </thead>
     
@@ -272,12 +239,19 @@ function userDelete(){
              <tr>
                	<th><input type="checkbox" id="allChk" class="chk" name="chk" value="${reportlist.report_no}"></input></th>
               	<th>${idx.count}</th>
-               	<th>${reportlist.reltype}</th>
-        		<th>${reportlist.writer}</th>
-        		<th>${reportlist.report_type}</th>
+               	<th>
+               	<c:if test="${reportlist.regular eq 0}">번개</c:if>
+        		<c:if test="${reportlist.regular eq 1}">정기</c:if>
+        		</th>
+        		<th>${reportlist.report_writer}</th>
+        		<th>${reportlist.user_id}</th>
+        		<th>${reportlist.report_content}</th>
+        		<th>
+        		<c:if test="${reportlist.report_type eq 1}">활동</c:if>
+        		<c:if test="${reportlist.report_type eq 2}">댓글</c:if>
+        		</th>
         		<th>${reportlist.regdate}</th>
-        		<th> <button type="button" class="btn btn-sm btn-outline-success modify"  data-bs-toggle="modal" data-bs-target="#${reportlist.id}" 
-        		data-id="${reportlist.id}" data-name="${reportlist.username}" data-nick="${reportlist.nickname}" data-pwd="${reportlist.pwd}" data-email="${reportlist.email}"  >회원 수정</button> </th>
+        		 
       		</tr>
      		</c:forEach>
     </tbody>
@@ -361,63 +335,6 @@ function userDelete(){
   </div>
 </div><!-- modal end -->
 
-
-<!-- The Modal / 회원 수정 -->
- <c:forEach items="${reportlist}" var="reportlist" varStatus="idx">
-<div class="modal fade" id="${reportlist.id}">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">회원 수정</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body">
-        <form class="updateForm" action="/admin/search/list/update" method="post">
-			<!--   -->
-			<input type="hidden" id="id" value="${reportlist.id}" name="id" />
-			   <br>
-                  <div class="form-group">
-                     <label for="username">이름:</label> <input type="text"
-                         class="form-control" id="username" name="username" value="" placeholder="${reportlist.username}">
-                  </div>
-                  <br>
-                  <div class="form-group">
-                     <label for="nickname">닉네임:</label> <input type="text"
-                       class="form-control" id="nickname" name="nickname" value="" placeholder="${reportlist.nickname}">
-                  </div>
-                  <br>
-                  <div class="form-group">
-                     <label for="pwd">비밀번호 :</label> <input type="text"
-                         class="form-control" id="pwd" name="pwd"  value="" placeholder="${reportlist.pwd}">
-                  </div>
-                  <br>
-                  <div class="form-group">
-                  <label for="email">이메일:</label> <input type="text"
-                      class="form-control" id="email" name="email"  value="" placeholder="${reportlist.email}">
-                  </div>
-                  <br>
-                 
-                 
-            
-                  <br>
-                      <button type="submit" id="updateMem" class="btn btn-outline-success"  style="float:right;">수정</button> 
-                      
-           			
-               </form>
-      </div>
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div> </c:forEach>  <!-- modal end -->
 
 </div></div>
 

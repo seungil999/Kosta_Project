@@ -23,7 +23,7 @@
 							regdate like '%'||#{keyword}||'%'
 						</when>
 						<when test="type == 'A'.toString()">
-							activityname like '%'||#{keyword}||'%'
+							mate_activity like '%'||#{keyword}||'%'
 						</when>
 						
 					</choose>
@@ -106,7 +106,7 @@
 	</update>
 	
 	<select id="getActivityName" resultType="String" >
-		select activityname from mate where mate_no=#{mate_no}
+		select mate_activity from mate where mate_no=#{mate_no}
 	</select>
 	
 </mapper>		

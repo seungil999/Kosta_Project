@@ -102,6 +102,9 @@ A:link,A:visited,A:active,A:hover {
     font-size: 15px;
     text-align: left;
 }
+body{
+	font-family: 'Yeon Sung', cursive;
+}
 </style>
 <body>
 	<div class="scmain">

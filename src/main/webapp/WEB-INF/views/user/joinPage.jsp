@@ -154,9 +154,10 @@ width: 100%; height: 55px; border: 1px solid #dadada;padding: 17px; border-radiu
     			success: function(data){
     				if(data == "Y"){
     					alert("회원가입이 완료되었습니다.");	
-    					location.href="/"
+    					location.href="/user/loginPage"
     				}else{
     					alert("회원가입에 실패하였습니다.");
+    					location.href="redirect:/user/joinPage"
     				}
     			},
     			error: function(data){
@@ -249,12 +250,15 @@ width: 100%; height: 55px; border: 1px solid #dadada;padding: 17px; border-radiu
     			contentType : "application/json",
     			data : userId,
     			success : function(data) {
-    				console.log(data);
+    				
 					if(data == 0){ // 사용가능
-						$("#id").attr("readonly", true); // 리드온리 속성지정
+				//		$("#id").attr("readonly", true); // 리드온리 속성지정
 						$("#result").html("사용가능한 아이디 입니다");
+					    $("#result").css({"color": "green"});
+						
 					} else { // 중복
 						$("#result").html("중복된 아이디입니다");
+						$("#result").css({"color": "red"});
 					}
     				
     			},
@@ -284,10 +288,12 @@ width: 100%; height: 55px; border: 1px solid #dadada;padding: 17px; border-radiu
     			success : function(data) {
     				
 					if(data == 0){ // 사용가능
-						$("#nickname").attr("readonly", true); // 리드온리 속성지정
+						// $("#nickname").attr("readonly", true); // 리드온리 속성지정
 						$("#result2").html("사용가능한 닉네임 입니다");
+						$("#result2").css({"color": "green"});
 					} else { // 중복
 						$("#result2").html("중복된 닉네임입니다");
+						$("#result2").css({"color": "red"});
 					}
     				
     			},

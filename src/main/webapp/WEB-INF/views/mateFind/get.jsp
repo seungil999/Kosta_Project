@@ -251,7 +251,7 @@ body{
        
         
         <br><br><br>
-        <button data-oper='list' class="uploadBtn">목록</button>
+        <button data-oper='list' class="uploadBtn" style="margin-top:20;">목록</button>
         <br><br>
       
       

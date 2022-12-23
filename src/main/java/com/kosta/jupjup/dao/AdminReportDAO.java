@@ -13,7 +13,7 @@ public interface AdminReportDAO {
 	
 	List<ReportVO> selectReport( );
 	
-	int userTotalCount(Criteria cri);
+	int reportTotalCount(Criteria cri);
 	
 	
 }

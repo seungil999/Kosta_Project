@@ -74,7 +74,7 @@ body, .find{
 		<span class="titleInfo">${review.title} <span style="color:#42DF2B; font-size:14px;">[${review.replycnt}]</span></span></a>
 		<span class="date">${review.regdate }</span>
 		<br>
-		<div class="content">${review.content }</div>
+		
 		<div class="content">작성자:${review.writer}</div>
 		<div class="content">조회 ${review.hit} 좋아요 ${review.likecnt }</div>
 		<div class="content" style="color:#42df2b; font-weight:bold;">모임명:${review.mate_activity}</div>
@@ -259,8 +259,8 @@ $(document) .ready(function() {
 			function typeChange(){
 				$(".content").each(function (index, item){
 					var content = $(item).html();
-					if(content.length>40){
-					content=content.substring(0,40);
+					if(content.length>50){
+					content=content.substring(0,50);
 					$(item).html(content+"...");
 					}
 				});

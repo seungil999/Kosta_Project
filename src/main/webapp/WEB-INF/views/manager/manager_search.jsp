@@ -160,7 +160,7 @@ function userDelete(){
          <!-- Float links to the right. Hide them on small screens -->
          <li class="w3-right w3-hide-small"> 
          <a href="/main" class="w3-left">사용자 홈페이지로</a> 
-         <a href="" class="w3-left w3-margin-right">접속 종료</a></li>
+         <a href="/user/logout" class="w3-left w3-margin-right">접속 종료</a></li>
       </ul>
    </div>
 <!-- navbar end -->
@@ -181,7 +181,7 @@ function userDelete(){
       <a class="nav-link active" data-bs-toggle="tab" href="/admin/search/main"><a href="/admin/search/main" class="btn">&nbsp;<b>회원 검색&nbsp;</b></a></a>
     </li>
      <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="tab" ><a href="/admin/report/main" class="btn">&nbsp;신고 내역 확인&nbsp;</a></a>
+      <a class="nav-link" data-bs-toggle="tab" ><a href="/admin/report/list" class="btn">&nbsp;신고 내역 확인&nbsp;</a></a>
     </li>
      <li class="nav-item">
       <a class="nav-link" data-bs-toggle="tab" ><a href="/admin/write/main" class="btn">&nbsp;공지사항&nbsp;</a></a>

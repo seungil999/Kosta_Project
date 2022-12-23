@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kosta.jupjup.dao.UserDao;
 import com.kosta.jupjup.service.AdminLoginService;
 import com.kosta.jupjup.service.UserService;
 import com.kosta.jupjup.vo.ManagerVO;
@@ -31,7 +32,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-@RequestMapping("/user/*")
+@RequestMapping("user/*")
 public class UserController {
 
 
@@ -48,7 +49,7 @@ public class UserController {
 
 	// 중복처리메서드
 	@ResponseBody
-	@PostMapping("/idCheck")
+	@PostMapping(value = "/idCheck")
 	public int idCheck(@RequestBody String id) {
 		System.out.println("***id :" + id);
 
@@ -77,14 +78,28 @@ public class UserController {
 	public String JoinForm(UserVO vo, RedirectAttributes RA) {
 		System.out.println("***가입폼에서 받아온 정보");
 		System.out.println(vo.toString());
-		int result = userService.join(vo);
-		if (result == 1) { // 가입성공
-			RA.addFlashAttribute("msg", "가입을 축하합니다.");
-		} else {// 가입실패
+		System.out.println(vo.getNickname());
+		System.out.println(vo.getId());
+		
+		if(userService.idCheck(vo.getId())== 1 || userService.nicknameCheck(vo.getNickname())== 1) {
 			RA.addFlashAttribute("msg", "가입실패. 다시 시도하세요");
-
+			return "/user/joinPage";
+		}else{
+			userService.join(vo);
+			RA.addFlashAttribute("msg", "가입을 축하합니다.");
+			return "/user/loginPage";
 		}
-		return "redirect:/user/loginPage";
+		
+		/*
+		if (userService.join(vo) == 1) { // 가입성공
+			userService.join(vo);
+			RA.addFlashAttribute("msg", "가입을 축하합니다.");
+			return "/user/loginPage";
+		} else  {// 가입실패
+			RA.addFlashAttribute("msg", "가입실패. 다시 시도하세요");
+			return "/user/joinpage";
+		}*/
+		
 	}
 
 	// 로그인화면
@@ -103,7 +118,7 @@ public class UserController {
 	      System.out.println(ManagerVO);
 	      System.out.println("로그인 정보 : "+userVO);
 	      System.out.println("관리자 정보 : "+ManagerVO);
-	      //관리자 로그인
+	      
 	      if (ManagerVO != null) {
 	         System.out.println("관리자!");
 	         session.setAttribute("ManagerVO", ManagerVO);
@@ -111,7 +126,7 @@ public class UserController {
 	      } else if(userVO != null) {
 	         System.out.println("일반유저!");
 	         session.setAttribute("userVO", userVO);
-	         return "redirect:/";
+	         return "main";
 	      } else {
 	         model.addAttribute("msg","로그인 실패, 아이디 비밀번호를 확인하세요.");
 	         return "user/loginPage";
@@ -175,7 +190,7 @@ public class UserController {
 		public Map<String, Object> findId(String email) throws FindException{
 			Map<String, Object> map = new HashMap<>();
 			String id ;
-			System.out.println(email);
+
 			try {
 				id = userService.selectFindId(email);
 				

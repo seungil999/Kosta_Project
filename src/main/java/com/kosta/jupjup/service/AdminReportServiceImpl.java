@@ -16,13 +16,13 @@ public class AdminReportServiceImpl implements AdminReportService {
 	AdminReportDAO adminReportDAO;
 	
 	@Override
-	public int countTotal(Criteria cri) {
+	public int reportTotalCount(Criteria cri) {
 		// TODO Auto-generated method stub
-		return adminReportDAO.userTotalCount(cri);
+		return adminReportDAO.reportTotalCount(cri);
 	}
 
 	@Override
-	public List<ReportVO> SearchList( ) {
+	public List<ReportVO> reportList( ) {
 		// TODO Auto-generated method stub
 		return adminReportDAO.selectReport();
 	}

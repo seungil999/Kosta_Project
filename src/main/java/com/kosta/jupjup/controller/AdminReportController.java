@@ -42,10 +42,12 @@ public class AdminReportController {
 		HttpSession session = request.getSession();
 		session.getAttribute("ManagerVO");
 		
-		int total = adminReportService.countTotal(cri); // 페이징을 위한 검색 후 총 갯수 
-		model.addAttribute("total",total); // 검색 카운트용 
+		System.out.println(adminReportService.reportList());
+		// 총 검색 수 
+		int total = adminReportService.reportTotalCount(cri);
+		model.addAttribute("total",total);  
 		
-		model.addAttribute("reportlist",adminReportService.SearchList());
+		model.addAttribute("reportlist",adminReportService.reportList());
 		return "manager/manager_report";
 
 	}

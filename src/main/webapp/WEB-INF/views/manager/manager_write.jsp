@@ -63,7 +63,7 @@ $(document).ready(function(){
          <!-- Float links to the right. Hide them on small screens -->
          <li class="w3-right w3-hide-small"> 
          <a href="/main" class="w3-left">사용자 홈페이지로</a> 
-         <a href="/main" class="w3-left w3-margin-right">접속 종료</a></li>
+         <a href="/user/logout" class="w3-left w3-margin-right">접속 종료</a></li>
       </ul>
    </div>
 <!-- navbar end -->
