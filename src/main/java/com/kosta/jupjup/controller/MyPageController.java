@@ -95,8 +95,15 @@ public class MyPageController {
 		return "/mypage/likeReview";
 	}
 	@GetMapping("/likeRecom")
-	public String likeRecom() { 
-		
+	public String likeRecom(Model model,Criteria cri) { 
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		  
+		model.addAttribute("list", service.getLikeRecom(cri,vo.getId())); 
+		  
+		  
+		int total = service.getLikeRecomTotal(vo.getId());
+		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "/mypage/likeRecom";
 	}
 	
@@ -114,8 +121,15 @@ public class MyPageController {
 		  return "/mypage/mate";  
 		  }
 	@GetMapping("/free")
-	public String free() { 
-		
+	public String free(Criteria cri, Model model) { 
+		HttpSession session = request.getSession();
+		UserVO vo = (UserVO) session.getAttribute("userVO");
+		  
+		model.addAttribute("list", service.getFreeList(cri,vo.getId())); 
+		  
+		  
+		int total = service.getFreeTotal(vo.getId());
+		model.addAttribute("pageMaker", new PageVO(cri, total));
 		return "/mypage/free";
 	}
 	@GetMapping("/review")

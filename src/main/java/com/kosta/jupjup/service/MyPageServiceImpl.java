@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kosta.jupjup.dao.MyPageDAO;
 import com.kosta.jupjup.paging.Criteria;
+import com.kosta.jupjup.vo.BoardVO;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.ReviewVO;
@@ -175,6 +176,33 @@ public class MyPageServiceImpl implements MyPageService{
 	public List<MateVO> getWriteMateList(Criteria cri,String id) {
 
 		return dao.getWriteMateList(cri, id);
+	}
+
+
+	@Override
+	public int getFreeTotal(String id) {
+
+		return dao.getFreeTotal(id);
+	}
+
+	@Override
+	public List<BoardVO> getFreeList(Criteria cri, String id) {
+		
+		return dao.getFreeList(cri,id);
+	}
+
+
+	@Override
+	public int getLikeRecomTotal(String id) {
+
+		return dao.getLikeRecomTotal(id);
+	}
+
+
+	@Override
+	public List<MateVO> getLikeRecom(Criteria cri, String id) {
+		
+		return dao.getLikeRecom(cri,id);
 	}
 
 }

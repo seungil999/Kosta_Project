@@ -9,7 +9,7 @@ public class RecommendVO {
 	private String recname; // 관광지
 	private String address; // 주소
 	private String simpledesc; // 자원소개
-
+	private int rec_no;	//번호
 	private String user_id;
 	
 /*

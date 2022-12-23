@@ -20,7 +20,7 @@ import com.kosta.jupjup.interceptor.LoginCheckInterceptor;
 				.excludePathPatterns("/","/main", 
 						"/matefind/list", "/user/loginPage","/user/joinPage" ,"/user/finduserId" , "/user/findPassword"
 						,"/review/list","/matefind/**","/review/**","/reviewReplies/**","/Mate/**","/replies/**","/reviewLike/**","/like/**"
-						,"/board/**","/matejoin/**"
+						,"/board/**","/matejoin/**","/MainDetail","/get"
 						,"/resources/**","/user/css/**","/user/kakao","/user/**"
 						,"/ServiceCenter/" ,"/admin/main/**","/admin/search/**","/admin/report/**","/admin/write/**","/admin/question/**");
 			

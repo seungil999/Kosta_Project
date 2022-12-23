@@ -428,14 +428,14 @@ h1 {
 				.click(
 						function() {
 							
-							//클릭 시 버튼 삭제
-							$('.uploadBtn').hide();
-							$(img).hide();
-							
 							var formData = new FormData();
 							var inputFile = $("input[type='file']");
 							var files = inputFile[0].files;
-
+							if(files.length!=0){
+								//클릭 시 버튼 삭제
+								$('.uploadBtn').hide();
+								$(img).hide();
+							}
 							for (var i = 0; i < files.length; i++) {
 								console.log(files[i]);
 								formData.append("uploadFiles", files[i]);

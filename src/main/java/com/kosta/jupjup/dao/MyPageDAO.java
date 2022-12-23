@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.kosta.jupjup.paging.Criteria;
+import com.kosta.jupjup.vo.BoardVO;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.ReviewVO;
@@ -33,6 +34,10 @@ public interface MyPageDAO {
 	
 	public List<ReviewVO> getReviewList(@Param("cri")Criteria cri,@Param("id") String id);
 	
+	public int getFreeTotal(String id);
+	
+	public List<BoardVO> getFreeList(@Param("cri")Criteria cri,@Param("id") String id);
+	
 	public Integer getLikeReviewTotal(String id);
 	
 	public List<ReviewVO> getLikeReview(@Param("cri")Criteria cri,@Param("id") String id);
@@ -40,6 +45,10 @@ public interface MyPageDAO {
 	public Integer getLikeActivityTotal(String id);
 	
 	public List<MateVO> getLikeActivity(@Param("cri")Criteria cri,@Param("id") String id);
+	
+	public Integer getLikeRecomTotal(String id);
+	
+	public List<MateVO> getLikeRecom(@Param("cri")Criteria cri,@Param("id") String id);
 	
 	public int userUpdate(UserVO vo);
 	

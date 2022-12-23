@@ -3,6 +3,7 @@ package com.kosta.jupjup.service;
 import java.util.List;
 
 import com.kosta.jupjup.paging.Criteria;
+import com.kosta.jupjup.vo.BoardVO;
 import com.kosta.jupjup.vo.MateJoinVO;
 import com.kosta.jupjup.vo.MateVO;
 import com.kosta.jupjup.vo.ReviewVO;
@@ -28,6 +29,10 @@ public interface MyPageService {
 	
 	public List<ReviewVO> getReviewList(Criteria cri, String id);
 	
+	int getFreeTotal(String id);
+	
+	public List<BoardVO> getFreeList(Criteria cri, String id);
+	
 	int getLikeReviewTotal(String id);
 	
 	public List<ReviewVO> getLikeReivew(Criteria cri, String id);
@@ -35,6 +40,10 @@ public interface MyPageService {
 	int getLikeActivityTotal(String id);
 	
 	public List<MateVO> getLikeActivity(Criteria cri, String id);
+	
+	int getLikeRecomTotal(String id);
+	
+	public List<MateVO> getLikeRecom(Criteria cri, String id);
 
 	int userUpdate(UserVO vo);
 	
