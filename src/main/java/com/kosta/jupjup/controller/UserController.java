@@ -103,7 +103,7 @@ public class UserController {
 	      System.out.println(ManagerVO);
 	      System.out.println("로그인 정보 : "+userVO);
 	      System.out.println("관리자 정보 : "+ManagerVO);
-	      
+	      //관리자 로그인
 	      if (ManagerVO != null) {
 	         System.out.println("관리자!");
 	         session.setAttribute("ManagerVO", ManagerVO);
