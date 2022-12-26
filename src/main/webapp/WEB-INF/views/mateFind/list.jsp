@@ -136,10 +136,11 @@ body , #matefind{
                             </div>
                             <div class="blog_content">
                                <h2 class="mate-title"><a class='move title' href="${mate.mate_no}">활동명:${mate.activityname }
-                                </a><c:if test="${mate.report_count > 0}">
+                                </a>
+                                <!--<c:if test="${mate.report_count > 0}">
                                 	<span class="help-tip"><img class="help-tip" src="/resources/img/caution.png">
                                 		<p>신고가 누적된 활동</p>
-                                	</span></c:if></h2>
+                                	</span></c:if>--></h2>
                                 <div class="expert">
                                     <div class="left-side text-left">
                                         <p class="left_side">

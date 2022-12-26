@@ -205,7 +205,7 @@ body{
 <br>
  <div class="mate-container">
 	<div class="mate-bold">${mate.activityname}</div><br>
-	<c:if test="${mate.report_count > 0}"><span style="color:#ff5151; float:right;">신고가 누적된 활동입니다.</span></c:if>
+	<!--<c:if test="${mate.report_count > 0}"><span style="color:#ff5151; float:right;">신고가 누적된 활동입니다.</span></c:if>-->
 	<div class="mate-normal">${mate.writer}</div>
 	<hr>
 	
