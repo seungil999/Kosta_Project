@@ -18,8 +18,7 @@ body{
 	font-family: 'Yeon Sung', cursive;
 }
 .modal{
-bs-modal-margin: 1.75rem;
-    bs-modal-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+	background-color:rgba(0,0,0,0.1) !important;
     }
 </style>
 </head>

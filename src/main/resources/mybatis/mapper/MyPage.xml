@@ -132,9 +132,9 @@
 	
 	<select id="getFreeTotal" resultType="int">
     <![CDATA[ 
-	  select count(*) from mate where user_id=#{id} and
+	  select count(*) from free where user_id=#{id} and
 	  	
-	 	 mate_no > 0  
+	 	 fno > 0  
 	   ]]>
   </select>
   

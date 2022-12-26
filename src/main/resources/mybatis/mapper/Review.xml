@@ -106,7 +106,7 @@
 	</update>
 	
 	<select id="getActivityName" resultType="String" >
-		select mate_activity from mate where mate_no=#{mate_no}
+		select activityname from mate where mate_no=#{mate_no}
 	</select>
 	
 </mapper>		

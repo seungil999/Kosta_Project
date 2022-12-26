@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kosta.jupjup.service.AdminLoginService;
+import com.kosta.jupjup.service.MyPageService;
 import com.kosta.jupjup.service.UserService;
 import com.kosta.jupjup.vo.ManagerVO;
 import com.kosta.jupjup.vo.UserVO;
@@ -40,6 +41,8 @@ public class UserController {
    
    @Autowired
    private AdminLoginService adminLoginService;
+   @Autowired
+	private MyPageService mypageService; 
 
    // 가입화면
    @GetMapping("/joinPage")
@@ -120,7 +123,20 @@ public class UserController {
          System.out.println(ManagerVO);
          System.out.println("로그인 정보 : "+userVO);
          System.out.println("관리자 정보 : "+ManagerVO);
-         
+       //로그인처리
+ 	 		  
+ 		if (userVO != null) { //로그인성공
+ 		 int total = mypageService.getEndActivityTotal(vo.getId());
+ 		 int grade=1;
+ 		 if(total/10 >=2) {
+ 		    grade=3;
+ 		 }else if(total/10 ==1) {
+ 		    grade=2;
+ 		 }else {
+ 		  	grade=1;
+ 		 }
+ 		  mypageService.updateGrade(userVO.getId(),grade);
+ 		}
          if (ManagerVO != null) {
             System.out.println("관리자!");
             session.setAttribute("ManagerVO", ManagerVO);
@@ -134,6 +150,7 @@ public class UserController {
             return "user/loginPage";
          }
       }
+    
       
     // 로그아웃
     
