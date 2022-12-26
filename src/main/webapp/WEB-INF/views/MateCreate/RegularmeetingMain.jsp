@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%-- 2. 정기모임 모집 --%>
+<%-- 2. 예약활동 모집 --%>
 <title>ZupgoZupup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
 <%@ include file="/WEB-INF/views/includes/header.jsp"%>
@@ -133,7 +133,7 @@ h1 {
 <body>
 	<div class="matecreate">
 	
-		<h1>정기모임</h1>
+		<h1>예약활동</h1>
 		<div class="matecreate_container">
 			<form action="/Mate/matecreate" method="post"
 				onsubmit="typeChange();">

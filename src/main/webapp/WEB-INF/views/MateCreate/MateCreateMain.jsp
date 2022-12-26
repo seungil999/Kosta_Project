@@ -59,8 +59,8 @@ body{
 <body>
 	<div class="mcmb">
 		<div class="mcm">
-			<a id="flashMate" href="/Mate/Flashgathering">번개모임 &#127939;</a>
-			<a id="regularMate" href="/Mate/Regularmeeting" >정기모임 &#128694;</a>
+			<a id="flashMate" href="/Mate/Flashgathering">번개활동 &#127939;</a>
+			<a id="regularMate" href="/Mate/Regularmeeting" >예약활동 &#128694;</a>
 		</div>
 	</div>
 </body>

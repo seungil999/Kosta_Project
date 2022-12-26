@@ -191,7 +191,7 @@ body{
 <div class="flashOrRegular">
 <c:choose>
 	<c:when test="${mate.regular eq '1'}">
-		<h2>정기활동</h2>
+		<h2>예약활동</h2>
 	</c:when>
 	<c:otherwise>
 		<h2>번개활동</h2>
