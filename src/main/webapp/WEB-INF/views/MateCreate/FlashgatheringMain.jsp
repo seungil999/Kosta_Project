@@ -132,7 +132,7 @@ h1 {
 
 <body>
 	<div class="matecreate">
-		<h1>번개모임</h1>
+		<h1>번개활동</h1>
 		<div class="matecreate_container">
 			<form action="/Mate/matecreate" method="post"
 				onsubmit="typeChange(); ">

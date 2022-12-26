@@ -251,7 +251,7 @@ p {
 								<img src="/resources/img/tuhnder.png" alt="">
 								<div class="counter_text">
 									<span class="counter">${time.flash }</span>
-									<p>이번 달 번개</p>
+									<p>이번 달 번개활동</p>
 								</div>
 							</div>
 						</div>
@@ -264,7 +264,7 @@ p {
 									<span class=""></span>
 									<!-- 수정중 달 단위 -->
 									<span class="counter">${time.regular }</span>
-									<p>이번 달 정기</p>
+									<p>이번 달 예약활동</p>
 								</div>
 							</div>
 						</div>
