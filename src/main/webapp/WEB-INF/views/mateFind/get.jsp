@@ -372,7 +372,7 @@ body{
       
 			
 			<c:when test="${join eq 0 ||join eq null && userVO ne null}">
-			<p style="text-align:center;">모임에 참여중인 인원만 댓글 작성이 가능합니다!</p>
+			<p style="text-align:center;"><span style="color:#42df2b;">모임에 참여중인 인원</span>만 댓글 작성이 가능합니다!</p>
 			</c:when>
 			<c:otherwise>
 			</c:otherwise>

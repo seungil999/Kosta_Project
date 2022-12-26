@@ -219,7 +219,7 @@ body {
           	<!-- 카카오 로그인 -->      
           <a class="p-2" href="https://kauth.kakao.com/oauth/authorize?client_id=c54da2a5f03d3994996f0e79f1f70ae2&redirect_uri=http://localhost:8088/user/kakao&response_type=code">      
 	
-		<img src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png" style="height:60px">
+		<img src="${pageContext.request.contextPath}/resources/img/kakao_login_medium_narrow.png" style="height:50px; width:100%; margin-top:10px; margin-bottom:10px;">
       		</a>
 
 
