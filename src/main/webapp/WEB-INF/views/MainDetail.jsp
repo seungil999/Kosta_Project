@@ -79,7 +79,7 @@
 				</div>
 				<br> 
 				<input type="button" class="Btn" value="메이트찾기" onclick="location.href='/matefind/list'">&nbsp;&nbsp;&nbsp;
-				<a href="/Mate/MateCreateMain" onclick="loginChk();" id="create" class="Btn">메이트모집</a>
+				<a onclick="loginChk();" id="create" class="Btn">메이트모집</a>
 			</div>
 		</div>
 	</div>
@@ -88,7 +88,9 @@
 	function loginChk(){
 		if(${userVO.id == null}){
 			alert("로그인 후 이용 가능한 서비스입니다.");
-			$("#create").attr("href", "/user/loginPage")
+			location.href="/user/loginPage";
+		}else{
+			location.href="/Mate/MateCreateMain";
 		}
 	}
 </script>
