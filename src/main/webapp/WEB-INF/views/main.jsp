@@ -277,7 +277,7 @@ p {
 	</section>
 	<!--end of counter-->
 
-	<!-- 맨 위로 가기 -->
+	<!-- 상단 이동 버튼 back to top -->
 	<a href="#" id="back-to-top" title="Back to top">&uarr;</a>
 
 

@@ -699,6 +699,7 @@ $(document).ready(function() {
 	  
 });
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript">
 function like_func(){
 	const clickLikeUrl = "/resources/img/꽉찬하트.png";
@@ -776,7 +777,7 @@ $(document).on("click", "#matejoin", function(e){
 			 $('#matejoin').html('참여하기');		
 			 window.location.reload();
 			}else if(result.result=='full'){
-				alert("인원수가 가득찼습니다.");
+				swal("참여불가", " 이미 인원 수 가 가득찬 활동입니다.\n 다른 활동을 참여하거나, 활동을 모집해주세요.", "error");
 				return false;
 			}else if(count == 0){
 				
