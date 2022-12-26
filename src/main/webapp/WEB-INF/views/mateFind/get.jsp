@@ -12,6 +12,9 @@
 body{
 	font-family: 'Yeon Sung', cursive;
 }
+.report_reply{
+	font-family: 'Noto Sans KR', sans-serif;
+}
 </style>
 
 <!--   모달창   -->
@@ -497,7 +500,7 @@ $(document).ready(function() {
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="욕설 또는 혐오발언"> 욕설 또는 혐오발언</label></div>'
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="동일내용의 댓글 반복(도배)"> 동일내용의 댓글 반복(도배)</label></div>'
 				 	rep+='<div><label><input type="radio" class="r_r_check" name="r_report_content" value="음란성 또는 청소년에게 부적합한 내용"> 음란성 또는 청소년에게 부적합한 내용</label></div>'
-				 	rep+='<div style="text-align:center;"><button type="button" class="r_cancel '+list[i].mate_reply_no+'">취&nbsp;&nbsp;소</button><input type="submit" class="report_reply" data-mate_reply_no="'+list[i].mate_reply_no+'" value="제&nbsp;&nbsp;출"></div></div></form></div>'
+				 	rep+='<div style="text-align:center;"><button type="button" class="r_cancel '+list[i].mate_reply_no+'">취&nbsp;&nbsp;소</button><input type="submit" class="report_reply" data-mate_reply_no="'+list[i].mate_reply_no+'" style="color:white; border:none; "  value="제&nbsp;&nbsp;출"></div></div></form></div>'
 				}
 			}
 			reportMod.html(rep);
