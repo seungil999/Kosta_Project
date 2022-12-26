@@ -17,9 +17,7 @@
 body{
 	font-family: 'Yeon Sung', cursive;
 }
-.modal{
-	background-color:rgba(0,0,0,0.1) !important;
-    }
+
 </style>
 </head>
 
@@ -128,7 +126,13 @@ $(document) .ready(function() {
 			
 		});
 		
-		
+$(".btn-primary").on("click", function(e){
+	
+	document.getElementsByClassName("modal-backdrop")[0].style.backgroundColor= 'rgba(0,0,0,0.1)';
+	
+   
+   
+});		
 		
 </script>
 <c:forEach items="${list}" var="recom">

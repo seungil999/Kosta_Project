@@ -309,6 +309,6 @@ $.support.cors = true;
 	</div>
 	<!-- 모달창 닫기 -->
 </body>
-
-
+<br><br><br><br>
+<%@ include file="/WEB-INF/views/includes/footer.jsp" %>
 </html>

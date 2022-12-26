@@ -240,6 +240,7 @@ $(document)
 			    	$(".paginate_button a").on("click",
 							function(e) {
 
+			    		
 								e.preventDefault();
 								actionForm.attr("action",
 								"/matefind/list");
