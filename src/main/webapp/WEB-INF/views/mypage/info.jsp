@@ -24,9 +24,9 @@ body{
 		  <div style="text-align:center; padding:2px;"><span style="color:#42df2b">${userVO.nickname}</span> 님 반가워요!</div>
 		  
 		  <div style="text-align:center; padding:2px;">${userVO.nickname} 님의 총 활동시간은 
-		  <span class="info-time">${time.HH}</span>시간 <span class="info-time">${time.MM}</span>분 이에요.</div>
+		  <span class="info-time" style="color:#42df2b;">${time.HH}</span>시간 <span class="info-time" style="color:#42df2b;">${time.MM}</span>분 이에요.</div>
 		  
-		  <div style="text-align:center; padding:2px;" >${userVO.nickname} 님의 플로깅 완료 횟수는 총 <span class="info-time"> ${time.count}</span>회에요.</div>
+		  <div style="text-align:center; padding:2px;" >${userVO.nickname} 님의 플로깅 완료 횟수는 총 <span class="info-time" style="color:#42df2b;"> ${time.count}</span>회에요.</div>
 		  <c:choose>
 		  	<c:when test="${time.grade>=3}">
   		<div style="margin-left:291px;">
