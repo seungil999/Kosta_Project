@@ -1,0 +1,1048 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 목요일-12월-29-2022   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence SEQ_FIND_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_FIND_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_FREEREPLY_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_FREEREPLY_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_FREE_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_FREE_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_MATEREPLY_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_MATEREPLY_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 61 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_MATE_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_MATE_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_NOTICE_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_NOTICE_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_QUESTIONS_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_QUESTIONS_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_REC_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_REC_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_REPORT_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_REPORT_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_REVIEWREPLY_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_REVIEWREPLY_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 41 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_REVIEW_NO
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "KOSTA_PRJ"."SEQ_REVIEW_NO"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE ;
+--------------------------------------------------------
+--  DDL for Table FREE
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."FREE" 
+   (	"FNO" NUMBER, 
+	"TITLE" VARCHAR2(100 BYTE), 
+	"CONTENT" VARCHAR2(2000 BYTE), 
+	"WRITER" VARCHAR2(100 BYTE), 
+	"REGDATE" DATE DEFAULT SYSDATE, 
+	"HIT" NUMBER DEFAULT 0, 
+	"USER_ID" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table FREE_REPLY
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."FREE_REPLY" 
+   (	"FRNO" NUMBER, 
+	"FNO" NUMBER, 
+	"CONTENT" VARCHAR2(1000 BYTE), 
+	"WRITER" VARCHAR2(50 BYTE), 
+	"REGDATE" DATE DEFAULT SYSDATE, 
+	"USER_ID" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table MANAGER
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."MANAGER" 
+   (	"ID" VARCHAR2(10 BYTE), 
+	"PWD" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table MATE
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."MATE" 
+   (	"MATE_NO" NUMBER(4,0), 
+	"ACTIVITYNAME" VARCHAR2(200 BYTE), 
+	"WRITER" VARCHAR2(20 BYTE), 
+	"MEETINGPLACE" VARCHAR2(100 BYTE), 
+	"MEETINGTIME" NUMBER, 
+	"MEETINGDATE" DATE, 
+	"PEOPLENUM" NUMBER(3,0) DEFAULT 1, 
+	"PEOPLEMAXNUM" NUMBER(3,0), 
+	"STARTZONE" VARCHAR2(100 BYTE), 
+	"ENDZONE" VARCHAR2(100 BYTE), 
+	"STARTTIME" NUMBER(10,0), 
+	"ENDTIME" NUMBER(10,0), 
+	"CONTENT" VARCHAR2(2000 BYTE), 
+	"REGDATE" DATE DEFAULT SYSDATE, 
+	"UPDATEDATE" DATE DEFAULT SYSDATE, 
+	"REPLYCNT" NUMBER(4,0) DEFAULT 0, 
+	"IMAGE" VARCHAR2(1000 BYTE), 
+	"REGULAR" NUMBER(1,0), 
+	"LIKECNT" NUMBER DEFAULT 0, 
+	"TIMESTAMP" TIMESTAMP (6), 
+	"USER_ID" VARCHAR2(30 BYTE), 
+	"REPORT_COUNT" NUMBER DEFAULT 0
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table MATE_HEART
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."MATE_HEART" 
+   (	"LNO" NUMBER(10,0) DEFAULT 0, 
+	"MATE_NO" NUMBER(10,0), 
+	"USER_ID" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table MATE_JOIN
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."MATE_JOIN" 
+   (	"MATE_NO" NUMBER(10,0), 
+	"USER_ID" VARCHAR2(30 BYTE), 
+	"JNO" NUMBER(10,0) DEFAULT 0
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+   COMMENT ON COLUMN "KOSTA_PRJ"."MATE_JOIN"."JNO" IS '0=불참,1=참여중';
+--------------------------------------------------------
+--  DDL for Table MATE_REPLY
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."MATE_REPLY" 
+   (	"MATE_REPLY_NO" NUMBER(10,0), 
+	"MATE_NO" NUMBER(10,0), 
+	"REPLY" VARCHAR2(1000 BYTE), 
+	"REPLYER" VARCHAR2(50 BYTE), 
+	"REPLYDATE" DATE DEFAULT SYSDATE, 
+	"UPDATEDATE" DATE DEFAULT SYSDATE -- 수정일 
+, 
+	"USER_ID" VARCHAR2(200 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table NOTICE
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."NOTICE" 
+   (	"NNO" NUMBER(4,0), 
+	"NAME" VARCHAR2(500 BYTE), 
+	"CONTENT" VARCHAR2(2000 BYTE), 
+	"REGDATE" DATE DEFAULT SYSDATE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table QUESTIONS
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."QUESTIONS" 
+   (	"QNO" NUMBER(4,0), 
+	"NAME" VARCHAR2(500 BYTE), 
+	"CONTENT" VARCHAR2(2000 BYTE), 
+	"REGDATE" DATE DEFAULT SYSDATE, 
+	"VALUE" NUMBER(1,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+   COMMENT ON COLUMN "KOSTA_PRJ"."QUESTIONS"."VALUE" IS '계정=0,도용=1,모임=2,이용=3,게시판=4';
+--------------------------------------------------------
+--  DDL for Table RECOMMEND
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."RECOMMEND" 
+   (	"REC_NO" NUMBER, 
+	"RECNAME" VARCHAR2(100 BYTE), 
+	"ADDRESS" VARCHAR2(100 BYTE), 
+	"SIMPLEDESC" VARCHAR2(3000 BYTE), 
+	"USER_ID" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table REPORT
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."REPORT" 
+   (	"REPORT_NO" NUMBER, 
+	"REPORT_TYPE" NUMBER(1,0), 
+	"REPORT_CONTENT" VARCHAR2(1200 BYTE), 
+	"MATE_NO" NUMBER, 
+	"REPORT_USER_ID" VARCHAR2(100 BYTE), 
+	"REPORT_WRITER" VARCHAR2(200 BYTE), 
+	"REPORT_MATE_ID" VARCHAR2(100 BYTE), 
+	"MATE_REPLY_ID" NUMBER, 
+	"REGDATE" DATE
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table REVIEW
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."REVIEW" 
+   (	"REV_NO" NUMBER(4,0), 
+	"MATE_NO" NUMBER(4,0), 
+	"MATE_ACTIVITY" VARCHAR2(500 BYTE), 
+	"WRITER" VARCHAR2(50 BYTE), 
+	"TITLE" VARCHAR2(500 BYTE), 
+	"CONTENT" VARCHAR2(4000 BYTE), 
+	"REGDATE" DATE DEFAULT SYSDATE, 
+	"REPLYCNT" NUMBER(4,0) DEFAULT 0, 
+	"LIKECNT" NUMBER DEFAULT 0, 
+	"HIT" NUMBER DEFAULT 0, 
+	"THUMBNAIL" VARCHAR2(2000 BYTE), 
+	"USER_ID" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table REVIEW_HEART
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."REVIEW_HEART" 
+   (	"LNO" NUMBER(10,0) DEFAULT 0, 
+	"REV_NO" NUMBER(10,0), 
+	"USER_ID" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table REVIEW_REPLY
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."REVIEW_REPLY" 
+   (	"REV_RNO" NUMBER(10,0), 
+	"REV_NO" NUMBER(10,0), 
+	"REPLY" VARCHAR2(1000 BYTE), 
+	"REPLYER" VARCHAR2(50 BYTE), 
+	"REPLYDATE" DATE DEFAULT SYSDATE, 
+	"UPDATEDATE" DATE DEFAULT SYSDATE, 
+	"USER_ID" VARCHAR2(30 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Table USERS
+--------------------------------------------------------
+
+  CREATE TABLE "KOSTA_PRJ"."USERS" 
+   (	"ID" VARCHAR2(30 BYTE), 
+	"USERNAME" VARCHAR2(30 BYTE), 
+	"NICKNAME" VARCHAR2(30 BYTE), 
+	"PWD" VARCHAR2(30 BYTE), 
+	"EMAIL" VARCHAR2(50 BYTE), 
+	"GENDER" VARCHAR2(10 BYTE), 
+	"STATUS" VARCHAR2(10 BYTE) DEFAULT '가입', 
+	"REGDATE" DATE DEFAULT SYSDATE, 
+	"UPDATEDATE" DATE DEFAULT SYSDATE, 
+	"DELETEDATE" DATE DEFAULT SYSDATE, 
+	"PROFILE" VARCHAR2(1000 BYTE), 
+	"PROFILE_OPEN" VARCHAR2(1 BYTE), 
+	"GRADE" NUMBER DEFAULT 1
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+
+   COMMENT ON COLUMN "KOSTA_PRJ"."USERS"."GRADE" IS '1=기본회원,2=열심회원,3=우등회원';
+REM INSERTING into KOSTA_PRJ.FREE
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.FREE (FNO,TITLE,CONTENT,WRITER,REGDATE,HIT,USER_ID) values (1,'dd','<p>dd</p>
+','asdf',to_date('22/12/20','RR/MM/DD'),54,'asdf');
+Insert into KOSTA_PRJ.FREE (FNO,TITLE,CONTENT,WRITER,REGDATE,HIT,USER_ID) values (3,'dd','<p>dd</p>
+','asdf',to_date('22/12/22','RR/MM/DD'),0,'asdf');
+Insert into KOSTA_PRJ.FREE (FNO,TITLE,CONTENT,WRITER,REGDATE,HIT,USER_ID) values (4,'asdfasfd','<p>safddsaf</p>
+','asdf',to_date('22/12/22','RR/MM/DD'),1,'asdf');
+Insert into KOSTA_PRJ.FREE (FNO,TITLE,CONTENT,WRITER,REGDATE,HIT,USER_ID) values (6,'asdf','<p>asdf</p>
+','asdf',to_date('22/12/22','RR/MM/DD'),37,'asdf');
+REM INSERTING into KOSTA_PRJ.FREE_REPLY
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.FREE_REPLY (FRNO,FNO,CONTENT,WRITER,REGDATE,USER_ID) values (6,1,'safdadsf','asdf',to_date('22/12/22','RR/MM/DD'),null);
+Insert into KOSTA_PRJ.FREE_REPLY (FRNO,FNO,CONTENT,WRITER,REGDATE,USER_ID) values (4,1,'asdfsadf','asdf',to_date('22/12/22','RR/MM/DD'),null);
+Insert into KOSTA_PRJ.FREE_REPLY (FRNO,FNO,CONTENT,WRITER,REGDATE,USER_ID) values (5,1,'asdfdsaf','asdf',to_date('22/12/22','RR/MM/DD'),null);
+Insert into KOSTA_PRJ.FREE_REPLY (FRNO,FNO,CONTENT,WRITER,REGDATE,USER_ID) values (7,1,'fewfqfew','asdf',to_date('22/12/22','RR/MM/DD'),null);
+Insert into KOSTA_PRJ.FREE_REPLY (FRNO,FNO,CONTENT,WRITER,REGDATE,USER_ID) values (9,6,'dd','asdf',to_date('22/12/23','RR/MM/DD'),null);
+REM INSERTING into KOSTA_PRJ.MANAGER
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.MANAGER (ID,PWD) values ('admin','1234');
+REM INSERTING into KOSTA_PRJ.MATE
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (17,'모임ㅋ','asdf','서울 동대문구 안암로 6',1105,to_date('22/11/10','RR/MM/DD'),1,2,'서울 성북구 안암로 5','서울 금천구 안양천동자전거길 891',1106,1206,'dd',to_date('22/12/21','RR/MM/DD'),to_date('22/12/21','RR/MM/DD'),0,'기본이미지.jpg',0,0,to_timestamp('22/12/21 11:05:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (8,'모임ㅋ','asdf','서울 성북구 아리랑로 3',2040,to_date('22/12/20','RR/MM/DD'),1,2,'서울 동대문구 안암로 6','서울 금천구 안양천동자전거길 965',2141,2341,'dd',to_date('22/12/20','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),0,'20221220%2Fs_585ad55a-8d68-4aee-a8cf-b5cce1bfc1fe_closed.png',0,0,to_timestamp('22/12/20 20:40:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (10,'모임ㅋ','asdf','서울 금천구 안양천동자전거길 891',2242,to_date('22/10/21','RR/MM/DD'),1,2,'서울 동대문구 안암로 6','서울 금천구 안양천동자전거길 965',2141,2341,'dd',to_date('22/12/20','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),0,'기본이미지.jpg',0,0,to_timestamp('22/12/20 22:42:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (11,'모임ㅋdddd','asdf','서울 중랑구 양원역로4길 10',2242,to_date('22/06/16','RR/MM/DD'),1,2,'서울 동대문구 안암로 6','서울 금천구 안양천동자전거길 965',2141,2341,'dd',to_date('22/12/20','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),0,'20221220%2Fs_10d25d36-9613-40dc-a71e-85461d6dfd8d_closed.png',0,0,to_timestamp('22/12/20 22:42:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (12,'모임ㅋ','asdf','경기 고양시 덕양구 소원로 272',1250,to_date('22/04/29','RR/MM/DD'),1,2,'경기 고양시 덕양구 소원로 272','경기 고양시 덕양구 소원로 272',1250,1352,'dd',to_date('22/12/20','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),0,'20221220%2Fs_45e12991-5e31-4c80-a73d-0a44e057c057_thumb_1668155841_7383.jpg',1,0,to_timestamp('22/12/20 12:50:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (13,'모임ㅋ','asdf','경기 고양시 덕양구 소원로 272',1250,to_date('22/03/10','RR/MM/DD'),1,2,'경기 고양시 덕양구 소원로 272','경기 고양시 덕양구 소원로 272',1250,1352,'dd',to_date('22/12/20','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),0,'20221220%2Fs_d7e7ce11-adb2-480a-9677-458123603085_thumb_1668155841_7383.jpg',1,0,to_timestamp('22/12/20 12:50:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (22,'test','asdf','서울 성북구 안암로 5',2151,to_date('22/11/10','RR/MM/DD'),2,2,'서울 도봉구 삼양로 532','서울 양천구 안양천로 663',1148,148,'dd',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),1,'기본이미지.jpg',0,0,to_timestamp('22/12/22 21:51:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (23,'zxcv1','asdf','서울 성북구 안암로 5',2151,to_date('22/10/14','RR/MM/DD'),2,2,'서울 도봉구 삼양로 532','서울 양천구 안양천로 663',1148,148,'dd',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),1,'20221222%2Fs_53d5d753-3ce9-47b8-a89c-5ae764d70005_thumb_1668155841_7383.jpg',0,0,to_timestamp('22/12/22 21:51:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (24,'sadf','asdf','서울 금천구 안양천동자전거길 965',1146,to_date('22/11/17','RR/MM/DD'),1,2,'서울 성동구 아차산로 2-1','서울 성북구 안암로 5',50,1151,'dd',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),0,'기본이미지.jpg',1,0,to_timestamp('22/12/22 11:46:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (25,'모임ㅋ','asdf','서울 성북구 안암로 5',1428,to_date('22/09/09','RR/MM/DD'),1,2,'서울 성북구 안암로 5','서울 금천구 안양천동자전거길 965',1428,1528,'dd',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),0,'기본이미지.jpg',0,0,to_timestamp('22/12/22 14:28:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (26,'모임ㅋ','asdf','서울 양천구 안양천로 669',1731,to_date('22/08/18','RR/MM/DD'),1,2,'서울 성북구 안암로 5','서울 금천구 안양천동자전거길 965',1428,1528,'dd',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),1,'기본이미지.jpg',0,0,to_timestamp('22/12/22 17:31:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (27,'내가 그린 Green SEOUL Plogging','asdf','서울 동대문구 안암로 6',1754,to_date('22/12/23','RR/MM/DD'),1,5,'길상사','한옥 북촌마을',1854,1958,'안돼! 서울이 오염되고 있어..!
+청와대 개방 이후 관광객들로 붐비고 방문객들이 증가하는 만큼 서울의 쓰레기도 증가했어요!
+서울 중심부 거리의 깨끗함을 유지하기 위해서는 플로깅이 필요한 지금!',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_4654ff25-a438-4aa8-80e2-741c2cc4a64f_thumb_1668179461_4979.png',0,0,to_timestamp('22/12/23 17:54:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (30,'바닷길을 따라 섬으로 ! 명선도 플로깅','asdf','서울 강북구 도봉로37길 32',1800,to_date('22/12/23','RR/MM/DD'),1,2,'명선교','진하해수욕장',2201,1202,'진하해수욕장을 거쳐 바닷길을 따라 섬으로 들어가는 명선도 플로깅코스입니다.',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_7b881f56-1331-41d4-b68f-b730f2c5985a_thumb_1668155841_7383.jpg',0,0,to_timestamp('22/12/23 18:00:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (31,'어린이대공원 플로깅 & 비건빵집 코스','asdf','서울 광진구 능동로 지하 210',1004,to_date('23/12/23','RR/MM/DD'),1,10,'서울 광진구 능동로 지하 210','경기 가평군 가평읍 중앙로 10',1104,104,'자매의 플로깅 코스 추천! 자원봉사도 하고 단풍구경도 하러 어린이대공원에 갔어요. 아름다운 풍경 속에 숨은 쓰레기를 보물찾기하듯이 찾는 재미가 있었답니다.
+열심히 쓰레기를 주워서 배고파지면 공원의 정문/후문/구의문으로부터 10분 거리의 비건 빵집에 고고!',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_b5f01e2d-03a7-4cd2-bb80-4b0892811d98_thumb_1668190883_1752.jpg',1,0,to_timestamp('23/12/23 10:04:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (34,'뿌리공원 플로깅','asdf','경기 연천군 청산면 순욱길 17',1004,to_date('23/07/23','RR/MM/DD'),1,2,'경기 양평군 강상면 느티나무1길 4','경기 양평군 강상면 느티나무1길 10',1104,104,'안녕하세요, 대전대신고등학교 학생들입니다!
+저희는 이번에 저희 학교에서 시작하여서 뿌리공원까지 이어지는 플로깅 활동을 기획하였는데요.
+평소에 학교에서 친구들과 플로깅을 하다가 저희 학교의 많은 학생들과 또 지역주민께서 같이 참여할 수 있는 플로깅을 만들자는 목적에서 코스를 기획하여 보았습니다.
+가족이나 친구들과 함께 걸으며 우리 지역도 깨끗해지는 모습을 기대합니다!',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_87a95bfc-6566-4955-91ef-db57ac3d7da8_thumb_1669855517_5390.jpg',1,0,to_timestamp('23/07/23 10:04:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (35,'플세권 용지공원 플로깅','asdf','경남 창원시 마산합포구 가포로 1',1010,to_date('23/06/23','RR/MM/DD'),1,7,'강원 영월군 남면 강원남로 681','강원 영월군 남면 담터길 3-7',1110,1210,'창원시 중심에 위치한 용지공원은 사계절 뛰어난 경관과 함께 예술작품을 감상할 수 있고, 밤이 되면 힙한 조명과 함께 음악분수, 포토스팟 등을 즐길 수 있습니다. 시민들의 최애♡용지공원에서 힐링 플로깅 함께 하시죠!',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_96b63483-2240-441a-ab8c-9a5c04a616fc_thumb_1668156949_4831.png',1,1,to_timestamp('23/06/23 10:10:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (36,'세계문화유산이 녹아있는 플로깅 코스','asdf','경기 남양주시 와부읍 경강로 864',2012,to_date('23/07/23','RR/MM/DD'),1,2,'서울 강서구 개화동로 424','경기 수원시 영통구 매여울로40번길 69',2118,2218,'최근 각종 드라마 촬영지로 나오면서 각광받고 있는 ''수원'' !
+팔달공원을 시작으로 창룡문까지 총 3.7km의 코스입니다.
+세계문화유산으로 지정된 수원화성부터 보물로 지정된 방화수류정까지 만나볼 수 있으며, 조선왕조 제22대 왕 정조의 원대한 꿈과 지극한 효심을 느낄 수 있는 코스입니다.
+플로깅 중간중간 다양한 제로웨이스트샵과 비건 음식점은 덤 !
+관광과 플로깅을 동시에 할 수 있는 곳을 찾으신다면 수원 플로깅 코스를 추천합니다 !',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),1,'20221223%2Fs_bba7fecf-469b-4a54-9ba3-2de9fae32a49_thumb_1668167571_2318.png',1,0,to_timestamp('23/07/23 20:12:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (37,'구성·마북 역사문화 플로깅','asdf','경기 용인시 기흥구 구성로 64-3',1321,to_date('23/07/23','RR/MM/DD'),2,6,'경기 용인시 기흥구 구교동로 84','경북 포항시 북구 신광면 마북길 221',1519,1619,'용인시 구성·마북 지역에 역사문화 자원이 있다는 사실 알고 계셨나요?
+도시재생 지역 내 무단투기로 몸살을 앓고 있는 구성·마북 지역 보호를 위해 청년들이 만든 역사문화 플로깅 코스를 소개합니다!
+걷기만 하는 플로깅은 이제 그만!
+역사문화 탐방, 동네 환경 개선, 도시 경관을 위해 다 함께 떠나볼까요? GO GO!',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_d434f8b6-12f9-4469-b2b9-b0bbb7b0eb15_thumb_1668146534_2819.png',1,0,to_timestamp('23/07/23 13:21:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (38,'금빛수로 플로깅','asdf','충북 음성군 금왕읍 금빛공원2길 2',2019,to_date('22/12/23','RR/MM/DD'),1,5,'장기 6공영주차장','무극제어린이공원',2120,2220,'경기 김포시에 위치한 ''라베니체''는 인공수로인 ''금빛수로''를 따라 조성된 상가거리이다.
+수로를 기준으로 양쪽에 상가들이 줄지어 자리하는 이곳은 먹을거리, 즐길거리, 볼거리가 다양한 곳이며
+특히, 노을이 지는 저녁 풍경이 이국적이라 젊은이 뿐만 아니라 가족 단위로 다양한 사람들이 이 곳을 즐겨찾는다.
+김포시에서 진행하는 다양한 행사와 버스킹 공연, 플리마켓을 즐길 수 있는 곳에서 산책도 하고, 쓰레기를 주으며 환경보호에도 참여해 보자.',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_17f1d6dd-b676-4aef-a586-d6c40e282e63_thumb_1668143184_8541.jpg',0,0,to_timestamp('22/12/23 20:19:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (39,'수선화가 아름다운 공곶이','asdf','서울 마포구 마포대로 지하 100',1832,to_date('22/12/23','RR/MM/DD'),1,5,'공곶이','예수선착장',2033,2333,'이면 수선화가 예쁘게 피어 있는 공곶이는 노부부가 가꾸어 놓은 아름다운 자연경관 입니다
+몽돌해변과 탁트인 바다전망이 좋아 둘레길을 탐방하는 즐거움이 있습니다',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_6dc6c8a9-7c29-4a9d-b9eb-adb428714e86_thumb_1668150639_1334.jpg',0,0,to_timestamp('22/12/23 18:32:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (40,'가포지구해양친수시설','asdf','경남 창원시 마산합포구 가포해안길 12',1745,to_date('22/12/23','RR/MM/DD'),2,2,'가포해안산책로','갈마천',1834,1934,'해안과 산, 바다가 만나는 곳 #가포해안산책로
+
+#가포 해안변공원 #해안전망대 #해안산책로',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),0,'20221223%2Fs_354c943c-16c2-451b-aba3-5bc0960c5120_thumb_1668154583_2449.jpg',0,0,to_timestamp('22/12/23 17:45:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (41,'제주 산지천 플로깅','asdf','제주특별자치도 서귀포시 가가로 14',35,to_date('24/06/23','RR/MM/DD'),2,20,'제주특별자치도 서귀포시 가가로 15','제주특별자치도 서귀포시 가가로 28-24',1435,1635,'제주 산지천 플로깅 코스를 소개합니다! ''산이 있는 땅에 흐르는 내''라는 뜻을 가진 산지천은 제주 올레 18코스의 시작점이기도 합니다. 산지천 용천수가 흐르는 길을 따라 제주의 자연을 만끽하며 플로깅을 하다보면 바쁜 일상 속 지쳐있던 마음도 회복될 거에요. 제주의 역사와 자연을 담은 제주민속자연사박물관, 남수각 하늘길 벽화거리, 산지천 올레18코스, 산짓물 공원으로 이루어진 산지천 플로깅 코스를 추천합니다.',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),6,'20221223%2Fs_57bc9c77-9e4e-4bd4-a8c2-5e3d62e1f08a_thumb_1668248158_4563.png',1,1,to_timestamp('24/06/23 00:35:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',1);
+Insert into KOSTA_PRJ.MATE (MATE_NO,ACTIVITYNAME,WRITER,MEETINGPLACE,MEETINGTIME,MEETINGDATE,PEOPLENUM,PEOPLEMAXNUM,STARTZONE,ENDZONE,STARTTIME,ENDTIME,CONTENT,REGDATE,UPDATEDATE,REPLYCNT,IMAGE,REGULAR,LIKECNT,TIMESTAMP,USER_ID,REPORT_COUNT) values (42,'도봉구 플로깅!','asdf','서울 도봉구 노해로 133',1837,to_date('22/12/23','RR/MM/DD'),2,2,'서울창포원','누원초등학교',1938,2138,'사람과 자연이 행복한 스마트시티, 한국 근현대사와 함께 하는 도봉구 플로깅 코스를 소개합니다.
+
+도봉산역 근처, 한국 근현대사의 역사의 기록과 흔적을 보유하며 자연친화적인 생태공원을 끼고 있는 플로깅 장소를 소개합니다. 군사시설인 방호시설을 예술문화공간으로, 한국 민주화의 산증인 고 김근태씨의 민주적 삶을 기록하고 있는 김근태기념도서관, 붓꽃 가득한 생태공원 창포원 등 도봉구 플로깅 코스로 떠나보아요.',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),2,'20221223%2Fs_b81602e7-bda2-4d28-9b3b-e7e3ccb36431_thumb_1668153667_3724.jpg',0,1,to_timestamp('22/12/23 18:37:00.000000000','RR/MM/DD HH24:MI:SSXFF'),'asdf',0);
+REM INSERTING into KOSTA_PRJ.MATE_HEART
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.MATE_HEART (LNO,MATE_NO,USER_ID) values (1,42,'asdf');
+Insert into KOSTA_PRJ.MATE_HEART (LNO,MATE_NO,USER_ID) values (1,35,'asdf');
+Insert into KOSTA_PRJ.MATE_HEART (LNO,MATE_NO,USER_ID) values (1,41,'zxcv');
+Insert into KOSTA_PRJ.MATE_HEART (LNO,MATE_NO,USER_ID) values (0,41,'asdf');
+REM INSERTING into KOSTA_PRJ.MATE_JOIN
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (42,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (42,'forsomeday97',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (17,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (41,'qwer',0);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (41,'zxcv',0);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (8,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (10,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (11,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (12,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (13,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (42,'zxcv',0);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (40,'zxcv',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (39,'zxcv',0);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (38,'zxcv',0);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (41,'1111',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (37,'qwer',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (22,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (23,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (24,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (25,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (26,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (23,'1111',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (22,'2222',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (27,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (36,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (30,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (31,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (34,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (35,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (37,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (38,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (39,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (40,'asdf',1);
+Insert into KOSTA_PRJ.MATE_JOIN (MATE_NO,USER_ID,JNO) values (41,'asdf',0);
+REM INSERTING into KOSTA_PRJ.MATE_REPLY
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (48,42,'댓글입니다ㅋㅋ!','asdf',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'asdf');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (53,41,'zxvzxcvㅇㅇ','zxcv',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'zxcv');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (51,41,'qwer','ㅋㄷㅋㄷ',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'qwer');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (49,42,'오늘갑니다ㅇㅎㅎ
+','asdf',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'asdf');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (45,26,'asdf','asdf',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),'asdf');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (46,23,'1111','1111',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),'1111');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (47,22,'sadfadsf','2222',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),'2222');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (52,41,'qwera','ㅋㄷㅋㄷ',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'qwer');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (54,41,'sdaffdsfad','zxcv',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'zxcv');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (55,41,'1111','1111',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'1111');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (56,41,'안ㄴ여하세요','zxcv',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'zxcv');
+Insert into KOSTA_PRJ.MATE_REPLY (MATE_REPLY_NO,MATE_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (57,36,'수정~!','asdf',to_date('22/12/28','RR/MM/DD'),to_date('22/12/28','RR/MM/DD'),'asdf');
+REM INSERTING into KOSTA_PRJ.NOTICE
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.NOTICE (NNO,NAME,CONTENT,REGDATE) values (4,'회원 가입 시 공지사항을 확인해주세요.','<p><img alt="" src="/review/ckImgSubmit?uid=2d76c97d-ba23-4ed2-a383-fa591b14295f&amp;fileName=logo2.png" style="height:222px; width:388px" /></p>
+
+<p>&nbsp;</p>
+
+<p>안녕하세요.</p>
+
+<p>ZupGoZupUp 입니다.</p>
+
+<p>?</p>
+
+<p>ZupGoZupUp 서비스에 적용되어 있는 공통 플랫폼의 timeout 오류로 인해</p>
+
+<p>금일 오전 &nbsp;메이트 찾기, 메이트 모집 및 일부 검색 페이지에 접속이 안 되거나, 정보 노출이 지연되는 장애가 발생했습니다.<br />
+?</p>
+
+<p>&middot; 장애시간 : 10:51~11:39</p>
+
+<p>&middot; 장애원인 : ZupGoZupUp서비스에 적용된 공통(컨테이너) 플랫폼 오동작</p>
+
+<p>?</p>
+
+<p>현재는 정상적으로 이용하실 수 있습니다.</p>
+
+<p>보다 안정적인 서비스 제공을 위해 철저하게 점검하고 보완하겠습니다.</p>
+
+<p>?</p>
+
+<p>다시 한번 이용에 불편을 드려 죄송합니다.</p>
+
+<p>ZupGoZupUp &nbsp;드림.</p>
+',to_date('22/12/23','RR/MM/DD'));
+Insert into KOSTA_PRJ.NOTICE (NNO,NAME,CONTENT,REGDATE) values (2,'회원등급제 기능이 추가되었습니다.','<p>회원등급제는 3단계로 구성되며, 활동을 10개 완료할 때 마다 등급이 1단계씩 올라갑니다.</p>
+
+<p>프로필을 열람할 때에도 등급이 같이 출력됩니다.</p>
+
+<p>환경을 위해 노력해주셔서 감사합니다.&nbsp;</p>
+',to_date('22/12/23','RR/MM/DD'));
+Insert into KOSTA_PRJ.NOTICE (NNO,NAME,CONTENT,REGDATE) values (3,'?9월 5일 오전 ZupGoZupUp 서비스 접속 오류에 대해 사과 말씀 드립니다.','<p>안녕하세요.</p>
+
+<p>ZupGoZupUp 입니다.</p>
+
+<p>?</p>
+
+<p>ZupGoZupUp 서비스에 적용되어 있는 공통 플랫폼의 timeout 오류로 인해</p>
+
+<p>금일 오전 &nbsp;메이트 찾기, 메이트 모집 및 일부 검색 페이지에 접속이 안 되거나, 정보 노출이 지연되는 장애가 발생했습니다.<br />
+?</p>
+
+<p>&middot; 장애시간 : 10:51~11:39</p>
+
+<p>&middot; 장애원인 : ZupGoZupUp서비스에 적용된 공통(컨테이너) 플랫폼 오동작</p>
+
+<p>?</p>
+
+<p>현재는 정상적으로 이용하실 수 있습니다.</p>
+
+<p>보다 안정적인 서비스 제공을 위해 철저하게 점검하고 보완하겠습니다.</p>
+
+<p>?</p>
+
+<p>다시 한번 이용에 불편을 드려 죄송합니다.</p>
+
+<p>ZupGoZupUp &nbsp;드림.</p>
+',to_date('22/12/23','RR/MM/DD'));
+REM INSERTING into KOSTA_PRJ.QUESTIONS
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (2,'일반 회원가입 방법','ZupGoZupUp 홈페이지에서 회원 가입 페이지로 접속하여 진행하실 수 있습니다.',to_date('22/12/23','RR/MM/DD'),0);
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (3,'SNS 로그인 방법','ZupGoZupUp 홈페이지에서 로그인 클릭 후, 하단에 카카오 로그인 클릭 후 진행하실 수 있습니다.',to_date('22/12/23','RR/MM/DD'),0);
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (4,'도용 발생 시 대처 방법','비밀번호 찾기 후, ZupGoZupUp만의 안전한 비밀번호로 변경 후 이용해 주세요.',to_date('22/12/23','RR/MM/DD'),1);
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (5,'요청하지 않은 인증문자 수신 시 대처 방법','타인이 회원가입 시 메일주소를 잘못 입력하여 인증메일이 발송되었을 수 있습니다.',to_date('22/12/23','RR/MM/DD'),1);
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (6,'번개모임이란?','참여인원 2인 ~ 6인의 당일의 플로깅만 진행이 가능한 모임입니다.',to_date('22/12/23','RR/MM/DD'),2);
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (7,'정기모임이란?','참여인원 2인 ~ 30인의 당일 및 이후의 날짜에도 플로깅이 가능한 모임입니다.',to_date('22/12/23','RR/MM/DD'),2);
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (8,'현재 온도가 안 보여요.','ZupGoZupUp에서는 이용자의 위치 값을 받아와서 현재 온도를 보여줍니다. 사이트에 위치 액세스를 허용해주세요.',to_date('22/12/23','RR/MM/DD'),3);
+Insert into KOSTA_PRJ.QUESTIONS (QNO,NAME,CONTENT,REGDATE,VALUE) values (9,'게시물 중단','ZupGoZupUp에서 중단 사유를 판단 후, 타당한 근거라면 게시물이 중단됩니다. 중단 사유는 추후 작성자에게 통보가 됩니다.',to_date('22/12/23','RR/MM/DD'),4);
+REM INSERTING into KOSTA_PRJ.RECOMMEND
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.RECOMMEND (REC_NO,RECNAME,ADDRESS,SIMPLEDESC,USER_ID) values (1,'로얄관광호텔','부산광역시 중구','< 개요 >
+
+
+
+로얄 관광호텔은 부산시의 중심 용두산 공원을 배경으로 용두산 기슭에 위치하고 있으며 파란 하늘과 푸른 바다의 송도 해안 일대가 내려다 보이는 전망 좋은 곳에 건립되어 남국의 정서가 풍기는 근대적 고층 건물이다. 호텔은 각종 시설을 완비하고 가장 번화한 광복동 일대의 상점가를 바로 앞에 두고 있어 비즈니스, 쇼핑에도 편리하며 관광지 코스로도 적합하다.
+
+
+
+< 유래 및 연혁 >
+
+
+
+ㅇ 1982. 03. 15 개관...이하 내용 생략...','asdf');
+Insert into KOSTA_PRJ.RECOMMEND (REC_NO,RECNAME,ADDRESS,SIMPLEDESC,USER_ID) values (2,'국립대구기상과학관','대구광역시 동구','기상과학관은 기상·기후, 기후변화 등에 대한 이해를 높이고 우리나라 기상과학의 역사와 발전과정을 한눈에 볼...이하 내용 생략...','asdf');
+REM INSERTING into KOSTA_PRJ.REPORT
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.REPORT (REPORT_NO,REPORT_TYPE,REPORT_CONTENT,MATE_NO,REPORT_USER_ID,REPORT_WRITER,REPORT_MATE_ID,MATE_REPLY_ID,REGDATE) values (28,1,'그냥기분이나빠요 ㅠㅠ',42,null,'qwer',null,null,to_date('22/12/23','RR/MM/DD'));
+Insert into KOSTA_PRJ.REPORT (REPORT_NO,REPORT_TYPE,REPORT_CONTENT,MATE_NO,REPORT_USER_ID,REPORT_WRITER,REPORT_MATE_ID,MATE_REPLY_ID,REGDATE) values (29,1,'음란성 또는 청소년에게 부적합한 내용',41,null,'qwer',null,null,to_date('22/12/23','RR/MM/DD'));
+Insert into KOSTA_PRJ.REPORT (REPORT_NO,REPORT_TYPE,REPORT_CONTENT,MATE_NO,REPORT_USER_ID,REPORT_WRITER,REPORT_MATE_ID,MATE_REPLY_ID,REGDATE) values (31,2,'동일내용의 댓글 반복(도배)',null,null,'zxcv',null,55,to_date('22/12/23','RR/MM/DD'));
+Insert into KOSTA_PRJ.REPORT (REPORT_NO,REPORT_TYPE,REPORT_CONTENT,MATE_NO,REPORT_USER_ID,REPORT_WRITER,REPORT_MATE_ID,MATE_REPLY_ID,REGDATE) values (32,1,'불순합니다.',41,null,'zxcv',null,null,to_date('22/12/23','RR/MM/DD'));
+Insert into KOSTA_PRJ.REPORT (REPORT_NO,REPORT_TYPE,REPORT_CONTENT,MATE_NO,REPORT_USER_ID,REPORT_WRITER,REPORT_MATE_ID,MATE_REPLY_ID,REGDATE) values (27,1,'기타사유',27,null,'qwer',null,null,to_date('22/12/23','RR/MM/DD'));
+REM INSERTING into KOSTA_PRJ.REVIEW
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.REVIEW (REV_NO,MATE_NO,MATE_ACTIVITY,WRITER,TITLE,CONTENT,REGDATE,REPLYCNT,LIKECNT,HIT,THUMBNAIL,USER_ID) values (1,8,'모임ㅋ','asdf','dddaaaaa','<p><img alt="" src="/review/ckImgSubmit?uid=fc6fa8e8-0c72-4b80-810b-338009df1a8a&amp;fileName=thumb_1668156949_4831.png" style="height:279px; width:458px" />dddaaaaaz</p>
+
+<p><img alt="" src="/review/ckImgSubmit?uid=03717443-c346-4245-8183-5360bb009b74&amp;fileName=replace.jpg" style="height:212px; width:238px" /><img alt="" src="/review/ckImgSubmit?uid=6bd5070a-4941-4899-a41f-34193853d076&amp;fileName=댕댕.jpg" style="height:123px; width:185px" /></p>
+',to_date('22/12/22','RR/MM/DD'),4,2,96,'<img alt="" src="/review/ckImgSubmit?uid=fc6fa8e8-0c72-4b80-810b-338009df1a8a&amp;fileName=thumb_1668156949_4831.png" style="height:279px; width:458px" />','asdf');
+Insert into KOSTA_PRJ.REVIEW (REV_NO,MATE_NO,MATE_ACTIVITY,WRITER,TITLE,CONTENT,REGDATE,REPLYCNT,LIKECNT,HIT,THUMBNAIL,USER_ID) values (4,8,'모임ㅋ','asdf','플로깅 후기!','<p><img alt="" src="/review/ckImgSubmit?uid=549f6716-0e67-4bdd-ba51-7d4bc152e353&amp;fileName=thumb_1668143184_8541.jpg" style="height:279px; width:458px" /></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>도봉산역 근처, 한국 근현대사의 역사의 기록과 흔적을 보유하며 자연친화적인 생태공원을 끼고 있는 플로깅 장소를 소개합니다.<br />
+<br />
+군사시설인 방호시설을 예술문화공간으로, 한국 민주화의 산증인 고 김근태씨의 민주적 삶을 기록하고 있는 김근태기념도서관,<br />
+<br />
+붓꽃 가득한 생태공원 창포원 등 도봉구 플로깅 코스로 떠나보아요.</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="/review/ckImgSubmit?uid=d4256ff8-6340-4ca6-9d64-22313f9e5fd2&amp;fileName=thumb_1668150639_1334.jpg" style="height:279px; width:458px" /></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>제일 먼저 가볼 곳은 김근태 기념도서관입니다.<br />
+<br />
+이 곳은 도서관과 기록관, 박물관의 역할을 하는 민주주의 인권 특화 도서관입니다.<br />
+<br />
+도봉산 역에서 340m 정도의 거리라서 도보로 10분 정도 걸립니다.<br />
+<br />
+김근태 기념도서관은 우리나라 민주주의 발전에 큰 족적을 남긴 고 김근태의 민주적 삶을 기록하고 있는 기록관과 인권 관련 책을<br />
+<br />
+포함한 도서를 소장하고 있는 도서관,<br />
+<br />
+그리고 입주작가의 전시실 등이 있습니다.</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="/review/ckImgSubmit?uid=3c5829d1-1bc1-4ba5-a299-a0245d0feba9&amp;fileName=thumb_1669855517_5390.jpg" style="height:279px; width:458px" /></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>민주, 인권, 평화와 김근태 선생의 어록을 이용한 도서 분류명이 눈에 띕니다.<br />
+<br />
+열람실은 &#39;생각곳&#39;이라고 칭하고,&nbsp;전시실은 &#39;기억곳&#39;으로 칭한 것도 특색있습니다.<br />
+<br />
+도서관은 건축상을 두 개나 받을 정도로 디자인과 구조면에서 탁월했습니다.<br />
+<br />
+공간을 낭비하는 곳이 하나도 없으면서 작은 공간조차 허투루 쓰지 않아서 인상적이었습니다.<br />
+<br />
+기록곳 1층에는 2022 인권기록가 양성프로그램 결과 전시회가 있었는데 동물권에 대한 기록내용이 전시되어 있어 인상적이었습니다.</p>
+',to_date('22/12/23','RR/MM/DD'),1,1,8,'<img alt="" src="/review/ckImgSubmit?uid=549f6716-0e67-4bdd-ba51-7d4bc152e353&amp;fileName=thumb_1668143184_8541.jpg" style="height:279px; width:458px" />','asdf');
+Insert into KOSTA_PRJ.REVIEW (REV_NO,MATE_NO,MATE_ACTIVITY,WRITER,TITLE,CONTENT,REGDATE,REPLYCNT,LIKECNT,HIT,THUMBNAIL,USER_ID) values (5,10,'모임ㅋ','asdf','안동 자전거 플로깅 후기~','<p>입구부터 벌써 주차되어있는 차량이 눈에 띄는데요.&nbsp;입구에는 쓰레기를 버릴수있는 봉투(분리수거구분이 안돼있는 건 아쉬워요)가 있고,&nbsp;흙먼지를 털어낼수 있는 에어컨프레셔가 있습니다<br />
+<br />
+모두 떠나요~&nbsp;출발~<br />
+&nbsp;</p>
+
+<p><br />
+<br />
+<br />
+<br />
+50m를 걸으니 강릉에 가장 먼저 봄이 오는 곳&nbsp;춘갑봉&nbsp;글자가 보입니다.<br />
+<br />
+그리고 열심히 걷다 보니 국화과식물&nbsp;구절초 자생지도 보이고요,</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="/review/ckImgSubmit?uid=53160104-0a8c-4133-8c16-ce7b5ad91bae&amp;fileName=thumb_1668155841_7383.jpg" style="height:279px; width:458px" /></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>춘갑봉서낭당은 포남동의 주산인 춘갑봉 정상에 위치한 이서낭당은&nbsp;300여년의 전통을 이어온 유서깊은 곳입니다.&nbsp;춘갑봉서당제 계원들이 매년 음역&nbsp;8일 중정일&nbsp;1시에 마을의 안녕과 풍년을 위해 정성껏 제를 올리고,&nbsp;제사를 지내는 곳은 조금만 올라가면 보입니다.<br />
+<br />
+여기서 쭉 내려가느냐 반대방향으로 가느냐인데 회장님의 안내로 다시 입구쪽을 향하고 맞은편길로 이동합니다.</p>
+
+<p>&nbsp;</p>
+
+<p><img alt="" src="/review/ckImgSubmit?uid=2ae11f92-07a2-4d67-b2e1-c42781cf9664&amp;fileName=thumb_1668154583_2449.jpg" style="height:279px; width:458px" /></p>
+
+<p>&nbsp;</p>
+
+<p>가는길에 보이는 대나무숲 뒤편은 춘란 자생지가 있다고 합니다.<br />
+<br />
+춘갑봉에서 가장 아픔다움 풍경을 볼 수 있는 곳!<br />
+&nbsp;</p>
+',to_date('22/12/23','RR/MM/DD'),0,0,7,'<img alt="" src="/review/ckImgSubmit?uid=53160104-0a8c-4133-8c16-ce7b5ad91bae&amp;fileName=thumb_1668155841_7383.jpg" style="height:279px; width:458px" />','asdf');
+Insert into KOSTA_PRJ.REVIEW (REV_NO,MATE_NO,MATE_ACTIVITY,WRITER,TITLE,CONTENT,REGDATE,REPLYCNT,LIKECNT,HIT,THUMBNAIL,USER_ID) values (6,17,'모임ㅋ','asdf','ㅋㅋ','<p>ㅎㅎㅎㅎ</p>
+',to_date('22/12/23','RR/MM/DD'),1,1,4,'<img src="/resources/img/logo2.png">','asdf');
+REM INSERTING into KOSTA_PRJ.REVIEW_HEART
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.REVIEW_HEART (LNO,REV_NO,USER_ID) values (1,1,'asdf');
+Insert into KOSTA_PRJ.REVIEW_HEART (LNO,REV_NO,USER_ID) values (1,4,'asdf');
+Insert into KOSTA_PRJ.REVIEW_HEART (LNO,REV_NO,USER_ID) values (1,1,'1234');
+Insert into KOSTA_PRJ.REVIEW_HEART (LNO,REV_NO,USER_ID) values (1,6,'asdf');
+Insert into KOSTA_PRJ.REVIEW_HEART (LNO,REV_NO,USER_ID) values (0,5,'qwer');
+REM INSERTING into KOSTA_PRJ.REVIEW_REPLY
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.REVIEW_REPLY (REV_RNO,REV_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (13,1,'dsafasdfafdsadfafd','asdf',to_date('22/12/21','RR/MM/DD'),to_date('22/12/21','RR/MM/DD'),'asdf');
+Insert into KOSTA_PRJ.REVIEW_REPLY (REV_RNO,REV_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (11,1,'asdf','asdf',to_date('22/12/21','RR/MM/DD'),to_date('22/12/21','RR/MM/DD'),'asdf');
+Insert into KOSTA_PRJ.REVIEW_REPLY (REV_RNO,REV_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (12,1,'asdfa','asdf',to_date('22/12/21','RR/MM/DD'),to_date('22/12/21','RR/MM/DD'),'asdf');
+Insert into KOSTA_PRJ.REVIEW_REPLY (REV_RNO,REV_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (20,1,'asfdzz','1234',to_date('22/12/21','RR/MM/DD'),to_date('22/12/21','RR/MM/DD'),'1234');
+Insert into KOSTA_PRJ.REVIEW_REPLY (REV_RNO,REV_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (21,4,'너무조아요~','asdf',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'asdf');
+Insert into KOSTA_PRJ.REVIEW_REPLY (REV_RNO,REV_NO,REPLY,REPLYER,REPLYDATE,UPDATEDATE,USER_ID) values (22,6,'dd','asdf',to_date('22/12/29','RR/MM/DD'),to_date('22/12/29','RR/MM/DD'),'asdf');
+REM INSERTING into KOSTA_PRJ.USERS
+SET DEFINE OFF;
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('asdf','asdf','asdf','asdf','asdf1@naver.com','man','가입',to_date('22/12/20','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),'20221221%2Fs_f62c2940-aad4-4ec3-9c7d-bad6e37214a2_thumb_1668155841_7383.jpg','Y',2);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('qwer','선일','ㅋㄷㅋㄷ','qwer','qwer@naver.com','woman','탈퇴',to_date('22/12/20','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),to_date('22/12/20','RR/MM/DD'),'20221222%2Fs_0b93fc23-16dd-4076-8035-ba2e12c2ae0e_replace.jpg','Y',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('4321','4321','4321','4321','forsomeday979797@naver.com','man','가입',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('forsomeday97','승일','승일','k+forsomeday97','forsomeday97@naver.com','male','가입',to_date('22/12/21','RR/MM/DD'),to_date('22/12/21','RR/MM/DD'),to_date('22/12/21','RR/MM/DD'),'기본이미지.jpg','1',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('zxcv','zxcv','zxcv','zxcv','forsomeday97@naver.com','man','가입',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('xcvb','xcvb','xcvb','xcvb','forsomeday97@naver.com','man','가입',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('1111','1111','1111','1111','forsomeday97@naver.com','man','가입',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),'20221223%2Fs_36f3c308-a29d-48f7-9aa7-c085ae890f46_%EB%8C%95%EB%8C%95.jpg','Y',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('2222','2222','2222','2222','forsomeday97@naver.com','man','가입',to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),to_date('22/12/22','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('aaaa','aaaa','aaaa','aaaa','forsomeday97@naver.com','woman','탈퇴',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),to_date('22/12/26','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('ssss','ssss','asdf','ssss','forsomeday97@naver.com','man','가입',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('dddd','dddd','asdf','dddd','forsomeday97@naver.com','man','가입',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('wwww','wwww','asdf','wwww','forsomeday97@naver.com','man','가입',to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),to_date('22/12/23','RR/MM/DD'),'기본프로필.png','N',1);
+Insert into KOSTA_PRJ.USERS (ID,USERNAME,NICKNAME,PWD,EMAIL,GENDER,STATUS,REGDATE,UPDATEDATE,DELETEDATE,PROFILE,PROFILE_OPEN,GRADE) values ('abcd','abcd','abcd','abcd','forsomeday97@naver.com','man','가입',to_date('22/12/26','RR/MM/DD'),to_date('22/12/26','RR/MM/DD'),to_date('22/12/26','RR/MM/DD'),'기본프로필.png','N',1);
+--------------------------------------------------------
+--  DDL for Index FRREP_FRNO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."FRREP_FRNO_PK" ON "KOSTA_PRJ"."FREE_REPLY" ("FRNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index RVREPLY_REV_RNO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."RVREPLY_REV_RNO_PK" ON "KOSTA_PRJ"."REVIEW_REPLY" ("REV_RNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index MRE_MATE_REPLY_NO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."MRE_MATE_REPLY_NO_PK" ON "KOSTA_PRJ"."MATE_REPLY" ("MATE_REPLY_NO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index REHRT_RNO_UID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."REHRT_RNO_UID_PK" ON "KOSTA_PRJ"."REVIEW_HEART" ("REV_NO", "USER_ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index NOTICE_NNO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."NOTICE_NNO_PK" ON "KOSTA_PRJ"."NOTICE" ("NNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index MG_MANAGER_ID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."MG_MANAGER_ID_PK" ON "KOSTA_PRJ"."MANAGER" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index MHRT_MNO_UID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."MHRT_MNO_UID_PK" ON "KOSTA_PRJ"."MATE_HEART" ("MATE_NO", "USER_ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index MATE_MATE_NO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."MATE_MATE_NO_PK" ON "KOSTA_PRJ"."MATE" ("MATE_NO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index REPORT_REPORT_NO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."REPORT_REPORT_NO_PK" ON "KOSTA_PRJ"."REPORT" ("REPORT_NO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index FREE_FNO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."FREE_FNO_PK" ON "KOSTA_PRJ"."FREE" ("FNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index USERS_ID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."USERS_ID_PK" ON "KOSTA_PRJ"."USERS" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index QUEST_QNO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."QUEST_QNO_PK" ON "KOSTA_PRJ"."QUESTIONS" ("QNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index RECOMMEND_REC_NO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."RECOMMEND_REC_NO_PK" ON "KOSTA_PRJ"."RECOMMEND" ("REC_NO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index MJ_MNO_UID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."MJ_MNO_UID_PK" ON "KOSTA_PRJ"."MATE_JOIN" ("MATE_NO", "USER_ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Index REVIEW_REV_NO_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "KOSTA_PRJ"."REVIEW_REV_NO_PK" ON "KOSTA_PRJ"."REVIEW" ("REV_NO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  Constraints for Table MATE_JOIN
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MATE_JOIN" ADD CONSTRAINT "MJ_MNO_UID_PK" PRIMARY KEY ("MATE_NO", "USER_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."MATE_JOIN" MODIFY ("JNO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table NOTICE
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."NOTICE" ADD CONSTRAINT "NOTICE_NNO_PK" PRIMARY KEY ("NNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."NOTICE" MODIFY ("CONTENT" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."NOTICE" MODIFY ("NAME" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."NOTICE" MODIFY ("NNO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table REPORT
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REPORT" ADD CONSTRAINT "REPORT_REPORT_NO_PK" PRIMARY KEY ("REPORT_NO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table MATE_HEART
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MATE_HEART" ADD CONSTRAINT "MHRT_MNO_UID_PK" PRIMARY KEY ("MATE_NO", "USER_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."MATE_HEART" MODIFY ("LNO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table MATE_REPLY
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MATE_REPLY" ADD CONSTRAINT "MRE_MATE_REPLY_NO_PK" PRIMARY KEY ("MATE_REPLY_NO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."MATE_REPLY" MODIFY ("REPLYER" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE_REPLY" MODIFY ("REPLY" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE_REPLY" MODIFY ("MATE_NO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table REVIEW
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REVIEW" ADD CONSTRAINT "REVIEW_REV_NO_PK" PRIMARY KEY ("REV_NO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."REVIEW" MODIFY ("MATE_NO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table MATE
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MATE" ADD CONSTRAINT "MATE_MATE_NO_PK" PRIMARY KEY ("MATE_NO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("LIKECNT" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("CONTENT" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("ENDTIME" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("STARTTIME" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("ENDZONE" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("STARTZONE" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("PEOPLEMAXNUM" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("PEOPLENUM" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("MEETINGDATE" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("MEETINGTIME" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("MEETINGPLACE" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("WRITER" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("ACTIVITYNAME" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."MATE" MODIFY ("MATE_NO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table QUESTIONS
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."QUESTIONS" ADD CONSTRAINT "QUEST_QNO_PK" PRIMARY KEY ("QNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."QUESTIONS" MODIFY ("CONTENT" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."QUESTIONS" MODIFY ("NAME" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."QUESTIONS" MODIFY ("QNO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table MANAGER
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MANAGER" ADD CONSTRAINT "MG_MANAGER_ID_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table REVIEW_REPLY
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_REPLY" ADD CONSTRAINT "RVREPLY_REV_RNO_PK" PRIMARY KEY ("REV_RNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_REPLY" MODIFY ("REPLYER" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_REPLY" MODIFY ("REPLY" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_REPLY" MODIFY ("REV_NO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table REVIEW_HEART
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_HEART" ADD CONSTRAINT "REHRT_RNO_UID_PK" PRIMARY KEY ("REV_NO", "USER_ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_HEART" MODIFY ("LNO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table USERS
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."USERS" ADD CONSTRAINT "USERS_ID_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."USERS" MODIFY ("EMAIL" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."USERS" MODIFY ("PWD" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."USERS" MODIFY ("NICKNAME" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."USERS" MODIFY ("USERNAME" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table FREE_REPLY
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."FREE_REPLY" ADD CONSTRAINT "FRREP_FRNO_PK" PRIMARY KEY ("FRNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."FREE_REPLY" MODIFY ("WRITER" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."FREE_REPLY" MODIFY ("CONTENT" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."FREE_REPLY" MODIFY ("FNO" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."FREE_REPLY" MODIFY ("FRNO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table RECOMMEND
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."RECOMMEND" ADD CONSTRAINT "RECOMMEND_REC_NO_PK" PRIMARY KEY ("REC_NO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."RECOMMEND" MODIFY ("SIMPLEDESC" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."RECOMMEND" MODIFY ("ADDRESS" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."RECOMMEND" MODIFY ("RECNAME" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table FREE
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."FREE" ADD CONSTRAINT "FREE_FNO_PK" PRIMARY KEY ("FNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."FREE" MODIFY ("WRITER" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."FREE" MODIFY ("CONTENT" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."FREE" MODIFY ("TITLE" NOT NULL ENABLE);
+  ALTER TABLE "KOSTA_PRJ"."FREE" MODIFY ("FNO" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Ref Constraints for Table FREE
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."FREE" ADD CONSTRAINT "FREE_USERS_ID_FK" FOREIGN KEY ("USER_ID")
+	  REFERENCES "KOSTA_PRJ"."USERS" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table FREE_REPLY
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."FREE_REPLY" ADD CONSTRAINT "FRPLY_FREE_FNO_FK" FOREIGN KEY ("FNO")
+	  REFERENCES "KOSTA_PRJ"."FREE" ("FNO") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table MATE_HEART
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MATE_HEART" ADD CONSTRAINT "MHR_MATE_MATE_NO_FK" FOREIGN KEY ("MATE_NO")
+	  REFERENCES "KOSTA_PRJ"."MATE" ("MATE_NO") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table MATE_JOIN
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MATE_JOIN" ADD CONSTRAINT "MJ_MATE_MATE_NO_FK" FOREIGN KEY ("MATE_NO")
+	  REFERENCES "KOSTA_PRJ"."MATE" ("MATE_NO") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."MATE_JOIN" ADD CONSTRAINT "MJ_USERS_ID_FK" FOREIGN KEY ("USER_ID")
+	  REFERENCES "KOSTA_PRJ"."USERS" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table MATE_REPLY
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."MATE_REPLY" ADD CONSTRAINT "MRPLY_MATE_MATE_NO_FK" FOREIGN KEY ("MATE_NO")
+	  REFERENCES "KOSTA_PRJ"."MATE" ("MATE_NO") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table RECOMMEND
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."RECOMMEND" ADD CONSTRAINT "REC_USERS_ID_FK" FOREIGN KEY ("USER_ID")
+	  REFERENCES "KOSTA_PRJ"."USERS" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table REPORT
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REPORT" ADD CONSTRAINT "REP_MATE_MATE_NO_FK" FOREIGN KEY ("MATE_NO")
+	  REFERENCES "KOSTA_PRJ"."MATE" ("MATE_NO") ON DELETE CASCADE ENABLE;
+  ALTER TABLE "KOSTA_PRJ"."REPORT" ADD CONSTRAINT "REP_USERS_ID_FK" FOREIGN KEY ("REPORT_USER_ID")
+	  REFERENCES "KOSTA_PRJ"."USERS" ("ID") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table REVIEW
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REVIEW" ADD CONSTRAINT "REVIEW_MJ_MNO_UID_FK" FOREIGN KEY ("MATE_NO", "USER_ID")
+	  REFERENCES "KOSTA_PRJ"."MATE_JOIN" ("MATE_NO", "USER_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table REVIEW_HEART
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_HEART" ADD CONSTRAINT "RVHRT_REV_REV_NO_FK" FOREIGN KEY ("REV_NO")
+	  REFERENCES "KOSTA_PRJ"."REVIEW" ("REV_NO") ON DELETE CASCADE ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table REVIEW_REPLY
+--------------------------------------------------------
+
+  ALTER TABLE "KOSTA_PRJ"."REVIEW_REPLY" ADD CONSTRAINT "RVPLY_REV_REV_NO_FK" FOREIGN KEY ("REV_NO")
+	  REFERENCES "KOSTA_PRJ"."REVIEW" ("REV_NO") ON DELETE CASCADE ENABLE;
